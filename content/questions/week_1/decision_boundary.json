@@ -1,0 +1,72 @@
+[
+  {
+    "id": "w1-dec-001", "week": 1, "topic": "decision-boundary", "type": "numeric", "difficulty": 1,
+    "prompt": "With $\\mathbf{w}^T = (0.1, 0.2, 0.6)$ and $\\mathbf{x}^T = (1, 1, 3)$, compute $\\mathbf{w}^T\\mathbf{x}$.",
+    "answer": 2.1, "tolerance": 0.001,
+    "explanation": "$0.1\\times1 + 0.2\\times1 + 0.6\\times3 = 2.1$. Note $x_0 = 1$ is the dummy variable.",
+    "tags": ["calculation", "bias-term"],
+    "sources": [{"file": "week_1/worksheet/1b-logistic-regression-hypothesis-set-answers.pdf", "page": 2, "quote": "0.1×1 + 0.2×1 + 0.6×3 = 2.1"}]
+  },
+  {
+    "id": "w1-dec-002", "week": 1, "topic": "decision-boundary", "type": "mcq", "difficulty": 1,
+    "prompt": "Given $\\mathbf{w}^T\\mathbf{x} = 2.1$, which class does logistic regression predict?",
+    "choices": ["Class 0", "Class 1"],
+    "answer": 1,
+    "explanation": "$\\mathbf{w}^T\\mathbf{x} \\ge 0$ means class 1.",
+    "tags": ["prediction"],
+    "sources": [{"file": "week_1/worksheet/1b-logistic-regression-hypothesis-set-answers.pdf", "page": 2, "quote": "As 2.1≥0, the predicted class is class 1."}]
+  },
+  {
+    "id": "w1-dec-003", "week": 1, "topic": "decision-boundary", "type": "mcq", "difficulty": 2,
+    "prompt": "What is the effect of changing the logistic regression weights on the decision boundary?",
+    "choices": [
+      "The decision boundary remains unchanged",
+      "The decision boundary definitely becomes steeper",
+      "The decision boundary moves but maintains its linearity",
+      "The decision boundary becomes more complex and nonlinear"
+    ],
+    "answer": 2,
+    "explanation": "The boundary is a hyperplane determined by the weights. Changing them moves it, but its linear nature stays. Steepness may or may not change.",
+    "tags": ["weights", "inductive-bias"],
+    "sources": [{"file": "week_1/worksheet/1b-logistic-regression-hypothesis-set-answers.pdf", "page": 4, "quote": "Changing the weights will change the position of the hyperplane but will not change its"}]
+  },
+  {
+    "id": "w1-dec-004", "week": 1, "topic": "decision-boundary", "type": "truefalse", "difficulty": 1,
+    "prompt": "The equation $\\mathbf{w}^T\\mathbf{x} = 0$ is the equation of a hyperplane in the input space, and it is the decision boundary.",
+    "answer": true,
+    "explanation": "In a 2-dimensional input space it is a line: $w_0x_0 + w_1x_1 + w_2x_2 = 0$.",
+    "tags": ["hyperplane"],
+    "sources": [{"file": "week_1/slides/1b-logistic-regression-hypothesis-set.pdf", "page": 22, "quote": "is the equation of a hyperplane in the"}]
+  },
+  {
+    "id": "w1-dec-005", "week": 1, "topic": "decision-boundary", "type": "short", "difficulty": 2,
+    "prompt": "In a 2D input space, express $x_2$ on the decision boundary in terms of $x_1$ and the weights.",
+    "answer": "From $w_0 + w_1x_1 + w_2x_2 = 0$ we get $w_1x_1 + w_2x_2 = -w_0$, so $x_2 = -\\frac{w_0 + w_1x_1}{w_2}$ (with $w_2 \\ne 0$).",
+    "steps": ["Start from $w_0x_0 + w_1x_1 + w_2x_2 = 0$ with $x_0 = 1$", "Move terms: $w_2x_2 = -(w_0 + w_1x_1)$", "Divide by $w_2$"],
+    "explanation": "The line crosses the axes at $(0, -w_0/w_2)$ and $(-w_0/w_1, 0)$.",
+    "tags": ["boundary", "derivation"],
+    "sources": [{"file": "week_1/slides/1b-logistic-regression-hypothesis-set.pdf", "page": 22, "quote": "w0x0+w1x1+w2x2=0 w1x1+w2x2=−w0"}]
+  },
+  {
+    "id": "w1-dec-006", "week": 1, "topic": "decision-boundary", "type": "flashcard", "difficulty": 1,
+    "prompt": "State the logistic regression prediction rule in terms of $\\mathbf{w}^T\\mathbf{x}$.",
+    "answer": "Predict class 1 if $\\mathbf{w}^T\\mathbf{x} \\ge 0$ (equivalently $p_1 \\ge 0.5$), otherwise class 0.",
+    "explanation": "$\\text{logit}(p_1) = \\mathbf{w}^T\\mathbf{x}$, and $\\text{logit}(p_1) = 0$ corresponds to $p_1 = 0.5$.",
+    "tags": ["prediction"],
+    "sources": [{"file": "week_1/slides/1b-logistic-regression-hypothesis-set.pdf", "page": 21, "quote": "logit(p1)=wTx≥0 class 1"}]
+  },
+  {
+    "id": "w1-dec-007", "week": 1, "topic": "decision-boundary", "type": "mcq", "difficulty": 2,
+    "prompt": "What does a larger $|\\mathbf{w}^T\\mathbf{x}|$ tell us about an example $\\mathbf{x}$?",
+    "choices": [
+      "It is further away from the decision boundary",
+      "It is closer to the decision boundary",
+      "It has $p_1$ closer to 0.5",
+      "It is always class 1"
+    ],
+    "answer": 0,
+    "explanation": "The larger $\\mathbf{w}^T\\mathbf{x}$, the higher $p_1$; the more negative, the smaller $p_1$. On the boundary $p_1 = 0.5$.",
+    "tags": ["distance", "probability"],
+    "sources": [{"file": "week_1/slides/1b-logistic-regression-hypothesis-set.pdf", "page": 26, "quote": "away from the decision boundary the example"}]
+  }
+]

@@ -1,0 +1,53 @@
+[
+  {
+    "id": "w1-sup-001", "week": 1, "topic": "supervised-learning", "type": "mcq", "difficulty": 1,
+    "prompt": "In supervised learning, what does each training example consist of?",
+    "choices": ["A single input vector $\\mathbf{x}$", "A pair of input and output $(\\mathbf{x}, y)$", "Only the output $y$", "A hypothesis $h$"],
+    "answer": 1,
+    "explanation": "The output in each example 'supervises' the learning algorithm so it can learn the mapping from input space to output space.",
+    "tags": ["training-set"],
+    "sources": [{"file": "week_1/worksheet/1b-logistic-regression-hypothesis-set-answers.pdf", "page": 1, "quote": "Each training example consists of a pair of input and output variables"}]
+  },
+  {
+    "id": "w1-sup-002", "week": 1, "topic": "supervised-learning", "type": "truefalse", "difficulty": 1,
+    "prompt": "The ultimate goal of supervised learning is to achieve low error on the training examples only.",
+    "answer": false,
+    "explanation": "The model is built from training examples, but the ultimate goal is to predict the target outputs of new, unseen examples, i.e. to generalise.",
+    "tags": ["generalisation"],
+    "sources": [{"file": "week_1/worksheet/1b-logistic-regression-hypothesis-set-answers.pdf", "page": 1, "quote": "the ultimate goal is for it to be able to correctly predict the target outputs of new examples"}]
+  },
+  {
+    "id": "w1-sup-003", "week": 1, "topic": "supervised-learning", "type": "flashcard", "difficulty": 1,
+    "prompt": "When does a model (function) generalise well?",
+    "answer": "When the generalisation gap $\\hat{R}(g) - R(g)$ is small.",
+    "explanation": "Training error (empirical risk) is $\\hat{R}(g)=\\frac{1}{N}\\sum_i E(g(x^{(i)}),y^{(i)})$; generalisation error is the expected error $R(g)$ over $p(x,y)$.",
+    "tags": ["generalisation", "risk"],
+    "sources": [{"file": "week_1/slides/1b-logistic-regression-hypothesis-set.pdf", "page": 13, "quote": "A model (function) generalises well when the generalisation gap is small."}]
+  },
+  {
+    "id": "w1-sup-004", "week": 1, "topic": "supervised-learning", "type": "mcq", "difficulty": 1,
+    "prompt": "For which kind of problem is the output space $\\mathcal{Y}$ a set of categories?",
+    "choices": ["Regression", "Classification", "Both regression and classification", "Neither"],
+    "answer": 1,
+    "explanation": "Regression has $\\mathcal{Y}=\\mathbb{R}$. Classification has a set of categories: 2 categories is binary classification, more than 2 is multi-class.",
+    "tags": ["output-space"],
+    "sources": [{"file": "week_1/slides/1b-logistic-regression-hypothesis-set.pdf", "page": 7, "quote": "is a set of categories"}]
+  },
+  {
+    "id": "w1-sup-005", "week": 1, "topic": "supervised-learning", "type": "multi", "difficulty": 2,
+    "prompt": "Which of these are components of the supervised learning process?",
+    "choices": ["Unknown target function", "Training examples", "Learning algorithm", "Hypothesis set", "Test labels used during training"],
+    "answer": [0, 1, 2, 3],
+    "explanation": "The learning algorithm searches the hypothesis set, given the training examples, for a final hypothesis $g \\approx f$ that approximates the unknown target function $f$.",
+    "tags": ["learning-process"],
+    "sources": [{"file": "week_1/slides/1b-logistic-regression-hypothesis-set.pdf", "page": 9, "quote": "Unknown Target Function"}]
+  },
+  {
+    "id": "w1-sup-006", "week": 1, "topic": "supervised-learning", "type": "truefalse", "difficulty": 2,
+    "prompt": "In the supervised learning problem, training examples $(x^{(i)}, y^{(i)})$ are assumed to be drawn i.i.d. from a fixed but unknown joint distribution $p(x,y)$.",
+    "answer": true,
+    "explanation": "This i.i.d. assumption is what lets a model fitted on training data be expected to generalise to unseen examples of the same distribution.",
+    "tags": ["iid", "distribution"],
+    "sources": [{"file": "week_1/slides/1b-logistic-regression-hypothesis-set.pdf", "page": 12, "quote": "drawn i.i.d. (independently and identically distributed)"}]
+  }
+]

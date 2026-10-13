@@ -1,0 +1,79 @@
+[
+  {
+    "id": "w1-str-001", "week": 1, "topic": "strengths-weaknesses", "type": "multi", "difficulty": 1,
+    "prompt": "Which of these are listed strengths of logistic regression?",
+    "choices": [
+      "Provides the probabilities that examples belong to each class",
+      "Fast at classifying new examples",
+      "Concise model that needs little space to store",
+      "Handles non-linearly separable classes without any change"
+    ],
+    "answer": [0, 1, 2],
+    "explanation": "It is a classifier for linearly separable problems, so the last option is a weakness.",
+    "tags": ["strengths"],
+    "sources": [
+      {"file": "week_1/reading/notes-logreg.pdf", "page": 3, "quote": "Provides the probabilities that the examples belong to each class."},
+      {"file": "week_1/reading/notes-logreg.pdf", "page": 4, "quote": "Fast at classifying new examples."}
+    ]
+  },
+  {
+    "id": "w1-str-002", "week": 1, "topic": "strengths-weaknesses", "type": "truefalse", "difficulty": 1,
+    "prompt": "Logistic regression can separate classes that are not linearly separable, without changing the inputs.",
+    "answer": false,
+    "explanation": "It is a classifier for linearly separable problems, whose classes can be separated by hyperplanes.",
+    "tags": ["weaknesses"],
+    "sources": [{"file": "week_1/reading/notes-logreg.pdf", "page": 4, "quote": "It is a classifier for linearly separable problems"}]
+  },
+  {
+    "id": "w1-str-003", "week": 1, "topic": "strengths-weaknesses", "type": "mcq", "difficulty": 2,
+    "prompt": "What can multicollinearity cause in a logistic regression model?",
+    "choices": [
+      "The weights of the related inputs may be unstable",
+      "The decision boundary becomes nonlinear",
+      "The model can no longer output probabilities",
+      "Prediction becomes slow"
+    ],
+    "answer": 0,
+    "explanation": "It does not necessarily hurt predictive performance, but weights may no longer reflect how important each variable is.",
+    "tags": ["multicollinearity", "weaknesses"],
+    "sources": [{"file": "week_1/reading/notes-logreg.pdf", "page": 4, "quote": "may cause the weights associated the related input variables to be unstable"}]
+  },
+  {
+    "id": "w1-str-004", "week": 1, "topic": "strengths-weaknesses", "type": "short", "difficulty": 2,
+    "prompt": "Under what conditions can the model coefficients represent the importance of input variables?",
+    "answer": "If the input variables have the same scale and there is no multicollinearity.",
+    "explanation": "Different scales change the size of weights, and multicollinearity makes weights unstable, so neither can be compared fairly.",
+    "tags": ["interpretation"],
+    "sources": [{"file": "week_1/reading/notes-logreg.pdf", "page": 4, "quote": "if the input variables have the same scale and there is no multicollinearity"}]
+  },
+  {
+    "id": "w1-mc-001", "week": 1, "topic": "multiclass", "type": "mcq", "difficulty": 2,
+    "prompt": "How does the notes' multiclass logistic regression handle $M$ classes?",
+    "choices": [
+      "Choose one reference (pivot) class and compute all boundaries against it",
+      "Train one classifier per pair of classes only",
+      "Use a single linear boundary for all classes",
+      "Ignore all but two classes"
+    ],
+    "answer": 0,
+    "explanation": "The logit of every other class against the pivot is modelled linearly, and $x$ is assigned to the class with the highest probability.",
+    "tags": ["pivot"],
+    "sources": [{"file": "week_1/reading/notes-multiclass-logreg.pdf", "page": 1, "quote": "compute all boundaries against that class"}]
+  },
+  {
+    "id": "w1-mc-002", "week": 1, "topic": "multiclass", "type": "numeric", "difficulty": 2,
+    "prompt": "With $M = 5$ classes and a pivot class, how many weight vectors $\\mathbf{w}_i^*$ must be learned?",
+    "answer": 4, "tolerance": 0,
+    "explanation": "The logit of every other class against the pivot is computed, giving $M - 1$ weight vectors.",
+    "tags": ["pivot", "calculation"],
+    "sources": [{"file": "week_1/reading/notes-multiclass-logreg.pdf", "page": 1, "quote": "we compute the logit of every other class against one class."}]
+  },
+  {
+    "id": "w1-mc-003", "week": 1, "topic": "multiclass", "type": "flashcard", "difficulty": 2,
+    "prompt": "In multiclass logistic regression, how is the predicted class chosen?",
+    "answer": "Assign $\\mathbf{x}$ to the class with the highest probability $p_i$.",
+    "explanation": "The probabilities come from $p_i = \\frac{\\exp(\\mathbf{w}_i^{*T}\\mathbf{x})}{1+\\sum_{j=1}^{M-1}\\exp(\\mathbf{w}_j^{*T}\\mathbf{x})}$, with $p_M = \\frac{1}{1+\\sum_j \\exp(\\mathbf{w}_j^{*T}\\mathbf{x})}$.",
+    "tags": ["prediction"],
+    "sources": [{"file": "week_1/reading/notes-multiclass-logreg.pdf", "page": 1, "quote": "assign x to the class with the"}]
+  }
+]

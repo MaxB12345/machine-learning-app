@@ -1,0 +1,75 @@
+[
+  {
+    "id": "w1-sig-001", "week": 1, "topic": "sigmoid-hypothesis-set", "type": "flashcard", "difficulty": 1,
+    "prompt": "Write $p_1$ and $p_0$ as functions of $\\mathbf{w}^T\\mathbf{x}$.",
+    "answer": "$p_1 = \\frac{e^{\\mathbf{w}^T\\mathbf{x}}}{1+e^{\\mathbf{w}^T\\mathbf{x}}}$ and $p_0 = 1 - p_1 = \\frac{1}{1+e^{\\mathbf{w}^T\\mathbf{x}}}$ (the sigmoid logistic function).",
+    "explanation": "Obtained by solving $\\text{logit}(p_1) = \\mathbf{w}^T\\mathbf{x}$ for $p_1$.",
+    "tags": ["sigmoid"],
+    "sources": [{"file": "week_1/slides/1b-logistic-regression-hypothesis-set.pdf", "page": 24, "quote": "p0=1−p1= 11+e(wTx)"}]
+  },
+  {
+    "id": "w1-sig-002", "week": 1, "topic": "sigmoid-hypothesis-set", "type": "numeric", "difficulty": 2,
+    "prompt": "For $\\mathbf{w}^T\\mathbf{x} = 2.1$, compute $p_1$ (4 d.p.).",
+    "answer": 0.8909, "tolerance": 0.0005,
+    "explanation": "$p_1 = e^{2.1}/(1+e^{2.1}) \\approx 8.1662/9.1662 \\approx 0.8909$.",
+    "tags": ["sigmoid", "calculation"],
+    "sources": [{"file": "week_1/worksheet/1b-logistic-regression-hypothesis-set-answers.pdf", "page": 3, "quote": "≈ 8.16621 + 8.1662 = 0.8909"}]
+  },
+  {
+    "id": "w1-sig-003", "week": 1, "topic": "sigmoid-hypothesis-set", "type": "mcq", "difficulty": 1,
+    "prompt": "What is the purpose of applying the sigmoid function in logistic regression?",
+    "choices": [
+      "To make the decision boundary nonlinear",
+      "To map the linear combination of inputs to a probability between 0 and 1",
+      "To scale the input features",
+      "To remove the need for training"
+    ],
+    "answer": 1,
+    "explanation": "$\\mathbf{w}^T\\mathbf{x}$ can take any real value, while the sigmoid output lies between 0 and 1 so it can represent a probability.",
+    "tags": ["sigmoid"],
+    "sources": [{"file": "week_1/worksheet/1b-logistic-regression-hypothesis-set-answers.pdf", "page": 4, "quote": "The purpose is to map a linear combination of inputs"}]
+  },
+  {
+    "id": "w1-sig-004", "week": 1, "topic": "sigmoid-hypothesis-set", "type": "short", "difficulty": 2,
+    "prompt": "Explain what $h(\\mathbf{x}) = p_1 = p(1|\\mathbf{x},\\mathbf{w}) = \\frac{e^{\\mathbf{w}^T\\mathbf{x}}}{1+e^{\\mathbf{w}^T\\mathbf{x}}}, \\forall \\mathbf{w} \\in \\mathbb{R}^{d+1}$ says about the hypothesis set.",
+    "answer": "The hypothesis set contains all sigmoid functions of this form, one for each $\\mathbf{w} \\in \\mathbb{R}^{d+1}$. Each tries to approximate the true conditional probability $p(1|\\mathbf{x})$. The parameters to learn are $\\mathbf{w}$.",
+    "steps": [
+      "Each $\\mathbf{w}$ gives one hypothesis: a sigmoid of a linear function of $\\mathbf{x}$",
+      "It approximates $p(1|\\mathbf{x})$, and $p(0|\\mathbf{x}) = 1 - p(1|\\mathbf{x})$ so the whole Bernoulli distribution is modelled",
+      "Learning means choosing a good $\\mathbf{w}$ from the training examples"
+    ],
+    "explanation": "Note $\\mathbf{w}$ has $d+1$ entries because of the dummy variable $x_0 = 1$.",
+    "tags": ["hypothesis-set"],
+    "sources": [{"file": "week_1/worksheet/1b-logistic-regression-hypothesis-set-answers.pdf", "page": 3, "quote": "The hypothesis set consists of functions of the format"}]
+  },
+  {
+    "id": "w1-sig-005", "week": 1, "topic": "sigmoid-hypothesis-set", "type": "mcq", "difficulty": 1,
+    "prompt": "What is the inductive bias of logistic regression, as summarised in the lecture?",
+    "choices": [
+      "Linear decision boundary, sigmoid logistic",
+      "Quadratic decision boundary, softmax",
+      "Tree-shaped decision regions",
+      "No assumptions at all"
+    ],
+    "answer": 0,
+    "explanation": "Logistic regression models $\\text{logit}(p_1)$ as a linear function of the inputs and $p_1$ as a sigmoid of it.",
+    "tags": ["inductive-bias"],
+    "sources": [{"file": "week_1/slides/1b-logistic-regression-hypothesis-set.pdf", "page": 30, "quote": "Inductive bias: linear decision boundary, sigmoid logistic."}]
+  },
+  {
+    "id": "w1-sig-006", "week": 1, "topic": "sigmoid-hypothesis-set", "type": "truefalse", "difficulty": 1,
+    "prompt": "The parameters that logistic regression learns are the weights $\\mathbf{w} \\in \\mathbb{R}^{d+1}$.",
+    "answer": true,
+    "explanation": "The hypothesis set is $h(\\mathbf{x}) = p(1|\\mathbf{x},\\mathbf{w})$ for all $\\mathbf{w} \\in \\mathbb{R}^{d+1}$, so learning picks $\\mathbf{w}$.",
+    "tags": ["parameters"],
+    "sources": [{"file": "week_1/slides/1b-logistic-regression-hypothesis-set.pdf", "page": 30, "quote": "The parameters to be learned are"}]
+  },
+  {
+    "id": "w1-sig-007", "week": 1, "topic": "sigmoid-hypothesis-set", "type": "truefalse", "difficulty": 3,
+    "prompt": "Mathematically the sigmoid output can be exactly 0 or exactly 1 for finite $\\mathbf{w}^T\\mathbf{x}$.",
+    "answer": false,
+    "explanation": "$p_1 \\to 1$ as $\\mathbf{w}^T\\mathbf{x} \\to \\infty$ and $p_1 \\to 0$ as $\\mathbf{w}^T\\mathbf{x} \\to -\\infty$, but it is never exactly 0 or 1. Computers round at limited precision.",
+    "tags": ["sigmoid", "precision"],
+    "sources": [{"file": "week_1/worksheet/1b-logistic-regression-hypothesis-set-answers.pdf", "page": 7, "quote": "Mathematically, we would never get exactly zero or exactly one"}]
+  }
+]

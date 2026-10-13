@@ -1,0 +1,43 @@
+[
+  {
+    "id": "w1-cod-001", "week": 1, "topic": "coding", "type": "code", "difficulty": 2,
+    "prompt": "What class label is printed?",
+    "code": "x = np.array([1.0, 2.0, 1.0])\nw = np.array([-1.0, 1.0, -2.0])\np, label = predict(x, w)\nprint(label)",
+    "choices": ["0", "1"],
+    "answer": 0,
+    "explanation": "$z = \\mathbf{w}^T\\mathbf{x} = -1 + 2 - 2 = -1$, so $p_1 \\approx 0.2689 < 0.5$ and the label is 0.",
+    "tags": ["prediction"],
+    "sources": [{"file": "week_1/coding-problems/logistic_regression_exercises.ipynb", "page": 11, "quote": "w = np.array([-1.0, 1.0, -2.0])"}]
+  },
+  {
+    "id": "w1-cod-002", "week": 1, "topic": "coding", "type": "code", "difficulty": 2,
+    "prompt": "This function should return $p_1 = \\frac{e^z}{1+e^z}$. Which statement is true?",
+    "code": "def sigmoid(z):\n    return np.exp(z) / (1 + np.exp(-z))",
+    "choices": [
+      "It is correct",
+      "The denominator should be 1 + np.exp(z)",
+      "The numerator should be np.exp(-z)",
+      "It should return np.exp(z) alone"
+    ],
+    "answer": 1,
+    "explanation": "The denominator must be $1 + e^{z}$, the same exponent as the numerator, so that $p_1 \\in (0,1)$.",
+    "tags": ["sigmoid", "debugging"],
+    "sources": [{"file": "week_1/coding-problems/logistic_regression_exercises.ipynb", "page": 4, "quote": "p_1 = \\frac{e^z}{1 + e^z}"}]
+  },
+  {
+    "id": "w1-cod-003", "week": 1, "topic": "coding", "type": "numeric", "difficulty": 2,
+    "prompt": "With $\\mathbf{w} = [1, 2, -1]$, what is $x_2$ on the decision boundary when $x_1 = 0$?",
+    "answer": 1, "tolerance": 0.0001,
+    "explanation": "$x_2 = -\\frac{w_0 + w_1x_1}{w_2} = -\\frac{1 + 0}{-1} = 1$.",
+    "tags": ["decision-boundary", "calculation"],
+    "sources": [{"file": "week_1/coding-problems/logistic_regression_exercises.ipynb", "page": 12, "quote": "x_2 = -\\frac{w_0 + w_1x_1}{w_2}"}]
+  },
+  {
+    "id": "w1-cod-004", "week": 1, "topic": "coding", "type": "numeric", "difficulty": 1,
+    "prompt": "What does `round(float(sigmoid(1)), 4)` print? (the notebook's expected value)",
+    "answer": 0.7311, "tolerance": 0.0001,
+    "explanation": "$e^1/(1+e^1) = 2.718/3.718 \\approx 0.7311$.",
+    "tags": ["sigmoid", "calculation"],
+    "sources": [{"file": "week_1/coding-problems/logistic_regression_exercises.ipynb", "page": 6, "quote": "`sigmoid(1)` → `0.7311`"}]
+  }
+]
