@@ -1,0 +1,11 @@
+{
+  "name": "ml-mastery",
+  "private": true,
+  "type": "module",
+  "description": "Offline question-bank PWA for the Machine Learning module",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "bump-cache": "node scripts/bump-cache.mjs",
+    "serve": "python3 -m http.server 8000 -d docs"
+  }
+}

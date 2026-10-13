@@ -1,0 +1,922 @@
+[
+ {
+  "id": "w1-cod-001",
+  "week": 1,
+  "topic": "coding",
+  "type": "code",
+  "difficulty": 2,
+  "prompt": "What class label is printed?",
+  "code": "x = np.array([1.0, 2.0, 1.0])\nw = np.array([-1.0, 1.0, -2.0])\np, label = predict(x, w)\nprint(label)",
+  "choices": [
+   "0",
+   "1"
+  ],
+  "answer": 0,
+  "explanation": "$z = \\mathbf{w}^T\\mathbf{x} = -1 + 2 - 2 = -1$, so $p_1 \\approx 0.2689 < 0.5$ and the label is 0.",
+  "tags": [
+   "prediction"
+  ],
+  "sources": [
+   {
+    "file": "week_1/coding-problems/logistic_regression_exercises.ipynb",
+    "page": 11
+   }
+  ]
+ },
+ {
+  "id": "w1-cod-002",
+  "week": 1,
+  "topic": "coding",
+  "type": "code",
+  "difficulty": 2,
+  "prompt": "This function should return $p_1 = \\frac{e^z}{1+e^z}$. Which statement is true?",
+  "code": "def sigmoid(z):\n    return np.exp(z) / (1 + np.exp(-z))",
+  "choices": [
+   "It is correct",
+   "The denominator should be 1 + np.exp(z)",
+   "The numerator should be np.exp(-z)",
+   "It should return np.exp(z) alone"
+  ],
+  "answer": 1,
+  "explanation": "The denominator must be $1 + e^{z}$, the same exponent as the numerator, so that $p_1 \\in (0,1)$.",
+  "tags": [
+   "sigmoid",
+   "debugging"
+  ],
+  "sources": [
+   {
+    "file": "week_1/coding-problems/logistic_regression_exercises.ipynb",
+    "page": 4
+   }
+  ]
+ },
+ {
+  "id": "w1-cod-003",
+  "week": 1,
+  "topic": "coding",
+  "type": "numeric",
+  "difficulty": 2,
+  "prompt": "With $\\mathbf{w} = [1, 2, -1]$, what is $x_2$ on the decision boundary when $x_1 = 0$?",
+  "answer": 1,
+  "tolerance": 0.0001,
+  "explanation": "$x_2 = -\\frac{w_0 + w_1x_1}{w_2} = -\\frac{1 + 0}{-1} = 1$.",
+  "tags": [
+   "decision-boundary",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_1/coding-problems/logistic_regression_exercises.ipynb",
+    "page": 12
+   }
+  ]
+ },
+ {
+  "id": "w1-cod-004",
+  "week": 1,
+  "topic": "coding",
+  "type": "numeric",
+  "difficulty": 1,
+  "prompt": "What does `round(float(sigmoid(1)), 4)` print? (the notebook's expected value)",
+  "answer": 0.7311,
+  "tolerance": 0.0001,
+  "explanation": "$e^1/(1+e^1) = 2.718/3.718 \\approx 0.7311$.",
+  "tags": [
+   "sigmoid",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_1/coding-problems/logistic_regression_exercises.ipynb",
+    "page": 6
+   }
+  ]
+ },
+ {
+  "id": "w1-dec-001",
+  "week": 1,
+  "topic": "decision-boundary",
+  "type": "numeric",
+  "difficulty": 1,
+  "prompt": "With $\\mathbf{w}^T = (0.1, 0.2, 0.6)$ and $\\mathbf{x}^T = (1, 1, 3)$, compute $\\mathbf{w}^T\\mathbf{x}$.",
+  "answer": 2.1,
+  "tolerance": 0.001,
+  "explanation": "$0.1\\times1 + 0.2\\times1 + 0.6\\times3 = 2.1$. Note $x_0 = 1$ is the dummy variable.",
+  "tags": [
+   "calculation",
+   "bias-term"
+  ],
+  "sources": [
+   {
+    "file": "week_1/worksheet/1b-logistic-regression-hypothesis-set-answers.pdf",
+    "page": 2
+   }
+  ]
+ },
+ {
+  "id": "w1-dec-002",
+  "week": 1,
+  "topic": "decision-boundary",
+  "type": "mcq",
+  "difficulty": 1,
+  "prompt": "Given $\\mathbf{w}^T\\mathbf{x} = 2.1$, which class does logistic regression predict?",
+  "choices": [
+   "Class 0",
+   "Class 1"
+  ],
+  "answer": 1,
+  "explanation": "$\\mathbf{w}^T\\mathbf{x} \\ge 0$ means class 1.",
+  "tags": [
+   "prediction"
+  ],
+  "sources": [
+   {
+    "file": "week_1/worksheet/1b-logistic-regression-hypothesis-set-answers.pdf",
+    "page": 2
+   }
+  ]
+ },
+ {
+  "id": "w1-dec-003",
+  "week": 1,
+  "topic": "decision-boundary",
+  "type": "mcq",
+  "difficulty": 2,
+  "prompt": "What is the effect of changing the logistic regression weights on the decision boundary?",
+  "choices": [
+   "The decision boundary remains unchanged",
+   "The decision boundary definitely becomes steeper",
+   "The decision boundary moves but maintains its linearity",
+   "The decision boundary becomes more complex and nonlinear"
+  ],
+  "answer": 2,
+  "explanation": "The boundary is a hyperplane determined by the weights. Changing them moves it, but its linear nature stays. Steepness may or may not change.",
+  "tags": [
+   "weights",
+   "inductive-bias"
+  ],
+  "sources": [
+   {
+    "file": "week_1/worksheet/1b-logistic-regression-hypothesis-set-answers.pdf",
+    "page": 4
+   }
+  ]
+ },
+ {
+  "id": "w1-dec-004",
+  "week": 1,
+  "topic": "decision-boundary",
+  "type": "truefalse",
+  "difficulty": 1,
+  "prompt": "The equation $\\mathbf{w}^T\\mathbf{x} = 0$ is the equation of a hyperplane in the input space, and it is the decision boundary.",
+  "answer": true,
+  "explanation": "In a 2-dimensional input space it is a line: $w_0x_0 + w_1x_1 + w_2x_2 = 0$.",
+  "tags": [
+   "hyperplane"
+  ],
+  "sources": [
+   {
+    "file": "week_1/slides/1b-logistic-regression-hypothesis-set.pdf",
+    "page": 22
+   }
+  ]
+ },
+ {
+  "id": "w1-dec-005",
+  "week": 1,
+  "topic": "decision-boundary",
+  "type": "short",
+  "difficulty": 2,
+  "prompt": "In a 2D input space, express $x_2$ on the decision boundary in terms of $x_1$ and the weights.",
+  "answer": "From $w_0 + w_1x_1 + w_2x_2 = 0$ we get $w_1x_1 + w_2x_2 = -w_0$, so $x_2 = -\\frac{w_0 + w_1x_1}{w_2}$ (with $w_2 \\ne 0$).",
+  "steps": [
+   "Start from $w_0x_0 + w_1x_1 + w_2x_2 = 0$ with $x_0 = 1$",
+   "Move terms: $w_2x_2 = -(w_0 + w_1x_1)$",
+   "Divide by $w_2$"
+  ],
+  "explanation": "The line crosses the axes at $(0, -w_0/w_2)$ and $(-w_0/w_1, 0)$.",
+  "tags": [
+   "boundary",
+   "derivation"
+  ],
+  "sources": [
+   {
+    "file": "week_1/slides/1b-logistic-regression-hypothesis-set.pdf",
+    "page": 22
+   }
+  ]
+ },
+ {
+  "id": "w1-dec-006",
+  "week": 1,
+  "topic": "decision-boundary",
+  "type": "flashcard",
+  "difficulty": 1,
+  "prompt": "State the logistic regression prediction rule in terms of $\\mathbf{w}^T\\mathbf{x}$.",
+  "answer": "Predict class 1 if $\\mathbf{w}^T\\mathbf{x} \\ge 0$ (equivalently $p_1 \\ge 0.5$), otherwise class 0.",
+  "explanation": "$\\text{logit}(p_1) = \\mathbf{w}^T\\mathbf{x}$, and $\\text{logit}(p_1) = 0$ corresponds to $p_1 = 0.5$.",
+  "tags": [
+   "prediction"
+  ],
+  "sources": [
+   {
+    "file": "week_1/slides/1b-logistic-regression-hypothesis-set.pdf",
+    "page": 21
+   }
+  ]
+ },
+ {
+  "id": "w1-dec-007",
+  "week": 1,
+  "topic": "decision-boundary",
+  "type": "mcq",
+  "difficulty": 2,
+  "prompt": "What does a larger $|\\mathbf{w}^T\\mathbf{x}|$ tell us about an example $\\mathbf{x}$?",
+  "choices": [
+   "It is further away from the decision boundary",
+   "It is closer to the decision boundary",
+   "It has $p_1$ closer to 0.5",
+   "It is always class 1"
+  ],
+  "answer": 0,
+  "explanation": "The larger $\\mathbf{w}^T\\mathbf{x}$, the higher $p_1$; the more negative, the smaller $p_1$. On the boundary $p_1 = 0.5$.",
+  "tags": [
+   "distance",
+   "probability"
+  ],
+  "sources": [
+   {
+    "file": "week_1/slides/1b-logistic-regression-hypothesis-set.pdf",
+    "page": 26
+   }
+  ]
+ },
+ {
+  "id": "w1-log-001",
+  "week": 1,
+  "topic": "logit-and-odds",
+  "type": "flashcard",
+  "difficulty": 1,
+  "prompt": "Define the odds $o_1$ of class 1.",
+  "answer": "The ratio of the probabilities of the two outcomes: $o_1 = \\frac{p_1}{p_0} = \\frac{p_1}{1-p_1}$.",
+  "explanation": "The odds range over $[0,\\infty)$ and equal 1 when $p_1 = 0.5$.",
+  "tags": [
+   "odds"
+  ],
+  "sources": [
+   {
+    "file": "week_1/slides/1b-logistic-regression-hypothesis-set.pdf",
+    "page": 20
+   }
+  ]
+ },
+ {
+  "id": "w1-log-002",
+  "week": 1,
+  "topic": "logit-and-odds",
+  "type": "flashcard",
+  "difficulty": 1,
+  "prompt": "Define the logit of $p_1$.",
+  "answer": "The logarithm of the odds: $\\text{logit}(p_1) = \\ln\\left(\\frac{p_1}{1-p_1}\\right)$.",
+  "explanation": "Logistic regression models $\\text{logit}(p_1) = \\mathbf{w}^T\\mathbf{x}$, the key idea of the method.",
+  "tags": [
+   "logit"
+  ],
+  "sources": [
+   {
+    "file": "week_1/slides/1b-logistic-regression-hypothesis-set.pdf",
+    "page": 21
+   }
+  ]
+ },
+ {
+  "id": "w1-log-003",
+  "week": 1,
+  "topic": "logit-and-odds",
+  "type": "numeric",
+  "difficulty": 1,
+  "prompt": "Given $p_1 = 0.7$, compute the odds $o_1$ (2 d.p.).",
+  "answer": 2.33,
+  "tolerance": 0.01,
+  "explanation": "$o_1 = 0.7 / 0.3 \\approx 2.33$. Since $o_1 \\ge 1$, predict class 1.",
+  "tags": [
+   "odds",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_1/slides/1b-logistic-regression-hypothesis-set.pdf",
+    "page": 20
+   }
+  ]
+ },
+ {
+  "id": "w1-log-004",
+  "week": 1,
+  "topic": "logit-and-odds",
+  "type": "numeric",
+  "difficulty": 2,
+  "prompt": "Given $p_1 = 0.7$, compute $\\text{logit}(p_1)$ (2 d.p.).",
+  "answer": 0.85,
+  "tolerance": 0.01,
+  "explanation": "$\\ln(0.7/0.3) = \\ln(2.333) \\approx 0.85$. A positive logit means class 1.",
+  "tags": [
+   "logit",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_1/slides/1b-logistic-regression-hypothesis-set.pdf",
+    "page": 21
+   }
+  ]
+ },
+ {
+  "id": "w1-log-005",
+  "week": 1,
+  "topic": "logit-and-odds",
+  "type": "mcq",
+  "difficulty": 1,
+  "prompt": "If $\\text{logit}(p_1) = 0$ in a logistic regression model, what does this imply?",
+  "choices": [
+   "$p_1 = 0$",
+   "$p_1 = 0.5$",
+   "$p_1 = 1$",
+   "The model has made an incorrect prediction"
+  ],
+  "answer": 1,
+  "explanation": "$p_1 = e^0 / (1 + e^0) = 1/2 = 0.5$.",
+  "tags": [
+   "logit"
+  ],
+  "sources": [
+   {
+    "file": "week_1/worksheet/1b-logistic-regression-hypothesis-set-answers.pdf",
+    "page": 5
+   }
+  ]
+ },
+ {
+  "id": "w1-log-006",
+  "week": 1,
+  "topic": "logit-and-odds",
+  "type": "mcq",
+  "difficulty": 3,
+  "prompt": "With $\\ln\\left(\\frac{p_1}{1-p_1}\\right) = 2 + 0.5x_1$, how do the odds change when $x_1$ increases by 1 unit?",
+  "choices": [
+   "They increase by 0.5",
+   "They increase by 1 time",
+   "They are multiplied by 2",
+   "They are multiplied by $e^{0.5}$"
+  ],
+  "answer": 3,
+  "explanation": "Odds $= \\exp(2)\\exp(0.5x_1)$. Replacing $x_1$ with $x_1 + 1$ multiplies the odds by $\\exp(0.5)$.",
+  "tags": [
+   "odds",
+   "interpretation"
+  ],
+  "sources": [
+   {
+    "file": "week_1/worksheet/1b-logistic-regression-hypothesis-set-answers.pdf",
+    "page": 6
+   }
+  ]
+ },
+ {
+  "id": "w1-log-007",
+  "week": 1,
+  "topic": "logit-and-odds",
+  "type": "numeric",
+  "difficulty": 2,
+  "prompt": "Using $\\ln(\\text{odds}) = 2 + 0.5x_1$, by what factor are the odds multiplied when $x_1$ increases by 1? (3 d.p.)",
+  "answer": 1.649,
+  "tolerance": 0.001,
+  "explanation": "The factor is $e^{0.5} \\approx 1.649$.",
+  "tags": [
+   "odds",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_1/worksheet/1b-logistic-regression-hypothesis-set-answers.pdf",
+    "page": 6
+   }
+  ]
+ },
+ {
+  "id": "w1-log-008",
+  "week": 1,
+  "topic": "logit-and-odds",
+  "type": "multi",
+  "difficulty": 2,
+  "prompt": "Which of these quantities can take any value in $(-\\infty, \\infty)$?",
+  "choices": [
+   "$\\mathbf{w}^T\\mathbf{x}$",
+   "$p_1$",
+   "$\\text{logit}(p_1)$",
+   "The odds $\\frac{p_1}{1-p_1}$"
+  ],
+  "answer": [
+   0,
+   2
+  ],
+  "explanation": "$p_1$ lies in $[0,1]$ and the odds lie in $[0,\\infty)$. $\\mathbf{w}^T\\mathbf{x}$ and the logit both span the whole real line.",
+  "tags": [
+   "ranges"
+  ],
+  "sources": [
+   {
+    "file": "week_1/worksheet/1b-logistic-regression-hypothesis-set-answers.pdf",
+    "page": 6
+   }
+  ]
+ },
+ {
+  "id": "w1-log-009",
+  "week": 1,
+  "topic": "logit-and-odds",
+  "type": "order",
+  "difficulty": 2,
+  "prompt": "Put the argument for why the logit is needed into the order the lecture presents it.",
+  "steps": [
+   "Model $p_1 = \\mathbf{w}^T\\mathbf{x}$ directly: $\\mathbf{w}^T\\mathbf{x}$ is unbounded but $p_1$ must be in $[0,1]$",
+   "Try $\\ln(p_1) = \\mathbf{w}^T\\mathbf{x}$: $\\ln(p_1)$ is only unbounded in one direction, so this fails too",
+   "Use the logit, which maps $[0,1]$ to $(-\\infty,\\infty)$",
+   "Model $\\text{logit}(p_1) = \\mathbf{w}^T\\mathbf{x}$"
+  ],
+  "explanation": "Each attempt fails because a linear function is unbounded in both directions while the modelled quantity is not.",
+  "tags": [
+   "logit",
+   "motivation"
+  ],
+  "sources": [
+   {
+    "file": "week_1/slides/1b-logistic-regression-hypothesis-set.pdf",
+    "page": 17
+   },
+   {
+    "file": "week_1/slides/1b-logistic-regression-hypothesis-set.pdf",
+    "page": 18
+   },
+   {
+    "file": "week_1/slides/1b-logistic-regression-hypothesis-set.pdf",
+    "page": 19
+   }
+  ]
+ },
+ {
+  "id": "w1-sig-001",
+  "week": 1,
+  "topic": "sigmoid-hypothesis-set",
+  "type": "flashcard",
+  "difficulty": 1,
+  "prompt": "Write $p_1$ and $p_0$ as functions of $\\mathbf{w}^T\\mathbf{x}$.",
+  "answer": "$p_1 = \\frac{e^{\\mathbf{w}^T\\mathbf{x}}}{1+e^{\\mathbf{w}^T\\mathbf{x}}}$ and $p_0 = 1 - p_1 = \\frac{1}{1+e^{\\mathbf{w}^T\\mathbf{x}}}$ (the sigmoid logistic function).",
+  "explanation": "Obtained by solving $\\text{logit}(p_1) = \\mathbf{w}^T\\mathbf{x}$ for $p_1$.",
+  "tags": [
+   "sigmoid"
+  ],
+  "sources": [
+   {
+    "file": "week_1/slides/1b-logistic-regression-hypothesis-set.pdf",
+    "page": 24
+   }
+  ]
+ },
+ {
+  "id": "w1-sig-002",
+  "week": 1,
+  "topic": "sigmoid-hypothesis-set",
+  "type": "numeric",
+  "difficulty": 2,
+  "prompt": "For $\\mathbf{w}^T\\mathbf{x} = 2.1$, compute $p_1$ (4 d.p.).",
+  "answer": 0.8909,
+  "tolerance": 0.0005,
+  "explanation": "$p_1 = e^{2.1}/(1+e^{2.1}) \\approx 8.1662/9.1662 \\approx 0.8909$.",
+  "tags": [
+   "sigmoid",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_1/worksheet/1b-logistic-regression-hypothesis-set-answers.pdf",
+    "page": 3
+   }
+  ]
+ },
+ {
+  "id": "w1-sig-003",
+  "week": 1,
+  "topic": "sigmoid-hypothesis-set",
+  "type": "mcq",
+  "difficulty": 1,
+  "prompt": "What is the purpose of applying the sigmoid function in logistic regression?",
+  "choices": [
+   "To make the decision boundary nonlinear",
+   "To map the linear combination of inputs to a probability between 0 and 1",
+   "To scale the input features",
+   "To remove the need for training"
+  ],
+  "answer": 1,
+  "explanation": "$\\mathbf{w}^T\\mathbf{x}$ can take any real value, while the sigmoid output lies between 0 and 1 so it can represent a probability.",
+  "tags": [
+   "sigmoid"
+  ],
+  "sources": [
+   {
+    "file": "week_1/worksheet/1b-logistic-regression-hypothesis-set-answers.pdf",
+    "page": 4
+   }
+  ]
+ },
+ {
+  "id": "w1-sig-004",
+  "week": 1,
+  "topic": "sigmoid-hypothesis-set",
+  "type": "short",
+  "difficulty": 2,
+  "prompt": "Explain what $h(\\mathbf{x}) = p_1 = p(1|\\mathbf{x},\\mathbf{w}) = \\frac{e^{\\mathbf{w}^T\\mathbf{x}}}{1+e^{\\mathbf{w}^T\\mathbf{x}}}, \\forall \\mathbf{w} \\in \\mathbb{R}^{d+1}$ says about the hypothesis set.",
+  "answer": "The hypothesis set contains all sigmoid functions of this form, one for each $\\mathbf{w} \\in \\mathbb{R}^{d+1}$. Each tries to approximate the true conditional probability $p(1|\\mathbf{x})$. The parameters to learn are $\\mathbf{w}$.",
+  "steps": [
+   "Each $\\mathbf{w}$ gives one hypothesis: a sigmoid of a linear function of $\\mathbf{x}$",
+   "It approximates $p(1|\\mathbf{x})$, and $p(0|\\mathbf{x}) = 1 - p(1|\\mathbf{x})$ so the whole Bernoulli distribution is modelled",
+   "Learning means choosing a good $\\mathbf{w}$ from the training examples"
+  ],
+  "explanation": "Note $\\mathbf{w}$ has $d+1$ entries because of the dummy variable $x_0 = 1$.",
+  "tags": [
+   "hypothesis-set"
+  ],
+  "sources": [
+   {
+    "file": "week_1/worksheet/1b-logistic-regression-hypothesis-set-answers.pdf",
+    "page": 3
+   }
+  ]
+ },
+ {
+  "id": "w1-sig-005",
+  "week": 1,
+  "topic": "sigmoid-hypothesis-set",
+  "type": "mcq",
+  "difficulty": 1,
+  "prompt": "What is the inductive bias of logistic regression, as summarised in the lecture?",
+  "choices": [
+   "Linear decision boundary, sigmoid logistic",
+   "Quadratic decision boundary, softmax",
+   "Tree-shaped decision regions",
+   "No assumptions at all"
+  ],
+  "answer": 0,
+  "explanation": "Logistic regression models $\\text{logit}(p_1)$ as a linear function of the inputs and $p_1$ as a sigmoid of it.",
+  "tags": [
+   "inductive-bias"
+  ],
+  "sources": [
+   {
+    "file": "week_1/slides/1b-logistic-regression-hypothesis-set.pdf",
+    "page": 30
+   }
+  ]
+ },
+ {
+  "id": "w1-sig-006",
+  "week": 1,
+  "topic": "sigmoid-hypothesis-set",
+  "type": "truefalse",
+  "difficulty": 1,
+  "prompt": "The parameters that logistic regression learns are the weights $\\mathbf{w} \\in \\mathbb{R}^{d+1}$.",
+  "answer": true,
+  "explanation": "The hypothesis set is $h(\\mathbf{x}) = p(1|\\mathbf{x},\\mathbf{w})$ for all $\\mathbf{w} \\in \\mathbb{R}^{d+1}$, so learning picks $\\mathbf{w}$.",
+  "tags": [
+   "parameters"
+  ],
+  "sources": [
+   {
+    "file": "week_1/slides/1b-logistic-regression-hypothesis-set.pdf",
+    "page": 30
+   }
+  ]
+ },
+ {
+  "id": "w1-sig-007",
+  "week": 1,
+  "topic": "sigmoid-hypothesis-set",
+  "type": "truefalse",
+  "difficulty": 3,
+  "prompt": "Mathematically the sigmoid output can be exactly 0 or exactly 1 for finite $\\mathbf{w}^T\\mathbf{x}$.",
+  "answer": false,
+  "explanation": "$p_1 \\to 1$ as $\\mathbf{w}^T\\mathbf{x} \\to \\infty$ and $p_1 \\to 0$ as $\\mathbf{w}^T\\mathbf{x} \\to -\\infty$, but it is never exactly 0 or 1. Computers round at limited precision.",
+  "tags": [
+   "sigmoid",
+   "precision"
+  ],
+  "sources": [
+   {
+    "file": "week_1/worksheet/1b-logistic-regression-hypothesis-set-answers.pdf",
+    "page": 7
+   }
+  ]
+ },
+ {
+  "id": "w1-str-001",
+  "week": 1,
+  "topic": "strengths-weaknesses",
+  "type": "multi",
+  "difficulty": 1,
+  "prompt": "Which of these are listed strengths of logistic regression?",
+  "choices": [
+   "Provides the probabilities that examples belong to each class",
+   "Fast at classifying new examples",
+   "Concise model that needs little space to store",
+   "Handles non-linearly separable classes without any change"
+  ],
+  "answer": [
+   0,
+   1,
+   2
+  ],
+  "explanation": "It is a classifier for linearly separable problems, so the last option is a weakness.",
+  "tags": [
+   "strengths"
+  ],
+  "sources": [
+   {
+    "file": "week_1/reading/notes-logreg.pdf",
+    "page": 3
+   },
+   {
+    "file": "week_1/reading/notes-logreg.pdf",
+    "page": 4
+   }
+  ]
+ },
+ {
+  "id": "w1-str-002",
+  "week": 1,
+  "topic": "strengths-weaknesses",
+  "type": "truefalse",
+  "difficulty": 1,
+  "prompt": "Logistic regression can separate classes that are not linearly separable, without changing the inputs.",
+  "answer": false,
+  "explanation": "It is a classifier for linearly separable problems, whose classes can be separated by hyperplanes.",
+  "tags": [
+   "weaknesses"
+  ],
+  "sources": [
+   {
+    "file": "week_1/reading/notes-logreg.pdf",
+    "page": 4
+   }
+  ]
+ },
+ {
+  "id": "w1-str-003",
+  "week": 1,
+  "topic": "strengths-weaknesses",
+  "type": "mcq",
+  "difficulty": 2,
+  "prompt": "What can multicollinearity cause in a logistic regression model?",
+  "choices": [
+   "The weights of the related inputs may be unstable",
+   "The decision boundary becomes nonlinear",
+   "The model can no longer output probabilities",
+   "Prediction becomes slow"
+  ],
+  "answer": 0,
+  "explanation": "It does not necessarily hurt predictive performance, but weights may no longer reflect how important each variable is.",
+  "tags": [
+   "multicollinearity",
+   "weaknesses"
+  ],
+  "sources": [
+   {
+    "file": "week_1/reading/notes-logreg.pdf",
+    "page": 4
+   }
+  ]
+ },
+ {
+  "id": "w1-str-004",
+  "week": 1,
+  "topic": "strengths-weaknesses",
+  "type": "short",
+  "difficulty": 2,
+  "prompt": "Under what conditions can the model coefficients represent the importance of input variables?",
+  "answer": "If the input variables have the same scale and there is no multicollinearity.",
+  "explanation": "Different scales change the size of weights, and multicollinearity makes weights unstable, so neither can be compared fairly.",
+  "tags": [
+   "interpretation"
+  ],
+  "sources": [
+   {
+    "file": "week_1/reading/notes-logreg.pdf",
+    "page": 4
+   }
+  ]
+ },
+ {
+  "id": "w1-mc-001",
+  "week": 1,
+  "topic": "multiclass",
+  "type": "mcq",
+  "difficulty": 2,
+  "prompt": "How does the notes' multiclass logistic regression handle $M$ classes?",
+  "choices": [
+   "Choose one reference (pivot) class and compute all boundaries against it",
+   "Train one classifier per pair of classes only",
+   "Use a single linear boundary for all classes",
+   "Ignore all but two classes"
+  ],
+  "answer": 0,
+  "explanation": "The logit of every other class against the pivot is modelled linearly, and $x$ is assigned to the class with the highest probability.",
+  "tags": [
+   "pivot"
+  ],
+  "sources": [
+   {
+    "file": "week_1/reading/notes-multiclass-logreg.pdf",
+    "page": 1
+   }
+  ]
+ },
+ {
+  "id": "w1-mc-002",
+  "week": 1,
+  "topic": "multiclass",
+  "type": "numeric",
+  "difficulty": 2,
+  "prompt": "With $M = 5$ classes and a pivot class, how many weight vectors $\\mathbf{w}_i^*$ must be learned?",
+  "answer": 4,
+  "tolerance": 0,
+  "explanation": "The logit of every other class against the pivot is computed, giving $M - 1$ weight vectors.",
+  "tags": [
+   "pivot",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_1/reading/notes-multiclass-logreg.pdf",
+    "page": 1
+   }
+  ]
+ },
+ {
+  "id": "w1-mc-003",
+  "week": 1,
+  "topic": "multiclass",
+  "type": "flashcard",
+  "difficulty": 2,
+  "prompt": "In multiclass logistic regression, how is the predicted class chosen?",
+  "answer": "Assign $\\mathbf{x}$ to the class with the highest probability $p_i$.",
+  "explanation": "The probabilities come from $p_i = \\frac{\\exp(\\mathbf{w}_i^{*T}\\mathbf{x})}{1+\\sum_{j=1}^{M-1}\\exp(\\mathbf{w}_j^{*T}\\mathbf{x})}$, with $p_M = \\frac{1}{1+\\sum_j \\exp(\\mathbf{w}_j^{*T}\\mathbf{x})}$.",
+  "tags": [
+   "prediction"
+  ],
+  "sources": [
+   {
+    "file": "week_1/reading/notes-multiclass-logreg.pdf",
+    "page": 1
+   }
+  ]
+ },
+ {
+  "id": "w1-sup-001",
+  "week": 1,
+  "topic": "supervised-learning",
+  "type": "mcq",
+  "difficulty": 1,
+  "prompt": "In supervised learning, what does each training example consist of?",
+  "choices": [
+   "A single input vector $\\mathbf{x}$",
+   "A pair of input and output $(\\mathbf{x}, y)$",
+   "Only the output $y$",
+   "A hypothesis $h$"
+  ],
+  "answer": 1,
+  "explanation": "The output in each example 'supervises' the learning algorithm so it can learn the mapping from input space to output space.",
+  "tags": [
+   "training-set"
+  ],
+  "sources": [
+   {
+    "file": "week_1/worksheet/1b-logistic-regression-hypothesis-set-answers.pdf",
+    "page": 1
+   }
+  ]
+ },
+ {
+  "id": "w1-sup-002",
+  "week": 1,
+  "topic": "supervised-learning",
+  "type": "truefalse",
+  "difficulty": 1,
+  "prompt": "The ultimate goal of supervised learning is to achieve low error on the training examples only.",
+  "answer": false,
+  "explanation": "The model is built from training examples, but the ultimate goal is to predict the target outputs of new, unseen examples, i.e. to generalise.",
+  "tags": [
+   "generalisation"
+  ],
+  "sources": [
+   {
+    "file": "week_1/worksheet/1b-logistic-regression-hypothesis-set-answers.pdf",
+    "page": 1
+   }
+  ]
+ },
+ {
+  "id": "w1-sup-003",
+  "week": 1,
+  "topic": "supervised-learning",
+  "type": "flashcard",
+  "difficulty": 1,
+  "prompt": "When does a model (function) generalise well?",
+  "answer": "When the generalisation gap $\\hat{R}(g) - R(g)$ is small.",
+  "explanation": "Training error (empirical risk) is $\\hat{R}(g)=\\frac{1}{N}\\sum_i E(g(x^{(i)}),y^{(i)})$; generalisation error is the expected error $R(g)$ over $p(x,y)$.",
+  "tags": [
+   "generalisation",
+   "risk"
+  ],
+  "sources": [
+   {
+    "file": "week_1/slides/1b-logistic-regression-hypothesis-set.pdf",
+    "page": 13
+   }
+  ]
+ },
+ {
+  "id": "w1-sup-004",
+  "week": 1,
+  "topic": "supervised-learning",
+  "type": "mcq",
+  "difficulty": 1,
+  "prompt": "For which kind of problem is the output space $\\mathcal{Y}$ a set of categories?",
+  "choices": [
+   "Regression",
+   "Classification",
+   "Both regression and classification",
+   "Neither"
+  ],
+  "answer": 1,
+  "explanation": "Regression has $\\mathcal{Y}=\\mathbb{R}$. Classification has a set of categories: 2 categories is binary classification, more than 2 is multi-class.",
+  "tags": [
+   "output-space"
+  ],
+  "sources": [
+   {
+    "file": "week_1/slides/1b-logistic-regression-hypothesis-set.pdf",
+    "page": 7
+   }
+  ]
+ },
+ {
+  "id": "w1-sup-005",
+  "week": 1,
+  "topic": "supervised-learning",
+  "type": "multi",
+  "difficulty": 2,
+  "prompt": "Which of these are components of the supervised learning process?",
+  "choices": [
+   "Unknown target function",
+   "Training examples",
+   "Learning algorithm",
+   "Hypothesis set",
+   "Test labels used during training"
+  ],
+  "answer": [
+   0,
+   1,
+   2,
+   3
+  ],
+  "explanation": "The learning algorithm searches the hypothesis set, given the training examples, for a final hypothesis $g \\approx f$ that approximates the unknown target function $f$.",
+  "tags": [
+   "learning-process"
+  ],
+  "sources": [
+   {
+    "file": "week_1/slides/1b-logistic-regression-hypothesis-set.pdf",
+    "page": 9
+   }
+  ]
+ },
+ {
+  "id": "w1-sup-006",
+  "week": 1,
+  "topic": "supervised-learning",
+  "type": "truefalse",
+  "difficulty": 2,
+  "prompt": "In the supervised learning problem, training examples $(x^{(i)}, y^{(i)})$ are assumed to be drawn i.i.d. from a fixed but unknown joint distribution $p(x,y)$.",
+  "answer": true,
+  "explanation": "This i.i.d. assumption is what lets a model fitted on training data be expected to generalise to unseen examples of the same distribution.",
+  "tags": [
+   "iid",
+   "distribution"
+  ],
+  "sources": [
+   {
+    "file": "week_1/slides/1b-logistic-regression-hypothesis-set.pdf",
+    "page": 12
+   }
+  ]
+ }
+]
