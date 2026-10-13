@@ -3,7 +3,7 @@
  * and refresh the cache in the background so updates arrive on the next open.
  */
 
-const CACHE_NAME = "ml-mastery-a6b0774b";
+const CACHE_NAME = "ml-mastery-3034dbb6";
 const SHELL_FILES = [
   "./", "index.html", "manifest.webmanifest", "css/app.css", "data/questions.json",
   "icons/icon-192.png", "icons/icon-512.png", "icons/apple-touch-icon.png",

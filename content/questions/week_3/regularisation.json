@@ -1,0 +1,95 @@
+[
+  {
+    "id": "w3-reg-001", "week": 3, "topic": "regularisation", "type": "flashcard", "difficulty": 1,
+    "prompt": "When does a model generalise well?",
+    "answer": "When its generalisation error is small.",
+    "explanation": "The generalisation error is the expected error over $p(x,y)$ and the generalisation gap is $E(\\mathbf{w}) - \\hat{E}(\\mathbf{w})$, the generalisation error minus the training error.",
+    "tags": ["generalisation"],
+    "sources": [{"file": "week_3/slides/3a-nonlinear-transformations.pdf", "page": 5, "quote": "A model (function) generalises well when the generalisation error is small."}]
+  },
+  {
+    "id": "w3-reg-002", "week": 3, "topic": "regularisation", "type": "mcq", "difficulty": 2,
+    "prompt": "Logistic regression has a linear decision boundary. When can it still overfit?",
+    "choices": ["Never, because the inductive bias is strong", "If the training data are linearly separable", "Only if the learning rate is zero", "Only with nonlinear transformations"],
+    "answer": 1,
+    "explanation": "Logistic regression will try to get $p_1$ very high for class 1 and very low for class 0 training examples.",
+    "tags": ["overfitting"],
+    "sources": [{"file": "week_3/slides/3a-nonlinear-transformations.pdf", "page": 6, "quote": "logistic regression will try to get"}]
+  },
+  {
+    "id": "w3-reg-003", "week": 3, "topic": "regularisation", "type": "truefalse", "difficulty": 1,
+    "prompt": "As the weights grow in magnitude, the sigmoid used to set $p_1$ gets more and more like a step function.",
+    "answer": true,
+    "explanation": "With $\\mathbf{w} = (10,10,10)^T$ the sigmoid is nearly a step function, and the probabilities lose meaning.",
+    "tags": ["weights", "sigmoid"],
+    "sources": [{"file": "week_3/slides/3a-nonlinear-transformations.pdf", "page": 9, "quote": "gets more and more like a step function"}]
+  },
+  {
+    "id": "w3-reg-004", "week": 3, "topic": "regularisation", "type": "mcq", "difficulty": 1,
+    "prompt": "What is the aim of weight decay regularisation?",
+    "choices": ["To speed up each iteration", "To prevent the weights from becoming of large magnitude", "To make the loss non-convex", "To add more input variables"],
+    "answer": 1,
+    "explanation": "The regularisation term penalises $\\|\\mathbf{w}\\|^2$, discouraging large weights.",
+    "tags": ["weight-decay"],
+    "sources": [{"file": "week_3/slides/3a-nonlinear-transformations.pdf", "page": 11, "quote": "to prevent the weights from becoming of large magnitude"}]
+  },
+  {
+    "id": "w3-reg-005", "week": 3, "topic": "regularisation", "type": "flashcard", "difficulty": 2,
+    "prompt": "Write the L2-regularised cross-entropy loss $\\tilde{E}(\\mathbf{w})$.",
+    "answer": "$\\tilde{E}(\\mathbf{w}) = -\\sum_{i=1}^{N}\\left[y^{(i)}\\ln p_1 + (1-y^{(i)})\\ln(1-p_1)\\right] + \\frac{\\lambda}{2}\\|\\mathbf{w}\\|^2$, where $\\lambda$ controls the strength of regularisation.",
+    "explanation": "$\\|\\mathbf{w}\\|^2 = \\mathbf{w}^T\\mathbf{w}$ is the L2 norm, a measure of the size of $\\mathbf{w}$.",
+    "tags": ["weight-decay", "loss"],
+    "sources": [{"file": "week_3/slides/3a-nonlinear-transformations.pdf", "page": 11, "quote": "is a hyperparameter that controls the strength of the regularisation term."}, {"file": "week_3/slides/3a-nonlinear-transformations.pdf", "page": 11, "quote": "is a measure of the size of the vector"}]
+  },
+  {
+    "id": "w3-reg-006", "week": 3, "topic": "regularisation", "type": "mcq", "difficulty": 2,
+    "prompt": "What does the hyperparameter $\\lambda$ control?",
+    "choices": ["The learning rate", "The strength of the regularisation term", "The number of iterations", "The number of training examples"],
+    "answer": 1,
+    "explanation": "A larger $\\lambda$ penalises large weights more strongly.",
+    "tags": ["weight-decay", "lambda"],
+    "sources": [{"file": "week_3/slides/3a-nonlinear-transformations.pdf", "page": 11, "quote": "is a hyperparameter that controls the strength of the regularisation term."}]
+  },
+  {
+    "id": "w3-reg-007", "week": 3, "topic": "regularisation", "type": "flashcard", "difficulty": 2,
+    "prompt": "Give the gradient of the L2-regularised loss for logistic regression.",
+    "answer": "$\\nabla\\tilde{E}(\\mathbf{w}) = \\sum_{i=1}^{N}\\left(p_1(\\mathbf{x}^{(i)},\\mathbf{w}) - y^{(i)}\\right)\\mathbf{x}^{(i)} + \\lambda\\mathbf{w}$.",
+    "explanation": "This is what Gradient Descent needs; IRLS also needs the Hessian.",
+    "tags": ["weight-decay", "gradient"],
+    "sources": [{"file": "week_3/slides/3a-nonlinear-transformations.pdf", "page": 12, "quote": "To adopt Gradient Descent or Iterative Reweighted Least"}]
+  },
+  {
+    "id": "w3-reg-008", "week": 3, "topic": "regularisation", "type": "numeric", "difficulty": 2,
+    "prompt": "For one weight with unregularised gradient component $0.5$, $w_j = 2$ and $\\lambda = 0.1$, what is the regularised gradient component?",
+    "answer": 0.7,
+    "tolerance": 0.001,
+    "explanation": "$0.5 + \\lambda w_j = 0.5 + 0.1 \\times 2 = 0.7$.",
+    "tags": ["weight-decay", "calculation"],
+    "sources": [{"file": "week_3/slides/3a-nonlinear-transformations.pdf", "page": 12, "quote": "To adopt Gradient Descent or Iterative Reweighted Least"}]
+  },
+  {
+    "id": "w3-reg-009", "week": 3, "topic": "regularisation", "type": "truefalse", "difficulty": 2,
+    "prompt": "Cross-entropy loss by itself can lead to overfitting when the training data are linearly separable.",
+    "answer": true,
+    "explanation": "Weight decay regularisation can be used to avoid this problem.",
+    "tags": ["overfitting"],
+    "sources": [{"file": "week_3/slides/3a-nonlinear-transformations.pdf", "page": 14, "quote": "Cross-entropy loss by itself can lead to"}]
+  },
+  {
+    "id": "w3-reg-010", "week": 3, "topic": "regularisation", "type": "short", "difficulty": 3,
+    "prompt": "Why does minimising cross-entropy on linearly separable data favour weights of large magnitude?",
+    "answer": "Larger weights push $p_1$ closer to 1 for class 1 and to 0 for class 0, which lowers the loss, so the minimiser has large magnitude.",
+    "steps": ["Data are linearly separable, so a perfect separator exists", "Scaling up $\\mathbf{w}$ pushes $p_1$ towards 0 or 1", "The loss keeps decreasing, so weights grow large"],
+    "explanation": "The weights that minimise the loss separate the classes perfectly and also have large magnitude, pushing $p_1$ to 0 or 1.",
+    "tags": ["overfitting", "weights"],
+    "sources": [{"file": "week_3/slides/3a-nonlinear-transformations.pdf", "page": 14, "quote": "The weights that minimise it are those that not only separate the training"}]
+  },
+  {
+    "id": "w3-reg-011", "week": 3, "topic": "regularisation", "type": "flashcard", "difficulty": 2,
+    "prompt": "Write the stochastic gradient descent update for the L2-regularised loss.",
+    "answer": "$\\mathbf{w} = \\mathbf{w} - \\eta\\nabla\\tilde{E}^{(i)}(\\mathbf{w})$ with $\\nabla\\tilde{E}^{(i)}(\\mathbf{w}) = (p_1(\\mathbf{x}^{(i)},\\mathbf{w}) - y^{(i)})\\mathbf{x}^{(i)} + \\lambda\\mathbf{w}$.",
+    "explanation": "The per-example gradient is $(p_1 - y^{(i)})\\mathbf{x}^{(i)} + \\lambda\\mathbf{w}$.",
+    "tags": ["sgd", "weight-decay"],
+    "sources": [{"file": "week_3/slides/3a-nonlinear-transformations.pdf", "page": 13, "quote": "Stochastic Gradient Descent"}]
+  }
+]

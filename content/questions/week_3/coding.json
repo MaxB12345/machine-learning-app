@@ -1,0 +1,67 @@
+[
+  {
+    "id": "w3-cod-001", "week": 3, "topic": "coding", "type": "code", "difficulty": 2,
+    "prompt": "What is printed?",
+    "code": "x = np.array([[1.0, -1.0, 2.0]])\nprint(quadratic_features(x))",
+    "choices": ["[[ 1. -1.  2.  1.  4. -2.]]", "[[ 1. -1.  2. -1.  4. -2.]]", "[[ 1. -1.  2.  1.  2. -2.]]", "[[ 1.  1.  4.  1.  4.  2.]]"],
+    "answer": 0,
+    "explanation": "$\\phi = (x_0,x_1,x_2,x_1^2,x_2^2,x_1x_2) = (1,-1,2,1,4,-2)$.",
+    "tags": ["quadratic"],
+    "sources": [{"file": "week_3/coding/3a_nonlinear_transformations.ipynb", "page": 10, "quote": "return np.column_stack([x0, x1, x2, x1**2, x2**2, x1 * x2])"}]
+  },
+  {
+    "id": "w3-cod-002", "week": 3, "topic": "coding", "type": "code", "difficulty": 3,
+    "prompt": "How many columns does `cubic_features(X)` return for the two-input map?",
+    "code": "Phi_cubic = cubic_features(X_circles)\nprint(Phi_cubic.shape[1])",
+    "choices": ["6", "8", "10", "12"],
+    "answer": 2,
+    "explanation": "The degree-3 map has $1 + 2 + 3 + 4 = 10$ terms.",
+    "tags": ["cubic"],
+    "sources": [{"file": "week_3/coding/3a_nonlinear_transformations.ipynb", "page": 20, "quote": "def cubic_features(X):"}]
+  },
+  {
+    "id": "w3-cod-003", "week": 3, "topic": "coding", "type": "code", "difficulty": 2,
+    "prompt": "What is printed (4 d.p.)?",
+    "code": "x = np.array([[1.0, 0.0, 1.0]])\nprint(exponential_features(x))",
+    "choices": ["[[1. 0. 1. 1. 2.7183]]", "[[1. 0. 1. 0. 1.]]", "[[1. 1. 2.7183 1. 0.]]", "[[1. 0. 1. 2.7183 1.]]"],
+    "answer": 0,
+    "explanation": "$e^0 = 1$ and $e^1 \\approx 2.7183$.",
+    "tags": ["exponential"],
+    "sources": [{"file": "week_3/coding/3a_nonlinear_transformations.ipynb", "page": 23, "quote": "return np.column_stack([x0, x1, x2, np.exp(x1), np.exp(x2)])"}]
+  },
+  {
+    "id": "w3-cod-004", "week": 3, "topic": "coding", "type": "mcq", "difficulty": 2,
+    "prompt": "For the 300 circles examples, what shape does `quadratic_features(X_circles)` have?",
+    "choices": ["(300, 3)", "(300, 6)", "(6, 300)", "(300, 10)"],
+    "answer": 1,
+    "explanation": "Six columns: $x_0,x_1,x_2,x_1^2,x_2^2,x_1x_2$.",
+    "tags": ["quadratic"],
+    "sources": [{"file": "week_3/coding/3a_nonlinear_transformations.ipynb", "page": 14, "quote": "assert X_quadratic.shape == (len(X_circles), 6)"}]
+  },
+  {
+    "id": "w3-cod-005", "week": 3, "topic": "coding", "type": "mcq", "difficulty": 2,
+    "prompt": "How is gradient descent from the earlier notebook applied to the transformed features?",
+    "choices": ["Replace the design matrix by its transformed version $\\Phi$", "Rewrite the gradient from scratch", "Use a different loss", "Remove the bias column"],
+    "answer": 0,
+    "explanation": "The score is a weighted sum of transformed features, so the model is still linear in $\\mathbf{w}$.",
+    "tags": ["logistic-regression"],
+    "sources": [{"file": "week_3/coding/3a_nonlinear_transformations.ipynb", "page": 15, "quote": "replace the design matrix by its transformed version"}]
+  },
+  {
+    "id": "w3-cod-006", "week": 3, "topic": "coding", "type": "mcq", "difficulty": 2,
+    "prompt": "For a new input, what must be done before evaluating the learned model?",
+    "choices": ["Compute $\\phi(x)$", "Standardise the labels", "Retrain with a larger $\\eta$", "Nothing"],
+    "answer": 0,
+    "explanation": "The model was trained on $\\phi(x^{(i)})$.",
+    "tags": ["logistic-regression"],
+    "sources": [{"file": "week_3/coding/3a_nonlinear_transformations.ipynb", "page": 15, "quote": "before evaluating the learned model."}]
+  },
+  {
+    "id": "w3-cod-007", "week": 3, "topic": "coding", "type": "truefalse", "difficulty": 2,
+    "prompt": "On the breast cancer example, richer feature maps always generalise better to the test split.",
+    "answer": false,
+    "explanation": "Richer maps can fit the training split more closely but need not generalise better.",
+    "tags": ["overfitting"],
+    "sources": [{"file": "week_3/coding/3a_nonlinear_transformations.ipynb", "page": 30, "quote": "need not generalize better"}]
+  }
+]

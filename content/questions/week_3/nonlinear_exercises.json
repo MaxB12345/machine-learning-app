@@ -1,0 +1,109 @@
+[
+  {
+    "id": "w3-nlx-001", "week": 3, "topic": "nonlinear-exercises", "type": "numeric", "difficulty": 2,
+    "prompt": "A problem has three input variables and needs a quadratic boundary. How many components does the basis expansion $\\phi(\\mathbf{x})$ with a bias and all terms up to order 2 have?",
+    "answer": 10,
+    "tolerance": 0.001,
+    "explanation": "$(1, x_1,x_2,x_3, x_1^2,x_2^2,x_3^2, x_1x_2,x_1x_3,x_2x_3)$ has 10 components.",
+    "tags": ["basis-expansion", "calculation"],
+    "sources": [{"file": "week_3/worksheet/3a-Nonlinear_Transformations-answers.pdf", "page": 1, "quote": "Assume that the decision boundary to separate the examples of the two different classes"}]
+  },
+  {
+    "id": "w3-nlx-002", "week": 3, "topic": "nonlinear-exercises", "type": "short", "difficulty": 2,
+    "prompt": "Why does a quadratic basis expansion let logistic regression separate examples with a quadratic boundary?",
+    "answer": "The boundary $\\mathbf{w}^T\\phi(\\mathbf{x}) = 0$ is linear in $\\phi(\\mathbf{x})$, but expanding it gives terms of order 2 in $x_1,x_2,x_3$, so it is a quadratic function in the original space.",
+    "steps": ["Boundary is $\\mathbf{w}^T\\phi(\\mathbf{x}) = 0$, a hyperplane in $\\phi$-space", "Expanding gives $w_0 + w_1x_1 + \\dots + w_9x_2x_3 = 0$", "This is quadratic in $x_1,x_2,x_3$"],
+    "explanation": "$\\mathbf{w}^T\\phi(\\mathbf{x}) = 0$ is a hyperplane in the embedding but quadratic in $\\mathbf{x}$.",
+    "tags": ["basis-expansion"],
+    "sources": [{"file": "week_3/worksheet/3a-Nonlinear_Transformations-answers.pdf", "page": 2, "quote": "even though the equation is linear as a function ofϕ(x), it is quadratic as"}]
+  },
+  {
+    "id": "w3-nlx-003", "week": 3, "topic": "nonlinear-exercises", "type": "mcq", "difficulty": 2,
+    "prompt": "With $\\phi(\\mathbf{x}) = (1,x_1,x_2^2)^T$ and $\\mathbf{w} = (w_0,w_1,w_2)^T$, what is the decision boundary in the original space?",
+    "choices": ["$w_0 + w_1x_1 + w_2x_2 = 0$", "$w_0 + w_1x_1 + w_2x_2^2 = 0$", "$w_0 + w_1x_1^2 + w_2x_2^2 = 0$", "$w_0x_1 + w_1x_2^2 = 0$"],
+    "answer": 1,
+    "explanation": "Substitute $\\phi_0 = 1$, $\\phi_1 = x_1$, $\\phi_2 = x_2^2$.",
+    "tags": ["basis-expansion"],
+    "sources": [{"file": "week_3/worksheet/3a-Nonlinear_Transformations-answers.pdf", "page": 2, "quote": "Therefore, the decision boundary in the original space would be:"}]
+  },
+  {
+    "id": "w3-nlx-004", "week": 3, "topic": "nonlinear-exercises", "type": "numeric", "difficulty": 2,
+    "prompt": "With $\\phi(\\mathbf{x}) = (1,x_1,x_2^2)^T$, $\\mathbf{x} = (1,2,3)^T$ and $\\mathbf{w} = (1,0,1)^T$, what is $\\mathbf{w}^T\\phi(\\mathbf{x})$?",
+    "answer": 10,
+    "tolerance": 0.001,
+    "explanation": "$1 + 0 \\times 2 + 1 \\times 3^2 = 10 > 0$, so class 1 is predicted.",
+    "tags": ["basis-expansion", "calculation"],
+    "sources": [{"file": "week_3/worksheet/3a-Nonlinear_Transformations-answers.pdf", "page": 3, "quote": "As 10>0, the model predicts class 1."}]
+  },
+  {
+    "id": "w3-nlx-005", "week": 3, "topic": "nonlinear-exercises", "type": "multi", "difficulty": 2,
+    "prompt": "For a 2D problem whose examples are linearly separable, which basis expansions would let logistic regression separate all training examples?",
+    "choices": ["$(1,x_1,x_2)$", "$(1,x_1,x_2,x_1^2,x_2^2,x_1x_2)$", "$(1,x_1,x_2,x_3)$"],
+    "answer": [0, 1],
+    "explanation": "Expansions B can learn zero weights for the order 2 terms; C uses a variable $x_3$ that does not exist.",
+    "tags": ["basis-expansion"],
+    "sources": [{"file": "week_3/worksheet/3a-Nonlinear_Transformations-answers.pdf", "page": 3, "quote": "Which basis expansions are valid basis expansions for this problem"}]
+  },
+  {
+    "id": "w3-nlx-006", "week": 3, "topic": "nonlinear-exercises", "type": "mcq", "difficulty": 2,
+    "prompt": "When would you consider a nonlinear transformation to a higher dimensional space?",
+    "choices": ["When the model is overfitting", "When the decision boundary is non-linear and cannot be captured by a linear model in the original space", "When the decision boundary is linear but the inputs are highly correlated"],
+    "answer": 1,
+    "explanation": "Overfitting is not a reason; polynomial transformations tend to make it more likely.",
+    "tags": ["basis-expansion"],
+    "sources": [{"file": "week_3/worksheet/3a-Nonlinear_Transformations-answers.pdf", "page": 4, "quote": "Nonlinear transformations are useful when the function to be learned to separate examples"}]
+  },
+  {
+    "id": "w3-nlx-007", "week": 3, "topic": "nonlinear-exercises", "type": "mcq", "difficulty": 3,
+    "prompt": "After a nonlinear transformation, training error improves a lot but error on unseen data does not. What is the most likely reason?",
+    "choices": ["Logistic regression cannot handle nonlinear transformations", "The model is underfitting", "The decision boundary is now linear", "More complex boundaries are learned, leading to overfitting on the training set"],
+    "answer": 3,
+    "explanation": "More complex boundaries can fit noisy training examples.",
+    "tags": ["overfitting"],
+    "sources": [{"file": "week_3/worksheet/3a-Nonlinear_Transformations-answers.pdf", "page": 6, "quote": "More complex decision boundaries in the original space could result in the model fitting"}]
+  },
+  {
+    "id": "w3-nlx-008", "week": 3, "topic": "nonlinear-exercises", "type": "mcq", "difficulty": 2,
+    "prompt": "Classes still overlap after a nonlinear transformation. What is most likely to improve separability?",
+    "choices": ["A higher learning rate", "IRLS instead of gradient descent", "A different nonlinear transformation that better captures the structure of the data"],
+    "answer": 2,
+    "explanation": "Changing the learning rate or the optimiser does not help, as the data are not linearly separable in the embedding.",
+    "tags": ["basis-expansion"],
+    "sources": [{"file": "week_3/worksheet/3a-Nonlinear_Transformations-answers.pdf", "page": 6, "quote": "Correct: Choosing a different nonlinear transformation that better captures"}]
+  },
+  {
+    "id": "w3-nlx-009", "week": 3, "topic": "nonlinear-exercises", "type": "truefalse", "difficulty": 2,
+    "prompt": "Points $A=(1,1)$, $B=(2,2)$ (class 1) and $C=(0,2)$, $D=(2,0)$ (class 0) are linearly separable in 2D.",
+    "answer": false,
+    "explanation": "No straight line separates them.",
+    "tags": ["separability"],
+    "sources": [{"file": "week_3/worksheet/3a-Nonlinear_Transformations-answers.pdf", "page": 7, "quote": "This dataset is not linearly separable in 2D space because no straight line can perfectly"}]
+  },
+  {
+    "id": "w3-nlx-010", "week": 3, "topic": "nonlinear-exercises", "type": "numeric", "difficulty": 2,
+    "prompt": "Under $\\phi(x_1,x_2) = (x_1,x_2,x_1x_2)$, what is the third coordinate of $B = (2,2)$?",
+    "answer": 4,
+    "tolerance": 0.001,
+    "explanation": "$B \\to (2,2,4)$. Class 1 points have non-zero third coordinates and class 0 points have 0, so they are linearly separable in 3D.",
+    "tags": ["separability", "calculation"],
+    "sources": [{"file": "week_3/worksheet/3a-Nonlinear_Transformations-answers.pdf", "page": 7, "quote": "Consider the following nonlinear transformation, which maps each 2D point"}]
+  },
+  {
+    "id": "w3-nlx-011", "week": 3, "topic": "nonlinear-exercises", "type": "mcq", "difficulty": 3,
+    "prompt": "Which transformation would suffice for circular data centred at $(0,0)$?",
+    "choices": ["$(1,x_1,x_2)^T$", "$(1,x_1^2,x_2^2)^T$", "$(x_1,x_2)^T$", "$(1,e^{x_1})^T$"],
+    "answer": 1,
+    "explanation": "Only $w_0 + w_1x_1^2 + w_2x_2^2 = 0$ is needed; prior knowledge reduces the weights to learn.",
+    "tags": ["basis-expansion"],
+    "sources": [{"file": "week_3/worksheet/3a-Nonlinear_Transformations-answers.pdf", "page": 10, "quote": "Therefore, a nonlinear transformation as follows would suffice:"}]
+  },
+  {
+    "id": "w3-nlx-012", "week": 3, "topic": "nonlinear-exercises", "type": "short", "difficulty": 3,
+    "prompt": "What decision boundary results from $(x_1,x_2) \\to (1,\\sqrt{x_1^2 + x_2^2})$?",
+    "answer": "$w_0 + w_1\\sqrt{x_1^2+x_2^2} = 0$, i.e. points at Euclidean distance $-w_0/w_1$ from the origin: a circle.",
+    "steps": ["Boundary: $w_0 + w_1\\sqrt{x_1^2+x_2^2} = 0$", "Rearrange: $\\sqrt{x_1^2+x_2^2} = -w_0/w_1$", "Points at that distance from $(0,0)$ form a circle"],
+    "explanation": "Only $w_0$ and $w_1$ need to be learned, deciding the radius of the circle.",
+    "tags": ["basis-expansion"],
+    "sources": [{"file": "week_3/worksheet/3a-Nonlinear_Transformations-answers.pdf", "page": 10, "quote": "In other words, the points that are on the decision boundary are points for which the"}]
+  }
+]

@@ -1,0 +1,94 @@
+[
+  {
+    "id": "w3-bas-001", "week": 3, "topic": "basis-expansion", "type": "flashcard", "difficulty": 1,
+    "prompt": "What do we gain by applying a nonlinear transformation (basis expansion) $\\phi(\\mathbf{x})$?",
+    "answer": "We can learn a linear model in the higher dimensional embedding $\\phi(\\mathbf{x})$ that separates the data.",
+    "explanation": "The problem becomes linearly separable in the (higher dimensional) embedding even if it was not in the original space.",
+    "tags": ["basis-expansion"],
+    "sources": [{"file": "week_3/slides/3a-nonlinear-transformations.pdf", "page": 21, "quote": "We can now learn a linear model to separate the data on"}]
+  },
+  {
+    "id": "w3-bas-002", "week": 3, "topic": "basis-expansion", "type": "flashcard", "difficulty": 1,
+    "prompt": "Give $\\phi(\\mathbf{x})$ for a polynomial of order 2 and two input variables.",
+    "answer": "$\\mathbf{x} = (1,x_1,x_2)^T \\to \\phi(\\mathbf{x}) = (1,x_1,x_2,x_1^2,x_2^2,x_1x_2)^T$.",
+    "explanation": "It includes all terms of order up to 2 that can be created from the inputs.",
+    "tags": ["basis-expansion"],
+    "sources": [{"file": "week_3/slides/3a-nonlinear-transformations.pdf", "page": 22, "quote": "Example for polynomial of order 2 and a problem with 2 input"}]
+  },
+  {
+    "id": "w3-bas-003", "week": 3, "topic": "basis-expansion", "type": "truefalse", "difficulty": 2,
+    "prompt": "If the decision boundary is a polynomial of order $p$ in $\\mathbf{x}$, it is linear in $\\phi(\\mathbf{x})$ when $\\phi$ includes all terms of order up to $p$.",
+    "answer": true,
+    "explanation": "So we can use linear models in the embedding to learn polynomial boundaries in the original space.",
+    "tags": ["basis-expansion"],
+    "sources": [{"file": "week_3/slides/3a-nonlinear-transformations.pdf", "page": 23, "quote": "So, we can adopt linear models in the higher dimensional embedding"}]
+  },
+  {
+    "id": "w3-bas-004", "week": 3, "topic": "basis-expansion", "type": "numeric", "difficulty": 2,
+    "prompt": "With $\\phi(x) = (1,x_1,x_1^2)^T$ and $\\mathbf{w} = (10,-7,1)^T$, the boundary is $x_1^2 - 7x_1 + 10 = 0$. What is the larger root?",
+    "answer": 5,
+    "tolerance": 0.001,
+    "explanation": "$x_1 = (7 \\pm \\sqrt{49 - 40})/2 = 5$ or $2$.",
+    "tags": ["basis-expansion", "calculation"],
+    "sources": [{"file": "week_3/slides/3a-nonlinear-transformations.pdf", "page": 24, "quote": "Linear decision boundary in the feature space corresponds to a quadratic"}, {"file": "week_3/slides/3a-nonlinear-transformations.pdf", "page": 26, "quote": "When we include a basis function in the"}]
+  },
+  {
+    "id": "w3-bas-005", "week": 3, "topic": "basis-expansion", "type": "truefalse", "difficulty": 2,
+    "prompt": "Nonlinear transformations always map the problem to a higher dimensional space.",
+    "answer": false,
+    "explanation": "Most of the time yes, but terms that are not needed can be left out, e.g. $\\phi(\\mathbf{x}) = (1,x_1,x_2^2)^T$.",
+    "tags": ["basis-expansion"],
+    "sources": [{"file": "week_3/slides/3a-nonlinear-transformations.pdf", "page": 28, "quote": "However, this is not necessarily the case."}]
+  },
+  {
+    "id": "w3-bas-006", "week": 3, "topic": "basis-expansion", "type": "mcq", "difficulty": 2,
+    "prompt": "Which transformation is non-polynomial?",
+    "choices": ["$(1,x_1,x_1^2)^T$", "$(1,x_1,e^{x_1})^T$", "$(1,x_1,x_2,x_1x_2)^T$", "$(1,x_1^2,x_2^2)^T$"],
+    "answer": 1,
+    "explanation": "The transformation need not be polynomial; any nonlinear transformation can be adopted.",
+    "tags": ["basis-expansion"],
+    "sources": [{"file": "week_3/slides/3a-nonlinear-transformations.pdf", "page": 27, "quote": "However, we can use any other nonlinear transformations that"}]
+  },
+  {
+    "id": "w3-bas-007", "week": 3, "topic": "basis-expansion", "type": "order", "difficulty": 2,
+    "prompt": "Put the steps for adopting a nonlinear transformation in order.",
+    "steps": ["Choose a nonlinear transformation $\\phi$", "Apply it to the training examples to get $(\\phi(\\mathbf{x}), y)$", "Create a linear model on the transformed training set", "Replace $\\phi_i(\\mathbf{x})$ by its value in $\\mathbf{x}$ to get the nonlinear model"],
+    "explanation": "The same learning algorithms as before are applied to the transformed set.",
+    "tags": ["basis-expansion", "algorithm"],
+    "sources": [{"file": "week_3/slides/3a-nonlinear-transformations.pdf", "page": 29, "quote": "Choose a nonlinear transformation."}, {"file": "week_3/slides/3a-nonlinear-transformations.pdf", "page": 29, "quote": "Apply it to the training examples so that they have the format"}, {"file": "week_3/slides/3a-nonlinear-transformations.pdf", "page": 29, "quote": "Create a linear model based on the transformed training examples"}, {"file": "week_3/slides/3a-nonlinear-transformations.pdf", "page": 29, "quote": "Determine the (nonlinear) model by replacing"}]
+  },
+  {
+    "id": "w3-bas-008", "week": 3, "topic": "basis-expansion", "type": "mcq", "difficulty": 2,
+    "prompt": "With a nonlinear transformation, how does logistic regression change?",
+    "choices": ["$\\text{logit}(p_1) = \\mathbf{w}^T\\phi(\\mathbf{x})$, with the same loss and algorithms applied to $\\phi(\\mathbf{x}^{(i)})$", "A new loss function is required", "Only gradient descent can be used", "The probabilities are no longer defined"],
+    "answer": 0,
+    "explanation": "The model is $\\text{logit}(p_1) = \\mathbf{w}^T\\phi(\\mathbf{x})$ and $\\mathbf{x}$ is replaced by $\\phi(\\mathbf{x})$ in $E$, the gradient and the Hessian.",
+    "tags": ["logistic-regression"],
+    "sources": [{"file": "week_3/slides/3a-nonlinear-transformations.pdf", "page": 32, "quote": "Adopting Nonlinear Transformations"}]
+  },
+  {
+    "id": "w3-bas-009", "week": 3, "topic": "basis-expansion", "type": "truefalse", "difficulty": 2,
+    "prompt": "With nonlinear transformations, logistic regression is still linear with respect to its parameters.",
+    "answer": true,
+    "explanation": "It finds a linear model in the embedding, which gives a nonlinear decision boundary in the original space.",
+    "tags": ["linearity"],
+    "sources": [{"file": "week_3/slides/3a-nonlinear-transformations.pdf", "page": 33, "quote": "The logistic regression model is still linear with respect to its"}]
+  },
+  {
+    "id": "w3-bas-010", "week": 3, "topic": "basis-expansion", "type": "multi", "difficulty": 2,
+    "prompt": "What are caveats of nonlinear transformations?",
+    "choices": ["The number of dimensions may become very high", "A good fit to training data does not mean good generalisation", "They make the model non-linear in its parameters", "They can lead to overfitting"],
+    "answer": [0, 1, 3],
+    "explanation": "A transformation that fits the training examples well does not guarantee good generalisation.",
+    "tags": ["caveats", "overfitting"],
+    "sources": [{"file": "week_3/slides/3a-nonlinear-transformations.pdf", "page": 35, "quote": "The number of dimensions may become very high."}]
+  },
+  {
+    "id": "w3-bas-011", "week": 3, "topic": "basis-expansion", "type": "flashcard", "difficulty": 1,
+    "prompt": "Name two advantages of linear models.",
+    "answer": "Relatively efficient learning algorithms, and robustness with good generalisation properties.",
+    "explanation": "Linear models are often associated to relatively efficient learning algorithms and can be robust with good generalisation properties.",
+    "tags": ["linear-models"],
+    "sources": [{"file": "week_3/slides/3a-nonlinear-transformations.pdf", "page": 34, "quote": "Linear models are often associated to relatively"}]
+  }
+]
