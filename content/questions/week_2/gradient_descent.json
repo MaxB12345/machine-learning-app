@@ -1,0 +1,130 @@
+[
+  {
+    "id": "w2-gd-001", "week": 2, "topic": "gradient-descent", "type": "flashcard", "difficulty": 1,
+    "prompt": "What is the general idea of gradient descent?",
+    "answer": "Adjust $\\mathbf{w}$ iteratively in the direction that leads to the biggest decrease (steepest descent) in $E(\\mathbf{w})$.",
+    "explanation": "The update is $\\mathbf{w} = \\mathbf{w} - \\eta\\nabla E(\\mathbf{w})$ with $\\eta > 0$.",
+    "tags": ["gradient-descent"],
+    "sources": [{"file": "week_2/slides/2a-MLE-gradient-descent.pdf", "page": 20, "quote": "iteratively in the direction that leads to the biggest decrease"}]
+  },
+  {
+    "id": "w2-gd-002", "week": 2, "topic": "gradient-descent", "type": "mcq", "difficulty": 1,
+    "prompt": "What is the basic principle of gradient descent optimisation?",
+    "choices": ["Update parameters using the positive gradient of the objective", "Average the parameters at each step", "Update parameters using the negative gradient of the objective", "Randomly sample parameters to find the optimum"],
+    "answer": 2,
+    "explanation": "We subtract the gradient (scaled by $\\eta$): $\\mathbf{w} = \\mathbf{w} - \\eta\\nabla E(\\mathbf{w})$.",
+    "tags": ["gradient-descent"],
+    "sources": [{"file": "week_2/worksheet/2a-MLE_gradient_descent-answers.pdf", "page": 9, "quote": "It updates parameters by using the negative gradient of the objective function."}]
+  },
+  {
+    "id": "w2-gd-003", "week": 2, "topic": "gradient-descent", "type": "flashcard", "difficulty": 2,
+    "prompt": "Give the gradient of the cross-entropy loss for logistic regression.",
+    "answer": "$\\nabla E(\\mathbf{w}) = \\sum_{i=1}^{N}\\left(p(1 \\mid \\mathbf{x}^{(i)}, \\mathbf{w}) - y^{(i)}\\right)\\mathbf{x}^{(i)}$, or $X^T(\\mathbf{p}_1 - \\mathbf{y})$ in matrix form.",
+    "explanation": "Each example contributes its prediction error times its input vector.",
+    "tags": ["gradient"],
+    "sources": [{"file": "week_2/slides/2a-MLE-gradient-descent.pdf", "page": 26, "quote": "Applying Gradient Descent"}, {"file": "week_2/coding-problems/2a_MLE_gradient_descent_answers.ipynb", "page": 22, "quote": "When the examples are rows of $X$, the same equation is"}]
+  },
+  {
+    "id": "w2-gd-004", "week": 2, "topic": "gradient-descent", "type": "numeric", "difficulty": 2,
+    "prompt": "Examples $x^{(1)} = 0.1, y^{(1)} = 1$ and $x^{(2)} = 0.2, y^{(2)} = 0$, augmented with $x_0 = 1$. Starting from $\\mathbf{w} = (0,0)^T$ with $\\eta = 0.1$, what is $w_1$ after one batch gradient descent iteration?",
+    "answer": -0.005,
+    "tolerance": 0.0001,
+    "explanation": "$p_1 = 0.5$ for both. $\\nabla E = (-0.5)(1,0.1)^T + (0.5)(1,0.2)^T = (0, 0.05)^T$, so $\\mathbf{w} = (0, -0.1 \\times 0.05)^T = (0,-0.005)^T$.",
+    "tags": ["gradient-descent", "calculation"],
+    "sources": [{"file": "week_2/worksheet/2a-MLE_gradient_descent-answers.pdf", "page": 6, "quote": "after one iteration of the Batch Gradient"}, {"file": "week_2/worksheet/2a-MLE_gradient_descent-answers.pdf", "page": 7, "quote": "The new weights are thus going to be:"}]
+  },
+  {
+    "id": "w2-gd-005", "week": 2, "topic": "gradient-descent", "type": "numeric", "difficulty": 2,
+    "prompt": "After that update $\\mathbf{w} = (0,-0.005)^T$, what is $p_1$ for $x^{(2)} = 0.2$ (5 d.p.)?",
+    "answer": 0.49975,
+    "tolerance": 1e-05,
+    "explanation": "$p_1 = \\frac{e^{-0.001}}{1+e^{-0.001}} \\approx 0.49975$, a little below 0.5, which is better for a class 0 example.",
+    "tags": ["gradient-descent", "calculation"],
+    "sources": [{"file": "week_2/worksheet/2a-MLE_gradient_descent-answers.pdf", "page": 8, "quote": "Note that the probability for this example gets better by a larger extent"}]
+  },
+  {
+    "id": "w2-gd-006", "week": 2, "topic": "gradient-descent", "type": "mcq", "difficulty": 2,
+    "prompt": "After one update, $p_1$ for the class 1 example $x^{(1)}$ went from 0.5 to 0.499875. What does this show?",
+    "choices": ["The update was wrong", "The probability of this example dropped slightly, but the overall cross-entropy still decreased", "Gradient descent only fits class 0 examples", "The learning rate was too large"],
+    "answer": 1,
+    "explanation": "The gain on the class 0 example was larger than the loss on the class 1 example, so the total loss went down as expected.",
+    "tags": ["gradient-descent"],
+    "sources": [{"file": "week_2/worksheet/2a-MLE_gradient_descent-answers.pdf", "page": 7, "quote": "reduced a little bit after the update instead of increasing"}]
+  },
+  {
+    "id": "w2-gd-007", "week": 2, "topic": "gradient-descent", "type": "mcq", "difficulty": 1,
+    "prompt": "What may happen if the learning rate $\\eta$ is too large?",
+    "choices": ["Convergence is always faster and stable", "Gradient descent may jump across the optimum, lacking stability", "The loss becomes non-convex", "The gradient becomes zero immediately"],
+    "answer": 1,
+    "explanation": "Large steps can overshoot the minimum, which may hinder convergence.",
+    "tags": ["learning-rate"],
+    "sources": [{"file": "week_2/slides/2a-MLE-gradient-descent.pdf", "page": 30, "quote": "may result in jumping across the optimum, lacking stability."}]
+  },
+  {
+    "id": "w2-gd-008", "week": 2, "topic": "gradient-descent", "type": "truefalse", "difficulty": 1,
+    "prompt": "Too small a learning rate may result in a longer time to converge to the optimum.",
+    "answer": true,
+    "explanation": "Small steps are stable but need more iterations.",
+    "tags": ["learning-rate"],
+    "sources": [{"file": "week_2/slides/2a-MLE-gradient-descent.pdf", "page": 31, "quote": "may result in longer time to converge to the optimum."}]
+  },
+  {
+    "id": "w2-gd-009", "week": 2, "topic": "gradient-descent", "type": "order", "difficulty": 1,
+    "prompt": "Put the batch gradient descent algorithm in order.",
+    "steps": ["Initialise $\\mathbf{w}$ with zeroes or small random values", "Compute the gradient $\\nabla E(\\mathbf{w})$ over the whole training set", "Update $\\mathbf{w} = \\mathbf{w} - \\eta\\nabla E(\\mathbf{w})$", "Repeat until the maximum number of iterations is reached or $\\nabla E(\\mathbf{w})$ is a vector of zeroes"],
+    "explanation": "Algorithm 1 in the notes is exactly this loop.",
+    "tags": ["gradient-descent", "algorithm"],
+    "sources": [{"file": "week_2/slides/2a-MLE-gradient-descent.pdf", "page": 25, "quote": "with zeroes or random values near zero."}, {"file": "week_2/slides/2a-MLE-gradient-descent.pdf", "page": 25, "quote": "Repeat for a given number of iterations or until"}]
+  },
+  {
+    "id": "w2-gd-010", "week": 2, "topic": "gradient-descent", "type": "flashcard", "difficulty": 2,
+    "prompt": "How does online (stochastic) gradient descent differ from the batch version?",
+    "answer": "Batch updates $\\mathbf{w}$ once per iteration using the whole training set; online updates $\\mathbf{w}$ after each training example separately.",
+    "explanation": "Online uses $\\nabla E^{(i)}(\\mathbf{w}) = (p_1 - y^{(i)})\\mathbf{x}^{(i)}$ for each example $i$.",
+    "tags": ["batch", "online"],
+    "sources": [{"file": "week_2/reading/notes-logreg-gradient-descent.pdf", "page": 2, "quote": "a whole batch of examples (the training set) will be used to update"}]
+  },
+  {
+    "id": "w2-gd-011", "week": 2, "topic": "gradient-descent", "type": "mcq", "difficulty": 2,
+    "prompt": "When is the online version of gradient descent useful?",
+    "choices": ["When the data is a stream where examples keep arriving, so the full gradient cannot be computed", "When the loss is non-convex", "When we want to avoid a learning rate", "When there are no training examples"],
+    "answer": 0,
+    "explanation": "The batch gradient needs all training examples to be available, which a data stream cannot provide.",
+    "tags": ["online"],
+    "sources": [{"file": "week_2/reading/notes-logreg-gradient-descent.pdf", "page": 2, "quote": "if the training set is a data stream where examples"}]
+  },
+  {
+    "id": "w2-gd-012", "week": 2, "topic": "gradient-descent", "type": "truefalse", "difficulty": 2,
+    "prompt": "A model that perfectly fits the training set is always preferable.",
+    "answer": false,
+    "explanation": "It can fit noise in the training examples and generalise poorly, so a misclassified outlier is not necessarily a problem.",
+    "tags": ["generalisation"],
+    "sources": [{"file": "week_2/worksheet/2a-MLE_gradient_descent-answers.pdf", "page": 6, "quote": "Creating a model that perfectly fits the training set is frequently not a good thing."}]
+  },
+  {
+    "id": "w2-gd-013", "week": 2, "topic": "gradient-descent", "type": "short", "difficulty": 2,
+    "prompt": "Discuss the effect of a very small ($\\eta = 0.001$) versus a very large ($\\eta = 1$) learning rate.",
+    "answer": "A large $\\eta$ takes large steps, which may converge faster but can jump across the optimum and lose stability. A very small $\\eta$ is more stable but takes longer to converge.",
+    "steps": ["Large $\\eta$: bigger changes in $\\mathbf{w}$, possibly overshooting", "Small $\\eta$: smaller, stable steps, but more iterations"],
+    "explanation": "Lack of stability can hinder convergence rather than speed it up.",
+    "tags": ["learning-rate"],
+    "sources": [{"file": "week_2/worksheet/2a-MLE_gradient_descent-answers.pdf", "page": 9, "quote": "Very small values will result in smaller steps."}]
+  },
+  {
+    "id": "w2-gd-014", "week": 2, "topic": "gradient-descent", "type": "short", "difficulty": 2,
+    "prompt": "Under what conditions does gradient descent reach the true optimal coefficients $\\mathbf{w}^*$ for logistic regression?",
+    "answer": "The cross-entropy loss is convex, so with enough iterations and an appropriate learning rate it reaches $\\mathbf{w}^*$. Too few iterations or an inappropriate learning rate can make it fail.",
+    "steps": ["Convex loss: no non-optimal stationary points", "Enough iterations", "Appropriate learning rate"],
+    "explanation": "For non-convex functions it can also get stuck in local optima.",
+    "tags": ["convergence"],
+    "sources": [{"file": "week_2/reading/notes-logreg-gradient-descent.pdf", "page": 2, "quote": "if enough number of iterations are allowed and an appropriate learning rate"}]
+  },
+  {
+    "id": "w2-gd-015", "week": 2, "topic": "gradient-descent", "type": "flashcard", "difficulty": 1,
+    "prompt": "Write the gradient descent update for a single weight $w_i$.",
+    "answer": "$w_i = w_i - \\eta\\frac{\\partial E}{\\partial w_i}$ with $\\eta > 0$, applied to every weight; stacked together this is $\\mathbf{w} = \\mathbf{w} - \\eta\\nabla E(\\mathbf{w})$.",
+    "explanation": "The partial derivative gives the rate of change of $E$ as we increase $w_i$.",
+    "tags": ["gradient-descent"],
+    "sources": [{"file": "week_2/slides/2a-MLE-gradient-descent.pdf", "page": 23, "quote": "This can be used to search for"}]
+  }
+]

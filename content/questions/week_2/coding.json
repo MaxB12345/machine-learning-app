@@ -1,0 +1,114 @@
+[
+  {
+    "id": "w2-cod-001", "week": 2, "topic": "coding", "type": "code", "difficulty": 2,
+    "prompt": "What value is printed (the likelihood of the labels)?",
+    "code": "p1 = np.array([0.9, 0.2])\ny = np.array([1, 0])\np0 = 1 - p1\nprint(np.prod((p1 ** y) * (p0 ** (1 - y))))",
+    "choices": ["0.72", "0.18", "0.02", "1.1"],
+    "answer": 0,
+    "explanation": "The per-example terms are $p_1 = 0.9$ for the first and $p_0 = 0.8$ for the second; the product is $0.72$.",
+    "tags": ["likelihood"],
+    "sources": [{"file": "week_2/coding-problems/2a_MLE_gradient_descent_answers.ipynb", "page": 12, "quote": "per_example = (p1 ** y) * (p0 ** (1 - y))"}]
+  },
+  {
+    "id": "w2-cod-002", "week": 2, "topic": "coding", "type": "code", "difficulty": 2,
+    "prompt": "What value is printed (approximately)?",
+    "code": "p1 = np.array([0.5, 0.5])\ny = np.array([1, 0])\np0 = 1 - p1\nprint(np.sum(y * np.log(p1) + (1 - y) * np.log(p0)))",
+    "choices": ["-1.39", "1.39", "-0.69", "0"],
+    "answer": 0,
+    "explanation": "The log-likelihood is $2\\ln 0.5 \\approx -1.39$.",
+    "tags": ["log-likelihood"],
+    "sources": [{"file": "week_2/coding-problems/2a_MLE_gradient_descent_answers.ipynb", "page": 15, "quote": "return np.sum(y * np.log(p1) + (1 - y) * np.log(p0))"}]
+  },
+  {
+    "id": "w2-cod-003", "week": 2, "topic": "coding", "type": "code", "difficulty": 2,
+    "prompt": "What is printed?",
+    "code": "X = np.array([[1.0, 0.0], [1.0, 2.0]])\np1 = np.array([0.5, 0.5])\ny = np.array([1, 0])\nprint(X.T @ (p1 - y))",
+    "choices": ["[0. 1.]", "[0. -1.]", "[-0.5 0.5]", "[1. 0.]"],
+    "answer": 0,
+    "explanation": "$p_1 - y = (-0.5, 0.5)$, so $X^T(p_1 - y) = (-0.5 + 0.5,\\ 0 \\times -0.5 + 2 \\times 0.5) = (0, 1)$.",
+    "tags": ["gradient"],
+    "sources": [{"file": "week_2/coding-problems/2a_MLE_gradient_descent_answers.ipynb", "page": 23, "quote": "return X.T @ (p1 - y)"}]
+  },
+  {
+    "id": "w2-cod-004", "week": 2, "topic": "coding", "type": "code", "difficulty": 2,
+    "prompt": "With `gradient(X, y, w)` returning $(0, 1)$ at $\\mathbf{w} = \\mathbf{0}$, what does `update_weights(X, y, w, learning_rate=0.1)` return?",
+    "code": "def update_weights(X, y, w, learning_rate):\n    return w - learning_rate * gradient(X, y, w)",
+    "choices": ["[0. -0.1]", "[0. 0.1]", "[0. 1.]", "[-0.1 0.]"],
+    "answer": 0,
+    "explanation": "$\\mathbf{w} - 0.1 \\times (0, 1) = (0, -0.1)$.",
+    "tags": ["gradient-descent"],
+    "sources": [{"file": "week_2/coding-problems/2a_MLE_gradient_descent_answers.ipynb", "page": 26, "quote": "return w - learning_rate * gradient(X, y, w)"}]
+  },
+  {
+    "id": "w2-cod-005", "week": 2, "topic": "coding", "type": "code", "difficulty": 2,
+    "prompt": "For $E(w) = (w-3)^2 + 1$, where $E'(w) = 2(w-3)$ and $E''(w) = 2$, what does one Newton step from $w_0 = 10$ return?",
+    "code": "def newton_step_1d(w, grad_value, hess_value):\n    return w - grad_value / hess_value",
+    "choices": ["3.0", "5.0", "7.0", "-4.0"],
+    "answer": 0,
+    "explanation": "$10 - 14/2 = 3$, the minimum, in one step because $E$ is quadratic.",
+    "tags": ["newton-raphson"],
+    "sources": [{"file": "week_2/coding-problems/2b_newton_raphson_irls_answers.ipynb", "page": 15, "quote": "return w - grad_value / hess_value"}]
+  },
+  {
+    "id": "w2-cod-006", "week": 2, "topic": "coding", "type": "code", "difficulty": 2,
+    "prompt": "After `standardize(X)` (z-score columns 1 onwards, bias column left as ones), what is `X_std.std(axis=0)` for the three columns $x_0, x_1, x_2$?",
+    "code": "def standardize(X):\n    Xs = X.copy().astype(float)\n    feats = Xs[:, 1:]\n    Xs[:, 1:] = (feats - feats.mean(axis=0)) / feats.std(axis=0)\n    return Xs",
+    "choices": ["[1. 1. 1.]", "[0. 1. 1.]", "[0. 0. 0.]", "[0. 0.8796 189.5355]"],
+    "answer": 1,
+    "explanation": "The bias column is constant so its std is 0; the standardised features have std 1.",
+    "tags": ["standardisation"],
+    "sources": [{"file": "week_2/coding-problems/2b_newton_raphson_irls_answers.ipynb", "page": 10, "quote": "# Column std (x0, x1, x2 in X_std): [0. 1. 1.]"}]
+  },
+  {
+    "id": "w2-cod-007", "week": 2, "topic": "coding", "type": "numeric", "difficulty": 2,
+    "prompt": "Toy set $X$ rows $(1,0,0),(1,0.5,0),(1,0,0.5),(1,1.5,1.5),(1,2,1),(1,1,2)$, $y = (0,0,0,1,1,1)$ and $\\mathbf{w} = (2,1,-1)^T$. What is the total cross-entropy (3 d.p.)?",
+    "answer": 6.896,
+    "tolerance": 0.001,
+    "explanation": "The probabilities are $(0.8808, 0.9241, 0.8176, 0.8808, 0.9526, 0.7311)$; the negative log-likelihood is $\\approx 6.896$.",
+    "tags": ["cross-entropy", "calculation"],
+    "sources": [{"file": "week_2/coding-problems/2a_MLE_gradient_descent_answers.ipynb", "page": 19, "quote": "# Cross-entropy: 6.896008073453212"}]
+  },
+  {
+    "id": "w2-cod-008", "week": 2, "topic": "coding", "type": "mcq", "difficulty": 2,
+    "prompt": "In the demo, `max_iter` is changed from 10000 to 100. What do you observe?",
+    "choices": ["A warning that the maximum number of iterations was reached, so the optimiser has not converged to the minimum loss", "No change", "The loss becomes smaller", "The model gets a higher training accuracy"],
+    "answer": 0,
+    "explanation": "One training example becomes misclassified and the training data is fitted less perfectly.",
+    "tags": ["max-iter"],
+    "sources": [{"file": "week_2/worksheet/2a-MLE_gradient_descent-answers.pdf", "page": 4, "quote": "maximum number of iterations was reached"}]
+  },
+  {
+    "id": "w2-cod-009", "week": 2, "topic": "coding", "type": "mcq", "difficulty": 3,
+    "prompt": "For scikit-learn's `LogisticRegression`, does the attribute `intercept_` correspond to $w_0$ or to $b$ in $w_1x_1 + w_2x_2 = b$?",
+    "choices": ["$w_0$", "$b$"],
+    "answer": 0,
+    "explanation": "Computing $p_1$ by hand with $w_0 = -22.936$ reproduces the model's 0.98833641, whereas $b$ gives 1.",
+    "tags": ["sklearn", "intercept"],
+    "sources": [{"file": "week_2/worksheet/2a-MLE_gradient_descent-answers.pdf", "page": 17, "quote": "Therefore, the intercept attribute must bew 0 rather thanb."}]
+  },
+  {
+    "id": "w2-cod-010", "week": 2, "topic": "coding", "type": "mcq", "difficulty": 2,
+    "prompt": "Which scikit-learn solver forms the Hessian and solves the Newton system (with line search in practice)?",
+    "choices": ["lbfgs", "newton-cholesky", "sag", "liblinear"],
+    "answer": 1,
+    "explanation": "`newton-cg` instead uses conjugate gradients with Hessian-vector products; `lbfgs`, the default, is quasi-Newton.",
+    "tags": ["sklearn", "newton-raphson"],
+    "sources": [{"file": "week_2/coding-problems/2b_newton_raphson_irls_answers.ipynb", "page": 29, "quote": "forms the Hessian and solves the Newton system"}]
+  },
+  {
+    "id": "w2-cod-011", "week": 2, "topic": "coding", "type": "order", "difficulty": 2,
+    "prompt": "Put the IRLS training loop of the notebook in order.",
+    "steps": ["Initialise $\\mathbf{w}$ with zeros", "Compute the gradient and the Hessian at the current $\\mathbf{w}$", "Solve the linear system $H_E(\\mathbf{w})\\Delta\\mathbf{w} = \\nabla E(\\mathbf{w})$ with `np.linalg.solve`", "Update $\\mathbf{w} \\leftarrow \\mathbf{w} - \\Delta\\mathbf{w}$ and repeat"],
+    "explanation": "The gradient and Hessian depend on $\\mathbf{w}$ so they are recomputed after every update.",
+    "tags": ["irls", "algorithm"],
+    "sources": [{"file": "week_2/coding-problems/2b_newton_raphson_irls_answers.ipynb", "page": 17, "quote": "then repeat either for a fixed number of iterations or until"}, {"file": "week_2/coding-problems/2b_newton_raphson_irls_answers.ipynb", "page": 22, "quote": "step = np.linalg.solve(hessian_value, gradient_value)"}]
+  },
+  {
+    "id": "w2-cod-012", "week": 2, "topic": "coding", "type": "truefalse", "difficulty": 2,
+    "prompt": "On the Iris demo with only 100 iterations, IRLS (newton-cg) converges and correctly classifies all training examples, unlike SAG with 100 iterations.",
+    "answer": true,
+    "explanation": "IRLS learned a decision boundary that correctly classifies all training examples in fewer iterations than SAG.",
+    "tags": ["irls", "sklearn"],
+    "sources": [{"file": "week_2/worksheet/2b-newton_raphson_IRLS-answers.pdf", "page": 5, "quote": "IRLS was able to learn a decision boundary that correctly classifies all"}]
+  }
+]

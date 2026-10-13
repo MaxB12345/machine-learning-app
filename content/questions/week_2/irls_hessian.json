@@ -1,0 +1,80 @@
+[
+  {
+    "id": "w2-irls-001", "week": 2, "topic": "irls-hessian", "type": "flashcard", "difficulty": 1,
+    "prompt": "What does the Hessian contain?",
+    "answer": "All the second-order partial derivatives, capturing the curvature along multiple directions.",
+    "explanation": "Entry $(i,j)$ is $\\frac{\\partial^2 f}{\\partial x_i \\partial x_j}$.",
+    "tags": ["hessian"],
+    "sources": [{"file": "week_2/slides/2b-newton-raphson-IRLS.pdf", "page": 30, "quote": "The Hessian contains all"}]
+  },
+  {
+    "id": "w2-irls-002", "week": 2, "topic": "irls-hessian", "type": "mcq", "difficulty": 2,
+    "prompt": "Which is the multivariate Newton-Raphson update?",
+    "choices": ["$\\mathbf{w} = \\mathbf{w} - \\eta\\nabla E(\\mathbf{w})$", "$\\mathbf{w} = \\mathbf{w} - H_E(\\mathbf{w})^{-1}\\nabla E(\\mathbf{w})$", "$\\mathbf{w} = \\mathbf{w} - H_E(\\mathbf{w})\\nabla E(\\mathbf{w})$", "$\\mathbf{w} = \\mathbf{w} - \\nabla E(\\mathbf{w})/H_E(\\mathbf{w})^{-1}$"],
+    "answer": 1,
+    "explanation": "The inverse Hessian replaces the division by $E''$ in the univariate rule.",
+    "tags": ["newton-raphson", "update-rule"],
+    "sources": [{"file": "week_2/slides/2b-newton-raphson-IRLS.pdf", "page": 31, "quote": "Multivariate update rule:"}]
+  },
+  {
+    "id": "w2-irls-003", "week": 2, "topic": "irls-hessian", "type": "flashcard", "difficulty": 2,
+    "prompt": "Give the Hessian of the cross-entropy loss for logistic regression.",
+    "answer": "$H_E(\\mathbf{w}) = \\sum_{i=1}^{N} p(1 \\mid \\mathbf{x}^{(i)}, \\mathbf{w})\\left(1 - p(1 \\mid \\mathbf{x}^{(i)}, \\mathbf{w})\\right)\\mathbf{x}^{(i)}\\mathbf{x}^{(i)T}$.",
+    "explanation": "Each term is weighted by $p_1(1-p_1)$, which changes with $\\mathbf{w}$, hence the name iterative reweighted least squares.",
+    "tags": ["hessian", "irls"],
+    "sources": [
+      {"file": "week_2/slides/2b-newton-raphson-IRLS.pdf", "page": 36, "quote": "Reweighted Least Squares"},
+      {"file": "week_2/coding-problems/2b_newton_raphson_irls_answers.ipynb", "page": 17, "quote": "in the Hessian is multiplied by the current scalar"}
+    ]
+  },
+  {
+    "id": "w2-irls-004", "week": 2, "topic": "irls-hessian", "type": "numeric", "difficulty": 2,
+    "prompt": "Examples $\\mathbf{x}^{(1)} = (1,0.1,0.2)^T$ and $\\mathbf{x}^{(2)} = (1,0.3,0.4)^T$, $\\mathbf{w} = \\mathbf{0}$. What is the entry $H_{00}$ of the Hessian?",
+    "answer": 0.5, "tolerance": 0.001,
+    "explanation": "$p_1 = 0.5$ so each weight is $0.25$; $H_{00} = 0.25 \\times 1 + 0.25 \\times 1 = 0.5$.",
+    "tags": ["hessian", "calculation"],
+    "sources": [{"file": "week_2/worksheet/2b-newton_raphson_IRLS-answers.pdf", "page": 5, "quote": "Compute the Hessian for Logistic Regression using Cross-Entropy Loss when the weights"}]
+  },
+  {
+    "id": "w2-irls-005", "week": 2, "topic": "irls-hessian", "type": "numeric", "difficulty": 2,
+    "prompt": "For the same data and $\\mathbf{w} = \\mathbf{0}$, what is the Hessian entry $H_{22}$ (bottom right, 2 d.p.)?",
+    "answer": 0.05, "tolerance": 0.001,
+    "explanation": "$0.25 \\times 0.2^2 + 0.25 \\times 0.4^2 = 0.01 + 0.04 = 0.05$.",
+    "tags": ["hessian", "calculation"],
+    "sources": [{"file": "week_2/worksheet/2b-newton_raphson_IRLS-answers.pdf", "page": 6, "quote": "The Hessian for Logistic Regression with Cross-Entropy Loss is computed based on the"}]
+  },
+  {
+    "id": "w2-irls-006", "week": 2, "topic": "irls-hessian", "type": "numeric", "difficulty": 3,
+    "prompt": "For $E = 4w_1^2 + 3w_1w_2 + 2w_2^2 + 5w_1w_3 + 6w_2w_3 + w_3^2$ at $\\mathbf{w} = (1,1,1)^T$, the gradient is $(16,13,13)^T$ and $H^{-1} = \\frac{1}{162}\\begin{pmatrix}28&-24&2\\\\-24&9&33\\\\2&33&-23\\end{pmatrix}$. After one Newton-Raphson step, what is $w_1$?",
+    "answer": 0, "tolerance": 0.001,
+    "explanation": "$H^{-1}\\nabla E = \\frac{1}{162}(162,162,162)^T = (1,1,1)^T$, so $\\mathbf{w} = (1,1,1)^T - (1,1,1)^T = \\mathbf{0}$.",
+    "tags": ["newton-raphson", "calculation"],
+    "sources": [{"file": "week_2/worksheet/2b-newton_raphson_IRLS-answers.pdf", "page": 9, "quote": "Apply the Newton–Raphson rule once to find the new model parameters"}]
+  },
+  {
+    "id": "w2-irls-007", "week": 2, "topic": "irls-hessian", "type": "truefalse", "difficulty": 2,
+    "prompt": "IRLS has a lower per-iteration computational cost than gradient descent.",
+    "answer": false,
+    "explanation": "IRLS computes the gradient and the Hessian and inverts it; its benefit is potentially needing far fewer iterations.",
+    "tags": ["irls", "cost"],
+    "sources": [{"file": "week_2/worksheet/2b-newton_raphson_IRLS-answers.pdf", "page": 12, "quote": "E. IRLS has lower per-iteration computational cost than gradient descent."}]
+  },
+  {
+    "id": "w2-irls-008", "week": 2, "topic": "irls-hessian", "type": "mcq", "difficulty": 2,
+    "prompt": "Which can be done to avoid problems with a poor quadratic approximation in IRLS?",
+    "choices": ["Adopt a learning rate for Newton-Raphson", "Remove the Hessian", "Use fewer training examples", "Initialise $\\mathbf{w}$ with large values"],
+    "answer": 0,
+    "explanation": "The logistic loss is not quadratic, though its deviations are not too large.",
+    "tags": ["irls"],
+    "sources": [{"file": "week_2/slides/2b-newton-raphson-IRLS.pdf", "page": 37, "quote": "it is also possible to adopt a learning rate for Newton Raphson."}]
+  },
+  {
+    "id": "w2-irls-009", "week": 2, "topic": "irls-hessian", "type": "short", "difficulty": 3,
+    "prompt": "Why does IRLS make use of curvature information to improve on gradient descent?",
+    "answer": "It avoids large steps in directions where the gradient is changing too much, and increases the step size in directions where the gradient is not changing much.",
+    "steps": ["Build a quadratic approximation of the loss", "Find the minimum of the approximation", "Use curvature to set the step size per direction"],
+    "explanation": "This can reach the minimum with fewer steps than gradient descent.",
+    "tags": ["irls"],
+    "sources": [{"file": "week_2/slides/2b-newton-raphson-IRLS.pdf", "page": 40, "quote": "avoid large steps in directions where the gradient is changing too"}]
+  }
+]

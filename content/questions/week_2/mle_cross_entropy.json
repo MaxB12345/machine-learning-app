@@ -1,0 +1,135 @@
+[
+  {
+    "id": "w2-mle-001", "week": 2, "topic": "mle-cross-entropy", "type": "flashcard", "difficulty": 1,
+    "prompt": "What does the likelihood $\\mathcal{L}(\\mathbf{w})$ measure?",
+    "answer": "How well the model parameters explain the data we observed.",
+    "explanation": "$\\mathcal{L}(\\mathbf{w}) = \\prod_i p(y^{(i)} \\mid \\mathbf{x}^{(i)}, \\mathbf{w})$ is a function of $\\mathbf{w}$ with the training examples held fixed.",
+    "tags": ["likelihood"],
+    "sources": [{"file": "week_2/slides/2a-MLE-gradient-descent.pdf", "page": 6, "quote": "Likelihood measures how well the model parameters explain the data we observed."}]
+  },
+  {
+    "id": "w2-mle-002", "week": 2, "topic": "mle-cross-entropy", "type": "flashcard", "difficulty": 1,
+    "prompt": "State the principle behind maximum likelihood estimation for learning $\\mathbf{w}$.",
+    "answer": "The most reasonable values for $\\mathbf{w}$ are the ones for which the probability of the observed training examples is largest.",
+    "explanation": "Learning therefore means finding the $\\mathbf{w}$ that maximises $\\mathcal{L}(\\mathbf{w})$.",
+    "tags": ["mle"],
+    "sources": [{"file": "week_2/slides/2a-MLE-gradient-descent.pdf", "page": 4, "quote": "of the observed (training) examples is largest."}]
+  },
+  {
+    "id": "w2-mle-003", "week": 2, "topic": "mle-cross-entropy", "type": "mcq", "difficulty": 1,
+    "prompt": "Why do we maximise the log-likelihood instead of the likelihood itself?",
+    "choices": ["The product of many probabilities can be numerically unstable, and the log turns it into a sum", "The log-likelihood has a different maximiser", "The likelihood is not defined for binary labels", "The log makes the loss non-convex"],
+    "answer": 0,
+    "explanation": "$\\ln$ is monotonic, so the same $\\mathbf{w}$ maximises both, but $\\ln\\prod_i p_{y^{(i)}} = \\sum_i \\ln p_{y^{(i)}}$ is stable.",
+    "tags": ["log-likelihood"],
+    "sources": [{"file": "week_2/slides/2a-MLE-gradient-descent.pdf", "page": 9, "quote": "can be numerically unstable."}]
+  },
+  {
+    "id": "w2-mle-004", "week": 2, "topic": "mle-cross-entropy", "type": "order", "difficulty": 2,
+    "prompt": "Put the steps from maximum likelihood to the loss that gradient descent minimises in order.",
+    "steps": [
+      "Write the joint conditional likelihood $\\mathcal{L}(\\mathbf{w}) = \\prod_i p(y^{(i)} \\mid \\mathbf{x}^{(i)}, \\mathbf{w})$",
+      "Find $\\mathbf{w}$ that maximises the likelihood",
+      "Take the log to get the log-likelihood, a sum of $\\ln p_{y^{(i)}}$ terms",
+      "Negate it to get the loss $E(\\mathbf{w}) = -\\ln\\mathcal{L}(\\mathbf{w})$ and minimise that instead"
+    ],
+    "explanation": "Maximising the likelihood, maximising the log-likelihood and minimising the negative log-likelihood all give the same $\\mathbf{w}$.",
+    "tags": ["mle", "loss"],
+    "sources": [
+      {"file": "week_2/slides/2a-MLE-gradient-descent.pdf", "page": 8, "quote": "that maximises the likelihood:"},
+      {"file": "week_2/slides/2a-MLE-gradient-descent.pdf", "page": 9, "quote": "can be numerically unstable."},
+      {"file": "week_2/slides/2a-MLE-gradient-descent.pdf", "page": 10, "quote": "that minimises the loss,"}
+    ]
+  },
+  {
+    "id": "w2-mle-005", "week": 2, "topic": "mle-cross-entropy", "type": "numeric", "difficulty": 1,
+    "prompt": "For a training example of class 1 with $p_1 = 0.5$, what is its contribution $-\\ln p_1$ to the loss (2 d.p.)?",
+    "answer": 0.69, "tolerance": 0.01,
+    "explanation": "$-\\ln(0.5) \\approx 0.69$.",
+    "tags": ["loss", "calculation"],
+    "sources": [{"file": "week_2/slides/2a-MLE-gradient-descent.pdf", "page": 12, "quote": "p1=0.5→−0.69→+0.69"}]
+  },
+  {
+    "id": "w2-mle-006", "week": 2, "topic": "mle-cross-entropy", "type": "mcq", "difficulty": 2,
+    "prompt": "A class 1 example has predicted $p_1 = 0.01$. Approximately what does it add to the loss?",
+    "choices": ["$0.01$", "$0.69$", "$4.6$", "$-4.6$"],
+    "answer": 2,
+    "explanation": "$-\\ln(0.01) \\approx 4.6$. The closer $p_1$ is to 0 for a class 1 example, the larger the penalty.",
+    "tags": ["loss"],
+    "sources": [{"file": "week_2/slides/2a-MLE-gradient-descent.pdf", "page": 12, "quote": "p1=0.01→−4.6→+4.6"}]
+  },
+  {
+    "id": "w2-mle-007", "week": 2, "topic": "mle-cross-entropy", "type": "truefalse", "difficulty": 1,
+    "prompt": "For examples of class 1, the loss strongly penalises predicting $p_1$ close to 0.",
+    "answer": true,
+    "explanation": "$-\\ln p_1$ grows without bound as $p_1 \\to 0$, so confident wrong predictions are punished heavily.",
+    "tags": ["loss"],
+    "sources": [{"file": "week_2/slides/2a-MLE-gradient-descent.pdf", "page": 14, "quote": "we strongly penalise being"}]
+  },
+  {
+    "id": "w2-mle-008", "week": 2, "topic": "mle-cross-entropy", "type": "numeric", "difficulty": 2,
+    "prompt": "Three examples $((0.1,0.1)^T,1)$, $((0.1,0.2)^T,0)$, $((0.2,0.2)^T,1)$ are augmented with $x_0 = 1$ and $\\mathbf{w} = (0,0,0)^T$. Compute the cross-entropy loss (4 d.p.).",
+    "answer": 2.0794, "tolerance": 0.001,
+    "explanation": "With $\\mathbf{w} = \\mathbf{0}$ every $p_1 = 0.5$, so $E = -3\\ln 0.5 \\approx 2.0794$.",
+    "tags": ["loss", "calculation"],
+    "sources": [
+      {"file": "week_2/worksheet/2a-MLE_gradient_descent-answers.pdf", "page": 2, "quote": "Calculate the cross-entropy loss for the logistic regression model on this training set."},
+      {"file": "week_2/worksheet/2a-MLE_gradient_descent-answers.pdf", "page": 3, "quote": "≈ −3×(−0.6931) ≈2.0794"}
+    ]
+  },
+  {
+    "id": "w2-mle-009", "week": 2, "topic": "mle-cross-entropy", "type": "multi", "difficulty": 2,
+    "prompt": "What is the purpose of gradient descent in the logistic regression approach of the lecture? Select all correct options.",
+    "choices": ["To find $\\mathbf{w}$ that minimises the cross-entropy loss", "To find $\\mathbf{w}$ that maximises the cross-entropy loss", "To find $\\mathbf{w}$ that minimises the likelihood", "To find $\\mathbf{w}$ that maximises the likelihood", "To find the best features", "To transform data into a higher dimension"],
+    "answer": [0, 3],
+    "explanation": "Minimising the cross-entropy loss is equivalent to maximising the log-likelihood, and so the likelihood.",
+    "tags": ["gradient-descent", "mle"],
+    "sources": [{"file": "week_2/worksheet/2a-MLE_gradient_descent-answers.pdf", "page": 8, "quote": "Correct option: A, D"}]
+  },
+  {
+    "id": "w2-mle-010", "week": 2, "topic": "mle-cross-entropy", "type": "mcq", "difficulty": 3,
+    "prompt": "With $\\mathbf{w} = (1,1,1)^T$, which hypothetical example has the worst log-likelihood?",
+    "choices": ["$\\mathbf{x} = (2,2,2)^T$, $y = 0$", "$\\mathbf{x} = (0,0,0)^T$, $y = 1$", "$\\mathbf{x} = (-1,-2,-1)^T$, $y = 0$", "$\\mathbf{x} = (1,1,1)^T$, $y = 1$"],
+    "answer": 0,
+    "explanation": "$\\mathbf{w}^T\\mathbf{x} = 6$ gives $p_1 \\approx 0.9975$, a confident prediction of class 1 for a class 0 example. It is the only misclassified one.",
+    "tags": ["log-likelihood", "calculation"],
+    "sources": [{"file": "week_2/worksheet/2a-MLE_gradient_descent-answers.pdf", "page": 11, "quote": "Correct option: A"}]
+  },
+  {
+    "id": "w2-mle-011", "week": 2, "topic": "mle-cross-entropy", "type": "short", "difficulty": 3,
+    "prompt": "Show that $-\\sum_i \\ln p_{y^{(i)}}$ equals $-\\sum_i \\left[y^{(i)}\\ln p_1 + (1-y^{(i)})\\ln(1-p_1)\\right]$.",
+    "answer": "Check each label separately: both forms give $\\ln p_{y^{(i)}}$ per example.",
+    "steps": [
+      "If $y^{(i)} = 1$: the left term is $\\ln p(1 \\mid \\mathbf{x}^{(i)}, \\mathbf{w}) = \\ln p_{y^{(i)}}$ and the right term is $0 \\cdot \\ln(\\cdot) = 0$.",
+      "If $y^{(i)} = 0$: the left term is $0$ and the right term is $\\ln(1 - p_1) = \\ln p_0 = \\ln p_{y^{(i)}}$.",
+      "So each summed term equals $\\ln p_{y^{(i)}}$ for both labels, and the two sums are equal."
+    ],
+    "explanation": "The label $y^{(i)}$ switches on exactly one of the two terms.",
+    "tags": ["cross-entropy", "derivation"],
+    "sources": [{"file": "week_2/worksheet/2a-MLE_gradient_descent-answers.pdf", "page": 10, "quote": "we have proved that Eqs. 2 and 3 are equivalent"}]
+  },
+  {
+    "id": "w2-mle-012", "week": 2, "topic": "mle-cross-entropy", "type": "truefalse", "difficulty": 1,
+    "prompt": "For logistic regression, the cross-entropy loss is strictly convex in $\\mathbf{w}$, with a single unique minimum.",
+    "answer": true,
+    "explanation": "Hence gradient descent is not at risk of getting stuck in a local minimum for this loss.",
+    "tags": ["convexity"],
+    "sources": [{"file": "week_2/slides/2a-MLE-gradient-descent.pdf", "page": 32, "quote": "is strictly convex with respect to"}]
+  },
+  {
+    "id": "w2-mle-013", "week": 2, "topic": "mle-cross-entropy", "type": "flashcard", "difficulty": 1,
+    "prompt": "What does cross-entropy measure, and between which distributions is it used here?",
+    "answer": "A dissimilarity between two probability distributions: the true target distribution $p(y \\mid x)$ and the learned distribution $p(y \\mid x, \\mathbf{w})$.",
+    "explanation": "Minimising it finds the parameters that best explain the observed data.",
+    "tags": ["cross-entropy"],
+    "sources": [{"file": "week_2/slides/2a-MLE-gradient-descent.pdf", "page": 16, "quote": "measure of dissimilarity between two probability"}]
+  },
+  {
+    "id": "w2-mle-014", "week": 2, "topic": "mle-cross-entropy", "type": "flashcard", "difficulty": 2,
+    "prompt": "When is the term probability usually used, and when is likelihood used?",
+    "answer": "Probability is used when we assume the model's parameters are reliable; likelihood when we are determining whether the parameters are good given the data.",
+    "explanation": "Likelihood is a function of the parameters $\\mathbf{w}$ for fixed data.",
+    "tags": ["likelihood"],
+    "sources": [{"file": "week_2/slides/2a-MLE-gradient-descent.pdf", "page": 5, "quote": "the term probability is usually used when we assume the"}]
+  }
+]

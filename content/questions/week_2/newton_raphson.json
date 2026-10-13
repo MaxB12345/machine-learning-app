@@ -1,0 +1,96 @@
+[
+  {
+    "id": "w2-nr-001", "week": 2, "topic": "newton-raphson", "type": "flashcard", "difficulty": 1,
+    "prompt": "Give the univariate Newton-Raphson update rule. Does it need a learning rate?",
+    "answer": "$w = w - \\frac{E'(w)}{E''(w)}$. There is no learning rate.",
+    "explanation": "It still moves against the gradient in a convex region, but the update shrinks where the curvature is high.",
+    "tags": ["newton-raphson"],
+    "sources": [{"file": "week_2/slides/2b-newton-raphson-IRLS.pdf", "page": 21, "quote": "PS: note the absence of a learning rate here."}]
+  },
+  {
+    "id": "w2-nr-002", "week": 2, "topic": "newton-raphson", "type": "mcq", "difficulty": 1,
+    "prompt": "What does the second derivative tell us?",
+    "choices": ["The value of the function", "The curvature: how rapidly the gradient (slope) is changing", "The learning rate", "The location of the minimum"],
+    "answer": 1,
+    "explanation": "Positive means convex, negative means concave; larger magnitude means higher curvature.",
+    "tags": ["second-derivative"],
+    "sources": [{"file": "week_2/slides/2b-newton-raphson-IRLS.pdf", "page": 19, "quote": "Second derivative tells us what the curvature is"}]
+  },
+  {
+    "id": "w2-nr-003", "week": 2, "topic": "newton-raphson", "type": "numeric", "difficulty": 1,
+    "prompt": "For $f(x) = x^2$ with $f'(x) = 2x$ and $f''(x) = 2$, apply Newton-Raphson once from $x = 10$. What is the new $x$?",
+    "answer": 0, "tolerance": 0.001,
+    "explanation": "$x = 10 - \\frac{2 \\times 10}{2} = 0$.",
+    "tags": ["newton-raphson", "calculation"],
+    "sources": [{"file": "week_2/worksheet/2b-newton_raphson_IRLS-answers.pdf", "page": 2, "quote": "Apply the Newton-Raphson update rule once and enter the new value"}]
+  },
+  {
+    "id": "w2-nr-004", "week": 2, "topic": "newton-raphson", "type": "mcq", "difficulty": 2,
+    "prompt": "Why did Newton-Raphson find the optimum of $f(x) = x^2$ in a single step?",
+    "choices": ["Because the learning rate was large", "Because the function is quadratic, so its quadratic approximation is the function itself", "Because the gradient was zero", "Because the function is concave"],
+    "answer": 1,
+    "explanation": "Newton-Raphson goes directly to the optimum of the quadratic approximation.",
+    "tags": ["newton-raphson"],
+    "sources": [{"file": "week_2/worksheet/2b-newton_raphson_IRLS-answers.pdf", "page": 2, "quote": "Newton-Raphson was able to find this optimum in a single step because this function is quadratic."}]
+  },
+  {
+    "id": "w2-nr-005", "week": 2, "topic": "newton-raphson", "type": "mcq", "difficulty": 3,
+    "prompt": "What happens if Newton-Raphson is applied to the concave quadratic $f(x) = -x^2$?",
+    "choices": ["It finds the minimum", "It finds the maximum", "It diverges", "It does not move"],
+    "answer": 1,
+    "explanation": "$f''$ is negative, so the update goes in the direction of the gradient, towards the maximum.",
+    "tags": ["newton-raphson", "concave"],
+    "sources": [{"file": "week_2/worksheet/2b-newton_raphson_IRLS-answers.pdf", "page": 6, "quote": "Instead of finding the minimum of the function, Newton-Raphson would retrieve the maximum of the function."}]
+  },
+  {
+    "id": "w2-nr-006", "week": 2, "topic": "newton-raphson", "type": "multi", "difficulty": 2,
+    "prompt": "What are the advantages of Newton-Raphson compared to gradient descent in logistic regression? Select all that apply.",
+    "choices": ["It uses information about the curvature, not only the gradient", "It potentially converges in fewer iterations", "It avoids local minima in non-convex functions"],
+    "answer": [0, 1],
+    "explanation": "It does not necessarily avoid local minima in non-convex functions.",
+    "tags": ["newton-raphson", "advantages"],
+    "sources": [{"file": "week_2/worksheet/2b-newton_raphson_IRLS-answers.pdf", "page": 7, "quote": "advantages of the Newton-Raphson method compared to gradient descent"}]
+  },
+  {
+    "id": "w2-nr-007", "week": 2, "topic": "newton-raphson", "type": "multi", "difficulty": 2,
+    "prompt": "When is Newton-Raphson not ideal?",
+    "choices": ["High-dimensional data with many features", "A small, low-dimensional dataset", "A non-convex loss function", "Very limited memory, e.g. tiny devices"],
+    "answer": [0, 2, 3],
+    "explanation": "It requires computing and storing the Hessian, which grows quadratically with the number of features.",
+    "tags": ["newton-raphson", "weaknesses"],
+    "sources": [{"file": "week_2/worksheet/2b-newton_raphson_IRLS-answers.pdf", "page": 8, "quote": "When is the Newton-Raphson method not ideal?"}]
+  },
+  {
+    "id": "w2-nr-008", "week": 2, "topic": "newton-raphson", "type": "order", "difficulty": 3,
+    "prompt": "Put the derivation of the Newton-Raphson update rule in order.",
+    "steps": [
+      "Approximate the loss around $w_0$ by a degree 2 Taylor polynomial",
+      "Differentiate the quadratic approximation with respect to $w$ and set it to 0",
+      "Solve $E'(w_0) + (w - w_0)E''(w_0) = 0$ for $w$",
+      "Obtain the update $w = w - E'(w)/E''(w)$"
+    ],
+    "explanation": "The optimum of a quadratic function can be found in closed form.",
+    "tags": ["newton-raphson", "derivation"],
+    "sources": [
+      {"file": "week_2/slides/2b-newton-raphson-IRLS.pdf", "page": 23, "quote": "can be used to approximate a function"},
+      {"file": "week_2/slides/2b-newton-raphson-IRLS.pdf", "page": 22, "quote": "The optimum of a quadratic function can be easily found in closed form,"},
+      {"file": "week_2/slides/2b-newton-raphson-IRLS.pdf", "page": 27, "quote": "This will lead to the following weight update rule:"}
+    ]
+  },
+  {
+    "id": "w2-nr-009", "week": 2, "topic": "newton-raphson", "type": "truefalse", "difficulty": 2,
+    "prompt": "Newton-Raphson can be viewed as finding the minimum of a local quadratic approximation to the loss at each iteration.",
+    "answer": true,
+    "explanation": "The loss is not exactly quadratic, so several iterations are needed.",
+    "tags": ["newton-raphson"],
+    "sources": [{"file": "week_2/worksheet/2b-newton_raphson_IRLS-answers.pdf", "page": 12, "quote": "conceptually each step finds the minimum of a local quadratic"}]
+  },
+  {
+    "id": "w2-nr-010", "week": 2, "topic": "newton-raphson", "type": "truefalse", "difficulty": 2,
+    "prompt": "Newton-Raphson works very well for functions that deviate a lot from quadratic functions.",
+    "answer": false,
+    "explanation": "It works very well for functions that do not deviate too much from quadratic ones.",
+    "tags": ["newton-raphson", "strengths"],
+    "sources": [{"file": "week_2/slides/2b-newton-raphson-IRLS.pdf", "page": 38, "quote": "Works very well for functions that do not deviate too much"}]
+  }
+]

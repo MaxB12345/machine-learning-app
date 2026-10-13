@@ -1,0 +1,103 @@
+[
+  {
+    "id": "w2-lim-001", "week": 2, "topic": "gd-limitations", "type": "truefalse", "difficulty": 2,
+    "prompt": "Standardisation alone guarantees convergence of gradient descent for any learning rate in logistic regression.",
+    "answer": false,
+    "explanation": "Standardisation improves conditioning, but it cannot prevent divergence if the learning rate is excessively large.",
+    "tags": ["standardisation", "learning-rate"],
+    "sources": [{"file": "week_2/worksheet/2b-newton_raphson_IRLS-answers.pdf", "page": 11, "quote": "Standardisation alone guarantees convergence of gradient descent for any learning"}, {"file": "week_2/worksheet/2b-newton_raphson_IRLS-answers.pdf", "page": 12, "quote": "it cannot prevent divergence if the learning rate is excessively large."}]
+  },
+  {
+    "id": "w2-lim-002", "week": 2, "topic": "gd-limitations", "type": "truefalse", "difficulty": 2,
+    "prompt": "Standardising the features changes the location of the global minimum when converted back to the original feature space.",
+    "answer": false,
+    "explanation": "The optimal weights have different numeric values, but they correspond to the same optimal decision boundary.",
+    "tags": ["standardisation"],
+    "sources": [{"file": "week_2/worksheet/2b-newton_raphson_IRLS-answers.pdf", "page": 12, "quote": "Standardisation only affects the optimisation trajectory and scaling of parameters,"}]
+  },
+  {
+    "id": "w2-lim-003", "week": 2, "topic": "gd-limitations", "type": "mcq", "difficulty": 2,
+    "prompt": "What can make the partial derivatives with respect to different weights have very different magnitudes?",
+    "choices": ["Input variables having different scales and variances", "Using too many iterations", "Initialising $\\mathbf{w}$ with zeroes", "Using a learning rate"],
+    "answer": 0,
+    "explanation": "Input variables with different scales affect the loss to different extents.",
+    "tags": ["standardisation"],
+    "sources": [{"file": "week_2/slides/2b-newton-raphson-IRLS.pdf", "page": 15, "quote": "Different partial derivatives with respect to different weights can be a result of different input variables having different scales"}]
+  },
+  {
+    "id": "w2-lim-004", "week": 2, "topic": "gd-limitations", "type": "numeric", "difficulty": 3,
+    "prompt": "Examples $(1000,1)^T, y=1$; $(2000,2)^T, y=0$; $(3000,1)^T, y=1$ with $\\mathbf{w} = (0,0)^T$. Compute the first component of the average gradient $\\frac{1}{N}\\sum_i (p_1^{(i)} - y^{(i)})\\mathbf{x}^{(i)}$ on the raw features (1 d.p.).",
+    "answer": -333.3,
+    "tolerance": 0.1,
+    "explanation": "All $p_1 = 0.5$: $\\frac{1}{3}(-500 + 1000 - 1500) = -333.3$. The second component is 0, so the large-scale feature dominates.",
+    "tags": ["gradient", "calculation"],
+    "sources": [{"file": "week_2/worksheet/2b-newton_raphson_IRLS-answers.pdf", "page": 14, "quote": "The first (large-scale) feature dominates the gradient"}]
+  },
+  {
+    "id": "w2-lim-005", "week": 2, "topic": "gd-limitations", "type": "numeric", "difficulty": 3,
+    "prompt": "After standardising the same data, what is the second component of the average gradient at $\\mathbf{w} = (0,0)^T$ (4 d.p.)?",
+    "answer": 0.4702,
+    "tolerance": 0.001,
+    "explanation": "The gradient becomes about $(0, 0.4702)^T$, much more balanced between features, so the loss is more circular.",
+    "tags": ["standardisation", "calculation"],
+    "sources": [{"file": "week_2/worksheet/2b-newton_raphson_IRLS-answers.pdf", "page": 15, "quote": "After standardisation, the gradient is much more balanced between features"}]
+  },
+  {
+    "id": "w2-lim-006", "week": 2, "topic": "gd-limitations", "type": "flashcard", "difficulty": 2,
+    "prompt": "Why is the steepest descent direction not necessarily the best direction?",
+    "answer": "It is only an instantaneous direction of best movement, not the best direction in the longer term.",
+    "explanation": "With different curvature along different axes, steps can overshoot along one and crawl along another.",
+    "tags": ["steepest-descent"],
+    "sources": [{"file": "week_2/slides/2b-newton-raphson-IRLS.pdf", "page": 12, "quote": "is only an instantaneous direction of best movement"}]
+  },
+  {
+    "id": "w2-lim-007", "week": 2, "topic": "gd-limitations", "type": "multi", "difficulty": 2,
+    "prompt": "Which can cause different gradient magnitudes along different dimensions of the loss?",
+    "choices": ["Features with different scales and variances", "Difficult topologies inherent to the loss function itself", "Having more training examples than features", "Using the Hessian"],
+    "answer": [0, 1],
+    "explanation": "Even convex loss functions can make gradient descent overshoot and bounce along certain axes.",
+    "tags": ["conditioning"],
+    "sources": [{"file": "week_2/slides/2b-newton-raphson-IRLS.pdf", "page": 16, "quote": "Even convex loss functions can result in gradient descent"}]
+  },
+  {
+    "id": "w2-lim-008", "week": 2, "topic": "gd-limitations", "type": "flashcard", "difficulty": 1,
+    "prompt": "What does each line of a contour plot of the loss represent?",
+    "answer": "Points in the space that have the same height, i.e. the same loss value.",
+    "explanation": "Contour plots show the loss over the weight space, with each line at one loss level.",
+    "tags": ["contour"],
+    "sources": [{"file": "week_2/slides/2b-newton-raphson-IRLS.pdf", "page": 8, "quote": "Each line corresponds to points in the space that have the same height."}]
+  },
+  {
+    "id": "w2-lim-009", "week": 2, "topic": "gd-limitations", "type": "truefalse", "difficulty": 2,
+    "prompt": "The steepest descent direction forms a 90 degree angle with the contour line.",
+    "answer": true,
+    "explanation": "It is perpendicular to the contour at that point.",
+    "tags": ["contour", "steepest-descent"],
+    "sources": [{"file": "week_2/slides/2b-newton-raphson-IRLS.pdf", "page": 10, "quote": "Steepest descent forms a 90 degree angle with the line."}]
+  },
+  {
+    "id": "w2-lim-010", "week": 2, "topic": "gd-limitations", "type": "flashcard", "difficulty": 1,
+    "prompt": "How is a feature standardised?",
+    "answer": "Deduct the mean of the feature and divide by its standard deviation: $\\tilde{x}_i = (x_i - \\bar{x}_i)/\\sigma_i$.",
+    "explanation": "This helps make the loss more symmetric along different axes, though it may not solve overshooting.",
+    "tags": ["standardisation"],
+    "sources": [{"file": "week_2/slides/2b-newton-raphson-IRLS.pdf", "page": 15, "quote": "by deducting the mean from each"}]
+  },
+  {
+    "id": "w2-lim-011", "week": 2, "topic": "gd-limitations", "type": "numeric", "difficulty": 3,
+    "prompt": "Feature values $1000, 2000, 3000$ have mean 2000 and (population) standard deviation $\\approx 816.4966$. What is the standardised value of 1000 (4 d.p.)?",
+    "answer": -1.2247,
+    "tolerance": 0.001,
+    "explanation": "$(1000 - 2000)/816.4966 \\approx -1.2247$.",
+    "tags": ["standardisation", "calculation"],
+    "sources": [{"file": "week_2/worksheet/2b-newton_raphson_IRLS-answers.pdf", "page": 13, "quote": "Now standardise each feature by subtracting the mean and dividing by the standard deviation"}]
+  },
+  {
+    "id": "w2-lim-012", "week": 2, "topic": "gd-limitations", "type": "truefalse", "difficulty": 2,
+    "prompt": "The cross-entropy loss in logistic regression has a unique global minimum.",
+    "answer": true,
+    "explanation": "It is strictly convex in $\\mathbf{w}$, so any algorithm that converges ends at the same global minimum, though path and speed may differ.",
+    "tags": ["convexity"],
+    "sources": [{"file": "week_2/worksheet/2b-newton_raphson_IRLS-answers.pdf", "page": 12, "quote": "A. The cross-entropy loss in Logistic Regression has a unique global minimum."}]
+  }
+]
