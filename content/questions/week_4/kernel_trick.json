@@ -1,0 +1,81 @@
+[
+  {
+    "id": "w4-ktr-001", "week": 4, "topic": "kernel-trick", "type": "flashcard", "difficulty": 1,
+    "prompt": "What is the **kernel trick**?",
+    "answer": "Computing $k(\\mathbf{x}^{(n)},\\mathbf{x}^{(m)}) = \\phi(\\mathbf{x}^{(n)})^T\\phi(\\mathbf{x}^{(m)})$ directly from the inputs, without ever computing $\\phi(\\mathbf{x})$.",
+    "explanation": "Example: for the quadratic expansion with $\\sqrt2$ factors, $\\phi(\\mathbf{x})^T\\phi(\\mathbf{z}) = (1 + \\mathbf{x}^T\\mathbf{z})^2$.",
+    "tags": ["kernel-trick"],
+    "sources": [{"file": "week_4/slides/4c-svm-dual.pdf", "page": 26, "quote": "without having to ever compute . This is called the Kernel Trick."}]
+  },
+  {
+    "id": "w4-ktr-002", "week": 4, "topic": "kernel-trick", "type": "numeric", "difficulty": 2,
+    "prompt": "$\\phi(\\mathbf{x}) = (1, \\sqrt2x_1, \\sqrt2x_2, x_1^2, x_2^2, \\sqrt2x_1x_2)^T$, $\\mathbf{x}^{(1)} = (0.1,0.1)^T$, $\\mathbf{x}^{(2)} = (0.1,0.2)^T$. Compute $\\phi(\\mathbf{x}^{(1)})^T\\phi(\\mathbf{x}^{(2)})$ without computing $\\phi$. (4 d.p.)",
+    "answer": 1.0609,
+    "tolerance": 0.0001,
+    "explanation": "$(1 + \\mathbf{x}^{(1)T}\\mathbf{x}^{(2)})^2 = (1 + 0.01 + 0.02)^2 = 1.03^2 = 1.0609$.",
+    "tags": ["kernel-trick", "calculation"],
+    "sources": [{"file": "week_4/worksheets/4c-SVM_dual-answers.pdf", "page": 7, "quote": "The above did not require us to compute the transformation"}]
+  },
+  {
+    "id": "w4-ktr-003", "week": 4, "topic": "kernel-trick", "type": "mcq", "difficulty": 2,
+    "prompt": "For $\\phi(x_1,x_2) = (x_1^2, \\sqrt2x_1x_2, x_2^2)^T$, which kernel equals $\\langle\\phi(\\mathbf{x}),\\phi(\\mathbf{z})\\rangle$?",
+    "choices": ["$(\\mathbf{x}^T\\mathbf{z})^2$", "$(1 + \\mathbf{x}^T\\mathbf{z})^2$", "$\\mathbf{x}^T\\mathbf{z}$", "$x_1^2z_1^2 + x_2^2z_2^2$"],
+    "answer": 0,
+    "explanation": "$x_1^2z_1^2 + 2x_1x_2z_1z_2 + x_2^2z_2^2 = (x_1z_1 + x_2z_2)^2$: the degree-2 polynomial kernel.",
+    "tags": ["kernel-trick"],
+    "sources": [{"file": "week_4/worksheets/4c-SVM_dual-answers.pdf", "page": 7, "quote": "which is the degree-2 polynomial kernel."}]
+  },
+  {
+    "id": "w4-ktr-004", "week": 4, "topic": "kernel-trick", "type": "numeric", "difficulty": 1,
+    "prompt": "Same mapping $\\phi(x_1,x_2) = (x_1^2, \\sqrt2x_1x_2, x_2^2)^T$. Evaluate $\\langle\\phi(\\mathbf{x}),\\phi(\\mathbf{z})\\rangle$ for $\\mathbf{x} = (1,2)$, $\\mathbf{z} = (3,4)$.",
+    "answer": 121,
+    "tolerance": 0.0001,
+    "explanation": "Through the kernel: $\\mathbf{x}^T\\mathbf{z} = 3 + 8 = 11$, and $11^2 = 121$. Explicitly: $9 + 48 + 64 = 121$.",
+    "tags": ["kernel-trick", "calculation"],
+    "sources": [{"file": "week_4/worksheets/4c-SVM_dual-answers.pdf", "page": 7, "quote": "k(x, z) = (11)2 = 121."}]
+  },
+  {
+    "id": "w4-ktr-005", "week": 4, "topic": "kernel-trick", "type": "numeric", "difficulty": 1,
+    "prompt": "Evaluate the polynomial kernel $k(\\mathbf{x},\\mathbf{z}) = (1 + \\mathbf{x}^T\\mathbf{z})^2$ for $\\mathbf{x} = (1,2)$, $\\mathbf{z} = (3,4)$.",
+    "answer": 144,
+    "tolerance": 0.0001,
+    "explanation": "$(1 + 11)^2 = 144$.",
+    "tags": ["polynomial-kernel", "calculation"],
+    "sources": [{"file": "week_4/coding/4c_dual_predictions_kernels.ipynb", "page": 15, "quote": "assert np.isclose(polynomial_kernel(x, z, degree=2), 144.0)"}]
+  },
+  {
+    "id": "w4-ktr-006", "week": 4, "topic": "kernel-trick", "type": "mcq", "difficulty": 1,
+    "prompt": "What basis expansion does the polynomial kernel $k(\\mathbf{x},\\mathbf{z}) = (1 + \\mathbf{x}^T\\mathbf{z})^p$ correspond to?",
+    "choices": ["One composed of all terms of order up to $p$", "Only the terms of order exactly $p$", "An infinite-dimensional embedding", "The identity, $\\phi(\\mathbf{x}) = \\mathbf{x}$"],
+    "answer": 0,
+    "explanation": "It generalises the $p = 2$ calculation from the lecture.",
+    "tags": ["polynomial-kernel"],
+    "sources": [{"file": "week_4/slides/4c-svm-dual.pdf", "page": 28, "quote": "This calculation can be generalised to basis expansions"}]
+  },
+  {
+    "id": "w4-ktr-007", "week": 4, "topic": "kernel-trick", "type": "numeric", "difficulty": 2,
+    "prompt": "Evaluate the Gaussian kernel $k(\\mathbf{x},\\mathbf{z}) = e^{-\\|\\mathbf{x}-\\mathbf{z}\\|^2/(2\\sigma^2)}$ for $\\mathbf{x} = (1,2)$, $\\mathbf{z} = (3,4)$, $\\sigma = 2$. (4 d.p.)",
+    "answer": 0.3679,
+    "tolerance": 0.0001,
+    "explanation": "$\\|\\mathbf{x}-\\mathbf{z}\\|^2 = 4 + 4 = 8$ and $2\\sigma^2 = 8$, so $k = e^{-1} \\approx 0.3679$.",
+    "tags": ["gaussian-kernel", "calculation"],
+    "sources": [{"file": "week_4/coding/4c_dual_predictions_kernels.ipynb", "page": 15, "quote": "assert np.isclose(gaussian_kernel(x, z, sigma=2.0), np.exp(-1.0))"}]
+  },
+  {
+    "id": "w4-ktr-008", "week": 4, "topic": "kernel-trick", "type": "truefalse", "difficulty": 1,
+    "prompt": "The embedding $\\phi$ that corresponds to the Gaussian (RBF) kernel is infinite dimensional.",
+    "answer": true,
+    "explanation": "Its Taylor series has infinitely many terms. The kernel trick lets us use it without computing $\\phi$.",
+    "tags": ["gaussian-kernel"],
+    "sources": [{"file": "week_4/slides/4c-svm-dual.pdf", "page": 40, "quote": "The embedding  is  inﬁnite dimensional!"}]
+  },
+  {
+    "id": "w4-ktr-009", "week": 4, "topic": "kernel-trick", "type": "mcq", "difficulty": 1,
+    "prompt": "In $h(\\mathbf{x}) = \\sum_{n\\in S}a^{(n)}y^{(n)}k(\\mathbf{x},\\mathbf{x}^{(n)}) + b$, how can the kernel be interpreted?",
+    "choices": ["As a similarity between the new example and each support vector", "As the distance to the decision boundary", "As the probability of class $+1$", "As the margin"],
+    "answer": 0,
+    "explanation": "Predictions are made from the training examples: support vectors similar to $\\mathbf{x}$ pull $h(\\mathbf{x})$ towards their own label.",
+    "tags": ["similarity"],
+    "sources": [{"file": "week_4/slides/4c-svm-dual.pdf", "page": 35, "quote": "with the kernel being possibly interpreted as a similarity function."}]
+  }
+]

@@ -1,0 +1,82 @@
+[
+  {
+    "id": "w4-dco-001", "week": 4, "topic": "dual-coding", "type": "code", "difficulty": 1,
+    "prompt": "What is printed?",
+    "code": "alpha = np.array([0.0, 0.5, 0.5, 0.0])\nprint(support_vector_indices(alpha))",
+    "choices": ["[1 2]", "[0 3]", "[0 1 2 3]", "[0.5 0.5]"],
+    "answer": 0,
+    "explanation": "Support vectors are the examples with $a^{(n)} > 0$: indices 1 and 2.",
+    "tags": ["support-vectors"],
+    "sources": [{"file": "week_4/coding/4c_dual_predictions_kernels.ipynb", "page": 18, "quote": "return np.flatnonzero(alpha > 0)"}]
+  },
+  {
+    "id": "w4-dco-002", "week": 4, "topic": "dual-coding", "type": "code", "difficulty": 2,
+    "prompt": "With X_train = [[-2,0],[-1,0],[1,0],[2,0]], y_train = [-1,-1,1,1] and alpha = [0,0.5,0.5,0], what is printed?",
+    "code": "print(dual_decision_score(np.array([0.5, 0.0]),\n      X_train, y_train, alpha, 0.0, linear_kernel))",
+    "choices": ["0.5", "-0.5", "1.0", "0.0"],
+    "answer": 0,
+    "explanation": "$h = 0.5(-1)(-0.5) + 0.5(1)(0.5) + 0 = 0.25 + 0.25 = 0.5$.",
+    "tags": ["prediction"],
+    "sources": [{"file": "week_4/coding/4c_dual_predictions_kernels.ipynb", "page": 19, "quote": "linear_kernel), 0.5)"}]
+  },
+  {
+    "id": "w4-dco-003", "week": 4, "topic": "dual-coding", "type": "code", "difficulty": 2,
+    "prompt": "Same data. What is printed?",
+    "code": "print(bias_from_support_vector(1, X_train, y_train, alpha, linear_kernel))",
+    "choices": ["0.0", "-1.0", "1.0", "-2.0"],
+    "answer": 0,
+    "explanation": "For $\\mathbf{x}^{(1)} = (-1,0)$: $\\sum_m a^{(m)}y^{(m)}k = 0.5(-1)(1) + 0.5(1)(-1) = -1$, so $b = -1 - (-1) = 0$.",
+    "tags": ["bias"],
+    "sources": [{"file": "week_4/coding/4c_dual_predictions_kernels.ipynb", "page": 21, "quote": "return float(y_train[n] - total)"}]
+  },
+  {
+    "id": "w4-dco-004", "week": 4, "topic": "dual-coding", "type": "code", "difficulty": 2,
+    "prompt": "Same data. What is printed?",
+    "code": "print(primal_parameters_from_multipliers(X_train, y_train, alpha))",
+    "choices": ["[1. 0.]", "[0.5 0. ]", "[-1.  0.]", "[2. 0.]"],
+    "answer": 0,
+    "explanation": "$\\mathbf{w} = \\sum_n a^{(n)}y^{(n)}\\mathbf{x}^{(n)} = 0.5(-1)(-1,0) + 0.5(1)(1,0) = (1, 0)$.",
+    "tags": ["stationarity"],
+    "sources": [{"file": "week_4/coding/4a_svm_dual.ipynb", "page": 12, "quote": "Stationarity: w = sum_n a_n y_n phi(x_n) with phi(x) = x."}]
+  },
+  {
+    "id": "w4-dco-005", "week": 4, "topic": "dual-coding", "type": "code", "difficulty": 1,
+    "prompt": "What is printed?",
+    "code": "y = np.array([1.0, -1.0, -1.0])\na = np.array([0.5, 0.25, 0.25])\nprint(equality_constraint(y, a))",
+    "choices": ["0.0", "1.0", "-0.5", "0.5"],
+    "answer": 0,
+    "explanation": "$\\sum_n a^{(n)}y^{(n)} = 0.5 - 0.25 - 0.25 = 0$, so this $\\mathbf{a}$ satisfies the dual's equality constraint.",
+    "tags": ["dual-constraints"],
+    "sources": [{"file": "week_4/coding/4a_svm_dual.ipynb", "page": 12, "quote": "return np.dot(a, y)"}]
+  },
+  {
+    "id": "w4-dco-006", "week": 4, "topic": "dual-coding", "type": "code", "difficulty": 3,
+    "prompt": "What is printed?",
+    "code": "X = np.array([[1.0, 0.0], [-1.0, 0.0]])\ny = np.array([1.0, -1.0])\na = np.array([0.5, 0.5])\nprint(dual_objective(X, y, a))",
+    "choices": ["0.5", "1.0", "0.0", "1.5"],
+    "answer": 0,
+    "explanation": "$K = \\begin{pmatrix}1&-1\\\\-1&1\\end{pmatrix}$, and every term $a^{(n)}a^{(m)}y^{(n)}y^{(m)}K_{nm} = 0.25$, so the double sum is 1. $\\tilde L = 1 - \\frac12(1) = 0.5$.",
+    "tags": ["dual"],
+    "sources": [{"file": "week_4/coding/4a_svm_dual.ipynb", "page": 14, "quote": "return np.sum(a) - 0.5 * quad"}]
+  },
+  {
+    "id": "w4-dco-007", "week": 4, "topic": "dual-coding", "type": "code", "difficulty": 1,
+    "prompt": "What is printed?",
+    "code": "x = np.array([1.0, 2.0])\nz = np.array([3.0, 4.0])\nprint(polynomial_kernel(x, z, degree=2))",
+    "choices": ["144.0", "121.0", "11.0", "12.0"],
+    "answer": 0,
+    "explanation": "$(1 + \\mathbf{x}^T\\mathbf{z})^2 = 12^2 = 144$.",
+    "tags": ["polynomial-kernel"],
+    "sources": [{"file": "week_4/coding/4c_dual_predictions_kernels.ipynb", "page": 14, "quote": "return float((1 + np.dot(x, z)) ** degree)"}]
+  },
+  {
+    "id": "w4-dco-008", "week": 4, "topic": "dual-coding", "type": "code", "difficulty": 2,
+    "prompt": "Which property of Mercer's condition does this line check?",
+    "code": "print(\"Symmetric:\", np.allclose(K_poly, K_poly.T))",
+    "choices": ["That the Gram matrix is symmetric", "That the Gram matrix is positive semidefinite", "That the kernel is linear", "That the support vectors are on the margin"],
+    "answer": 0,
+    "explanation": "Mercer's condition needs $K$ symmetric ($K = K^T$) and positive semidefinite.",
+    "tags": ["mercer"],
+    "sources": [{"file": "week_4/coding/4c_dual_predictions_kernels.ipynb", "page": 26, "quote": "print(\"Symmetric:\", np.allclose(K_poly, K_poly.T))"}]
+  }
+]

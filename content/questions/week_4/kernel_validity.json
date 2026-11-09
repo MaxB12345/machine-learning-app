@@ -1,0 +1,86 @@
+[
+  {
+    "id": "w4-kva-001", "week": 4, "topic": "kernel-validity", "type": "flashcard", "difficulty": 1,
+    "prompt": "State **Mercer's condition**.",
+    "answer": "For any finite set of points $\\mathbf{x}^{(1)},\\dots,\\mathbf{x}^{(M)}$, the Gram matrix $K_{i,j} = k(\\mathbf{x}^{(i)},\\mathbf{x}^{(j)})$ must be symmetric and positive semidefinite ($\\mathbf{z}^TK\\mathbf{z} \\ge 0$ for all $\\mathbf{z} \\in \\mathbb{R}^M$).",
+    "explanation": "Then the kernel corresponds to an inner product in some embedding.",
+    "tags": ["mercer"],
+    "sources": [{"file": "week_4/slides/4c-svm-dual.pdf", "page": 38, "quote": "Mercer’s condition states that  must be symmetric and"}]
+  },
+  {
+    "id": "w4-kva-002", "week": 4, "topic": "kernel-validity", "type": "truefalse", "difficulty": 2,
+    "prompt": "The Gaussian kernel is not very popular because its infinite-dimensional embedding is too expensive to compute.",
+    "answer": false,
+    "explanation": "The kernel trick means we never compute that embedding. The Gaussian is one of the most popular kernels.",
+    "tags": ["gaussian-kernel"],
+    "sources": [{"file": "week_4/worksheets/4c-SVM_dual-answers.pdf", "page": 2, "quote": "The kernel trick means that we can operate in the infinite dimensional em-"}]
+  },
+  {
+    "id": "w4-kva-003", "week": 4, "topic": "kernel-validity", "type": "truefalse", "difficulty": 1,
+    "prompt": "Any function designed to capture similarity can be used as a kernel function.",
+    "answer": false,
+    "explanation": "The function must meet Mercer's condition.",
+    "tags": ["mercer"],
+    "sources": [{"file": "week_4/worksheets/4c-SVM_dual-answers.pdf", "page": 2, "quote": "The function needs to meet the Mercer’s condition."}]
+  },
+  {
+    "id": "w4-kva-004", "week": 4, "topic": "kernel-validity", "type": "truefalse", "difficulty": 2,
+    "prompt": "A Mercer kernel must be defined by first choosing the feature embedding and then computing the inner product in it.",
+    "answer": false,
+    "explanation": "We can define a kernel directly as a similarity function, even without knowing its embedding, as long as it satisfies Mercer's condition.",
+    "tags": ["mercer"],
+    "sources": [{"file": "week_4/worksheets/4c-SVM_dual-answers.pdf", "page": 2, "quote": "We can also define a Mercer kernel as a similarity function for the data"}]
+  },
+  {
+    "id": "w4-kva-005", "week": 4, "topic": "kernel-validity", "type": "multi", "difficulty": 2,
+    "prompt": "Which statements about Mercer's condition are correct? Select all that apply.",
+    "choices": ["It applies only to nonlinear kernels", "It applies only to linear kernels", "It ensures that the kernel function is symmetric", "If a kernel satisfies it, it can be used for training SVMs"],
+    "answer": [2, 3],
+    "explanation": "The Gram matrix must be symmetric, so the kernel is too. Satisfying it means the kernel is an inner product in some space. Many kernels, linear included, meet it.",
+    "tags": ["mercer"],
+    "sources": [{"file": "week_4/worksheets/4c-SVM_dual-answers.pdf", "page": 4, "quote": "C. TRUE – One of the Mercer conditions state that the similarity matrixKmust be"}]
+  },
+  {
+    "id": "w4-kva-006", "week": 4, "topic": "kernel-validity", "type": "multi", "difficulty": 2,
+    "prompt": "Given valid kernels $k_1$ and $k_2$, which of these are guaranteed to be valid kernels? Select all that apply.",
+    "choices": ["$c\\,k_1(\\mathbf{x},\\mathbf{z})$ with $c \\ge 0$", "$k_1(\\mathbf{x},\\mathbf{z}) + k_2(\\mathbf{x},\\mathbf{z})$", "$k_1(\\mathbf{x},\\mathbf{z})\\,k_2(\\mathbf{x},\\mathbf{z})$", "$e^{k_1(\\mathbf{x},\\mathbf{z})}$", "$f(\\mathbf{x})k_1(\\mathbf{x},\\mathbf{z})f(\\mathbf{z})$ for any function $f$", "$k_1(\\mathbf{x},\\mathbf{z}) - k_2(\\mathbf{x},\\mathbf{z})$"],
+    "answer": [0, 1, 2, 3, 4],
+    "explanation": "These are the lecture's composition rules (plus $q(k_1)$ for a polynomial $q$ with non-negative coefficients and $k_1 + c$ with $c \\ge 0$). A difference is not one of the rules.",
+    "tags": ["composition-rules"],
+    "sources": [{"file": "week_4/slides/4c-svm-dual.pdf", "page": 39, "quote": "Given valid kernels  and , the following will also be valid kernels:"}]
+  },
+  {
+    "id": "w4-kva-007", "week": 4, "topic": "kernel-validity", "type": "short", "difficulty": 2,
+    "prompt": "Show that $k(\\mathbf{x},\\mathbf{z}) = 10(\\mathbf{x}^T\\mathbf{z})^2 + 2(\\mathbf{x}^T\\mathbf{z})$ is a valid kernel, given that $\\mathbf{x}^T\\mathbf{z}$ is a kernel.",
+    "answer": "$k = q(k'(\\mathbf{x},\\mathbf{z}))$ with $k' = \\mathbf{x}^T\\mathbf{z}$ the linear kernel and $q(t) = 10t^2 + 2t$. A polynomial with non-negative coefficients of a valid kernel is a valid kernel.",
+    "steps": ["Let $k'(\\mathbf{x},\\mathbf{z}) = \\mathbf{x}^T\\mathbf{z}$ (valid)", "Write $k = 10k'^2 + 2k'$", "$q(t) = 10t^2 + 2t$ has non-negative coefficients", "By the rule $k = q(k_1)$, $k$ is valid"],
+    "explanation": "You could also use the product rule ($k'k'$), the scaling rule ($c \\ge 0$) and the sum rule.",
+    "tags": ["composition-rules", "proof"],
+    "sources": [{"file": "week_4/worksheets/4c-SVM_dual-answers.pdf", "page": 3, "quote": "The polynomial (with non-negative coefficients) of a valid kernel is also a valid kernel."}]
+  },
+  {
+    "id": "w4-kva-008", "week": 4, "topic": "kernel-validity", "type": "mcq", "difficulty": 2,
+    "prompt": "What is the most likely outcome of making the kernel more complex (for example linear to polynomial)?",
+    "choices": ["Less computation, but possible underfitting", "More support vectors and lower training error, but possible overfitting", "More computation and better generalisation", "Fewer support vectors and faster training"],
+    "answer": 1,
+    "explanation": "A more expressive model fits the training data more closely, and a more detailed boundary may need more support vectors to define it.",
+    "tags": ["generalisation"],
+    "sources": [{"file": "week_4/worksheets/4c-SVM_dual-answers.pdf", "page": 3, "quote": "So, the correct answer is B."}]
+  },
+  {
+    "id": "w4-kva-009", "week": 4, "topic": "kernel-validity", "type": "order", "difficulty": 3,
+    "prompt": "Put the steps proving that the Gaussian kernel ($\\sigma = 1$) is valid in order, assuming $\\mathbf{x}^T\\mathbf{z}$ is valid.",
+    "steps": ["$(\\mathbf{x}^T\\mathbf{z})^j$ is valid (product rule)", "$\\frac{(\\mathbf{x}^T\\mathbf{z})^j}{j!}$ is valid (scaling by $c \\ge 0$)", "$e^{-\\frac12\\|\\mathbf{x}\\|^2}\\frac{(\\mathbf{x}^T\\mathbf{z})^j}{j!}e^{-\\frac12\\|\\mathbf{z}\\|^2}$ is valid ($f(\\mathbf{x})k_1f(\\mathbf{z})$ rule)", "The sum over $j = 0,\\dots,\\infty$ is valid (sum rule) and equals $e^{-\\|\\mathbf{x}-\\mathbf{z}\\|^2/2}$"],
+    "explanation": "The Taylor series of the Gaussian splits it into terms that the composition rules cover.",
+    "tags": ["gaussian-kernel", "proof"],
+    "sources": [{"file": "week_4/slides/4c-svm-dual.pdf", "page": 41, "quote": "Proving That the Gaussian Kernel is a Valid Kernel, Assuming  Is A Valid KernelxTz"}]
+  },
+  {
+    "id": "w4-kva-010", "week": 4, "topic": "kernel-validity", "type": "truefalse", "difficulty": 2,
+    "prompt": "Even if we design a kernel directly as a similarity function and never compute $\\phi$, it must still correspond to an inner product in some embedding.",
+    "answer": true,
+    "explanation": "We can check that with Mercer's condition.",
+    "tags": ["mercer", "similarity"],
+    "sources": [{"file": "week_4/slides/4c-svm-dual.pdf", "page": 37, "quote": "Even though we don’t need to compute , the kernel function must correspond to some embedding."}]
+  }
+]
