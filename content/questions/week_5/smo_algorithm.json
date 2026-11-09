@@ -1,0 +1,105 @@
+[
+  {
+    "id": "w5-smo-001", "week": 5, "topic": "sequential-minimal-optimisation", "type": "mcq", "difficulty": 1,
+    "prompt": "Why does SMO update a pair of Lagrange multipliers at a time, rather than one?",
+    "choices": ["To make sure positive and negative support vectors are correctly classified", "To simplify the kernel computation", "Because changing only one would violate the constraint $\\sum_n a^{(n)}y^{(n)} = 0$"],
+    "answer": 2,
+    "explanation": "If all others are fixed, $a^{(m)} = -y^{(m)}\\sum_{n \\ne m}a^{(n)}y^{(n)}$ is fully determined, so one multiplier alone cannot move. Two is the smallest number that can.",
+    "tags": ["smo", "pairs"],
+    "sources": [{"file": "week_5/worksheets/5c-Sequential_Minimal_Optimisation-answers.pdf", "page": 1, "quote": "Because updating only one would violate the constraint"}, {"file": "week_5/slides/5c-SMO.pdf", "page": 11, "quote": "No. Any change in  would result in the summation constraint being violated."}]
+  },
+  {
+    "id": "w5-smo-002", "week": 5, "topic": "sequential-minimal-optimisation", "type": "mcq", "difficulty": 1,
+    "prompt": "Why not just give the soft-margin dual to a generic quadratic programming solver?",
+    "choices": ["Some algorithms would be too costly, needing to store an $N \\times N$ matrix", "The dual is not a quadratic programme", "Generic solvers cannot handle equality constraints", "The dual has no solution"],
+    "answer": 0,
+    "explanation": "SMO splits the problem into small QP problems over two multipliers that can each be solved analytically.",
+    "tags": ["smo", "motivation"],
+    "sources": [{"file": "week_5/slides/5c-SMO.pdf", "page": 8, "quote": "Some algorithms would be too costly, requiring storage of x matrix.NN"}]
+  },
+  {
+    "id": "w5-smo-003", "week": 5, "topic": "sequential-minimal-optimisation", "type": "order", "difficulty": 1,
+    "prompt": "Put the steps of SMO in order.",
+    "steps": ["Initialise $\\mathbf{a}$ (e.g. all zeros)", "Select a pair $a^{(i)}$ and $a^{(j)}$ to update", "Optimise $\\tilde L(\\mathbf{a})$ with respect to $a^{(i)}$ and $a^{(j)}$, holding the rest fixed", "Repeat the selection and optimisation until convergence"],
+    "explanation": "Each step solves a tiny QP problem analytically.",
+    "tags": ["smo"],
+    "sources": [{"file": "week_5/slides/5c-SMO.pdf", "page": 12, "quote": "Select a pair of Lagrange multipliers  to update next.a(i) and a(j)"}]
+  },
+  {
+    "id": "w5-smo-004", "week": 5, "topic": "sequential-minimal-optimisation", "type": "multi", "difficulty": 2,
+    "prompt": "Which steps are part of SMO? Select all that apply.",
+    "choices": ["Initialise all Lagrange multipliers to zero and freeze them until convergence", "Update the Lagrange multipliers while keeping the constraints satisfied", "Select two Lagrange multipliers to update", "Use a heuristic to choose $a^{(j)}$, hoping for the maximum step size"],
+    "answer": [1, 2, 3],
+    "explanation": "Multipliers start at zero but are updated two at a time, not frozen.",
+    "tags": ["smo"],
+    "sources": [{"file": "week_5/worksheets/5c-Sequential_Minimal_Optimisation-answers.pdf", "page": 2, "quote": "Correct answer: B, C, D."}]
+  },
+  {
+    "id": "w5-smo-005", "week": 5, "topic": "sequential-minimal-optimisation", "type": "truefalse", "difficulty": 1,
+    "prompt": "Initialising every $a^{(n)} = 0$ is a feasible starting point for SMO.",
+    "answer": true,
+    "explanation": "It satisfies the box constraints $0 \\le a^{(n)} \\le C$ and $\\sum_n a^{(n)}y^{(n)} = 0$.",
+    "tags": ["smo", "initialisation"],
+    "sources": [{"file": "week_5/worksheets/5c-Sequential_Minimal_Optimisation-answers.pdf", "page": 2, "quote": "Yes. It satisfies the box constraints 0≤a (n) ≤Cand the equality constraint"}]
+  },
+  {
+    "id": "w5-smo-006", "week": 5, "topic": "sequential-minimal-optimisation", "type": "flashcard", "difficulty": 2,
+    "prompt": "Give the SMO bounds $[L, H]$ for the new $a^{(j)}$.",
+    "answer": "If $y^{(i)} = y^{(j)}$: $L = \\max(0, a^{(j)} + a^{(i)} - C)$, $H = \\min(C, a^{(j)} + a^{(i)})$. If $y^{(i)} \\ne y^{(j)}$: $L = \\max(0, a^{(j)} - a^{(i)})$, $H = \\min(C, C + a^{(j)} - a^{(i)})$.",
+    "explanation": "They come from the box $0 \\le a \\le C$ and the line $a^{(i)}y^{(i)} + a^{(j)}y^{(j)} = \\zeta$.",
+    "tags": ["smo", "bounds"],
+    "sources": [{"file": "week_5/slides/5c-SMO.pdf", "page": 17, "quote": "L=max(0,a(j)+a(i)−C) H=min(C,a(j)+a(i))"}]
+  },
+  {
+    "id": "w5-smo-007", "week": 5, "topic": "sequential-minimal-optimisation", "type": "flashcard", "difficulty": 2,
+    "prompt": "Give the SMO update for $a^{(j)}$ before clipping.",
+    "answer": "$a^{(j,new)} = a^{(j)} + \\dfrac{y^{(j)}(E^{(i)} - E^{(j)})}{k(\\mathbf{x}^{(i)},\\mathbf{x}^{(i)}) + k(\\mathbf{x}^{(j)},\\mathbf{x}^{(j)}) - 2k(\\mathbf{x}^{(i)},\\mathbf{x}^{(j)})}$, where $E^{(n)} = h(\\mathbf{x}^{(n)}) - y^{(n)}$.",
+    "explanation": "It comes from writing $a^{(i)}$ as a function of $a^{(j)}$ and setting $d\\tilde L/da^{(j)} = 0$.",
+    "tags": ["smo", "update"],
+    "sources": [{"file": "week_5/slides/5c-SMO.pdf", "page": 19, "quote": "E(i)=h(x(i))−y(i)"}]
+  },
+  {
+    "id": "w5-smo-008", "week": 5, "topic": "sequential-minimal-optimisation", "type": "mcq", "difficulty": 2,
+    "prompt": "After clipping $a^{(j)}$, how is $a^{(i)}$ obtained?",
+    "choices": ["$a^{(i,new)} = \\dfrac{\\zeta - a^{(j,new,clipped)}y^{(j)}}{y^{(i)}}$", "$a^{(i,new)} = a^{(j,new,clipped)}$", "By its own unconstrained update and clipping", "It stays unchanged"],
+    "answer": 0,
+    "explanation": "This keeps $a^{(i)}y^{(i)} + a^{(j)}y^{(j)} = \\zeta$, so $\\sum_n a^{(n)}y^{(n)} = 0$ still holds, and the clipping of $a^{(j)}$ also keeps $a^{(i)}$ in its box.",
+    "tags": ["smo", "update"],
+    "sources": [{"file": "week_5/slides/5c-SMO.pdf", "page": 21, "quote": "As previously mentioned,  will be set based on :a(i) a(j)"}]
+  },
+  {
+    "id": "w5-smo-009", "week": 5, "topic": "sequential-minimal-optimisation", "type": "multi", "difficulty": 2,
+    "prompt": "Which statements about clipping $a^{(j)}$ are correct? Select all that apply.",
+    "choices": ["Clipping constrains $a^{(j)}$ to $[L, H]$ to satisfy the box constraints", "After clipping, computing $a^{(i)}$ from $\\zeta$ means $a^{(i)}$ also satisfies the box constraints", "The goal of clipping is to make $E^{(i)}$ and $E^{(j)}$ zero", "Clipping is only needed when $y^{(i)} \\ne y^{(j)}$"],
+    "answer": [0, 1],
+    "explanation": "Clipping is about the box constraints, not the errors, and it can be needed for either label combination.",
+    "tags": ["smo", "clipping"],
+    "sources": [{"file": "week_5/worksheets/5c-Sequential_Minimal_Optimisation-answers.pdf", "page": 6, "quote": "Correct: A, B. Incorrect: C, D."}]
+  },
+  {
+    "id": "w5-smo-010", "week": 5, "topic": "sequential-minimal-optimisation", "type": "mcq", "difficulty": 2,
+    "prompt": "How does SMO choose $a^{(j)}$ once $a^{(i)}$ is chosen (first strategy)?",
+    "choices": ["The one with the largest $|E^{(i)} - E^{(j)}|$, approximating the largest step size", "At random from all examples", "The one with the smallest kernel value", "Always the next index after $i$"],
+    "answer": 0,
+    "explanation": "If that gives no improvement, it tries each margin support vector ($0 < a^{(j)} < C$), then the whole training set, then replaces $a^{(i)}$.",
+    "tags": ["smo", "heuristics"],
+    "sources": [{"file": "week_5/slides/5c-SMO.pdf", "page": 25, "quote": "Largest step size approximated based on , where"}]
+  },
+  {
+    "id": "w5-smo-011", "week": 5, "topic": "sequential-minimal-optimisation", "type": "mcq", "difficulty": 2,
+    "prompt": "How is $a^{(i)}$ chosen?",
+    "choices": ["Randomly among examples that violate the KKT conditions within a tolerance $e$, alternating with only those that have $0 < a^{(i)} < C$", "Always the example with the largest $a$", "The example closest to the decision boundary", "In index order"],
+    "answer": 0,
+    "explanation": "Updating a KKT violator is what makes each step improve the objective.",
+    "tags": ["smo", "heuristics"],
+    "sources": [{"file": "week_5/slides/5c-SMO.pdf", "page": 24, "quote": "Selected randomly among those corresponding to training"}]
+  },
+  {
+    "id": "w5-smo-012", "week": 5, "topic": "sequential-minimal-optimisation", "type": "short", "difficulty": 2,
+    "prompt": "How can SMO tell that the optimum has been reached, and why does it converge?",
+    "answer": "It stops when no training example violates the KKT conditions within a given tolerance. As long as each step changes two multipliers and at least one of them violates the KKT conditions, each step improves the objective, so SMO is guaranteed to converge if a feasible solution satisfying the KKT conditions exists.",
+    "explanation": "The tolerance matters because exact equalities are rarely reached numerically.",
+    "tags": ["smo", "convergence"],
+    "sources": [{"file": "week_5/worksheets/5c-Sequential_Minimal_Optimisation-answers.pdf", "page": 6, "quote": "Check whether all training examples satisfy the KKT conditions within a given tolerance."}, {"file": "week_5/slides/5c-SMO.pdf", "page": 26, "quote": "This algorithm is thus guaranteed to converge if there is a"}]
+  }
+]

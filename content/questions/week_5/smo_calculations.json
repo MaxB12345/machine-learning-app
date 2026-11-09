@@ -1,0 +1,101 @@
+[
+  {
+    "id": "w5-smq-001", "week": 5, "topic": "pair-update-calculations", "type": "numeric", "difficulty": 1,
+    "prompt": "First SMO step, $C = 1$, all multipliers 0. $y^{(i)} = +1$, $y^{(j)} = -1$. What is $H$ for the new $a^{(j)}$? ($L = 0$.)",
+    "answer": 1,
+    "tolerance": 0.0001,
+    "explanation": "$y^{(i)} \\ne y^{(j)}$: $H = \\min(C, C + a^{(j)} - a^{(i)}) = \\min(1, 1) = 1$, and $L = \\max(0, 0 - 0) = 0$.",
+    "tags": ["bounds", "calculation"],
+    "sources": [{"file": "week_5/worksheets/5c-Sequential_Minimal_Optimisation-answers.pdf", "page": 3, "quote": "H= min(C, C+a (j) −a (i)) = min(1,1 + 0−0) = 1"}]
+  },
+  {
+    "id": "w5-smq-002", "week": 5, "topic": "pair-update-calculations", "type": "numeric", "difficulty": 1,
+    "prompt": "Continuing: the clipped new $a^{(j)}$ is 0.5 ($y^{(i)} = +1$, $y^{(j)} = -1$, $\\zeta = 0$). What is the new $a^{(i)}$?",
+    "answer": 0.5,
+    "tolerance": 0.0001,
+    "explanation": "$a^{(i)} = \\frac{\\zeta - a^{(j)}y^{(j)}}{y^{(i)}} = \\frac{0 - 0.5(-1)}{1} = 0.5$. Opposite labels move up together.",
+    "tags": ["update", "calculation"],
+    "sources": [{"file": "week_5/worksheets/5c-Sequential_Minimal_Optimisation-answers.pdf", "page": 3, "quote": "a(i,new) = 0−0.5(−1) 1 = 0.5"}]
+  },
+  {
+    "id": "w5-smq-003", "week": 5, "topic": "pair-update-calculations", "type": "numeric", "difficulty": 2,
+    "prompt": "Second iteration, $C = 1$: $y^{(i)} = -1$, $y^{(j)} = -1$, $a^{(i)} = 0.5$, $a^{(j)} = 0$. What is $H$ for the new $a^{(j)}$? ($L = 0$.)",
+    "answer": 0.5,
+    "tolerance": 0.0001,
+    "explanation": "$y^{(i)} = y^{(j)}$: $L = \\max(0, 0 + 0.5 - 1) = 0$ and $H = \\min(C, a^{(j)} + a^{(i)}) = \\min(1, 0.5) = 0.5$ (the slide 17 formula; the answer sheet's working gives the same value).",
+    "tags": ["bounds", "calculation"],
+    "sources": [{"file": "week_5/worksheets/5c-Sequential_Minimal_Optimisation-answers.pdf", "page": 4, "quote": "L= max(0, a (j) +a (i) −C) = max(0,0 + 0.5−1) = 0"}, {"file": "week_5/slides/5c-SMO.pdf", "page": 17, "quote": "L=max(0,a(j)+a(i)−C) H=min(C,a(j)+a(i))"}]
+  },
+  {
+    "id": "w5-smq-004", "week": 5, "topic": "pair-update-calculations", "type": "numeric", "difficulty": 2,
+    "prompt": "Continuing: the clipped new $a^{(j)}$ is 0.2, with $y^{(i)} = y^{(j)} = -1$ and $\\zeta = -0.5$. What is the new $a^{(i)}$?",
+    "answer": 0.3,
+    "tolerance": 0.0001,
+    "explanation": "$a^{(i)} = \\frac{-0.5 - 0.2(-1)}{-1} = 0.3$. Same labels: if $a^{(j)}$ rises by 0.2, $a^{(i)}$ falls by 0.2.",
+    "tags": ["update", "calculation"],
+    "sources": [{"file": "week_5/worksheets/5c-Sequential_Minimal_Optimisation-answers.pdf", "page": 4, "quote": "a(i,new) = −0.5−0.2(−1) −1 = 0.3"}]
+  },
+  {
+    "id": "w5-smq-005", "week": 5, "topic": "pair-update-calculations", "type": "numeric", "difficulty": 3,
+    "prompt": "Training set: $\\mathbf{x}^{(1)} = (0.1,0.1)^T, y = +1$; $\\mathbf{x}^{(2)} = (0.1,0.2)^T, y = +1$; $\\mathbf{x}^{(3)} = (0.2,0.2)^T, y = -1$; $\\phi(\\mathbf{x}) = \\mathbf{x}$, $C = 1$. Current $a^{(1)} = 0.4$, $a^{(2)} = 0$, $a^{(3)} = 0.4$. SMO picks $j = 1$, $i = 2$, with (fictitious) $h(\\mathbf{x}^{(1)}) = 0.3$ and $h(\\mathbf{x}^{(2)}) = -0.3$. What is the unclipped new $a^{(1)}$?",
+    "answer": -59.6,
+    "tolerance": 0.0001,
+    "explanation": "$E^{(2)} = -0.3 - 1 = -1.3$, $E^{(1)} = 0.3 - 1 = -0.7$. Denominator $= 0.05 + 0.02 - 2(0.03) = 0.01$. So $a^{(1)} = 0.4 + \\frac{1 \\times (-0.6)}{0.01} = -59.6$.",
+    "tags": ["update", "calculation"],
+    "sources": [{"file": "week_5/worksheets/5c-Sequential_Minimal_Optimisation-answers.pdf", "page": 5, "quote": "=0.4 + −0.6 0.01 =−59.6"}]
+  },
+  {
+    "id": "w5-smq-006", "week": 5, "topic": "pair-update-calculations", "type": "numeric", "difficulty": 3,
+    "prompt": "Training set: $\\mathbf{x}^{(1)} = (0.1,0.1)^T, y = +1$; $\\mathbf{x}^{(2)} = (0.1,0.2)^T, y = +1$; $\\mathbf{x}^{(3)} = (0.2,0.2)^T, y = -1$; $\\phi(\\mathbf{x}) = \\mathbf{x}$, $C = 1$. Current $a^{(1)} = 0.4$, $a^{(2)} = 0$, $a^{(3)} = 0.4$. SMO picks $j = 1$, $i = 2$, with (fictitious) $h(\\mathbf{x}^{(1)}) = 0.3$ and $h(\\mathbf{x}^{(2)}) = -0.3$. The unclipped new $a^{(1)}$ is $-59.6$. What is $a^{(1)}$ after clipping?",
+    "answer": 0,
+    "tolerance": 0.0001,
+    "explanation": "$y^{(2)} = y^{(1)}$, so $L = \\max(0, 0.4 + 0 - 1) = 0$. $-59.6 \\le L$, so it is clipped to 0.",
+    "tags": ["clipping", "calculation"],
+    "sources": [{"file": "week_5/worksheets/5c-Sequential_Minimal_Optimisation-answers.pdf", "page": 5, "quote": "−0.6. Therefore, the clipped value will bea (1) = 0."}]
+  },
+  {
+    "id": "w5-smq-007", "week": 5, "topic": "pair-update-calculations", "type": "numeric", "difficulty": 3,
+    "prompt": "Training set: $\\mathbf{x}^{(1)} = (0.1,0.1)^T, y = +1$; $\\mathbf{x}^{(2)} = (0.1,0.2)^T, y = +1$; $\\mathbf{x}^{(3)} = (0.2,0.2)^T, y = -1$; $\\phi(\\mathbf{x}) = \\mathbf{x}$, $C = 1$. Current $a^{(1)} = 0.4$, $a^{(2)} = 0$, $a^{(3)} = 0.4$. SMO picks $j = 1$, $i = 2$, with (fictitious) $h(\\mathbf{x}^{(1)}) = 0.3$ and $h(\\mathbf{x}^{(2)}) = -0.3$. After clipping, $a^{(1)} = 0$. What is the new $a^{(2)}$?",
+    "answer": 0.4,
+    "tolerance": 0.0001,
+    "explanation": "$\\zeta = -a^{(3)}y^{(3)} = -0.4(-1) = 0.4$, so $a^{(2)} = \\frac{0.4 - 0 \\times 1}{1} = 0.4$.",
+    "tags": ["update", "calculation"],
+    "sources": [{"file": "week_5/worksheets/5c-Sequential_Minimal_Optimisation-answers.pdf", "page": 5, "quote": "a(2) = 0.4−0×1 1 = 0.4."}]
+  },
+  {
+    "id": "w5-smq-008", "week": 5, "topic": "pair-update-calculations", "type": "numeric", "difficulty": 2,
+    "prompt": "$C = 1$, $y^{(i)} = +1$, $y^{(j)} = +1$, $a^{(i)} = 0.3$, $a^{(j)} = 0.6$. What is $H$ for the new $a^{(j)}$?",
+    "answer": 0.9,
+    "tolerance": 0.0001,
+    "explanation": "Same labels: $H = \\min(C, a^{(j)} + a^{(i)}) = \\min(1, 0.9) = 0.9$ and $L = \\max(0, 0.9 - 1) = 0$.",
+    "tags": ["bounds", "calculation"],
+    "sources": [{"file": "week_5/coding/5c_smo_answers.ipynb", "page": 14, "quote": "H = min(C, alpha_j + alpha_i)"}]
+  },
+  {
+    "id": "w5-smq-009", "week": 5, "topic": "pair-update-calculations", "type": "numeric", "difficulty": 2,
+    "prompt": "$C = 1$, $y^{(i)} = +1$, $y^{(j)} = -1$, $a^{(i)} = 0.7$, $a^{(j)} = 0.2$. What is $H$ for the new $a^{(j)}$?",
+    "answer": 0.5,
+    "tolerance": 0.0001,
+    "explanation": "Different labels: $H = \\min(C, C + a^{(j)} - a^{(i)}) = \\min(1, 0.5) = 0.5$ and $L = \\max(0, 0.2 - 0.7) = 0$.",
+    "tags": ["bounds", "calculation"],
+    "sources": [{"file": "week_5/coding/5c_smo_answers.ipynb", "page": 14, "quote": "H = min(C, C + alpha_j - alpha_i)"}]
+  },
+  {
+    "id": "w5-smq-010", "week": 5, "topic": "pair-update-calculations", "type": "numeric", "difficulty": 2,
+    "prompt": "Same pair ($y^{(i)} = +1$, $y^{(j)} = -1$, old $a^{(i)} = 0.7$, $a^{(j)} = 0.2$). The clipped new $a^{(j)}$ is 0.4. What is the new $a^{(i)}$?",
+    "answer": 0.9,
+    "tolerance": 0.0001,
+    "explanation": "$\\zeta = a^{(i)}y^{(i)} + a^{(j)}y^{(j)} = 0.7 - 0.2 = 0.5$, so $a^{(i)} = \\frac{0.5 - 0.4(-1)}{1} = 0.9$, which is inside $[0, C]$.",
+    "tags": ["update", "calculation"],
+    "sources": [{"file": "week_5/slides/5c-SMO.pdf", "page": 21, "quote": "a(i,new)y(i)+a(j,new,clipped)y(j)=ζ"}]
+  },
+  {
+    "id": "w5-smq-011", "week": 5, "topic": "pair-update-calculations", "type": "numeric", "difficulty": 3,
+    "prompt": "$a^{(j)} = 0.2$, $y^{(j)} = +1$, $E^{(i)} = 0.5$, $E^{(j)} = -0.3$, $k(\\mathbf{x}^{(i)},\\mathbf{x}^{(i)}) = 1$, $k(\\mathbf{x}^{(j)},\\mathbf{x}^{(j)}) = 2$, $k(\\mathbf{x}^{(i)},\\mathbf{x}^{(j)}) = 0.5$. What is the unclipped new $a^{(j)}$?",
+    "answer": 0.6,
+    "tolerance": 0.0001,
+    "explanation": "Denominator $= 1 + 2 - 2(0.5) = 2$. $a^{(j)} = 0.2 + \\frac{1 \\times 0.8}{2} = 0.6$.",
+    "tags": ["update", "calculation"],
+    "sources": [{"file": "week_5/coding/5c_smo_answers.ipynb", "page": 16, "quote": "return alpha_j + y_j * (error_i - error_j) / denominator"}]
+  }
+]

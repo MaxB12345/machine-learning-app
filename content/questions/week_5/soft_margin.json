@@ -1,0 +1,88 @@
+[
+  {
+    "id": "w5-sfm-001", "week": 5, "topic": "soft-margin", "type": "flashcard", "difficulty": 1,
+    "prompt": "Write the soft-margin SVM primal.",
+    "answer": "$\\arg\\min_{\\mathbf{w},b,\\boldsymbol\\xi}\\left\\{\\frac12\\|\\mathbf{w}\\|^2 + C\\sum_{n=1}^N\\xi^{(n)}\\right\\}$ subject to $y^{(n)}h(\\mathbf{x}^{(n)}) \\ge 1 - \\xi^{(n)}$ and $\\xi^{(n)} \\ge 0$.",
+    "explanation": "$C > 0$ is a hyperparameter that controls the trade-off between the amount of slack and the margin.",
+    "tags": ["soft-margin", "formula"],
+    "sources": [{"file": "week_5/slides/5a-kernels-soft-svm.pdf", "page": 29, "quote": "is a hyperparameter that controls the trade-off between the amount of slack and the margin"}]
+  },
+  {
+    "id": "w5-sfm-002", "week": 5, "topic": "soft-margin", "type": "multi", "difficulty": 2,
+    "prompt": "Which statements about the hyperparameter $C$ are true? Select all that apply.",
+    "choices": ["A very large $C$ could lead to overfitting", "A very small $C$ could lead to overfitting", "A very large $C$ could lead to more training examples being misclassified", "A very small $C$ could lead to more training examples within the margin", "A very small $C$ could lead to more training examples being misclassified"],
+    "answer": [0, 3, 4],
+    "explanation": "A large $C$ makes slack expensive, so the SVM tries to classify everything correctly and may overfit. A small $C$ makes slack cheap, so more examples are inside the margin or misclassified.",
+    "tags": ["hyperparameter-c"],
+    "sources": [{"file": "week_5/worksheets/5a-Soft_Margin_SVM-answers.pdf", "page": 3, "quote": "A large C would emphasise the minimisation of the values of the slack variables, encour-"}]
+  },
+  {
+    "id": "w5-sfm-003", "week": 5, "topic": "soft-margin", "type": "mcq", "difficulty": 2,
+    "prompt": "Using an RBF SVM, what do you expect to see with $C = 0.1$ compared with $C = 1$?",
+    "choices": ["With $C = 0.1$ the margin is wider and many examples are within it", "With $C = 0.1$ the margin is narrower and fewer examples are within it", "No difference: $C$ only affects training time", "With $C = 0.1$ every example is a support vector outside the margin"],
+    "answer": 0,
+    "explanation": "A small $C$ makes larger slacks cheap, so the optimiser focuses on widening the margin. A larger $C$ penalises slack more, so the margin narrows.",
+    "tags": ["hyperparameter-c"],
+    "sources": [{"file": "week_5/worksheets/5a-Soft_Margin_SVM-answers.pdf", "page": 6, "quote": "When using the smaller value of C=0.1, the margin will be wider and many examples"}]
+  },
+  {
+    "id": "w5-sfm-004", "week": 5, "topic": "soft-margin", "type": "short", "difficulty": 2,
+    "prompt": "The data is not linearly separable and no nonlinear transformation is used. (A) Why does the hard-margin SVM fail? (B) How do slack variables fix this?",
+    "answer": "(A) Every example must satisfy $y^{(n)}(\\mathbf{w}^T\\mathbf{x}^{(n)} + b) \\ge 1$, but some points will always violate it, so the feasible set is empty and there is no solution. (B) With $y^{(n)}(\\mathbf{w}^T\\mathbf{x}^{(n)} + b) \\ge 1 - \\xi^{(n)}$, any violation can be absorbed into $\\xi^{(n)}$, so the problem is always feasible, and $C\\sum_n\\xi^{(n)}$ makes violations costly.",
+    "explanation": "Large $C$ behaves more like the hard margin; small $C$ tolerates more violations and gives a wider margin.",
+    "tags": ["soft-margin", "feasibility"],
+    "sources": [{"file": "week_5/worksheets/5a-Soft_Margin_SVM-answers.pdf", "page": 8, "quote": "Therefore, the feasible set of solutions is empty, so the optimisation problem has no"}]
+  },
+  {
+    "id": "w5-sfm-005", "week": 5, "topic": "soft-margin", "type": "mcq", "difficulty": 1,
+    "prompt": "How is the margin defined for the soft-margin SVM?",
+    "choices": ["As $1/\\|\\mathbf{w}\\|$", "As the distance to the closest training example", "As $\\sum_n\\xi^{(n)}$", "As $C/\\|\\mathbf{w}\\|$"],
+    "answer": 0,
+    "explanation": "Examples may now be inside the margin, so it is no longer the distance to the closest example. How large it is depends on $\\|\\mathbf{w}\\|$.",
+    "tags": ["margin"],
+    "sources": [{"file": "week_5/slides/5a-kernels-soft-svm.pdf", "page": 27, "quote": "Now, our margin is simply deﬁned as ."}]
+  },
+  {
+    "id": "w5-sfm-006", "week": 5, "topic": "soft-margin", "type": "mcq", "difficulty": 1,
+    "prompt": "Why might we still overfit with a hard-margin SVM, even though maximising the margin helps?",
+    "choices": ["With a very high-dimensional embedding (e.g. Gaussian kernel), the SVM tries to classify every training example correctly, noise included", "Because the margin is always too wide", "Because the dual has too few variables", "Because kernels are not symmetric"],
+    "answer": 0,
+    "explanation": "It may be better to misclassify some training examples, which is the idea of the soft margin.",
+    "tags": ["overfitting"],
+    "sources": [{"file": "week_5/slides/5a-kernels-soft-svm.pdf", "page": 23, "quote": "SVMs will try to classify all training examples correctly."}]
+  },
+  {
+    "id": "w5-sfm-007", "week": 5, "topic": "soft-margin", "type": "flashcard", "difficulty": 2,
+    "prompt": "How does the soft-margin dual differ from the hard-margin dual?",
+    "answer": "The objective $\\sum_n a^{(n)} - \\frac12\\sum_n\\sum_m a^{(n)}a^{(m)}y^{(n)}y^{(m)}k(\\mathbf{x}^{(n)},\\mathbf{x}^{(m)})$ and $\\sum_n a^{(n)}y^{(n)} = 0$ are the same. Only $a^{(n)} \\ge 0$ becomes the box constraint $0 \\le a^{(n)} \\le C$.",
+    "explanation": "$C$ appears only through the box constraints.",
+    "tags": ["soft-margin-dual"],
+    "sources": [{"file": "week_5/slides/5a-kernels-soft-svm.pdf", "page": 34, "quote": "Subject to:0≤a(n)≤C,∀n∈{1,⋯,N} N ∑n=1 a(n)y(n)=0"}]
+  },
+  {
+    "id": "w5-sfm-008", "week": 5, "topic": "soft-margin", "type": "mcq", "difficulty": 2,
+    "prompt": "In a soft-margin SVM, which support vectors are used to compute $b$?",
+    "choices": ["Only the support vectors that are on the margin (the set $M$)", "All support vectors", "All training examples", "Only the misclassified examples"],
+    "answer": 0,
+    "explanation": "$b^{(n)} = y^{(n)} - \\sum_{m\\in S}a^{(m)}y^{(m)}k(\\mathbf{x}^{(n)},\\mathbf{x}^{(m)})$ relies on $y^{(n)}h(\\mathbf{x}^{(n)}) = 1$, which only holds for support vectors on the margin. Support vectors with slack have $y\\,h = 1 - \\xi$.",
+    "tags": ["bias", "soft-margin-dual"],
+    "sources": [{"file": "week_5/slides/5a-kernels-soft-svm.pdf", "page": 37, "quote": "are on the margin and  is the number of such support"}]
+  },
+  {
+    "id": "w5-sfm-009", "week": 5, "topic": "soft-margin", "type": "mcq", "difficulty": 2,
+    "prompt": "By complementary slackness, what holds for a support vector ($a^{(n)} \\ne 0$) of a soft-margin SVM?",
+    "choices": ["$y^{(n)}h(\\mathbf{x}^{(n)}) = 1 - \\xi^{(n)}$", "$y^{(n)}h(\\mathbf{x}^{(n)}) = 1$ always", "$y^{(n)}h(\\mathbf{x}^{(n)}) > 1$", "$\\xi^{(n)} = 0$ always"],
+    "answer": 0,
+    "explanation": "So a soft-margin support vector can be on the margin ($\\xi = 0$), inside it, or misclassified.",
+    "tags": ["support-vectors"],
+    "sources": [{"file": "week_5/slides/5a-kernels-soft-svm.pdf", "page": 36, "quote": "y(n)h(x(n))=1−ξ(n)"}]
+  },
+  {
+    "id": "w5-sfm-010", "week": 5, "topic": "soft-margin", "type": "truefalse", "difficulty": 1,
+    "prompt": "A soft-margin SVM may deliberately misclassify some training examples to improve generalisation.",
+    "answer": true,
+    "explanation": "Allowing slack lets it ignore noise instead of contorting the boundary to fit every training point.",
+    "tags": ["soft-margin"],
+    "sources": [{"file": "week_5/slides/5a-kernels-soft-svm.pdf", "page": 24, "quote": "It may be better to misclassify some training examples!"}]
+  }
+]
