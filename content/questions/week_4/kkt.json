@@ -1,6 +1,6 @@
 [
   {
-    "id": "w4-kkt-001", "week": 4, "topic": "kkt", "type": "flashcard", "difficulty": 1,
+    "id": "w4-kkt-001", "week": 4, "topic": "karush-kuhn-tucker", "type": "flashcard", "difficulty": 1,
     "prompt": "List the KKT conditions for $\\min_x F(x)$ s.t. $f_i(x) \\le 0$.",
     "answer": "Stationarity: $\\nabla_xL = \\nabla F(x) + \\sum_i a_i\\nabla f_i(x) = 0$. Complementary slackness: $a_if_i(x) = 0$. Primal feasibility: $f_i(x) \\le 0$. Dual feasibility: $a_i \\ge 0$.",
     "explanation": "For a convex problem with convex inequality constraints these are necessary and sufficient for optimality.",
@@ -8,7 +8,7 @@
     "sources": [{"file": "week_4/slides/4a-lagrange-duality.pdf", "page": 28, "quote": "Feasibility: the primal and dual constraints must be satisﬁed."}]
   },
   {
-    "id": "w4-kkt-002", "week": 4, "topic": "kkt", "type": "mcq", "difficulty": 1,
+    "id": "w4-kkt-002", "week": 4, "topic": "karush-kuhn-tucker", "type": "mcq", "difficulty": 1,
     "prompt": "Which statement about the KKT conditions is true?",
     "choices": ["They are only necessary for optimality in convex problems with inequality constraints", "They are necessary and sufficient for optimality in convex problems with convex inequality constraints", "They are necessary and sufficient for all optimisation problems", "They can replace gradient-based methods for unconstrained problems"],
     "answer": 1,
@@ -17,7 +17,7 @@
     "sources": [{"file": "week_4/worksheets/4a-Lagrange_dual-answers.pdf", "page": 3, "quote": "Correct answer: B."}, {"file": "week_4/slides/4a-lagrange-duality.pdf", "page": 25, "quote": "KKT are the necessary and sufﬁcient conditions for optimality in a convex"}]
   },
   {
-    "id": "w4-kkt-003", "week": 4, "topic": "kkt", "type": "mcq", "difficulty": 2,
+    "id": "w4-kkt-003", "week": 4, "topic": "karush-kuhn-tucker", "type": "mcq", "difficulty": 2,
     "prompt": "Why does the stationarity condition $\\nabla_xL(x,a) = 0$ hold in $\\max_a\\min_x L(x,a)$?",
     "choices": ["For each fixed $a$, the inner min over $x$ is an unconstrained problem", "Because $a = 0$ at the optimum", "Because the constraints are linear", "Because $L$ is concave in $x$"],
     "answer": 0,
@@ -26,7 +26,7 @@
     "sources": [{"file": "week_4/slides/4a-lagrange-duality.pdf", "page": 25, "quote": "Stationarity: note that in , for each ﬁxed value of , we will"}]
   },
   {
-    "id": "w4-kkt-004", "week": 4, "topic": "kkt", "type": "truefalse", "difficulty": 2,
+    "id": "w4-kkt-004", "week": 4, "topic": "karush-kuhn-tucker", "type": "truefalse", "difficulty": 2,
     "prompt": "Complementary slackness says $a_if_i(x) = 0$, so if $a_i > 0$ then the constraint holds with equality, $f_i(x) = 0$.",
     "answer": true,
     "explanation": "The product can only be zero if one factor is zero. For the SVM this picks out the support vectors.",
@@ -34,7 +34,7 @@
     "sources": [{"file": "week_4/slides/4a-lagrange-duality.pdf", "page": 25, "quote": "aifi(x)=0,∀i∈{1,⋯,N}"}]
   },
   {
-    "id": "w4-kkt-005", "week": 4, "topic": "kkt", "type": "mcq", "difficulty": 1,
+    "id": "w4-kkt-005", "week": 4, "topic": "karush-kuhn-tucker", "type": "mcq", "difficulty": 1,
     "prompt": "In unconstrained convex optimisation, what is a necessary and sufficient condition for optimality?",
     "choices": ["$\\nabla F(x) = 0$", "$F(x) = 0$", "$\\nabla F(x) > 0$", "The Hessian is zero"],
     "answer": 0,
@@ -43,7 +43,7 @@
     "sources": [{"file": "week_4/slides/4a-lagrange-duality.pdf", "page": 25, "quote": "In unconstrained convex optimisation, a necessary and sufﬁcient condition for"}]
   },
   {
-    "id": "w4-kkt-006", "week": 4, "topic": "kkt", "type": "numeric", "difficulty": 2,
+    "id": "w4-kkt-006", "week": 4, "topic": "karush-kuhn-tucker", "type": "numeric", "difficulty": 2,
     "prompt": "Dual: $\\max_\\beta\\min_w L = w_1^2 + \\frac12w_2^2 + 10\\beta_1w_1 - \\beta_2w_2 - 4$, with $\\nabla_wL = (2w_1 + 10\\beta_1,\\ w_2 - \\beta_2)^T$. Using stationarity, what is $w_1$ when $\\beta_1 = 0.2$?",
     "answer": -1,
     "tolerance": 0.0001,
@@ -52,7 +52,7 @@
     "sources": [{"file": "week_4/worksheets/4a-Lagrange_dual-answers.pdf", "page": 4, "quote": "2w1 + 10β1 = 0→w 1 =−5β 1"}]
   },
   {
-    "id": "w4-kkt-007", "week": 4, "topic": "kkt", "type": "numeric", "difficulty": 2,
+    "id": "w4-kkt-007", "week": 4, "topic": "karush-kuhn-tucker", "type": "numeric", "difficulty": 2,
     "prompt": "Same problem. After substituting $w_1 = -5\\beta_1$ and $w_2 = \\beta_2$, the dual objective is $G(\\beta) = c_1\\beta_1^2 + c_2\\beta_2^2 - 4$. What is $c_1$?",
     "answer": -25,
     "tolerance": 0.0001,
@@ -61,7 +61,7 @@
     "sources": [{"file": "week_4/worksheets/4a-Lagrange_dual-answers.pdf", "page": 4, "quote": "G(β) =−25β 2 1 − 1 2 β2 2 −4"}]
   },
   {
-    "id": "w4-kkt-008", "week": 4, "topic": "kkt", "type": "numeric", "difficulty": 2,
+    "id": "w4-kkt-008", "week": 4, "topic": "karush-kuhn-tucker", "type": "numeric", "difficulty": 2,
     "prompt": "Same problem. What is $c_2$, the coefficient of $\\beta_2^2$ in $G(\\beta)$?",
     "answer": -0.5,
     "tolerance": 0.0001,
@@ -70,7 +70,7 @@
     "sources": [{"file": "week_4/worksheets/4a-Lagrange_dual-answers.pdf", "page": 4, "quote": "G(β) =−25β 2 1 − 1 2 β2 2 −4"}]
   },
   {
-    "id": "w4-kkt-009", "week": 4, "topic": "kkt", "type": "order", "difficulty": 2,
+    "id": "w4-kkt-009", "week": 4, "topic": "karush-kuhn-tucker", "type": "order", "difficulty": 2,
     "prompt": "Put the steps for simplifying a dual with the KKT stationarity condition in order.",
     "steps": ["Start from $\\max_a\\min_x L(x,a)$", "Set $\\nabla_xL(x,a) = 0$", "Solve for $x = g(a)$", "Substitute $x$ back into $L$", "Solve $\\max_a G(a)$ subject to $a_i \\ge 0$"],
     "explanation": "The min disappears, and only the Lagrange multipliers remain to be optimised.",
@@ -78,7 +78,7 @@
     "sources": [{"file": "week_4/slides/4a-lagrange-duality.pdf", "page": 29, "quote": "Use the KKT stationarity condition to solve the min problem"}]
   },
   {
-    "id": "w4-kkt-010", "week": 4, "topic": "kkt", "type": "numeric", "difficulty": 3,
+    "id": "w4-kkt-010", "week": 4, "topic": "karush-kuhn-tucker", "type": "numeric", "difficulty": 3,
     "prompt": "Dual: $\\max_{a_1 \\ge 0}\\min_x L = x_1^2 + x_2^2 + 6a_1x_1 - 2$. Use stationarity to write the dual as $G(a_1) = c\\,a_1^2 - 2$. What is $c$?",
     "answer": -9,
     "tolerance": 0.0001,
@@ -87,7 +87,7 @@
     "sources": [{"file": "week_4/slides/4a-lagrange-duality.pdf", "page": 29, "quote": "Use the KKT stationarity condition to solve the min problem"}]
   },
   {
-    "id": "w4-kkt-011", "week": 4, "topic": "kkt", "type": "numeric", "difficulty": 3,
+    "id": "w4-kkt-011", "week": 4, "topic": "karush-kuhn-tucker", "type": "numeric", "difficulty": 3,
     "prompt": "Lecture example: the dual simplifies to $\\max_{a_1} G(a_1) = -25a_1^2 - 4$ subject to $a_1 \\ge 0$. What value of $a_1$ maximises $G$?",
     "answer": 0,
     "tolerance": 0.0001,

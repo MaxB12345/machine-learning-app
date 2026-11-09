@@ -1,6 +1,6 @@
 [
   {
-    "id": "w4-svd-001", "week": 4, "topic": "svm-dual", "type": "flashcard", "difficulty": 1,
+    "id": "w4-svd-001", "week": 4, "topic": "dual-formulation", "type": "flashcard", "difficulty": 1,
     "prompt": "Write the Lagrangian of the hard-margin SVM.",
     "answer": "$L(\\mathbf{w},b,\\mathbf{a}) = \\frac12\\|\\mathbf{w}\\|^2 + \\sum_{n=1}^N a^{(n)}\\left(1 - y^{(n)}(\\mathbf{w}^T\\phi(\\mathbf{x}^{(n)}) + b)\\right)$ with $a^{(n)} \\ge 0$.",
     "explanation": "Each constraint is first written as $1 - y^{(n)}(\\mathbf{w}^T\\phi(\\mathbf{x}^{(n)}) + b) \\le 0$. There is one multiplier per training example.",
@@ -8,7 +8,7 @@
     "sources": [{"file": "week_4/slides/4c-svm-dual.pdf", "page": 8, "quote": "Where  is the number of training examples.N"}]
   },
   {
-    "id": "w4-svd-002", "week": 4, "topic": "svm-dual", "type": "multi", "difficulty": 2,
+    "id": "w4-svd-002", "week": 4, "topic": "dual-formulation", "type": "multi", "difficulty": 2,
     "prompt": "Setting the derivatives of the SVM Lagrangian with respect to $\\mathbf{w}$ and $b$ to zero (KKT stationarity) gives which results?",
     "choices": ["$\\mathbf{w} = \\sum_n a^{(n)}y^{(n)}\\phi(\\mathbf{x}^{(n)})$", "$\\sum_n a^{(n)}y^{(n)} = 0$", "$b = \\sum_n a^{(n)}y^{(n)}$", "$\\sum_n a^{(n)} = 0$"],
     "answer": [0, 1],
@@ -17,7 +17,7 @@
     "sources": [{"file": "week_4/slides/4c-svm-dual.pdf", "page": 21, "quote": "Once  is ﬁxed, there are no constraints and, at the optimum,"}]
   },
   {
-    "id": "w4-svd-003", "week": 4, "topic": "svm-dual", "type": "flashcard", "difficulty": 1,
+    "id": "w4-svd-003", "week": 4, "topic": "dual-formulation", "type": "flashcard", "difficulty": 1,
     "prompt": "Write the SVM dual problem.",
     "answer": "$\\arg\\max_{\\mathbf{a}} \\tilde L(\\mathbf{a}) = \\sum_n a^{(n)} - \\frac12\\sum_n\\sum_m a^{(n)}a^{(m)}y^{(n)}y^{(m)}k(\\mathbf{x}^{(n)},\\mathbf{x}^{(m)})$ s.t. $\\sum_n a^{(n)}y^{(n)} = 0$ and $a^{(n)} \\ge 0$.",
     "explanation": "$k(\\mathbf{x}^{(n)},\\mathbf{x}^{(m)}) = \\phi(\\mathbf{x}^{(n)})^T\\phi(\\mathbf{x}^{(m)})$ is the kernel function. $\\mathbf{w}$ and $b$ have gone.",
@@ -25,7 +25,7 @@
     "sources": [{"file": "week_4/slides/4c-svm-dual.pdf", "page": 25, "quote": "k(x(n),x(m))=ϕ(x(n))Tϕ(x(m))Where:"}]
   },
   {
-    "id": "w4-svd-004", "week": 4, "topic": "svm-dual", "type": "order", "difficulty": 2,
+    "id": "w4-svd-004", "week": 4, "topic": "dual-formulation", "type": "order", "difficulty": 2,
     "prompt": "Put the steps that take the SVM primal to its dual in order.",
     "steps": ["Write each constraint as $1 - y^{(n)}(\\mathbf{w}^T\\phi(\\mathbf{x}^{(n)}) + b) \\le 0$", "Build the Lagrangian with $a^{(n)} \\ge 0$", "Minimax primal: $\\min_{\\mathbf{w},b}\\max_{\\mathbf{a}} L$", "Swap to $\\max_{\\mathbf{a}}\\min_{\\mathbf{w},b} L$ (strong duality)", "Stationarity: $\\mathbf{w} = \\sum_n a^{(n)}y^{(n)}\\phi(\\mathbf{x}^{(n)})$ and $\\sum_n a^{(n)}y^{(n)} = 0$", "Substitute $\\mathbf{w}$; the $b$ term vanishes because $\\sum_n a^{(n)}y^{(n)} = 0$"],
     "explanation": "The result only depends on $\\mathbf{a}$ and on inner products $\\phi(\\mathbf{x}^{(n)})^T\\phi(\\mathbf{x}^{(m)})$.",
@@ -33,7 +33,7 @@
     "sources": [{"file": "week_4/slides/4c-svm-dual.pdf", "page": 22, "quote": "Consider the following as a  constraint to eliminate :b"}]
   },
   {
-    "id": "w4-svd-005", "week": 4, "topic": "svm-dual", "type": "mcq", "difficulty": 2,
+    "id": "w4-svd-005", "week": 4, "topic": "dual-formulation", "type": "mcq", "difficulty": 2,
     "prompt": "Why is swapping the SVM minimax primal for the maxmin dual allowed?",
     "choices": ["The Lagrangian is convex in $\\mathbf{w}, b$ and concave in $\\mathbf{a}$, and Slater's condition holds when the data is linearly separable", "Because $N > d$", "Because the kernel is symmetric", "It is never allowed; the dual is only an approximation"],
     "answer": 0,
@@ -42,7 +42,7 @@
     "sources": [{"file": "week_4/slides/4c-svm-dual.pdf", "page": 17, "quote": "If the problem is linearly separable, the condition is met."}]
   },
   {
-    "id": "w4-svd-006", "week": 4, "topic": "svm-dual", "type": "multi", "difficulty": 2,
+    "id": "w4-svd-006", "week": 4, "topic": "dual-formulation", "type": "multi", "difficulty": 2,
     "prompt": "Which statements about the SVM dual formulation are correct? Select all that apply.",
     "choices": ["It allows non-linear kernel functions, enabling complex decision boundaries", "It may reduce computational cost compared to the primal when there are fewer training examples than features in the embedding", "Maximising the dual objective guarantees the primal also reaches its global minimum"],
     "answer": [0, 1, 2],
@@ -51,7 +51,7 @@
     "sources": [{"file": "week_4/worksheets/4c-SVM_dual-answers.pdf", "page": 2, "quote": "A.True.The dual formulation allows the incorporation of kernel functions through"}]
   },
   {
-    "id": "w4-svd-007", "week": 4, "topic": "svm-dual", "type": "truefalse", "difficulty": 2,
+    "id": "w4-svd-007", "week": 4, "topic": "dual-formulation", "type": "truefalse", "difficulty": 2,
     "prompt": "It is never worth using the primal representation when using basis expansions.",
     "answer": false,
     "explanation": "If the expansion has very low dimensionality, possibly lower than the number of training examples, the primal could be more efficient.",
@@ -59,7 +59,7 @@
     "sources": [{"file": "week_4/worksheets/4c-SVM_dual-answers.pdf", "page": 11, "quote": "If the basis expansion has very low dimensionality, its number of dimensions"}]
   },
   {
-    "id": "w4-svd-008", "week": 4, "topic": "svm-dual", "type": "mcq", "difficulty": 2,
+    "id": "w4-svd-008", "week": 4, "topic": "dual-formulation", "type": "mcq", "difficulty": 2,
     "prompt": "How many variables does each formulation optimise, for $N$ examples and an embedding of dimension $d$?",
     "choices": ["Primal: $d + 1$ ($\\mathbf{w}$ and $b$). Dual: $N$ (the $a^{(n)}$)", "Primal: $N$. Dual: $d + 1$", "Both: $N + d$", "Primal: $d$. Dual: $d$"],
     "answer": 0,
@@ -68,7 +68,7 @@
     "sources": [{"file": "week_4/slides/4c-svm-dual.pdf", "page": 29, "quote": "Depends on the number of training examples"}]
   },
   {
-    "id": "w4-svd-009", "week": 4, "topic": "svm-dual", "type": "truefalse", "difficulty": 1,
+    "id": "w4-svd-009", "week": 4, "topic": "dual-formulation", "type": "truefalse", "difficulty": 1,
     "prompt": "The dual formulation provides a direct way to identify the support vectors.",
     "answer": true,
     "explanation": "Support vectors are the examples with $a^{(n)} \\ne 0$. Only they appear in $h(\\mathbf{x}) = \\sum_{n\\in S}a^{(n)}y^{(n)}k(\\mathbf{x},\\mathbf{x}^{(n)}) + b$.",
@@ -76,7 +76,7 @@
     "sources": [{"file": "week_4/worksheets/4c-SVM_dual-answers.pdf", "page": 4, "quote": "The dual formulation explicitly identifies support vectors through the non-"}]
   },
   {
-    "id": "w4-svd-010", "week": 4, "topic": "svm-dual", "type": "short", "difficulty": 3,
+    "id": "w4-svd-010", "week": 4, "topic": "dual-formulation", "type": "short", "difficulty": 3,
     "prompt": "A trained SVM has $a^{(i)*} = 0$ for example $i$. Show that removing that example keeps the rest of $\\mathbf{a}^*$ feasible for the new dual problem.",
     "answer": "The other $a^{(n)}$ are unchanged, so $a^{(n)} \\ge 0$ still holds. The removed term $a^{(i)}y^{(i)} = 0$, so $\\sum_n a^{(n)}y^{(n)} = 0$ still holds. Both dual constraints remain satisfied.",
     "steps": ["Dual constraints: $a^{(n)} \\ge 0$ and $\\sum_n a^{(n)}y^{(n)} = 0$", "Keeping the other multipliers keeps $a^{(n)} \\ge 0$", "Dropping a term equal to $0$ does not change the sum", "(Also: $\\mathbf{w}$ and $b$ do not change, so the KKT conditions still hold and the solution stays optimal)"],

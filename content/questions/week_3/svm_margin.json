@@ -1,6 +1,6 @@
 [
   {
-    "id": "w3-svm-001", "week": 3, "topic": "svm-margin", "type": "flashcard", "difficulty": 1,
+    "id": "w3-svm-001", "week": 3, "topic": "margin-and-rescaling", "type": "flashcard", "difficulty": 1,
     "prompt": "What is the **margin** of a linear classifier?",
     "answer": "The perpendicular distance between the decision boundary and the closest training example.",
     "explanation": "SVMs choose the boundary that maximises this distance, which can help to avoid overfitting.",
@@ -8,7 +8,7 @@
     "sources": [{"file": "week_3/slides/3c-svm-primal.pdf", "page": 5, "quote": "The perpendicular distance between the decision boundary and the closest training example is called the margin."}]
   },
   {
-    "id": "w3-svm-002", "week": 3, "topic": "svm-margin", "type": "flashcard", "difficulty": 1,
+    "id": "w3-svm-002", "week": 3, "topic": "margin-and-rescaling", "type": "flashcard", "difficulty": 1,
     "prompt": "Give the perpendicular distance from a point $\\mathbf{x}^{(n)}$ to the hyperplane $h(\\mathbf{x}) = \\mathbf{w}^T\\mathbf{x} + b = 0$.",
     "answer": "$\\text{dist}(h,\\mathbf{x}^{(n)}) = \\dfrac{|h(\\mathbf{x}^{(n)})|}{\\|\\mathbf{w}\\|}$, where $\\|\\mathbf{w}\\| = \\sqrt{\\mathbf{w}^T\\mathbf{w}}$.",
     "explanation": "For a correctly classified example $|h(\\mathbf{x}^{(n)})| = y^{(n)}h(\\mathbf{x}^{(n)})$, so the distance can also be written $\\frac{y^{(n)}h(\\mathbf{x}^{(n)})}{\\|\\mathbf{w}\\|}$.",
@@ -16,7 +16,7 @@
     "sources": [{"file": "week_3/slides/3c-svm-primal.pdf", "page": 19, "quote": "dist(h,x(n))=|h(x(n))| ∥w∥ =y(n)h(x(n)) ∥w∥"}]
   },
   {
-    "id": "w3-svm-003", "week": 3, "topic": "svm-margin", "type": "numeric", "difficulty": 2,
+    "id": "w3-svm-003", "week": 3, "topic": "margin-and-rescaling", "type": "numeric", "difficulty": 2,
     "prompt": "Training set: $\\mathbf{x}^{(1)} = (0.1,0.1)^T$ (red), $\\mathbf{x}^{(2)} = (0.1,0.2)^T$ (blue), $\\mathbf{x}^{(3)} = (0.2,0.2)^T$ (blue). What is the margin formed by the decision boundary $x_2 - 0.15 = 0$?",
     "answer": 0.05,
     "tolerance": 0.0001,
@@ -25,7 +25,7 @@
     "sources": [{"file": "week_3/worksheet/3c-SVM_Primal_Representation-answers.pdf", "page": 2, "quote": "(margin) is 0.05."}]
   },
   {
-    "id": "w3-svm-004", "week": 3, "topic": "svm-margin", "type": "numeric", "difficulty": 2,
+    "id": "w3-svm-004", "week": 3, "topic": "margin-and-rescaling", "type": "numeric", "difficulty": 2,
     "prompt": "Examples: $\\mathbf{x}^{(1)} = (1,1), y^{(1)} = +1$; $\\mathbf{x}^{(2)} = (0,1), y^{(2)} = -1$; $\\mathbf{x}^{(3)} = (2,0), y^{(3)} = +1$. The hyperplane is $h(\\mathbf{x}) = 1.5x_1 + x_2 - 2$. What is $\\min_n y^{(n)}h(\\mathbf{x}^{(n)})$?",
     "answer": 0.5,
     "tolerance": 0.0001,
@@ -34,7 +34,7 @@
     "sources": [{"file": "week_3/worksheet/3c-SVM_Primal_Representation-answers.pdf", "page": 6, "quote": "h(1,1) = 1.5×1 + 1−2 = 0.5"}]
   },
   {
-    "id": "w3-svm-005", "week": 3, "topic": "svm-margin", "type": "numeric", "difficulty": 2,
+    "id": "w3-svm-005", "week": 3, "topic": "margin-and-rescaling", "type": "numeric", "difficulty": 2,
     "prompt": "Continuing: with $\\min_n y^{(n)}h(\\mathbf{x}^{(n)}) = 0.5$ for $h(\\mathbf{x}) = 1.5x_1 + x_2 - 2$, let $k = 1/\\min_n y^{(n)}h(\\mathbf{x}^{(n)})$. What is the rescaled bias $b' = kb$?",
     "answer": -4,
     "tolerance": 0.0001,
@@ -43,7 +43,7 @@
     "sources": [{"file": "week_3/worksheet/3c-SVM_Primal_Representation-answers.pdf", "page": 6, "quote": "w′ = (1.5×2,1×2) T = (3,2) T , b′ =−2×2 =−4."}]
   },
   {
-    "id": "w3-svm-006", "week": 3, "topic": "svm-margin", "type": "numeric", "difficulty": 2,
+    "id": "w3-svm-006", "week": 3, "topic": "margin-and-rescaling", "type": "numeric", "difficulty": 2,
     "prompt": "Continuing: the rescaled hyperplane is $h'(\\mathbf{x}) = 3x_1 + 2x_2 - 4$, so $y^{(n)}h'(\\mathbf{x}^{(n)}) = 1$ for the closest example. What is the margin? (4 d.p.)",
     "answer": 0.2774,
     "tolerance": 0.0001,
@@ -52,7 +52,7 @@
     "sources": [{"file": "week_3/worksheet/3c-SVM_Primal_Representation-answers.pdf", "page": 6, "quote": "dist(h′,x (n)) = |h′(x(n))| ∥w′∥ = 1√ 32 + 22 = 1√ 13"}]
   },
   {
-    "id": "w3-svm-007", "week": 3, "topic": "svm-margin", "type": "numeric", "difficulty": 2,
+    "id": "w3-svm-007", "week": 3, "topic": "margin-and-rescaling", "type": "numeric", "difficulty": 2,
     "prompt": "What is the perpendicular distance between $\\mathbf{x} = (1,1)^T$ and the hyperplane with $\\mathbf{w} = (0.5, 0.1)^T$, $b = 1$? (4 d.p.)",
     "answer": 3.1379,
     "tolerance": 0.0001,
@@ -61,7 +61,7 @@
     "sources": [{"file": "week_3/worksheet/3c-SVM_Primal_Representation-answers.pdf", "page": 6, "quote": "1.6√ 0.26 ≈3.1379"}]
   },
   {
-    "id": "w3-svm-008", "week": 3, "topic": "svm-margin", "type": "short", "difficulty": 2,
+    "id": "w3-svm-008", "week": 3, "topic": "margin-and-rescaling", "type": "short", "difficulty": 2,
     "prompt": "Show that multiplying $\\mathbf{w} = (0.5, 0.1)^T$ and $b = 1$ by 10 does not change the distance from $\\mathbf{x} = (1,1)^T$ to the hyperplane.",
     "answer": "Before: $\\frac{1.6}{\\sqrt{0.26}} \\approx 3.1379$. After: $\\frac{|5 + 1 + 10|}{\\sqrt{5^2 + 1^2}} = \\frac{16}{\\sqrt{26}} \\approx 3.1379$. They are equal.",
     "steps": ["Use $\\text{dist} = |h(\\mathbf{x})|/\\|\\mathbf{w}\\|$", "Original: $1.6/\\sqrt{0.26}$", "Rescaled: numerator and $\\|\\mathbf{w}\\|$ are both 10 times larger: $16/\\sqrt{26}$", "The factor 10 cancels, so the distance is the same"],
@@ -70,7 +70,7 @@
     "sources": [{"file": "week_3/worksheet/3c-SVM_Primal_Representation-answers.pdf", "page": 7, "quote": "dist(h,x) = 5×1 + 1×1 + 10√ 52 + 12 = 16√ 26 ≈3.1379"}]
   },
   {
-    "id": "w3-svm-009", "week": 3, "topic": "svm-margin", "type": "numeric", "difficulty": 2,
+    "id": "w3-svm-009", "week": 3, "topic": "margin-and-rescaling", "type": "numeric", "difficulty": 2,
     "prompt": "Hyperplane $h(\\mathbf{x}) = x_1 - 1$. Examples: $(-1,0)^T, y = -1$; $(3,0)^T, y = 1$; $(4,0)^T, y = 1$. What rescaling factor $k$ in $h(\\mathbf{x}) = kx_1 - k$ makes $y^{(n)}h(\\mathbf{x}^{(n)}) = 1$ for the closest example?",
     "answer": 0.5,
     "tolerance": 0.0001,
@@ -79,7 +79,7 @@
     "sources": [{"file": "week_3/worksheet/3c-SVM_Primal_Representation-answers.pdf", "page": 7, "quote": "The minimum value fory (n)h(x(n)) is 2. Therefore, the rescaling factor must bek= 1 2"}]
   },
   {
-    "id": "w3-svm-010", "week": 3, "topic": "svm-margin", "type": "mcq", "difficulty": 2,
+    "id": "w3-svm-010", "week": 3, "topic": "margin-and-rescaling", "type": "mcq", "difficulty": 2,
     "prompt": "Points $(1,1)$ and $(-1,-1)$ are labelled $+1$; $(1,-1)$ and $(-1,1)$ are labelled $-1$. With $\\phi(\\mathbf{x}) = (x_1, x_2, x_1x_2)^T$, $\\mathbf{w} = (0,0,1)^T$ and $b = 0$, what is the decision boundary in the original space?",
     "choices": ["$x_1x_2 = 0$", "$x_1 + x_2 = 0$", "$x_1 = x_2$", "$x_1^2 + x_2^2 = 1$"],
     "answer": 0,
@@ -88,7 +88,7 @@
     "sources": [{"file": "week_3/worksheet/3c-SVM_Primal_Representation-answers.pdf", "page": 5, "quote": "0×x 1 + 0×x 2 + 1×x 1x2 = 0"}]
   },
   {
-    "id": "w3-svm-011", "week": 3, "topic": "svm-margin", "type": "numeric", "difficulty": 2,
+    "id": "w3-svm-011", "week": 3, "topic": "margin-and-rescaling", "type": "numeric", "difficulty": 2,
     "prompt": "Same XOR-style problem with $h(\\mathbf{x}) = x_1x_2$ ($\\mathbf{w} = (0,0,1)^T$, $b = 0$). Every example has $y h(\\mathbf{x}) = 1$. What is the margin?",
     "answer": 1,
     "tolerance": 0.0001,
@@ -97,7 +97,7 @@
     "sources": [{"file": "week_3/worksheet/3c-SVM_Primal_Representation-answers.pdf", "page": 5, "quote": "margin = 1/∥w∥= 1."}]
   },
   {
-    "id": "w3-svm-012", "week": 3, "topic": "svm-margin", "type": "truefalse", "difficulty": 1,
+    "id": "w3-svm-012", "week": 3, "topic": "margin-and-rescaling", "type": "truefalse", "difficulty": 1,
     "prompt": "Multiplying $\\mathbf{w}$ and $b$ by any $\\kappa > 0$ changes the distances of the training examples to the hyperplane.",
     "answer": false,
     "explanation": "It changes neither the position of the hyperplane nor the distances to it, so we are free to rescale until $\\min_n y^{(n)}h(\\mathbf{x}^{(n)}) = 1$.",
@@ -105,7 +105,7 @@
     "sources": [{"file": "week_3/slides/3c-svm-primal.pdf", "page": 21, "quote": "does not change the position of the hyperplane, nor the distances of the training examples to it."}]
   },
   {
-    "id": "w3-svm-013", "week": 3, "topic": "svm-margin", "type": "short", "difficulty": 3,
+    "id": "w3-svm-013", "week": 3, "topic": "margin-and-rescaling", "type": "short", "difficulty": 3,
     "prompt": "Show that dividing $w_1, w_2, b$ by $a = \\min_n y^{(n)}h(\\mathbf{x}^{(n)})$ gives $y^{(k)}h_{new}(\\mathbf{x}^{(k)}) = 1$ for the closest example $(\\mathbf{x}^{(k)}, y^{(k)})$.",
     "answer": "$y^{(k)}h_{new}(\\mathbf{x}^{(k)}) = y^{(k)}\\left(\\frac{w_1}{a}x_1^{(k)} + \\frac{w_2}{a}x_2^{(k)} + \\frac{b}{a}\\right) = \\frac{y^{(k)}h_{old}(\\mathbf{x}^{(k)})}{a} = \\frac{a}{a} = 1$.",
     "steps": ["The closest example has the smallest $\\frac{y\\,h(\\mathbf{x})}{\\|\\mathbf{w}\\|}$; $\\|\\mathbf{w}\\|$ is shared, so it has the smallest $y\\,h(\\mathbf{x})$, call it $a$", "Divide $w_1, w_2, b$ by $a$ and factor out $\\frac1a$", "This gives $\\frac{a}{a} = 1$", "Rescaling does not move the boundary, so the same example is still the closest"],
@@ -114,7 +114,7 @@
     "sources": [{"file": "week_3/worksheet/3c-SVM_Primal_Representation-answers.pdf", "page": 10, "quote": "the example that was the closest to the decision boundary before rescaling now"}]
   },
   {
-    "id": "w3-svm-014", "week": 3, "topic": "svm-margin", "type": "numeric", "difficulty": 2,
+    "id": "w3-svm-014", "week": 3, "topic": "margin-and-rescaling", "type": "numeric", "difficulty": 2,
     "prompt": "$h(\\mathbf{x}) = 3x_1 + 4x_2 - 2$. Examples: $(1,1), y = +1$; $(0,0), y = -1$; $(1,0), y = +1$. What is the margin of this classifier?",
     "answer": 0.2,
     "tolerance": 0.0001,

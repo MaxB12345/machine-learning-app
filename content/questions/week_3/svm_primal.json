@@ -1,6 +1,6 @@
 [
   {
-    "id": "w3-svp-001", "week": 3, "topic": "svm-primal", "type": "flashcard", "difficulty": 1,
+    "id": "w3-svp-001", "week": 3, "topic": "max-margin-primal", "type": "flashcard", "difficulty": 1,
     "prompt": "Write down the hard-margin SVM primal optimisation problem.",
     "answer": "$\\arg\\min_{\\mathbf{w},b} \\frac12\\|\\mathbf{w}\\|^2$ subject to $y^{(n)}(\\mathbf{w}^T\\phi(\\mathbf{x}^{(n)}) + b) \\ge 1$ for all $(\\mathbf{x}^{(n)}, y^{(n)}) \\in \\mathcal{T}$.",
     "explanation": "A quadratic objective with linear inequality constraints: a quadratic programming problem. With $\\phi(\\mathbf{x}) = \\mathbf{x}$ it is a linear SVM.",
@@ -8,7 +8,7 @@
     "sources": [{"file": "week_3/slides/3c-svm-primal.pdf", "page": 26, "quote": "Minimise a quadratic function subject to a set of linear inequality constraints."}]
   },
   {
-    "id": "w3-svp-002", "week": 3, "topic": "svm-primal", "type": "flashcard", "difficulty": 1,
+    "id": "w3-svp-002", "week": 3, "topic": "max-margin-primal", "type": "flashcard", "difficulty": 1,
     "prompt": "What is the SVM hypothesis set (prediction rule)?",
     "answer": "$h'(\\mathbf{x}) = +1$ if $\\mathbf{w}^T\\mathbf{x} + b > 0$ and $-1$ if $\\mathbf{w}^T\\mathbf{x} + b < 0$, for all $\\mathbf{w} \\in \\mathbb{R}^d$, $b \\in \\mathbb{R}$.",
     "explanation": "We write $h(\\mathbf{x}) = \\mathbf{w}^T\\mathbf{x} + b$. Unlike logistic regression, the classes are $+1$ and $-1$ and the bias $b$ is kept separate from $\\mathbf{w}$.",
@@ -16,7 +16,7 @@
     "sources": [{"file": "week_3/slides/3c-svm-primal.pdf", "page": 10, "quote": "wTx+b>0→class +1"}]
   },
   {
-    "id": "w3-svp-003", "week": 3, "topic": "svm-primal", "type": "mcq", "difficulty": 2,
+    "id": "w3-svp-003", "week": 3, "topic": "max-margin-primal", "type": "mcq", "difficulty": 2,
     "prompt": "Why is it convenient to label the two classes $+1$ and $-1$ in the SVM?",
     "choices": ["Correct classification of every example can then be written as one constraint, $y^{(n)}h(\\mathbf{x}^{(n)}) > 0$", "It makes $\\|\\mathbf{w}\\|$ equal to 1", "It lets us use the sigmoid function", "It guarantees the data is linearly separable"],
     "answer": 0,
@@ -25,7 +25,7 @@
     "sources": [{"file": "week_3/worksheet/3c-SVM_Primal_Representation-answers.pdf", "page": 8, "quote": "It is convenient to represent the two classes as +1 and -1 because this enables us to"}]
   },
   {
-    "id": "w3-svp-004", "week": 3, "topic": "svm-primal", "type": "multi", "difficulty": 1,
+    "id": "w3-svp-004", "week": 3, "topic": "max-margin-primal", "type": "multi", "difficulty": 1,
     "prompt": "Which statements about SVMs are correct? Select all that apply.",
     "choices": ["SVMs have mechanisms to reduce the chances of overfitting, especially with high-dimensional data", "SVMs can be adapted to linear and nonlinear tasks using nonlinear transformations", "SVMs aim to maximise the margin between the support vectors and the decision boundary, subject to constraints"],
     "answer": [0, 1, 2],
@@ -34,7 +34,7 @@
     "sources": [{"file": "week_3/worksheet/3c-SVM_Primal_Representation-answers.pdf", "page": 2, "quote": "SVMs are designed to maximize the margin between classes. This property reduces the"}]
   },
   {
-    "id": "w3-svp-005", "week": 3, "topic": "svm-primal", "type": "multi", "difficulty": 2,
+    "id": "w3-svp-005", "week": 3, "topic": "max-margin-primal", "type": "multi", "difficulty": 2,
     "prompt": "For $\\min_{\\mathbf{w},b}\\frac12\\|\\mathbf{w}\\|^2$ s.t. $y^{(n)}(\\mathbf{w}^T\\mathbf{x}^{(n)} + b) \\ge 1$, which statements are correct?",
     "choices": ["Labels $\\{+1,-1\\}$ let us write all constraints as $y^{(n)}h(\\mathbf{x}^{(n)}) \\ge 1$", "Multiplying $(\\mathbf{w}, b)$ by any $\\alpha > 0$ changes neither the prediction sign nor the perpendicular distances", "At the optimum, at least one example satisfies $y^{(n)}h(\\mathbf{x}^{(n)}) = 1$", "The maximum margin equals $\\min_n y^{(n)}h(\\mathbf{x}^{(n)})$"],
     "answer": [0, 1, 2],
@@ -43,7 +43,7 @@
     "sources": [{"file": "week_3/worksheet/3c-SVM_Primal_Representation-answers.pdf", "page": 3, "quote": "Correct: A, B, C. Incorrect: D."}, {"file": "week_3/worksheet/3c-SVM_Primal_Representation-answers.pdf", "page": 4, "quote": "Under minyh(x) = 1, the margin is 1/∥w∥."}]
   },
   {
-    "id": "w3-svp-006", "week": 3, "topic": "svm-primal", "type": "order", "difficulty": 2,
+    "id": "w3-svp-006", "week": 3, "topic": "max-margin-primal", "type": "order", "difficulty": 2,
     "prompt": "Put the steps that turn 'maximise the margin' into the SVM primal in the order the lecture uses.",
     "steps": ["$\\arg\\max_{\\mathbf{w},b}\\{\\min_n \\text{dist}(h,\\mathbf{x}^{(n)})\\}$ s.t. $y^{(n)}h(\\mathbf{x}^{(n)}) > 0$", "Write the distance as $\\frac{y^{(n)}h(\\mathbf{x}^{(n)})}{\\|\\mathbf{w}\\|}$ and take $\\frac{1}{\\|\\mathbf{w}\\|}$ out of the min", "Rescale so that $\\min_n y^{(n)}h(\\mathbf{x}^{(n)}) = 1$, leaving $\\arg\\max \\frac{1}{\\|\\mathbf{w}\\|}$", "Maximising $\\frac{1}{\\|\\mathbf{w}\\|}$ is minimising $\\|\\mathbf{w}\\|$", "Loosen the constraint to $y^{(n)}h(\\mathbf{x}^{(n)}) \\ge 1$", "Minimise $\\frac12\\|\\mathbf{w}\\|^2$ instead of $\\|\\mathbf{w}\\|$"],
     "explanation": "The result is a quadratic programming problem that can be solved efficiently.",
@@ -51,7 +51,7 @@
     "sources": [{"file": "week_3/slides/3c-svm-primal.pdf", "page": 20, "quote": "argmax w,b { 1 ∥w∥minn(y(n)h(x(n)))}"}, {"file": "week_3/slides/3c-svm-primal.pdf", "page": 25, "quote": "argmin w,b { 1 2∥w∥2 }"}]
   },
   {
-    "id": "w3-svp-007", "week": 3, "topic": "svm-primal", "type": "mcq", "difficulty": 2,
+    "id": "w3-svp-007", "week": 3, "topic": "max-margin-primal", "type": "mcq", "difficulty": 2,
     "prompt": "Why can the constraint $\\min_n y^{(n)}h(\\mathbf{x}^{(n)}) = 1$ be replaced by $y^{(n)}h(\\mathbf{x}^{(n)}) \\ge 1$ for all $n$?",
     "choices": ["Because minimising $\\|\\mathbf{w}\\|$ pushes the optimum to satisfy the equality for at least one example", "Because the two constraints are identical for every $\\mathbf{w}$", "Because $\\ge$ constraints are easier for gradient descent", "Because every example ends up on the margin"],
     "answer": 0,
@@ -60,7 +60,7 @@
     "sources": [{"file": "week_3/slides/3c-svm-primal.pdf", "page": 24, "quote": "The optimal solution will satisfy the equality in for at least one training example"}]
   },
   {
-    "id": "w3-svp-008", "week": 3, "topic": "svm-primal", "type": "mcq", "difficulty": 1,
+    "id": "w3-svp-008", "week": 3, "topic": "max-margin-primal", "type": "mcq", "difficulty": 1,
     "prompt": "Why does the SVM minimise $\\frac12\\|\\mathbf{w}\\|^2$ rather than $\\|\\mathbf{w}\\|$?",
     "choices": ["It has the same minimiser and makes derivatives simpler", "It gives a wider margin", "It removes the need for constraints", "It makes the problem non-convex"],
     "answer": 0,
@@ -69,7 +69,7 @@
     "sources": [{"file": "week_3/coding/3c_svm_primal.ipynb", "page": 13, "quote": "The factor $1/2$ does not change the minimiser; it makes derivatives simpler."}]
   },
   {
-    "id": "w3-svp-009", "week": 3, "topic": "svm-primal", "type": "truefalse", "difficulty": 1,
+    "id": "w3-svp-009", "week": 3, "topic": "max-margin-primal", "type": "truefalse", "difficulty": 1,
     "prompt": "Every training example that lies exactly on the margin is a support vector.",
     "answer": false,
     "explanation": "Support vectors are the examples on the margin that define the decision boundary, but it can happen that an example on the margin is not a support vector.",
@@ -77,7 +77,7 @@
     "sources": [{"file": "week_3/slides/3c-svm-primal.pdf", "page": 7, "quote": "Note: it may happen that an example that is on the margin is not a support vector."}]
   },
   {
-    "id": "w3-svp-010", "week": 3, "topic": "svm-primal", "type": "multi", "difficulty": 2,
+    "id": "w3-svp-010", "week": 3, "topic": "max-margin-primal", "type": "multi", "difficulty": 2,
     "prompt": "A 2D problem with classes orange and blue can be separated by a straight line. Which basis expansions would let an SVM perfectly separate all training examples?",
     "choices": ["$\\phi(\\mathbf{x}) = (x_1, x_2, x_3)$", "$\\phi(\\mathbf{x}) = (1, x_1, x_2, x_1^2, x_2^2, x_1x_2)$", "$\\phi(\\mathbf{x}) = (x_1, x_2)$", "$\\phi(\\mathbf{x}) = (1, x_1, x_2)$"],
     "answer": [1, 2, 3],
@@ -86,7 +86,7 @@
     "sources": [{"file": "week_3/worksheet/3c-SVM_Primal_Representation-answers.pdf", "page": 9, "quote": "So, embeddings B and D are correct."}, {"file": "week_3/worksheet/3c-SVM_Primal_Representation-answers.pdf", "page": 9, "quote": "So, embedding C is also correct."}]
   },
   {
-    "id": "w3-svp-011", "week": 3, "topic": "svm-primal", "type": "numeric", "difficulty": 1,
+    "id": "w3-svp-011", "week": 3, "topic": "max-margin-primal", "type": "numeric", "difficulty": 1,
     "prompt": "XOR-style problem with $h(\\mathbf{x}) = x_1x_2$. What is $y\\,h(\\mathbf{x})$ for the example $\\mathbf{x} = (1,-1)^T$ with label $-1$?",
     "answer": 1,
     "tolerance": 0.0001,
@@ -95,7 +95,7 @@
     "sources": [{"file": "week_3/worksheet/3c-SVM_Primal_Representation-answers.pdf", "page": 5, "quote": "For the third example:yh(x) =−1×(1× −1) = 1."}]
   },
   {
-    "id": "w3-svp-012", "week": 3, "topic": "svm-primal", "type": "mcq", "difficulty": 1,
+    "id": "w3-svp-012", "week": 3, "topic": "max-margin-primal", "type": "mcq", "difficulty": 1,
     "prompt": "What kind of optimisation problem is the hard-margin SVM primal?",
     "choices": ["Minimise a quadratic function subject to linear inequality constraints", "Minimise a linear function with no constraints", "Maximise a likelihood with gradient descent", "Minimise a non-convex function subject to equality constraints"],
     "answer": 0,
@@ -104,7 +104,7 @@
     "sources": [{"file": "week_3/slides/3c-svm-primal.pdf", "page": 26, "quote": "Minimise a quadratic function subject to a set of linear inequality constraints."}]
   },
   {
-    "id": "w3-svp-013", "week": 3, "topic": "svm-primal", "type": "truefalse", "difficulty": 2,
+    "id": "w3-svp-013", "week": 3, "topic": "max-margin-primal", "type": "truefalse", "difficulty": 2,
     "prompt": "Support vector machines are linear classifiers, even though they can learn nonlinear boundaries.",
     "answer": true,
     "explanation": "The boundary $\\mathbf{w}^T\\phi(\\mathbf{x}) + b = 0$ is linear in the embedding $\\phi(\\mathbf{x})$. A nonlinear $\\phi$ makes it nonlinear in the original space.",
@@ -112,7 +112,7 @@
     "sources": [{"file": "week_3/slides/3c-svm-primal.pdf", "page": 33, "quote": "Support vector machines are linear classiﬁers."}]
   },
   {
-    "id": "w3-svp-014", "week": 3, "topic": "svm-primal", "type": "mcq", "difficulty": 1,
+    "id": "w3-svp-014", "week": 3, "topic": "max-margin-primal", "type": "mcq", "difficulty": 1,
     "prompt": "What is a **linear SVM**?",
     "choices": ["An SVM that uses $\\phi(\\mathbf{x}) = \\mathbf{x}$", "An SVM trained with gradient descent", "An SVM whose margin is 1", "An SVM with a quadratic basis expansion"],
     "answer": 0,
@@ -121,7 +121,7 @@
     "sources": [{"file": "week_3/slides/3c-svm-primal.pdf", "page": 29, "quote": "We refer to SVM as a linear SVM when using"}]
   },
   {
-    "id": "w3-svp-015", "week": 3, "topic": "svm-primal", "type": "mcq", "difficulty": 1,
+    "id": "w3-svp-015", "week": 3, "topic": "max-margin-primal", "type": "mcq", "difficulty": 1,
     "prompt": "Why place the decision boundary so that it maximises the margin?",
     "choices": ["It can help to avoid overfitting", "It makes training error exactly zero on unseen data", "It removes the need for labelled data", "It maximises the likelihood"],
     "answer": 0,
