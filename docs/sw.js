@@ -3,7 +3,7 @@
  * and refresh the cache in the background so updates arrive on the next open.
  */
 
-const CACHE_NAME = "ml-mastery-0eca7190";
+const CACHE_NAME = "ml-mastery-4a39c682";
 const SHELL_FILES = [
   "./", "index.html", "manifest.webmanifest", "css/app.css", "data/questions.json",
   "icons/icon-192.png", "icons/icon-512.png", "icons/apple-touch-icon.png",
@@ -17,8 +17,12 @@ const SHELL_FILES = [
   "js/types/numeric.js", "js/types/order.js", "js/types/code.js",
 ];
 
+/** Requests that must reach the network first, so new questions show on the next open. */
+const FRESH_PATHS = ["data/questions.json"];
+
 self.addEventListener("install", (event) => {
-  event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(SHELL_FILES)));
+  const requests = SHELL_FILES.map((file) => new Request(file, { cache: "reload" }));
+  event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(requests)));
   self.skipWaiting();
 });
 
@@ -32,17 +36,35 @@ self.addEventListener("activate", (event) => {
 
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
-  event.respondWith(staleWhileRevalidate(event.request));
+  const refresh = refreshCache(event.request);
+  event.waitUntil(refresh.catch(() => undefined));
+  const strategy = mustBeFresh(event.request) ? networkFirst : cacheFirst;
+  event.respondWith(strategy(event.request, refresh));
 });
 
-async function staleWhileRevalidate(request) {
-  const cache = await caches.open(CACHE_NAME);
-  const cached = await cache.match(request, { ignoreSearch: true });
-  const refresh = fetch(request)
-    .then((response) => {
-      if (response.ok) cache.put(request, response.clone());
-      return response;
-    })
-    .catch(() => cached);
-  return cached ?? refresh;
+function mustBeFresh(request) {
+  const path = new URL(request.url).pathname;
+  return request.mode === "navigate" || FRESH_PATHS.some((fresh) => path.endsWith(fresh));
+}
+
+async function refreshCache(request) {
+  const response = await fetch(request, { cache: "no-cache" });
+  if (response.ok) await (await caches.open(CACHE_NAME)).put(request, response.clone());
+  return response;
+}
+
+async function cached(request) {
+  return (await caches.open(CACHE_NAME)).match(request, { ignoreSearch: true });
+}
+
+async function networkFirst(request, refresh) {
+  try {
+    return await refresh;
+  } catch {
+    return (await cached(request)) ?? Response.error();
+  }
+}
+
+async function cacheFirst(request, refresh) {
+  return (await cached(request)) ?? refresh;
 }
