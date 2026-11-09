@@ -1,0 +1,82 @@
+[
+  {
+    "id": "w5-slk-001", "week": 5, "topic": "slack-variables", "type": "flashcard", "difficulty": 1,
+    "prompt": "What is a **slack variable** $\\xi^{(n)}$?",
+    "answer": "A value $\\xi^{(n)} \\ge 0$ for each training example that says by how much it can be within the margin or on the wrong side of the decision boundary. The constraint becomes $y^{(n)}h(\\mathbf{x}^{(n)}) \\ge 1 - \\xi^{(n)}$.",
+    "explanation": "$\\xi = 0$: on or outside the margin, correctly classified. $0 < \\xi < 1$: inside the margin, correctly classified. $\\xi = 1$: on the decision boundary. $\\xi > 1$: misclassified.",
+    "tags": ["slack", "definition"],
+    "sources": [{"file": "week_5/slides/5a-kernels-soft-svm.pdf", "page": 25, "quote": "These variables tell us by how much an example can be within the margin or on the wrong side of the decision boundary."}]
+  },
+  {
+    "id": "w5-slk-002", "week": 5, "topic": "slack-variables", "type": "numeric", "difficulty": 1,
+    "prompt": "$y^{(1)}h(\\mathbf{x}^{(1)}) = 1.2$. Compute $\\xi^{(1)} = \\max\\{0, 1 - y^{(1)}h(\\mathbf{x}^{(1)})\\}$.",
+    "answer": 0,
+    "tolerance": 0.0001,
+    "explanation": "$\\max(0, -0.2) = 0$: correctly classified and outside the margin.",
+    "tags": ["slack", "calculation"],
+    "sources": [{"file": "week_5/worksheets/5a-Soft_Margin_SVM-answers.pdf", "page": 9, "quote": "Example 1:yh(x) = 1.2⇒ξ= max(0,1−1.2) = 0."}]
+  },
+  {
+    "id": "w5-slk-003", "week": 5, "topic": "slack-variables", "type": "numeric", "difficulty": 1,
+    "prompt": "$y^{(2)}h(\\mathbf{x}^{(2)}) = 0.8$. Compute $\\xi^{(2)}$.",
+    "answer": 0.2,
+    "tolerance": 0.0001,
+    "explanation": "$1 - 0.8 = 0.2$: inside the margin but correctly classified.",
+    "tags": ["slack", "calculation"],
+    "sources": [{"file": "week_5/worksheets/5a-Soft_Margin_SVM-answers.pdf", "page": 9, "quote": "Example 2:yh(x) = 0.8⇒ξ= 1−0.8 = 0.2."}]
+  },
+  {
+    "id": "w5-slk-004", "week": 5, "topic": "slack-variables", "type": "numeric", "difficulty": 1,
+    "prompt": "$y^{(3)}h(\\mathbf{x}^{(3)}) = -0.5$. Compute $\\xi^{(3)}$.",
+    "answer": 1.5,
+    "tolerance": 0.0001,
+    "explanation": "$1 - (-0.5) = 1.5 > 1$: misclassified.",
+    "tags": ["slack", "calculation"],
+    "sources": [{"file": "week_5/worksheets/5a-Soft_Margin_SVM-answers.pdf", "page": 9, "quote": "Example 3:yh(x) =−0.5⇒ξ= 1−(−0.5) = 1.5."}]
+  },
+  {
+    "id": "w5-slk-005", "week": 5, "topic": "slack-variables", "type": "mcq", "difficulty": 1,
+    "prompt": "At the optimum a training example has $\\xi = 0.4$. Where is it?",
+    "choices": ["Inside the margin, on the correct side of the decision boundary", "On the margin", "On the decision boundary", "On the wrong side of the decision boundary"],
+    "answer": 0,
+    "explanation": "$\\xi = 0$: on or outside the margin, correctly classified. $0 < \\xi < 1$: inside the margin, correctly classified. $\\xi = 1$: on the decision boundary. $\\xi > 1$: misclassified.",
+    "tags": ["slack", "geometry"],
+    "sources": [{"file": "week_5/worksheets/5a-Soft_Margin_SVM-answers.pdf", "page": 7, "quote": "correctly classified but margin-violating.⇒ξ= 0.4"}]
+  },
+  {
+    "id": "w5-slk-006", "week": 5, "topic": "slack-variables", "type": "mcq", "difficulty": 1,
+    "prompt": "At the optimum a training example has $\\xi = 1$. Where is it?",
+    "choices": ["Exactly on the decision boundary", "Exactly on the margin", "Inside the margin, correctly classified", "Misclassified"],
+    "answer": 0,
+    "explanation": "$y\\,h(\\mathbf{x}) = 1 - 1 = 0$, so $h(\\mathbf{x}) = 0$.",
+    "tags": ["slack", "geometry"],
+    "sources": [{"file": "week_5/worksheets/5a-Soft_Margin_SVM-answers.pdf", "page": 7, "quote": "C:Liesexactly on the decision boundary, meaning the margin constraint is violated"}]
+  },
+  {
+    "id": "w5-slk-007", "week": 5, "topic": "slack-variables", "type": "mcq", "difficulty": 2,
+    "prompt": "Points A to E around a soft-margin SVM have slacks $\\{0, 0, 0.4, 1.0, 1.1\\}$. Point B is within the margin and slightly on the wrong side of the decision boundary. Which slack does B have?",
+    "choices": ["$1.1$", "$0.4$", "$1.0$", "$0$"],
+    "answer": 0,
+    "explanation": "Being on the wrong side of the boundary means $\\xi > 1$. The two zeros belong to a point on the margin and a point well outside it.",
+    "tags": ["slack", "geometry"],
+    "sources": [{"file": "week_5/worksheets/5a-Soft_Margin_SVM-answers.pdf", "page": 7, "quote": "B:Lieswithin the marginand slightly on thewrong sideof the decision boundary"}]
+  },
+  {
+    "id": "w5-slk-008", "week": 5, "topic": "slack-variables", "type": "multi", "difficulty": 2,
+    "prompt": "Which statements about slack variables are true? Select all that apply.",
+    "choices": ["Only misclassified or within-margin examples have slack variables", "Slacks act as a penalty in the objective for examples that are misclassified or within the margin", "A misclassified example always has a larger slack than any within-margin example", "A misclassified example has a larger slack than a correctly classified example within the margin", "The SVM minimises the values of the slack variables", "The SVM minimises the number of slack variables"],
+    "answer": [1, 3, 4],
+    "explanation": "Every example has a slack (many are 0). Statement C compares any example, which is too strong. We minimise the values of the slacks, not how many there are.",
+    "tags": ["slack"],
+    "sources": [{"file": "week_5/worksheets/5a-Soft_Margin_SVM-answers.pdf", "page": 4, "quote": "We have slack variables associated to all training examples, even though some of"}, {"file": "week_5/worksheets/5a-Soft_Margin_SVM-answers.pdf", "page": 5, "quote": "We are not trying to minimise the number of slack variables, but their values."}]
+  },
+  {
+    "id": "w5-slk-009", "week": 5, "topic": "slack-variables", "type": "mcq", "difficulty": 2,
+    "prompt": "A soft-margin SVM has $y^{(n)}h(\\mathbf{x}^{(n)}) \\ge 1 - \\xi^{(n)}$ with $\\xi^{(n)} > 1$. What does that allow?",
+    "choices": ["$y^{(n)}h(\\mathbf{x}^{(n)})$ can be negative, so the example can be misclassified", "The example must be on the margin", "The example must be outside the margin", "$h(\\mathbf{x}^{(n)})$ must be exactly 0"],
+    "answer": 0,
+    "explanation": "$1 - \\xi^{(n)} < 0$, so the constraint allows a negative $y\\,h$.",
+    "tags": ["slack", "constraints"],
+    "sources": [{"file": "week_5/slides/5a-kernels-soft-svm.pdf", "page": 26, "quote": "ξ(n)>1 y(n)h(x(n))≥−v,v>0"}]
+  }
+]

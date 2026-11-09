@@ -1,0 +1,72 @@
+[
+  {
+    "id": "w3-svc-001", "week": 3, "topic": "max-margin-coding", "type": "code", "difficulty": 1,
+    "prompt": "What is printed?",
+    "code": "X = np.array([[1.0, 2.0]])\nw = np.array([1.0, -1.0])\nprint(predict(X, w, 0.5))",
+    "choices": ["[-1]", "[1]", "[-0.5]", "[0]"],
+    "answer": 0,
+    "explanation": "$h = 1 - 2 + 0.5 = -0.5 < 0$, so the predicted label is $-1$.",
+    "tags": ["prediction"],
+    "sources": [{"file": "week_3/coding/3c_svm_primal.ipynb", "page": 6, "quote": "return np.where(decision_function(X, w, b) >= 0, 1, -1)"}]
+  },
+  {
+    "id": "w3-svc-002", "week": 3, "topic": "max-margin-coding", "type": "code", "difficulty": 2,
+    "prompt": "What is printed?",
+    "code": "X = np.array([[2.0, 0.0], [0.0, 1.0]])\ny = np.array([1.0, -1.0])\nw = np.array([1.0, 1.0])\nprint(signed_margins(X, y, w, -0.5))",
+    "choices": ["[ 1.5 -0.5]", "[1.5 0.5]", "[ 1.5  0.5]", "[-1.5  0.5]"],
+    "answer": 0,
+    "explanation": "$h = (1.5, 0.5)$. Multiplying by $y = (1, -1)$ gives $(1.5, -0.5)$. The second example is misclassified.",
+    "tags": ["signed-margin"],
+    "sources": [{"file": "week_3/coding/3c_svm_primal.ipynb", "page": 10, "quote": "return y * decision_function(X, w, b)"}]
+  },
+  {
+    "id": "w3-svc-003", "week": 3, "topic": "max-margin-coding", "type": "code", "difficulty": 2,
+    "prompt": "What is printed?",
+    "code": "X = np.array([[3.0, 4.0], [-3.0, -4.0]])\ny = np.array([1.0, -1.0])\nw = np.array([3.0, 4.0])\nprint(geometric_margin(X, y, w, 0.0))",
+    "choices": ["5.0", "25.0", "1.0", "0.2"],
+    "answer": 0,
+    "explanation": "Both signed margins are 25 and $\\|\\mathbf{w}\\| = 5$, so the margin is $25/5 = 5$.",
+    "tags": ["margin"],
+    "sources": [{"file": "week_3/coding/3c_svm_primal.ipynb", "page": 10, "quote": "return np.min(signed_margins(X, y, w, b)) / np.linalg.norm(w)"}]
+  },
+  {
+    "id": "w3-svc-004", "week": 3, "topic": "max-margin-coding", "type": "code", "difficulty": 2,
+    "prompt": "What is printed?",
+    "code": "X = np.array([[0.4, 0.4]])\ny = np.array([1.0])\nprint(is_feasible(X, y, np.array([1.0, 1.0]), 0.0))",
+    "choices": ["False", "True"],
+    "answer": 0,
+    "explanation": "$y\\,h = 0.8 < 1$. The example is correctly classified but violates the hard-margin constraint $y\\,h(\\mathbf{x}) \\ge 1$.",
+    "tags": ["constraints"],
+    "sources": [{"file": "week_3/coding/3c_svm_primal.ipynb", "page": 14, "quote": "return bool(np.all(constraint_values(X, y, w, b) >= 1 - tolerance))"}]
+  },
+  {
+    "id": "w3-svc-005", "week": 3, "topic": "max-margin-coding", "type": "code", "difficulty": 1,
+    "prompt": "What is printed?",
+    "code": "print(primal_objective(np.array([3.0, 4.0])))",
+    "choices": ["12.5", "25.0", "5.0", "2.5"],
+    "answer": 0,
+    "explanation": "$\\frac12\\|\\mathbf{w}\\|^2 = \\frac12(9 + 16) = 12.5$.",
+    "tags": ["primal"],
+    "sources": [{"file": "week_3/coding/3c_svm_primal.ipynb", "page": 14, "quote": "return 0.5 * np.dot(w, w)"}]
+  },
+  {
+    "id": "w3-svc-006", "week": 3, "topic": "max-margin-coding", "type": "code", "difficulty": 2,
+    "prompt": "A point lies exactly on the decision boundary. What does the notebook's `predict` print?",
+    "code": "X = np.array([[1.0, -1.0]])\nprint(predict(X, np.array([1.0, 1.0]), 0.0))",
+    "choices": ["[1]", "[-1]", "[0]", "An error"],
+    "answer": 0,
+    "explanation": "$h = 0$ and the code uses `>= 0`, so it returns $+1$. The lecture's rule only defines $h > 0$ and $h < 0$.",
+    "tags": ["prediction"],
+    "sources": [{"file": "week_3/coding/3c_svm_primal.ipynb", "page": 6, "quote": "return np.where(decision_function(X, w, b) >= 0, 1, -1)"}]
+  },
+  {
+    "id": "w3-svc-007", "week": 3, "topic": "max-margin-coding", "type": "code", "difficulty": 2,
+    "prompt": "Under the normalisation $\\min_n y^{(n)}h(\\mathbf{x}^{(n)}) = 1$, which expression gives the margin width $\\gamma$ of the fitted SVM?",
+    "code": "w_fit = svm_demo.coef_[0]\nb_fit = svm_demo.intercept_[0]",
+    "choices": ["1 / np.linalg.norm(w_fit)", "np.linalg.norm(w_fit)", "2 * np.linalg.norm(w_fit)", "b_fit / np.linalg.norm(w_fit)"],
+    "answer": 0,
+    "explanation": "$\\gamma = 1/\\|\\mathbf{w}\\|$. The notebook prints it in the plot title.",
+    "tags": ["margin"],
+    "sources": [{"file": "week_3/coding/3c_svm_primal.ipynb", "page": 17, "quote": "gamma = {1 / np.linalg.norm(w_fit):.2f}"}]
+  }
+]

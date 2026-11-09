@@ -1,0 +1,72 @@
+[
+  {
+    "id": "w5-skk-001", "week": 5, "topic": "soft-margin-optimality", "type": "flashcard", "difficulty": 1,
+    "prompt": "State the three soft-margin KKT cases used by SMO.",
+    "answer": "$0 < a^{(n)} < C \\iff y^{(n)}h(\\mathbf{x}^{(n)}) = 1$ (support vector on the margin). $a^{(n)} = C \\iff y^{(n)}h(\\mathbf{x}^{(n)}) \\le 1$ (support vector on or violating the margin). $a^{(n)} = 0 \\iff y^{(n)}h(\\mathbf{x}^{(n)}) \\ge 1$ (not a support vector).",
+    "explanation": "SMO checks these within a tolerance to pick multipliers and to decide when to stop.",
+    "tags": ["kkt"],
+    "sources": [{"file": "week_5/slides/5c-SMO.pdf", "page": 23, "quote": "Support vectors on or violating the margin"}]
+  },
+  {
+    "id": "w5-skk-002", "week": 5, "topic": "soft-margin-optimality", "type": "mcq", "difficulty": 1,
+    "prompt": "Which conditions does SMO check at each iteration to see if the solution is approaching optimality?",
+    "choices": ["Whether the KKT conditions are met within a specified tolerance", "Whether the KKT conditions are fully met", "Whether all support vectors lie exactly on the margin"],
+    "answer": 0,
+    "explanation": "If no example violates the KKT conditions within the tolerance, it has converged.",
+    "tags": ["kkt", "convergence"],
+    "sources": [{"file": "week_5/worksheets/5c-Sequential_Minimal_Optimisation-answers.pdf", "page": 2, "quote": "SMO checks for optimality by verifying whether the KKT conditions are met within a"}]
+  },
+  {
+    "id": "w5-skk-003", "week": 5, "topic": "soft-margin-optimality", "type": "mcq", "difficulty": 2,
+    "prompt": "Soft-margin SVM, $C = 1$, $a^{(2)} = 0.6$. Where is example 2?",
+    "choices": ["A support vector exactly on the margin", "Not a support vector", "A support vector inside the margin", "A misclassified support vector"],
+    "answer": 0,
+    "explanation": "$0 < a < C$ forces $\\xi = 0$ and $y\\,h(\\mathbf{x}) = 1$.",
+    "tags": ["kkt", "support-vectors"],
+    "sources": [{"file": "week_5/worksheets/5c-Sequential_Minimal_Optimisation-answers.pdf", "page": 11, "quote": "Therefore,y (2)h(x(2)) = 1, i.e., the point lies exactly on the margin."}]
+  },
+  {
+    "id": "w5-skk-004", "week": 5, "topic": "soft-margin-optimality", "type": "multi", "difficulty": 2,
+    "prompt": "Soft-margin SVM, $C = 1$, $a^{(3)} = 1$. Which could example 3 be? Select all that apply.",
+    "choices": ["A support vector on the margin", "A correctly classified support vector inside the margin", "A misclassified support vector", "Not a support vector"],
+    "answer": [0, 1, 2],
+    "explanation": "$a = C$ makes $(C - a)\\xi = 0$ hold for any $\\xi \\ge 0$, so the position depends on $\\xi$. It is always a support vector because $a \\ne 0$.",
+    "tags": ["kkt", "support-vectors"],
+    "sources": [{"file": "week_5/worksheets/5c-Sequential_Minimal_Optimisation-answers.pdf", "page": 11, "quote": "In all these cases it is a support vector."}]
+  },
+  {
+    "id": "w5-skk-005", "week": 5, "topic": "soft-margin-optimality", "type": "mcq", "difficulty": 1,
+    "prompt": "Soft-margin SVM, $a^{(1)} = 0$. What is example 1?",
+    "choices": ["Not a support vector", "A support vector on the margin", "A misclassified support vector", "A support vector inside the margin"],
+    "answer": 0,
+    "explanation": "With $a = 0$ it does not appear in $h(\\mathbf{x}) = \\sum_n a^{(n)}y^{(n)}k(\\mathbf{x},\\mathbf{x}^{(n)}) + b$.",
+    "tags": ["kkt", "support-vectors"],
+    "sources": [{"file": "week_5/worksheets/5c-Sequential_Minimal_Optimisation-answers.pdf", "page": 11, "quote": "⇒Not a support vector."}]
+  },
+  {
+    "id": "w5-skk-006", "week": 5, "topic": "soft-margin-optimality", "type": "flashcard", "difficulty": 3,
+    "prompt": "Beyond the lecture (the worksheet extends the slides here). List the KKT conditions for the soft-margin SVM.",
+    "answer": "Stationarity: $\\nabla_{\\mathbf{w}}L = 0$, $\\nabla_{\\boldsymbol\\xi}L = 0$, $\\partial L/\\partial b = 0$. Complementary slackness: $a^{(n)}(1 - \\xi^{(n)} - y^{(n)}(\\mathbf{w}^T\\phi(\\mathbf{x}^{(n)}) + b)) = 0$ and $\\beta^{(n)}\\xi^{(n)} = 0$. Feasibility: $a^{(n)} \\ge 0$, $\\beta^{(n)} \\ge 0$, $y^{(n)}h(\\mathbf{x}^{(n)}) \\ge 1 - \\xi^{(n)}$, $\\xi^{(n)} \\ge 0$.",
+    "explanation": "$\\beta^{(n)}$ are the multipliers for $\\xi^{(n)} \\ge 0$. Stationarity in $\\xi$ gives $\\beta^{(n)} = C - a^{(n)}$, which is where the box constraint $a^{(n)} \\le C$ comes from.",
+    "tags": ["kkt", "beyond-lecture"],
+    "sources": [{"file": "week_5/worksheets/5c-Sequential_Minimal_Optimisation-answers.pdf", "page": 7, "quote": "−β(n)ξ(n) = 0,∀n∈ {1,2,· · ·, N}"}]
+  },
+  {
+    "id": "w5-skk-007", "week": 5, "topic": "soft-margin-optimality", "type": "short", "difficulty": 3,
+    "prompt": "Beyond the lecture (the worksheet extends the slides here). Using $a^{(n)}(1 - \\xi^{(n)} - y^{(n)}h(\\mathbf{x}^{(n)})) = 0$ and $(C - a^{(n)})\\xi^{(n)} = 0$, show that support vectors with $0 < a^{(n)} < C$ lie exactly on the margin.",
+    "answer": "$a^{(n)} \\ne 0$, so $y^{(n)}h(\\mathbf{x}^{(n)}) = 1 - \\xi^{(n)}$. $C - a^{(n)} \\ne 0$, so $\\xi^{(n)} = 0$. Together, $y^{(n)}h(\\mathbf{x}^{(n)}) = 1$, so the distance is $1/\\|\\mathbf{w}\\|$: exactly the margin.",
+    "steps": ["From the first condition with $a^{(n)} > 0$: $y\\,h = 1 - \\xi$", "From the second with $a^{(n)} < C$: $\\xi = 0$", "So $y\\,h = 1$ and the distance is $\\frac{1}{\\|\\mathbf{w}\\|}$", "With $a^{(n)} = C$, $\\xi$ can be any value $\\ge 0$: on the margin, inside it, on the boundary or misclassified"],
+    "explanation": "$\\beta^{(n)} = C - a^{(n)}$ comes from KKT stationarity.",
+    "tags": ["kkt", "proof", "beyond-lecture"],
+    "sources": [{"file": "week_5/worksheets/5c-Sequential_Minimal_Optimisation-answers.pdf", "page": 8, "quote": "So,y (n)(wT ϕ(x(n)) +b) = 1−ξ (n)."}]
+  },
+  {
+    "id": "w5-skk-008", "week": 5, "topic": "soft-margin-optimality", "type": "short", "difficulty": 3,
+    "prompt": "Beyond the lecture (the worksheet extends the slides here). Prove that at the optimum, whenever $\\xi^{(n)} > 0$, the constraint $y^{(n)}h(\\mathbf{x}^{(n)}) \\ge 1 - \\xi^{(n)}$ holds with equality (for $C > 0$).",
+    "answer": "If $0 < a^{(n)} < C$ then $\\xi^{(n)} = 0$, so that case doesn't apply. If $a^{(n)} = 0$ then $(C - 0)\\xi^{(n)} = 0$, and $C > 0$ gives $\\xi^{(n)} = 0$, so that case doesn't apply either. The only case with $\\xi^{(n)} > 0$ is $a^{(n)} = C \\ne 0$, where complementary slackness forces $y^{(n)}h(\\mathbf{x}^{(n)}) = 1 - \\xi^{(n)}$.",
+    "steps": ["Split into $0 < a < C$, $a = 0$ and $a = C$", "$0 < a < C$ gives $\\xi = 0$", "$a = 0$ gives $C\\xi = 0$, so $\\xi = 0$ when $C > 0$", "$a = C > 0$: the first condition gives $y\\,h = 1 - \\xi$ exactly"],
+    "explanation": "So $\\xi^{(n)}$ captures exactly how much the example violates the margin.",
+    "tags": ["kkt", "proof", "beyond-lecture"],
+    "sources": [{"file": "week_5/worksheets/5c-Sequential_Minimal_Optimisation-answers.pdf", "page": 10, "quote": "Therefore, so long asC >0, we know thatξ (n) = 0."}]
+  }
+]

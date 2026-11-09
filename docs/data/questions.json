@@ -3539,5 +3539,4398 @@
     "page": 13
    }
   ]
+ },
+ {
+  "id": "w3-svc-001",
+  "week": 3,
+  "topic": "max-margin-coding",
+  "type": "code",
+  "difficulty": 1,
+  "prompt": "What is printed?",
+  "code": "X = np.array([[1.0, 2.0]])\nw = np.array([1.0, -1.0])\nprint(predict(X, w, 0.5))",
+  "choices": [
+   "[-1]",
+   "[1]",
+   "[-0.5]",
+   "[0]"
+  ],
+  "answer": 0,
+  "explanation": "$h = 1 - 2 + 0.5 = -0.5 < 0$, so the predicted label is $-1$.",
+  "tags": [
+   "prediction"
+  ],
+  "sources": [
+   {
+    "file": "week_3/coding/3c_svm_primal.ipynb",
+    "page": 6
+   }
+  ]
+ },
+ {
+  "id": "w3-svc-002",
+  "week": 3,
+  "topic": "max-margin-coding",
+  "type": "code",
+  "difficulty": 2,
+  "prompt": "What is printed?",
+  "code": "X = np.array([[2.0, 0.0], [0.0, 1.0]])\ny = np.array([1.0, -1.0])\nw = np.array([1.0, 1.0])\nprint(signed_margins(X, y, w, -0.5))",
+  "choices": [
+   "[ 1.5 -0.5]",
+   "[1.5 0.5]",
+   "[ 1.5  0.5]",
+   "[-1.5  0.5]"
+  ],
+  "answer": 0,
+  "explanation": "$h = (1.5, 0.5)$. Multiplying by $y = (1, -1)$ gives $(1.5, -0.5)$. The second example is misclassified.",
+  "tags": [
+   "signed-margin"
+  ],
+  "sources": [
+   {
+    "file": "week_3/coding/3c_svm_primal.ipynb",
+    "page": 10
+   }
+  ]
+ },
+ {
+  "id": "w3-svc-003",
+  "week": 3,
+  "topic": "max-margin-coding",
+  "type": "code",
+  "difficulty": 2,
+  "prompt": "What is printed?",
+  "code": "X = np.array([[3.0, 4.0], [-3.0, -4.0]])\ny = np.array([1.0, -1.0])\nw = np.array([3.0, 4.0])\nprint(geometric_margin(X, y, w, 0.0))",
+  "choices": [
+   "5.0",
+   "25.0",
+   "1.0",
+   "0.2"
+  ],
+  "answer": 0,
+  "explanation": "Both signed margins are 25 and $\\|\\mathbf{w}\\| = 5$, so the margin is $25/5 = 5$.",
+  "tags": [
+   "margin"
+  ],
+  "sources": [
+   {
+    "file": "week_3/coding/3c_svm_primal.ipynb",
+    "page": 10
+   }
+  ]
+ },
+ {
+  "id": "w3-svc-004",
+  "week": 3,
+  "topic": "max-margin-coding",
+  "type": "code",
+  "difficulty": 2,
+  "prompt": "What is printed?",
+  "code": "X = np.array([[0.4, 0.4]])\ny = np.array([1.0])\nprint(is_feasible(X, y, np.array([1.0, 1.0]), 0.0))",
+  "choices": [
+   "False",
+   "True"
+  ],
+  "answer": 0,
+  "explanation": "$y\\,h = 0.8 < 1$. The example is correctly classified but violates the hard-margin constraint $y\\,h(\\mathbf{x}) \\ge 1$.",
+  "tags": [
+   "constraints"
+  ],
+  "sources": [
+   {
+    "file": "week_3/coding/3c_svm_primal.ipynb",
+    "page": 14
+   }
+  ]
+ },
+ {
+  "id": "w3-svc-005",
+  "week": 3,
+  "topic": "max-margin-coding",
+  "type": "code",
+  "difficulty": 1,
+  "prompt": "What is printed?",
+  "code": "print(primal_objective(np.array([3.0, 4.0])))",
+  "choices": [
+   "12.5",
+   "25.0",
+   "5.0",
+   "2.5"
+  ],
+  "answer": 0,
+  "explanation": "$\\frac12\\|\\mathbf{w}\\|^2 = \\frac12(9 + 16) = 12.5$.",
+  "tags": [
+   "primal"
+  ],
+  "sources": [
+   {
+    "file": "week_3/coding/3c_svm_primal.ipynb",
+    "page": 14
+   }
+  ]
+ },
+ {
+  "id": "w3-svc-006",
+  "week": 3,
+  "topic": "max-margin-coding",
+  "type": "code",
+  "difficulty": 2,
+  "prompt": "A point lies exactly on the decision boundary. What does the notebook's `predict` print?",
+  "code": "X = np.array([[1.0, -1.0]])\nprint(predict(X, np.array([1.0, 1.0]), 0.0))",
+  "choices": [
+   "[1]",
+   "[-1]",
+   "[0]",
+   "An error"
+  ],
+  "answer": 0,
+  "explanation": "$h = 0$ and the code uses `>= 0`, so it returns $+1$. The lecture's rule only defines $h > 0$ and $h < 0$.",
+  "tags": [
+   "prediction"
+  ],
+  "sources": [
+   {
+    "file": "week_3/coding/3c_svm_primal.ipynb",
+    "page": 6
+   }
+  ]
+ },
+ {
+  "id": "w3-svc-007",
+  "week": 3,
+  "topic": "max-margin-coding",
+  "type": "code",
+  "difficulty": 2,
+  "prompt": "Under the normalisation $\\min_n y^{(n)}h(\\mathbf{x}^{(n)}) = 1$, which expression gives the margin width $\\gamma$ of the fitted SVM?",
+  "code": "w_fit = svm_demo.coef_[0]\nb_fit = svm_demo.intercept_[0]",
+  "choices": [
+   "1 / np.linalg.norm(w_fit)",
+   "np.linalg.norm(w_fit)",
+   "2 * np.linalg.norm(w_fit)",
+   "b_fit / np.linalg.norm(w_fit)"
+  ],
+  "answer": 0,
+  "explanation": "$\\gamma = 1/\\|\\mathbf{w}\\|$. The notebook prints it in the plot title.",
+  "tags": [
+   "margin"
+  ],
+  "sources": [
+   {
+    "file": "week_3/coding/3c_svm_primal.ipynb",
+    "page": 17
+   }
+  ]
+ },
+ {
+  "id": "w3-svm-001",
+  "week": 3,
+  "topic": "margin-and-rescaling",
+  "type": "flashcard",
+  "difficulty": 1,
+  "prompt": "What is the **margin** of a linear classifier?",
+  "answer": "The perpendicular distance between the decision boundary and the closest training example.",
+  "explanation": "SVMs choose the boundary that maximises this distance, which can help to avoid overfitting.",
+  "tags": [
+   "margin",
+   "definition"
+  ],
+  "sources": [
+   {
+    "file": "week_3/slides/3c-svm-primal.pdf",
+    "page": 5
+   }
+  ]
+ },
+ {
+  "id": "w3-svm-002",
+  "week": 3,
+  "topic": "margin-and-rescaling",
+  "type": "flashcard",
+  "difficulty": 1,
+  "prompt": "Give the perpendicular distance from a point $\\mathbf{x}^{(n)}$ to the hyperplane $h(\\mathbf{x}) = \\mathbf{w}^T\\mathbf{x} + b = 0$.",
+  "answer": "$\\text{dist}(h,\\mathbf{x}^{(n)}) = \\dfrac{|h(\\mathbf{x}^{(n)})|}{\\|\\mathbf{w}\\|}$, where $\\|\\mathbf{w}\\| = \\sqrt{\\mathbf{w}^T\\mathbf{w}}$.",
+  "explanation": "For a correctly classified example $|h(\\mathbf{x}^{(n)})| = y^{(n)}h(\\mathbf{x}^{(n)})$, so the distance can also be written $\\frac{y^{(n)}h(\\mathbf{x}^{(n)})}{\\|\\mathbf{w}\\|}$.",
+  "tags": [
+   "distance",
+   "formula"
+  ],
+  "sources": [
+   {
+    "file": "week_3/slides/3c-svm-primal.pdf",
+    "page": 19
+   }
+  ]
+ },
+ {
+  "id": "w3-svm-003",
+  "week": 3,
+  "topic": "margin-and-rescaling",
+  "type": "numeric",
+  "difficulty": 2,
+  "prompt": "Training set: $\\mathbf{x}^{(1)} = (0.1,0.1)^T$ (red), $\\mathbf{x}^{(2)} = (0.1,0.2)^T$ (blue), $\\mathbf{x}^{(3)} = (0.2,0.2)^T$ (blue). What is the margin formed by the decision boundary $x_2 - 0.15 = 0$?",
+  "answer": 0.05,
+  "tolerance": 0.0001,
+  "explanation": "Here $w_1 = 0$, $w_2 = 1$, $b = -0.15$, so $\\|\\mathbf{w}\\| = 1$. Each point is $|x_2 - 0.15| = 0.05$ from the boundary, so the margin (the smallest distance) is $0.05$.",
+  "tags": [
+   "margin",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_3/worksheet/3c-SVM_Primal_Representation-answers.pdf",
+    "page": 2
+   }
+  ]
+ },
+ {
+  "id": "w3-svm-004",
+  "week": 3,
+  "topic": "margin-and-rescaling",
+  "type": "numeric",
+  "difficulty": 2,
+  "prompt": "Examples: $\\mathbf{x}^{(1)} = (1,1), y^{(1)} = +1$; $\\mathbf{x}^{(2)} = (0,1), y^{(2)} = -1$; $\\mathbf{x}^{(3)} = (2,0), y^{(3)} = +1$. The hyperplane is $h(\\mathbf{x}) = 1.5x_1 + x_2 - 2$. What is $\\min_n y^{(n)}h(\\mathbf{x}^{(n)})$?",
+  "answer": 0.5,
+  "tolerance": 0.0001,
+  "explanation": "$y^{(1)}h = 0.5$, $y^{(2)}h = (-1)(-1) = 1$, $y^{(3)}h = 1$. The minimum is $0.5$.",
+  "tags": [
+   "rescaling",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_3/worksheet/3c-SVM_Primal_Representation-answers.pdf",
+    "page": 6
+   }
+  ]
+ },
+ {
+  "id": "w3-svm-005",
+  "week": 3,
+  "topic": "margin-and-rescaling",
+  "type": "numeric",
+  "difficulty": 2,
+  "prompt": "Continuing: with $\\min_n y^{(n)}h(\\mathbf{x}^{(n)}) = 0.5$ for $h(\\mathbf{x}) = 1.5x_1 + x_2 - 2$, let $k = 1/\\min_n y^{(n)}h(\\mathbf{x}^{(n)})$. What is the rescaled bias $b' = kb$?",
+  "answer": -4,
+  "tolerance": 0.0001,
+  "explanation": "$k = 1/0.5 = 2$, so $\\mathbf{w}' = (3, 2)^T$ and $b' = -2 \\times 2 = -4$.",
+  "tags": [
+   "rescaling",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_3/worksheet/3c-SVM_Primal_Representation-answers.pdf",
+    "page": 6
+   }
+  ]
+ },
+ {
+  "id": "w3-svm-006",
+  "week": 3,
+  "topic": "margin-and-rescaling",
+  "type": "numeric",
+  "difficulty": 2,
+  "prompt": "Continuing: the rescaled hyperplane is $h'(\\mathbf{x}) = 3x_1 + 2x_2 - 4$, so $y^{(n)}h'(\\mathbf{x}^{(n)}) = 1$ for the closest example. What is the margin? (4 d.p.)",
+  "answer": 0.2774,
+  "tolerance": 0.0001,
+  "explanation": "Margin $= \\frac{1}{\\|\\mathbf{w}'\\|} = \\frac{1}{\\sqrt{3^2 + 2^2}} = \\frac{1}{\\sqrt{13}} \\approx 0.2774$.",
+  "tags": [
+   "margin",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_3/worksheet/3c-SVM_Primal_Representation-answers.pdf",
+    "page": 6
+   }
+  ]
+ },
+ {
+  "id": "w3-svm-007",
+  "week": 3,
+  "topic": "margin-and-rescaling",
+  "type": "numeric",
+  "difficulty": 2,
+  "prompt": "What is the perpendicular distance between $\\mathbf{x} = (1,1)^T$ and the hyperplane with $\\mathbf{w} = (0.5, 0.1)^T$, $b = 1$? (4 d.p.)",
+  "answer": 3.1379,
+  "tolerance": 0.0001,
+  "explanation": "$\\frac{|0.5 + 0.1 + 1|}{\\sqrt{0.5^2 + 0.1^2}} = \\frac{1.6}{\\sqrt{0.26}} \\approx 3.1379$.",
+  "tags": [
+   "distance",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_3/worksheet/3c-SVM_Primal_Representation-answers.pdf",
+    "page": 6
+   }
+  ]
+ },
+ {
+  "id": "w3-svm-008",
+  "week": 3,
+  "topic": "margin-and-rescaling",
+  "type": "short",
+  "difficulty": 2,
+  "prompt": "Show that multiplying $\\mathbf{w} = (0.5, 0.1)^T$ and $b = 1$ by 10 does not change the distance from $\\mathbf{x} = (1,1)^T$ to the hyperplane.",
+  "answer": "Before: $\\frac{1.6}{\\sqrt{0.26}} \\approx 3.1379$. After: $\\frac{|5 + 1 + 10|}{\\sqrt{5^2 + 1^2}} = \\frac{16}{\\sqrt{26}} \\approx 3.1379$. They are equal.",
+  "steps": [
+   "Use $\\text{dist} = |h(\\mathbf{x})|/\\|\\mathbf{w}\\|$",
+   "Original: $1.6/\\sqrt{0.26}$",
+   "Rescaled: numerator and $\\|\\mathbf{w}\\|$ are both 10 times larger: $16/\\sqrt{26}$",
+   "The factor 10 cancels, so the distance is the same"
+  ],
+  "explanation": "In general $\\frac{|\\kappa h(\\mathbf{x})|}{\\|\\kappa\\mathbf{w}\\|} = \\frac{|h(\\mathbf{x})|}{\\|\\mathbf{w}\\|}$ for $\\kappa > 0$.",
+  "tags": [
+   "rescaling",
+   "derivation"
+  ],
+  "sources": [
+   {
+    "file": "week_3/worksheet/3c-SVM_Primal_Representation-answers.pdf",
+    "page": 7
+   }
+  ]
+ },
+ {
+  "id": "w3-svm-009",
+  "week": 3,
+  "topic": "margin-and-rescaling",
+  "type": "numeric",
+  "difficulty": 2,
+  "prompt": "Hyperplane $h(\\mathbf{x}) = x_1 - 1$. Examples: $(-1,0)^T, y = -1$; $(3,0)^T, y = 1$; $(4,0)^T, y = 1$. What rescaling factor $k$ in $h(\\mathbf{x}) = kx_1 - k$ makes $y^{(n)}h(\\mathbf{x}^{(n)}) = 1$ for the closest example?",
+  "answer": 0.5,
+  "tolerance": 0.0001,
+  "explanation": "Before rescaling $y^{(n)}h = 2, 2, 3$. The minimum is 2, so $k = 1/2$, giving $h(\\mathbf{x}) = \\frac12x_1 - \\frac12$.",
+  "tags": [
+   "rescaling",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_3/worksheet/3c-SVM_Primal_Representation-answers.pdf",
+    "page": 7
+   }
+  ]
+ },
+ {
+  "id": "w3-svm-010",
+  "week": 3,
+  "topic": "margin-and-rescaling",
+  "type": "mcq",
+  "difficulty": 2,
+  "prompt": "Points $(1,1)$ and $(-1,-1)$ are labelled $+1$; $(1,-1)$ and $(-1,1)$ are labelled $-1$. With $\\phi(\\mathbf{x}) = (x_1, x_2, x_1x_2)^T$, $\\mathbf{w} = (0,0,1)^T$ and $b = 0$, what is the decision boundary in the original space?",
+  "choices": [
+   "$x_1x_2 = 0$",
+   "$x_1 + x_2 = 0$",
+   "$x_1 = x_2$",
+   "$x_1^2 + x_2^2 = 1$"
+  ],
+  "answer": 0,
+  "explanation": "$\\mathbf{w}^T\\phi(\\mathbf{x}) = 0x_1 + 0x_2 + 1x_1x_2 = 0$, i.e. $x_1x_2 = 0$ (the two axes).",
+  "tags": [
+   "basis-expansion",
+   "boundary"
+  ],
+  "sources": [
+   {
+    "file": "week_3/worksheet/3c-SVM_Primal_Representation-answers.pdf",
+    "page": 5
+   }
+  ]
+ },
+ {
+  "id": "w3-svm-011",
+  "week": 3,
+  "topic": "margin-and-rescaling",
+  "type": "numeric",
+  "difficulty": 2,
+  "prompt": "Same XOR-style problem with $h(\\mathbf{x}) = x_1x_2$ ($\\mathbf{w} = (0,0,1)^T$, $b = 0$). Every example has $y h(\\mathbf{x}) = 1$. What is the margin?",
+  "answer": 1,
+  "tolerance": 0.0001,
+  "explanation": "All four examples are on the margin, so margin $= 1/\\|\\mathbf{w}\\| = 1/\\sqrt{0^2+0^2+1^2} = 1$.",
+  "tags": [
+   "margin",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_3/worksheet/3c-SVM_Primal_Representation-answers.pdf",
+    "page": 5
+   }
+  ]
+ },
+ {
+  "id": "w3-svm-012",
+  "week": 3,
+  "topic": "margin-and-rescaling",
+  "type": "truefalse",
+  "difficulty": 1,
+  "prompt": "Multiplying $\\mathbf{w}$ and $b$ by any $\\kappa > 0$ changes the distances of the training examples to the hyperplane.",
+  "answer": false,
+  "explanation": "It changes neither the position of the hyperplane nor the distances to it, so we are free to rescale until $\\min_n y^{(n)}h(\\mathbf{x}^{(n)}) = 1$.",
+  "tags": [
+   "rescaling"
+  ],
+  "sources": [
+   {
+    "file": "week_3/slides/3c-svm-primal.pdf",
+    "page": 21
+   }
+  ]
+ },
+ {
+  "id": "w3-svm-013",
+  "week": 3,
+  "topic": "margin-and-rescaling",
+  "type": "short",
+  "difficulty": 3,
+  "prompt": "Show that dividing $w_1, w_2, b$ by $a = \\min_n y^{(n)}h(\\mathbf{x}^{(n)})$ gives $y^{(k)}h_{new}(\\mathbf{x}^{(k)}) = 1$ for the closest example $(\\mathbf{x}^{(k)}, y^{(k)})$.",
+  "answer": "$y^{(k)}h_{new}(\\mathbf{x}^{(k)}) = y^{(k)}\\left(\\frac{w_1}{a}x_1^{(k)} + \\frac{w_2}{a}x_2^{(k)} + \\frac{b}{a}\\right) = \\frac{y^{(k)}h_{old}(\\mathbf{x}^{(k)})}{a} = \\frac{a}{a} = 1$.",
+  "steps": [
+   "The closest example has the smallest $\\frac{y\\,h(\\mathbf{x})}{\\|\\mathbf{w}\\|}$; $\\|\\mathbf{w}\\|$ is shared, so it has the smallest $y\\,h(\\mathbf{x})$, call it $a$",
+   "Divide $w_1, w_2, b$ by $a$ and factor out $\\frac1a$",
+   "This gives $\\frac{a}{a} = 1$",
+   "Rescaling does not move the boundary, so the same example is still the closest"
+  ],
+  "explanation": "This is why the constraint $\\min_n y^{(n)}h(\\mathbf{x}^{(n)}) = 1$ loses nothing.",
+  "tags": [
+   "rescaling",
+   "proof"
+  ],
+  "sources": [
+   {
+    "file": "week_3/worksheet/3c-SVM_Primal_Representation-answers.pdf",
+    "page": 10
+   }
+  ]
+ },
+ {
+  "id": "w3-svm-014",
+  "week": 3,
+  "topic": "margin-and-rescaling",
+  "type": "numeric",
+  "difficulty": 2,
+  "prompt": "$h(\\mathbf{x}) = 3x_1 + 4x_2 - 2$. Examples: $(1,1), y = +1$; $(0,0), y = -1$; $(1,0), y = +1$. What is the margin of this classifier?",
+  "answer": 0.2,
+  "tolerance": 0.0001,
+  "explanation": "$y\\,h = 5, 2, 1$, all positive, so every example is correctly classified. $\\|\\mathbf{w}\\| = \\sqrt{9 + 16} = 5$, and the margin is $\\min_n y^{(n)}h/\\|\\mathbf{w}\\| = 1/5 = 0.2$.",
+  "tags": [
+   "margin",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_3/coding/3c_svm_primal.ipynb",
+    "page": 9
+   }
+  ]
+ },
+ {
+  "id": "w3-svp-001",
+  "week": 3,
+  "topic": "max-margin-primal",
+  "type": "flashcard",
+  "difficulty": 1,
+  "prompt": "Write down the hard-margin SVM primal optimisation problem.",
+  "answer": "$\\arg\\min_{\\mathbf{w},b} \\frac12\\|\\mathbf{w}\\|^2$ subject to $y^{(n)}(\\mathbf{w}^T\\phi(\\mathbf{x}^{(n)}) + b) \\ge 1$ for all $(\\mathbf{x}^{(n)}, y^{(n)}) \\in \\mathcal{T}$.",
+  "explanation": "A quadratic objective with linear inequality constraints: a quadratic programming problem. With $\\phi(\\mathbf{x}) = \\mathbf{x}$ it is a linear SVM.",
+  "tags": [
+   "primal",
+   "formula"
+  ],
+  "sources": [
+   {
+    "file": "week_3/slides/3c-svm-primal.pdf",
+    "page": 26
+   }
+  ]
+ },
+ {
+  "id": "w3-svp-002",
+  "week": 3,
+  "topic": "max-margin-primal",
+  "type": "flashcard",
+  "difficulty": 1,
+  "prompt": "What is the SVM hypothesis set (prediction rule)?",
+  "answer": "$h'(\\mathbf{x}) = +1$ if $\\mathbf{w}^T\\mathbf{x} + b > 0$ and $-1$ if $\\mathbf{w}^T\\mathbf{x} + b < 0$, for all $\\mathbf{w} \\in \\mathbb{R}^d$, $b \\in \\mathbb{R}$.",
+  "explanation": "We write $h(\\mathbf{x}) = \\mathbf{w}^T\\mathbf{x} + b$. Unlike logistic regression, the classes are $+1$ and $-1$ and the bias $b$ is kept separate from $\\mathbf{w}$.",
+  "tags": [
+   "hypothesis-set"
+  ],
+  "sources": [
+   {
+    "file": "week_3/slides/3c-svm-primal.pdf",
+    "page": 10
+   }
+  ]
+ },
+ {
+  "id": "w3-svp-003",
+  "week": 3,
+  "topic": "max-margin-primal",
+  "type": "mcq",
+  "difficulty": 2,
+  "prompt": "Why is it convenient to label the two classes $+1$ and $-1$ in the SVM?",
+  "choices": [
+   "Correct classification of every example can then be written as one constraint, $y^{(n)}h(\\mathbf{x}^{(n)}) > 0$",
+   "It makes $\\|\\mathbf{w}\\|$ equal to 1",
+   "It lets us use the sigmoid function",
+   "It guarantees the data is linearly separable"
+  ],
+  "answer": 0,
+  "explanation": "If an example is correctly classified, $h(\\mathbf{x})$ has the same sign as $y$, so the product is positive. If it is misclassified, the product is negative.",
+  "tags": [
+   "labels",
+   "constraints"
+  ],
+  "sources": [
+   {
+    "file": "week_3/worksheet/3c-SVM_Primal_Representation-answers.pdf",
+    "page": 8
+   }
+  ]
+ },
+ {
+  "id": "w3-svp-004",
+  "week": 3,
+  "topic": "max-margin-primal",
+  "type": "multi",
+  "difficulty": 1,
+  "prompt": "Which statements about SVMs are correct? Select all that apply.",
+  "choices": [
+   "SVMs have mechanisms to reduce the chances of overfitting, especially with high-dimensional data",
+   "SVMs can be adapted to linear and nonlinear tasks using nonlinear transformations",
+   "SVMs aim to maximise the margin between the support vectors and the decision boundary, subject to constraints"
+  ],
+  "answer": [
+   0,
+   1,
+   2
+  ],
+  "explanation": "Maximising the margin reduces the risk of overfitting (it works like regularisation), and a basis expansion $\\phi(\\mathbf{x})$ gives nonlinear boundaries.",
+  "tags": [
+   "overview"
+  ],
+  "sources": [
+   {
+    "file": "week_3/worksheet/3c-SVM_Primal_Representation-answers.pdf",
+    "page": 2
+   }
+  ]
+ },
+ {
+  "id": "w3-svp-005",
+  "week": 3,
+  "topic": "max-margin-primal",
+  "type": "multi",
+  "difficulty": 2,
+  "prompt": "For $\\min_{\\mathbf{w},b}\\frac12\\|\\mathbf{w}\\|^2$ s.t. $y^{(n)}(\\mathbf{w}^T\\mathbf{x}^{(n)} + b) \\ge 1$, which statements are correct?",
+  "choices": [
+   "Labels $\\{+1,-1\\}$ let us write all constraints as $y^{(n)}h(\\mathbf{x}^{(n)}) \\ge 1$",
+   "Multiplying $(\\mathbf{w}, b)$ by any $\\alpha > 0$ changes neither the prediction sign nor the perpendicular distances",
+   "At the optimum, at least one example satisfies $y^{(n)}h(\\mathbf{x}^{(n)}) = 1$",
+   "The maximum margin equals $\\min_n y^{(n)}h(\\mathbf{x}^{(n)})$"
+  ],
+  "answer": [
+   0,
+   1,
+   2
+  ],
+  "explanation": "D is wrong: with $\\min_n y^{(n)}h(\\mathbf{x}^{(n)}) = 1$, the margin is $1/\\|\\mathbf{w}\\|$.",
+  "tags": [
+   "primal",
+   "constraints"
+  ],
+  "sources": [
+   {
+    "file": "week_3/worksheet/3c-SVM_Primal_Representation-answers.pdf",
+    "page": 3
+   },
+   {
+    "file": "week_3/worksheet/3c-SVM_Primal_Representation-answers.pdf",
+    "page": 4
+   }
+  ]
+ },
+ {
+  "id": "w3-svp-006",
+  "week": 3,
+  "topic": "max-margin-primal",
+  "type": "order",
+  "difficulty": 2,
+  "prompt": "Put the steps that turn 'maximise the margin' into the SVM primal in the order the lecture uses.",
+  "steps": [
+   "$\\arg\\max_{\\mathbf{w},b}\\{\\min_n \\text{dist}(h,\\mathbf{x}^{(n)})\\}$ s.t. $y^{(n)}h(\\mathbf{x}^{(n)}) > 0$",
+   "Write the distance as $\\frac{y^{(n)}h(\\mathbf{x}^{(n)})}{\\|\\mathbf{w}\\|}$ and take $\\frac{1}{\\|\\mathbf{w}\\|}$ out of the min",
+   "Rescale so that $\\min_n y^{(n)}h(\\mathbf{x}^{(n)}) = 1$, leaving $\\arg\\max \\frac{1}{\\|\\mathbf{w}\\|}$",
+   "Maximising $\\frac{1}{\\|\\mathbf{w}\\|}$ is minimising $\\|\\mathbf{w}\\|$",
+   "Loosen the constraint to $y^{(n)}h(\\mathbf{x}^{(n)}) \\ge 1$",
+   "Minimise $\\frac12\\|\\mathbf{w}\\|^2$ instead of $\\|\\mathbf{w}\\|$"
+  ],
+  "explanation": "The result is a quadratic programming problem that can be solved efficiently.",
+  "tags": [
+   "primal",
+   "derivation"
+  ],
+  "sources": [
+   {
+    "file": "week_3/slides/3c-svm-primal.pdf",
+    "page": 20
+   },
+   {
+    "file": "week_3/slides/3c-svm-primal.pdf",
+    "page": 25
+   }
+  ]
+ },
+ {
+  "id": "w3-svp-007",
+  "week": 3,
+  "topic": "max-margin-primal",
+  "type": "mcq",
+  "difficulty": 2,
+  "prompt": "Why can the constraint $\\min_n y^{(n)}h(\\mathbf{x}^{(n)}) = 1$ be replaced by $y^{(n)}h(\\mathbf{x}^{(n)}) \\ge 1$ for all $n$?",
+  "choices": [
+   "Because minimising $\\|\\mathbf{w}\\|$ pushes the optimum to satisfy the equality for at least one example",
+   "Because the two constraints are identical for every $\\mathbf{w}$",
+   "Because $\\ge$ constraints are easier for gradient descent",
+   "Because every example ends up on the margin"
+  ],
+  "answer": 0,
+  "explanation": "The looser constraint allows more solutions, but the smallest $\\|\\mathbf{w}\\|$ is reached when some example has $y^{(n)}h(\\mathbf{x}^{(n)}) = 1$, so both give the same optimal solution.",
+  "tags": [
+   "constraints"
+  ],
+  "sources": [
+   {
+    "file": "week_3/slides/3c-svm-primal.pdf",
+    "page": 24
+   }
+  ]
+ },
+ {
+  "id": "w3-svp-008",
+  "week": 3,
+  "topic": "max-margin-primal",
+  "type": "mcq",
+  "difficulty": 1,
+  "prompt": "Why does the SVM minimise $\\frac12\\|\\mathbf{w}\\|^2$ rather than $\\|\\mathbf{w}\\|$?",
+  "choices": [
+   "It has the same minimiser and makes derivatives simpler",
+   "It gives a wider margin",
+   "It removes the need for constraints",
+   "It makes the problem non-convex"
+  ],
+  "answer": 0,
+  "explanation": "$\\|\\mathbf{w}\\| \\ge 0$, so squaring and halving does not change where the minimum is. The result is a quadratic objective.",
+  "tags": [
+   "primal"
+  ],
+  "sources": [
+   {
+    "file": "week_3/coding/3c_svm_primal.ipynb",
+    "page": 13
+   }
+  ]
+ },
+ {
+  "id": "w3-svp-009",
+  "week": 3,
+  "topic": "max-margin-primal",
+  "type": "truefalse",
+  "difficulty": 1,
+  "prompt": "Every training example that lies exactly on the margin is a support vector.",
+  "answer": false,
+  "explanation": "Support vectors are the examples on the margin that define the decision boundary, but it can happen that an example on the margin is not a support vector.",
+  "tags": [
+   "support-vectors"
+  ],
+  "sources": [
+   {
+    "file": "week_3/slides/3c-svm-primal.pdf",
+    "page": 7
+   }
+  ]
+ },
+ {
+  "id": "w3-svp-010",
+  "week": 3,
+  "topic": "max-margin-primal",
+  "type": "multi",
+  "difficulty": 2,
+  "prompt": "A 2D problem with classes orange and blue can be separated by a straight line. Which basis expansions would let an SVM perfectly separate all training examples?",
+  "choices": [
+   "$\\phi(\\mathbf{x}) = (x_1, x_2, x_3)$",
+   "$\\phi(\\mathbf{x}) = (1, x_1, x_2, x_1^2, x_2^2, x_1x_2)$",
+   "$\\phi(\\mathbf{x}) = (x_1, x_2)$",
+   "$\\phi(\\mathbf{x}) = (1, x_1, x_2)$"
+  ],
+  "answer": [
+   1,
+   2,
+   3
+  ],
+  "explanation": "Linear and quadratic expansions both work (the quadratic weights can be 0). The 1 is not needed because $b$ is separate. $x_3$ does not exist in this problem.",
+  "tags": [
+   "basis-expansion"
+  ],
+  "sources": [
+   {
+    "file": "week_3/worksheet/3c-SVM_Primal_Representation-answers.pdf",
+    "page": 9
+   },
+   {
+    "file": "week_3/worksheet/3c-SVM_Primal_Representation-answers.pdf",
+    "page": 9
+   }
+  ]
+ },
+ {
+  "id": "w3-svp-011",
+  "week": 3,
+  "topic": "max-margin-primal",
+  "type": "numeric",
+  "difficulty": 1,
+  "prompt": "XOR-style problem with $h(\\mathbf{x}) = x_1x_2$. What is $y\\,h(\\mathbf{x})$ for the example $\\mathbf{x} = (1,-1)^T$ with label $-1$?",
+  "answer": 1,
+  "tolerance": 0.0001,
+  "explanation": "$y\\,h(\\mathbf{x}) = -1 \\times (1 \\times -1) = 1$, so the constraint $y\\,h(\\mathbf{x}) \\ge 1$ holds with equality.",
+  "tags": [
+   "constraints",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_3/worksheet/3c-SVM_Primal_Representation-answers.pdf",
+    "page": 5
+   }
+  ]
+ },
+ {
+  "id": "w3-svp-012",
+  "week": 3,
+  "topic": "max-margin-primal",
+  "type": "mcq",
+  "difficulty": 1,
+  "prompt": "What kind of optimisation problem is the hard-margin SVM primal?",
+  "choices": [
+   "Minimise a quadratic function subject to linear inequality constraints",
+   "Minimise a linear function with no constraints",
+   "Maximise a likelihood with gradient descent",
+   "Minimise a non-convex function subject to equality constraints"
+  ],
+  "answer": 0,
+  "explanation": "This is a quadratic programming problem, which can be solved efficiently.",
+  "tags": [
+   "primal",
+   "qp"
+  ],
+  "sources": [
+   {
+    "file": "week_3/slides/3c-svm-primal.pdf",
+    "page": 26
+   }
+  ]
+ },
+ {
+  "id": "w3-svp-013",
+  "week": 3,
+  "topic": "max-margin-primal",
+  "type": "truefalse",
+  "difficulty": 2,
+  "prompt": "Support vector machines are linear classifiers, even though they can learn nonlinear boundaries.",
+  "answer": true,
+  "explanation": "The boundary $\\mathbf{w}^T\\phi(\\mathbf{x}) + b = 0$ is linear in the embedding $\\phi(\\mathbf{x})$. A nonlinear $\\phi$ makes it nonlinear in the original space.",
+  "tags": [
+   "overview"
+  ],
+  "sources": [
+   {
+    "file": "week_3/slides/3c-svm-primal.pdf",
+    "page": 33
+   }
+  ]
+ },
+ {
+  "id": "w3-svp-014",
+  "week": 3,
+  "topic": "max-margin-primal",
+  "type": "mcq",
+  "difficulty": 1,
+  "prompt": "What is a **linear SVM**?",
+  "choices": [
+   "An SVM that uses $\\phi(\\mathbf{x}) = \\mathbf{x}$",
+   "An SVM trained with gradient descent",
+   "An SVM whose margin is 1",
+   "An SVM with a quadratic basis expansion"
+  ],
+  "answer": 0,
+  "explanation": "With the identity embedding the boundary $\\mathbf{w}^T\\mathbf{x} + b = 0$ is linear in the original input space.",
+  "tags": [
+   "basis-expansion"
+  ],
+  "sources": [
+   {
+    "file": "week_3/slides/3c-svm-primal.pdf",
+    "page": 29
+   }
+  ]
+ },
+ {
+  "id": "w3-svp-015",
+  "week": 3,
+  "topic": "max-margin-primal",
+  "type": "mcq",
+  "difficulty": 1,
+  "prompt": "Why place the decision boundary so that it maximises the margin?",
+  "choices": [
+   "It can help to avoid overfitting",
+   "It makes training error exactly zero on unseen data",
+   "It removes the need for labelled data",
+   "It maximises the likelihood"
+  ],
+  "answer": 0,
+  "explanation": "A boundary that is too close to the training examples on one side generalises badly. The widest gap is a safer choice.",
+  "tags": [
+   "motivation"
+  ],
+  "sources": [
+   {
+    "file": "week_3/slides/3c-svm-primal.pdf",
+    "page": 6
+   }
+  ]
+ },
+ {
+  "id": "w4-dco-001",
+  "week": 4,
+  "topic": "dual-coding",
+  "type": "code",
+  "difficulty": 1,
+  "prompt": "What is printed?",
+  "code": "alpha = np.array([0.0, 0.5, 0.5, 0.0])\nprint(support_vector_indices(alpha))",
+  "choices": [
+   "[1 2]",
+   "[0 3]",
+   "[0 1 2 3]",
+   "[0.5 0.5]"
+  ],
+  "answer": 0,
+  "explanation": "Support vectors are the examples with $a^{(n)} > 0$: indices 1 and 2.",
+  "tags": [
+   "support-vectors"
+  ],
+  "sources": [
+   {
+    "file": "week_4/coding/4c_dual_predictions_kernels.ipynb",
+    "page": 18
+   }
+  ]
+ },
+ {
+  "id": "w4-dco-002",
+  "week": 4,
+  "topic": "dual-coding",
+  "type": "code",
+  "difficulty": 2,
+  "prompt": "With X_train = [[-2,0],[-1,0],[1,0],[2,0]], y_train = [-1,-1,1,1] and alpha = [0,0.5,0.5,0], what is printed?",
+  "code": "print(dual_decision_score(np.array([0.5, 0.0]),\n      X_train, y_train, alpha, 0.0, linear_kernel))",
+  "choices": [
+   "0.5",
+   "-0.5",
+   "1.0",
+   "0.0"
+  ],
+  "answer": 0,
+  "explanation": "$h = 0.5(-1)(-0.5) + 0.5(1)(0.5) + 0 = 0.25 + 0.25 = 0.5$.",
+  "tags": [
+   "prediction"
+  ],
+  "sources": [
+   {
+    "file": "week_4/coding/4c_dual_predictions_kernels.ipynb",
+    "page": 19
+   }
+  ]
+ },
+ {
+  "id": "w4-dco-003",
+  "week": 4,
+  "topic": "dual-coding",
+  "type": "code",
+  "difficulty": 2,
+  "prompt": "Same data. What is printed?",
+  "code": "print(bias_from_support_vector(1, X_train, y_train, alpha, linear_kernel))",
+  "choices": [
+   "0.0",
+   "-1.0",
+   "1.0",
+   "-2.0"
+  ],
+  "answer": 0,
+  "explanation": "For $\\mathbf{x}^{(1)} = (-1,0)$: $\\sum_m a^{(m)}y^{(m)}k = 0.5(-1)(1) + 0.5(1)(-1) = -1$, so $b = -1 - (-1) = 0$.",
+  "tags": [
+   "bias"
+  ],
+  "sources": [
+   {
+    "file": "week_4/coding/4c_dual_predictions_kernels.ipynb",
+    "page": 21
+   }
+  ]
+ },
+ {
+  "id": "w4-dco-004",
+  "week": 4,
+  "topic": "dual-coding",
+  "type": "code",
+  "difficulty": 2,
+  "prompt": "Same data. What is printed?",
+  "code": "print(primal_parameters_from_multipliers(X_train, y_train, alpha))",
+  "choices": [
+   "[1. 0.]",
+   "[0.5 0. ]",
+   "[-1.  0.]",
+   "[2. 0.]"
+  ],
+  "answer": 0,
+  "explanation": "$\\mathbf{w} = \\sum_n a^{(n)}y^{(n)}\\mathbf{x}^{(n)} = 0.5(-1)(-1,0) + 0.5(1)(1,0) = (1, 0)$.",
+  "tags": [
+   "stationarity"
+  ],
+  "sources": [
+   {
+    "file": "week_4/coding/4a_svm_dual.ipynb",
+    "page": 12
+   }
+  ]
+ },
+ {
+  "id": "w4-dco-005",
+  "week": 4,
+  "topic": "dual-coding",
+  "type": "code",
+  "difficulty": 1,
+  "prompt": "What is printed?",
+  "code": "y = np.array([1.0, -1.0, -1.0])\na = np.array([0.5, 0.25, 0.25])\nprint(equality_constraint(y, a))",
+  "choices": [
+   "0.0",
+   "1.0",
+   "-0.5",
+   "0.5"
+  ],
+  "answer": 0,
+  "explanation": "$\\sum_n a^{(n)}y^{(n)} = 0.5 - 0.25 - 0.25 = 0$, so this $\\mathbf{a}$ satisfies the dual's equality constraint.",
+  "tags": [
+   "dual-constraints"
+  ],
+  "sources": [
+   {
+    "file": "week_4/coding/4a_svm_dual.ipynb",
+    "page": 12
+   }
+  ]
+ },
+ {
+  "id": "w4-dco-006",
+  "week": 4,
+  "topic": "dual-coding",
+  "type": "code",
+  "difficulty": 3,
+  "prompt": "What is printed?",
+  "code": "X = np.array([[1.0, 0.0], [-1.0, 0.0]])\ny = np.array([1.0, -1.0])\na = np.array([0.5, 0.5])\nprint(dual_objective(X, y, a))",
+  "choices": [
+   "0.5",
+   "1.0",
+   "0.0",
+   "1.5"
+  ],
+  "answer": 0,
+  "explanation": "$K = \\begin{pmatrix}1&-1\\\\-1&1\\end{pmatrix}$, and every term $a^{(n)}a^{(m)}y^{(n)}y^{(m)}K_{nm} = 0.25$, so the double sum is 1. $\\tilde L = 1 - \\frac12(1) = 0.5$.",
+  "tags": [
+   "dual"
+  ],
+  "sources": [
+   {
+    "file": "week_4/coding/4a_svm_dual.ipynb",
+    "page": 14
+   }
+  ]
+ },
+ {
+  "id": "w4-dco-007",
+  "week": 4,
+  "topic": "dual-coding",
+  "type": "code",
+  "difficulty": 1,
+  "prompt": "What is printed?",
+  "code": "x = np.array([1.0, 2.0])\nz = np.array([3.0, 4.0])\nprint(polynomial_kernel(x, z, degree=2))",
+  "choices": [
+   "144.0",
+   "121.0",
+   "11.0",
+   "12.0"
+  ],
+  "answer": 0,
+  "explanation": "$(1 + \\mathbf{x}^T\\mathbf{z})^2 = 12^2 = 144$.",
+  "tags": [
+   "polynomial-kernel"
+  ],
+  "sources": [
+   {
+    "file": "week_4/coding/4c_dual_predictions_kernels.ipynb",
+    "page": 14
+   }
+  ]
+ },
+ {
+  "id": "w4-dco-008",
+  "week": 4,
+  "topic": "dual-coding",
+  "type": "code",
+  "difficulty": 2,
+  "prompt": "Which property of Mercer's condition does this line check?",
+  "code": "print(\"Symmetric:\", np.allclose(K_poly, K_poly.T))",
+  "choices": [
+   "That the Gram matrix is symmetric",
+   "That the Gram matrix is positive semidefinite",
+   "That the kernel is linear",
+   "That the support vectors are on the margin"
+  ],
+  "answer": 0,
+  "explanation": "Mercer's condition needs $K$ symmetric ($K = K^T$) and positive semidefinite.",
+  "tags": [
+   "mercer"
+  ],
+  "sources": [
+   {
+    "file": "week_4/coding/4c_dual_predictions_kernels.ipynb",
+    "page": 26
+   }
+  ]
+ },
+ {
+  "id": "w4-dpr-001",
+  "week": 4,
+  "topic": "dual-predictions",
+  "type": "flashcard",
+  "difficulty": 1,
+  "prompt": "How does the SVM dual make a prediction for a new $\\mathbf{x}$?",
+  "answer": "$h(\\mathbf{x}) = \\sum_{n\\in S}a^{(n)}y^{(n)}k(\\mathbf{x},\\mathbf{x}^{(n)}) + b$; predict $+1$ if $h(\\mathbf{x}) > 0$ and $-1$ if $h(\\mathbf{x}) < 0$.",
+  "explanation": "This comes from substituting $\\mathbf{w} = \\sum_n a^{(n)}y^{(n)}\\phi(\\mathbf{x}^{(n)})$ into $\\mathbf{w}^T\\phi(\\mathbf{x}) + b$. $S$ is the set of support vectors.",
+  "tags": [
+   "prediction",
+   "formula"
+  ],
+  "sources": [
+   {
+    "file": "week_4/slides/4c-svm-dual.pdf",
+    "page": 31
+   }
+  ]
+ },
+ {
+  "id": "w4-dpr-002",
+  "week": 4,
+  "topic": "dual-predictions",
+  "type": "mcq",
+  "difficulty": 2,
+  "prompt": "Training set: $\\mathbf{x}^{(1)} = (0.1,0.1)^T, y = +1$; $\\mathbf{x}^{(2)} = (0.1,0.2)^T, y = +1$; $\\mathbf{x}^{(3)} = (0.2,0.2)^T, y = -1$. The dual solution is $a^{(1)} = 0$, $a^{(2)} = 200$, $a^{(3)} = 200$, with $\\phi(\\mathbf{x}) = \\mathbf{x}$. With $b = 3$, what class is predicted for $\\mathbf{x}^{(4)} = (0.2, 0.3)^T$?",
+  "choices": [
+   "$+1$",
+   "$-1$",
+   "On the decision boundary"
+  ],
+  "answer": 1,
+  "explanation": "$h = 200(1)(0.08) + 200(-1)(0.1) + 3 = 16 - 20 + 3 = -1 < 0$.",
+  "tags": [
+   "prediction",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_4/worksheets/4c-SVM_dual-answers.pdf",
+    "page": 5
+   }
+  ]
+ },
+ {
+  "id": "w4-dpr-003",
+  "week": 4,
+  "topic": "dual-predictions",
+  "type": "numeric",
+  "difficulty": 2,
+  "prompt": "Training set: $\\mathbf{x}^{(1)} = (0.1,0.1)^T, y = +1$; $\\mathbf{x}^{(2)} = (0.1,0.2)^T, y = +1$; $\\mathbf{x}^{(3)} = (0.2,0.2)^T, y = -1$. The dual solution is $a^{(1)} = 0$, $a^{(2)} = 200$, $a^{(3)} = 200$, with $\\phi(\\mathbf{x}) = \\mathbf{x}$. With $b = 3$, what is $h(\\mathbf{x}^{(4)})$ for $\\mathbf{x}^{(4)} = (0.2, 0.3)^T$?",
+  "answer": -1,
+  "tolerance": 0.0001,
+  "explanation": "Support vectors are 2 and 3. $k(\\mathbf{x}^{(4)},\\mathbf{x}^{(2)}) = 0.02 + 0.06 = 0.08$ and $k(\\mathbf{x}^{(4)},\\mathbf{x}^{(3)}) = 0.04 + 0.06 = 0.1$, so $h = 16 - 20 + 3 = -1$.",
+  "tags": [
+   "prediction",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_4/worksheets/4c-SVM_dual-answers.pdf",
+    "page": 5
+   }
+  ]
+ },
+ {
+  "id": "w4-dpr-004",
+  "week": 4,
+  "topic": "dual-predictions",
+  "type": "numeric",
+  "difficulty": 3,
+  "prompt": "Training set: $\\mathbf{x}^{(1)} = (0.1,0.1)^T, y = +1$; $\\mathbf{x}^{(2)} = (0.1,0.2)^T, y = +1$; $\\mathbf{x}^{(3)} = (0.2,0.2)^T, y = -1$. The dual solution is $a^{(1)} = 0$, $a^{(2)} = 200$, $a^{(3)} = 200$, with $\\phi(\\mathbf{x}) = \\mathbf{x}$. Compute $b^{(2)} = y^{(2)} - \\sum_{m\\in S}a^{(m)}y^{(m)}k(\\mathbf{x}^{(2)},\\mathbf{x}^{(m)})$ from support vector 2.",
+  "answer": 3,
+  "tolerance": 0.0001,
+  "explanation": "$k(\\mathbf{x}^{(2)},\\mathbf{x}^{(2)}) = 0.05$, $k(\\mathbf{x}^{(2)},\\mathbf{x}^{(3)}) = 0.06$. So $b^{(2)} = 1 - 200(0.05) + 200(0.06) = 3$. Support vector 3 also gives 3, so the average is $b = 3$.",
+  "tags": [
+   "bias",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_4/worksheets/4c-SVM_dual-answers.pdf",
+    "page": 6
+   }
+  ]
+ },
+ {
+  "id": "w4-dpr-005",
+  "week": 4,
+  "topic": "dual-predictions",
+  "type": "order",
+  "difficulty": 2,
+  "prompt": "Put the steps for deriving $b$ from a support vector in order.",
+  "steps": [
+   "Support vectors have $a^{(n)} > 0$",
+   "Complementary slackness gives $y^{(n)}h(\\mathbf{x}^{(n)}) = 1$",
+   "Multiply by $y^{(n)}$, using $(y^{(n)})^2 = 1$: $h(\\mathbf{x}^{(n)}) = y^{(n)}$",
+   "Substitute $h$: $\\sum_{m\\in S}a^{(m)}y^{(m)}k(\\mathbf{x}^{(n)},\\mathbf{x}^{(m)}) + b = y^{(n)}$",
+   "Rearrange for $b$, then average over all $N_S$ support vectors"
+  ],
+  "explanation": "Averaging gives a numerically more stable value of $b$.",
+  "tags": [
+   "bias",
+   "derivation"
+  ],
+  "sources": [
+   {
+    "file": "week_4/slides/4c-svm-dual.pdf",
+    "page": 33
+   }
+  ]
+ },
+ {
+  "id": "w4-dpr-006",
+  "week": 4,
+  "topic": "dual-predictions",
+  "type": "mcq",
+  "difficulty": 1,
+  "prompt": "Why is $b$ averaged over all support vectors instead of taken from one?",
+  "choices": [
+   "To get a numerically more stable solution",
+   "Because each support vector gives a different correct $b$",
+   "Because non-support vectors also contribute",
+   "To make $b = 0$"
+  ],
+  "answer": 0,
+  "explanation": "In exact arithmetic every support vector gives the same $b$. Averaging reduces numerical error.",
+  "tags": [
+   "bias"
+  ],
+  "sources": [
+   {
+    "file": "week_4/slides/4c-svm-dual.pdf",
+    "page": 34
+   }
+  ]
+ },
+ {
+  "id": "w4-dpr-007",
+  "week": 4,
+  "topic": "dual-predictions",
+  "type": "mcq",
+  "difficulty": 2,
+  "prompt": "After training, $a^{(1)} = 0$ and $a^{(2)} > 0$. Which example is a support vector?",
+  "choices": [
+   "Example 2 only",
+   "Example 1 only",
+   "Both",
+   "Neither"
+  ],
+  "answer": 0,
+  "explanation": "Only examples with non-zero multipliers influence $h(\\mathbf{x})$.",
+  "tags": [
+   "support-vectors"
+  ],
+  "sources": [
+   {
+    "file": "week_4/worksheets/4c-SVM_dual-answers.pdf",
+    "page": 9
+   }
+  ]
+ },
+ {
+  "id": "w4-dpr-008",
+  "week": 4,
+  "topic": "dual-predictions",
+  "type": "multi",
+  "difficulty": 3,
+  "prompt": "Hard-margin SVM, $a^{(1)} = 0$. By complementary slackness $a^{(n)}(1 - y^{(n)}h(\\mathbf{x}^{(n)})) = 0$, where could example 1 lie? Select all that apply.",
+  "choices": [
+   "Correctly classified, strictly outside the margin ($y\\,h > 1$)",
+   "Exactly on the margin ($y\\,h = 1$), but redundant",
+   "Inside the margin",
+   "On the wrong side of the decision boundary"
+  ],
+  "answer": [
+   0,
+   1
+  ],
+  "explanation": "The hard-margin constraint $y\\,h \\ge 1$ rules out the last two options. An example with $a > 0$ must have $y\\,h = 1$.",
+  "tags": [
+   "support-vectors",
+   "kkt"
+  ],
+  "sources": [
+   {
+    "file": "week_4/worksheets/4c-SVM_dual-answers.pdf",
+    "page": 9
+   }
+  ]
+ },
+ {
+  "id": "w4-dpr-009",
+  "week": 4,
+  "topic": "dual-predictions",
+  "type": "short",
+  "difficulty": 2,
+  "prompt": "Show that an example with $y^{(n)}h(\\mathbf{x}^{(n)}) = 1$ is exactly on the margin.",
+  "answer": "$\\text{dist}(h,\\mathbf{x}^{(n)}) = \\frac{y^{(n)}h(\\mathbf{x}^{(n)})}{\\|\\mathbf{w}\\|}$ and $\\|\\mathbf{w}\\|$ is the same for every example, so the closest example has the smallest $y\\,h$. The constraint $y\\,h \\ge 1$ comes from $\\min_n y^{(n)}h(\\mathbf{x}^{(n)}) = 1$, so an example with $y\\,h = 1$ is the closest: it is on the margin.",
+  "steps": [
+   "Distance is $y\\,h/\\|\\mathbf{w}\\|$, with the same $\\|\\mathbf{w}\\|$ for all",
+   "So the closest example minimises $y\\,h$",
+   "The minimum of $y\\,h$ is exactly 1",
+   "So $y\\,h = 1$ means minimum distance: on the margin"
+  ],
+  "explanation": "This is why complementary slackness puts every support vector on the margin.",
+  "tags": [
+   "margin",
+   "proof"
+  ],
+  "sources": [
+   {
+    "file": "week_4/worksheets/4c-SVM_dual-answers.pdf",
+    "page": 8
+   }
+  ]
+ },
+ {
+  "id": "w4-dpr-010",
+  "week": 4,
+  "topic": "dual-predictions",
+  "type": "truefalse",
+  "difficulty": 1,
+  "prompt": "In the hard-margin SVM, all support vectors lie exactly on the margin.",
+  "answer": true,
+  "explanation": "$a^{(n)} > 0$ and complementary slackness force $1 - y^{(n)}h(\\mathbf{x}^{(n)}) = 0$.",
+  "tags": [
+   "support-vectors"
+  ],
+  "sources": [
+   {
+    "file": "week_4/slides/4c-svm-dual.pdf",
+    "page": 32
+   }
+  ]
+ },
+ {
+  "id": "w4-dua-001",
+  "week": 4,
+  "topic": "duality",
+  "type": "flashcard",
+  "difficulty": 1,
+  "prompt": "What is the **dual formulation** (maxmin) of $\\min_x\\max_{a \\ge 0} L(x,a)$?",
+  "answer": "$\\max_a\\min_x\\{F(x) + \\sum_{i=1}^N a_if_i(x)\\}$ subject to $a_i \\ge 0$.",
+  "explanation": "The min and max are swapped. The dual may let us get rid of the min using what we know about the optimum of the unconstrained min problem.",
+  "tags": [
+   "dual",
+   "definition"
+  ],
+  "sources": [
+   {
+    "file": "week_4/slides/4a-lagrange-duality.pdf",
+    "page": 20
+   }
+  ]
+ },
+ {
+  "id": "w4-dua-002",
+  "week": 4,
+  "topic": "duality",
+  "type": "truefalse",
+  "difficulty": 1,
+  "prompt": "The maxmin dual is always equivalent to the minimax primal.",
+  "answer": false,
+  "explanation": "When they are not equivalent this is weak duality. When they are equal we have strong duality.",
+  "tags": [
+   "dual",
+   "weak-duality"
+  ],
+  "sources": [
+   {
+    "file": "week_4/slides/4a-lagrange-duality.pdf",
+    "page": 20
+   }
+  ]
+ },
+ {
+  "id": "w4-dua-003",
+  "week": 4,
+  "topic": "duality",
+  "type": "multi",
+  "difficulty": 2,
+  "prompt": "Which conditions does the lecture give for strong duality (minimax = maxmin)? Select all that apply.",
+  "choices": [
+   "$L(x,a)$ is convex in $x$ (true when $F$ and all $f_i$ are convex)",
+   "$L(x,a)$ is concave in $a$",
+   "Slater's condition: at least one feasible $x$ with $f_i(x) < 0$ for all $i$",
+   "$F(x)$ is linear",
+   "There are fewer constraints than variables"
+  ],
+  "answer": [
+   0,
+   1,
+   2
+  ],
+  "explanation": "Slater's condition holds for most ML problems, including the SVM.",
+  "tags": [
+   "strong-duality",
+   "slater"
+  ],
+  "sources": [
+   {
+    "file": "week_4/slides/4a-lagrange-duality.pdf",
+    "page": 21
+   }
+  ]
+ },
+ {
+  "id": "w4-dua-004",
+  "week": 4,
+  "topic": "duality",
+  "type": "mcq",
+  "difficulty": 2,
+  "prompt": "What does **Slater's condition** require?",
+  "choices": [
+   "At least one feasible $x$ with $f_i(x) < 0$ for every $i$",
+   "Every $x$ satisfies $f_i(x) \\le 0$",
+   "All Lagrange multipliers are positive",
+   "$F(x)$ has a unique minimum"
+  ],
+  "answer": 0,
+  "explanation": "Together with convexity in $x$ (and concavity in $a$), it gives strong duality.",
+  "tags": [
+   "slater"
+  ],
+  "sources": [
+   {
+    "file": "week_4/slides/4a-lagrange-duality.pdf",
+    "page": 21
+   }
+  ]
+ },
+ {
+  "id": "w4-dua-005",
+  "week": 4,
+  "topic": "duality",
+  "type": "mcq",
+  "difficulty": 2,
+  "prompt": "When the Lagrangian is convex in the primal variables and Slater's condition holds, there is a saddle point. Which statement about it is right?",
+  "choices": [
+   "The primal and dual solutions become equal and no further improvement can be made",
+   "It minimises the Lagrangian in the primal space without maximising it in the dual space",
+   "It maximises the Lagrangian in the dual space without minimising it in the primal space"
+  ],
+  "answer": 0,
+  "explanation": "At the saddle point the function is a minimum in the primal variable and a maximum in the dual variable at the same time. This is strong duality.",
+  "tags": [
+   "saddle-point"
+  ],
+  "sources": [
+   {
+    "file": "week_4/worksheets/4a-Lagrange_dual-answers.pdf",
+    "page": 2
+   }
+  ]
+ },
+ {
+  "id": "w4-dua-006",
+  "week": 4,
+  "topic": "duality",
+  "type": "numeric",
+  "difficulty": 1,
+  "prompt": "$H(x,y) = x^2 - y^2$. Minimise over $x$ first (keeping $y$ fixed), then maximise over $y$. What is the value of $H$ at the point you reach?",
+  "answer": 0,
+  "tolerance": 0.0001,
+  "explanation": "For fixed $y$ the minimum is at $x = 0$, giving $-y^2$, which is largest at $y = 0$. The point is $(0,0)$ and $H(0,0) = 0$. Maximising over $y$ first also reaches $(0,0)$.",
+  "tags": [
+   "saddle-point",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_4/worksheets/4a-Lagrange_dual-answers.pdf",
+    "page": 5
+   }
+  ]
+ },
+ {
+  "id": "w4-dua-007",
+  "week": 4,
+  "topic": "duality",
+  "type": "short",
+  "difficulty": 2,
+  "prompt": "Show that $(0,0)$ is a saddle point of $H(x,y) = x^2 - y^2$.",
+  "answer": "Min over $x$ then max over $y$: $H(0,y) = -y^2$, maximised at $y = 0$. Max over $y$ then min over $x$: $H(x,0) = x^2$, minimised at $x = 0$. Both orders reach $(0,0)$, and $H$ is a minimum in the $x$-direction and a maximum in the $y$-direction there.",
+  "steps": [
+   "For fixed $y$, $\\min_x H = -y^2$ at $x = 0$; then $\\max_y(-y^2) = 0$ at $y = 0$",
+   "For fixed $x$, $\\max_y H = x^2$ at $y = 0$; then $\\min_x x^2 = 0$ at $x = 0$",
+   "Both orders give $(0,0)$: min in $x$, max in $y$, so it is a saddle point"
+  ],
+  "explanation": "This is the picture behind minimax = maxmin.",
+  "tags": [
+   "saddle-point",
+   "derivation"
+  ],
+  "sources": [
+   {
+    "file": "week_4/worksheets/4a-Lagrange_dual-answers.pdf",
+    "page": 5
+   }
+  ]
+ },
+ {
+  "id": "w4-dua-008",
+  "week": 4,
+  "topic": "duality",
+  "type": "numeric",
+  "difficulty": 2,
+  "prompt": "$G(x,y) = (x-2)^2 - (y+1)^2$. Minimise over $x$ first, then maximise over $y$. What is the $y$-coordinate of the point you reach?",
+  "answer": -1,
+  "tolerance": 0.0001,
+  "explanation": "For any fixed $y$ the minimum is at $x = 2$, giving $-(y+1)^2$, which is maximised at $y = -1$. The saddle point is $(2, -1)$.",
+  "tags": [
+   "saddle-point",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_4/worksheets/4a-Lagrange_dual-answers.pdf",
+    "page": 5
+   }
+  ]
+ },
+ {
+  "id": "w4-dua-009",
+  "week": 4,
+  "topic": "duality",
+  "type": "mcq",
+  "difficulty": 2,
+  "prompt": "The primal $\\min_x F(x)$ is over $x \\in \\mathbb{R}^d$ with $N$ constraints. What is the dual $\\max_a G(a)$ solved over?",
+  "choices": [
+   "$a$, which is $N$-dimensional",
+   "$a$, which is $d$-dimensional",
+   "$x$ and $a$ together",
+   "$x$ only"
+  ],
+  "answer": 0,
+  "explanation": "There is one multiplier per constraint. For the SVM that is one $a^{(n)}$ per training example.",
+  "tags": [
+   "dual",
+   "dimension"
+  ],
+  "sources": [
+   {
+    "file": "week_4/slides/4a-lagrange-duality.pdf",
+    "page": 31
+   }
+  ]
+ },
+ {
+  "id": "w4-dua-010",
+  "week": 4,
+  "topic": "duality",
+  "type": "order",
+  "difficulty": 1,
+  "prompt": "Put the four steps of the lecture's route from a constrained problem to a simplified dual in order.",
+  "steps": [
+   "Lagrange relaxation: move the constraints into the objective",
+   "Minimax primal: $\\min_x\\max_{a \\ge 0} L(x,a)$",
+   "Maxmin dual: $\\max_{a \\ge 0}\\min_x L(x,a)$",
+   "Simplify the dual with the KKT stationarity condition"
+  ],
+  "explanation": "Step 4 rewrites $x$ in terms of $a$, so the problem only optimises over the Lagrange multipliers.",
+  "tags": [
+   "dual",
+   "overview"
+  ],
+  "sources": [
+   {
+    "file": "week_4/slides/4a-lagrange-duality.pdf",
+    "page": 24
+   }
+  ]
+ },
+ {
+  "id": "w4-ktr-001",
+  "week": 4,
+  "topic": "kernel-trick",
+  "type": "flashcard",
+  "difficulty": 1,
+  "prompt": "What is the **kernel trick**?",
+  "answer": "Computing $k(\\mathbf{x}^{(n)},\\mathbf{x}^{(m)}) = \\phi(\\mathbf{x}^{(n)})^T\\phi(\\mathbf{x}^{(m)})$ directly from the inputs, without ever computing $\\phi(\\mathbf{x})$.",
+  "explanation": "Example: for the quadratic expansion with $\\sqrt2$ factors, $\\phi(\\mathbf{x})^T\\phi(\\mathbf{z}) = (1 + \\mathbf{x}^T\\mathbf{z})^2$.",
+  "tags": [
+   "kernel-trick"
+  ],
+  "sources": [
+   {
+    "file": "week_4/slides/4c-svm-dual.pdf",
+    "page": 26
+   }
+  ]
+ },
+ {
+  "id": "w4-ktr-002",
+  "week": 4,
+  "topic": "kernel-trick",
+  "type": "numeric",
+  "difficulty": 2,
+  "prompt": "$\\phi(\\mathbf{x}) = (1, \\sqrt2x_1, \\sqrt2x_2, x_1^2, x_2^2, \\sqrt2x_1x_2)^T$, $\\mathbf{x}^{(1)} = (0.1,0.1)^T$, $\\mathbf{x}^{(2)} = (0.1,0.2)^T$. Compute $\\phi(\\mathbf{x}^{(1)})^T\\phi(\\mathbf{x}^{(2)})$ without computing $\\phi$. (4 d.p.)",
+  "answer": 1.0609,
+  "tolerance": 0.0001,
+  "explanation": "$(1 + \\mathbf{x}^{(1)T}\\mathbf{x}^{(2)})^2 = (1 + 0.01 + 0.02)^2 = 1.03^2 = 1.0609$.",
+  "tags": [
+   "kernel-trick",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_4/worksheets/4c-SVM_dual-answers.pdf",
+    "page": 7
+   }
+  ]
+ },
+ {
+  "id": "w4-ktr-003",
+  "week": 4,
+  "topic": "kernel-trick",
+  "type": "mcq",
+  "difficulty": 2,
+  "prompt": "For $\\phi(x_1,x_2) = (x_1^2, \\sqrt2x_1x_2, x_2^2)^T$, which kernel equals $\\langle\\phi(\\mathbf{x}),\\phi(\\mathbf{z})\\rangle$?",
+  "choices": [
+   "$(\\mathbf{x}^T\\mathbf{z})^2$",
+   "$(1 + \\mathbf{x}^T\\mathbf{z})^2$",
+   "$\\mathbf{x}^T\\mathbf{z}$",
+   "$x_1^2z_1^2 + x_2^2z_2^2$"
+  ],
+  "answer": 0,
+  "explanation": "$x_1^2z_1^2 + 2x_1x_2z_1z_2 + x_2^2z_2^2 = (x_1z_1 + x_2z_2)^2$: the degree-2 polynomial kernel.",
+  "tags": [
+   "kernel-trick"
+  ],
+  "sources": [
+   {
+    "file": "week_4/worksheets/4c-SVM_dual-answers.pdf",
+    "page": 7
+   }
+  ]
+ },
+ {
+  "id": "w4-ktr-004",
+  "week": 4,
+  "topic": "kernel-trick",
+  "type": "numeric",
+  "difficulty": 1,
+  "prompt": "Same mapping $\\phi(x_1,x_2) = (x_1^2, \\sqrt2x_1x_2, x_2^2)^T$. Evaluate $\\langle\\phi(\\mathbf{x}),\\phi(\\mathbf{z})\\rangle$ for $\\mathbf{x} = (1,2)$, $\\mathbf{z} = (3,4)$.",
+  "answer": 121,
+  "tolerance": 0.0001,
+  "explanation": "Through the kernel: $\\mathbf{x}^T\\mathbf{z} = 3 + 8 = 11$, and $11^2 = 121$. Explicitly: $9 + 48 + 64 = 121$.",
+  "tags": [
+   "kernel-trick",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_4/worksheets/4c-SVM_dual-answers.pdf",
+    "page": 7
+   }
+  ]
+ },
+ {
+  "id": "w4-ktr-005",
+  "week": 4,
+  "topic": "kernel-trick",
+  "type": "numeric",
+  "difficulty": 1,
+  "prompt": "Evaluate the polynomial kernel $k(\\mathbf{x},\\mathbf{z}) = (1 + \\mathbf{x}^T\\mathbf{z})^2$ for $\\mathbf{x} = (1,2)$, $\\mathbf{z} = (3,4)$.",
+  "answer": 144,
+  "tolerance": 0.0001,
+  "explanation": "$(1 + 11)^2 = 144$.",
+  "tags": [
+   "polynomial-kernel",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_4/coding/4c_dual_predictions_kernels.ipynb",
+    "page": 15
+   }
+  ]
+ },
+ {
+  "id": "w4-ktr-006",
+  "week": 4,
+  "topic": "kernel-trick",
+  "type": "mcq",
+  "difficulty": 1,
+  "prompt": "What basis expansion does the polynomial kernel $k(\\mathbf{x},\\mathbf{z}) = (1 + \\mathbf{x}^T\\mathbf{z})^p$ correspond to?",
+  "choices": [
+   "One composed of all terms of order up to $p$",
+   "Only the terms of order exactly $p$",
+   "An infinite-dimensional embedding",
+   "The identity, $\\phi(\\mathbf{x}) = \\mathbf{x}$"
+  ],
+  "answer": 0,
+  "explanation": "It generalises the $p = 2$ calculation from the lecture.",
+  "tags": [
+   "polynomial-kernel"
+  ],
+  "sources": [
+   {
+    "file": "week_4/slides/4c-svm-dual.pdf",
+    "page": 28
+   }
+  ]
+ },
+ {
+  "id": "w4-ktr-007",
+  "week": 4,
+  "topic": "kernel-trick",
+  "type": "numeric",
+  "difficulty": 2,
+  "prompt": "Evaluate the Gaussian kernel $k(\\mathbf{x},\\mathbf{z}) = e^{-\\|\\mathbf{x}-\\mathbf{z}\\|^2/(2\\sigma^2)}$ for $\\mathbf{x} = (1,2)$, $\\mathbf{z} = (3,4)$, $\\sigma = 2$. (4 d.p.)",
+  "answer": 0.3679,
+  "tolerance": 0.0001,
+  "explanation": "$\\|\\mathbf{x}-\\mathbf{z}\\|^2 = 4 + 4 = 8$ and $2\\sigma^2 = 8$, so $k = e^{-1} \\approx 0.3679$.",
+  "tags": [
+   "gaussian-kernel",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_4/coding/4c_dual_predictions_kernels.ipynb",
+    "page": 15
+   }
+  ]
+ },
+ {
+  "id": "w4-ktr-008",
+  "week": 4,
+  "topic": "kernel-trick",
+  "type": "truefalse",
+  "difficulty": 1,
+  "prompt": "The embedding $\\phi$ that corresponds to the Gaussian (RBF) kernel is infinite dimensional.",
+  "answer": true,
+  "explanation": "Its Taylor series has infinitely many terms. The kernel trick lets us use it without computing $\\phi$.",
+  "tags": [
+   "gaussian-kernel"
+  ],
+  "sources": [
+   {
+    "file": "week_4/slides/4c-svm-dual.pdf",
+    "page": 40
+   }
+  ]
+ },
+ {
+  "id": "w4-ktr-009",
+  "week": 4,
+  "topic": "kernel-trick",
+  "type": "mcq",
+  "difficulty": 1,
+  "prompt": "In $h(\\mathbf{x}) = \\sum_{n\\in S}a^{(n)}y^{(n)}k(\\mathbf{x},\\mathbf{x}^{(n)}) + b$, how can the kernel be interpreted?",
+  "choices": [
+   "As a similarity between the new example and each support vector",
+   "As the distance to the decision boundary",
+   "As the probability of class $+1$",
+   "As the margin"
+  ],
+  "answer": 0,
+  "explanation": "Predictions are made from the training examples: support vectors similar to $\\mathbf{x}$ pull $h(\\mathbf{x})$ towards their own label.",
+  "tags": [
+   "similarity"
+  ],
+  "sources": [
+   {
+    "file": "week_4/slides/4c-svm-dual.pdf",
+    "page": 35
+   }
+  ]
+ },
+ {
+  "id": "w4-kva-001",
+  "week": 4,
+  "topic": "kernel-validity",
+  "type": "flashcard",
+  "difficulty": 1,
+  "prompt": "State **Mercer's condition**.",
+  "answer": "For any finite set of points $\\mathbf{x}^{(1)},\\dots,\\mathbf{x}^{(M)}$, the Gram matrix $K_{i,j} = k(\\mathbf{x}^{(i)},\\mathbf{x}^{(j)})$ must be symmetric and positive semidefinite ($\\mathbf{z}^TK\\mathbf{z} \\ge 0$ for all $\\mathbf{z} \\in \\mathbb{R}^M$).",
+  "explanation": "Then the kernel corresponds to an inner product in some embedding.",
+  "tags": [
+   "mercer"
+  ],
+  "sources": [
+   {
+    "file": "week_4/slides/4c-svm-dual.pdf",
+    "page": 38
+   }
+  ]
+ },
+ {
+  "id": "w4-kva-002",
+  "week": 4,
+  "topic": "kernel-validity",
+  "type": "truefalse",
+  "difficulty": 2,
+  "prompt": "The Gaussian kernel is not very popular because its infinite-dimensional embedding is too expensive to compute.",
+  "answer": false,
+  "explanation": "The kernel trick means we never compute that embedding. The Gaussian is one of the most popular kernels.",
+  "tags": [
+   "gaussian-kernel"
+  ],
+  "sources": [
+   {
+    "file": "week_4/worksheets/4c-SVM_dual-answers.pdf",
+    "page": 2
+   }
+  ]
+ },
+ {
+  "id": "w4-kva-003",
+  "week": 4,
+  "topic": "kernel-validity",
+  "type": "truefalse",
+  "difficulty": 1,
+  "prompt": "Any function designed to capture similarity can be used as a kernel function.",
+  "answer": false,
+  "explanation": "The function must meet Mercer's condition.",
+  "tags": [
+   "mercer"
+  ],
+  "sources": [
+   {
+    "file": "week_4/worksheets/4c-SVM_dual-answers.pdf",
+    "page": 2
+   }
+  ]
+ },
+ {
+  "id": "w4-kva-004",
+  "week": 4,
+  "topic": "kernel-validity",
+  "type": "truefalse",
+  "difficulty": 2,
+  "prompt": "A Mercer kernel must be defined by first choosing the feature embedding and then computing the inner product in it.",
+  "answer": false,
+  "explanation": "We can define a kernel directly as a similarity function, even without knowing its embedding, as long as it satisfies Mercer's condition.",
+  "tags": [
+   "mercer"
+  ],
+  "sources": [
+   {
+    "file": "week_4/worksheets/4c-SVM_dual-answers.pdf",
+    "page": 2
+   }
+  ]
+ },
+ {
+  "id": "w4-kva-005",
+  "week": 4,
+  "topic": "kernel-validity",
+  "type": "multi",
+  "difficulty": 2,
+  "prompt": "Which statements about Mercer's condition are correct? Select all that apply.",
+  "choices": [
+   "It applies only to nonlinear kernels",
+   "It applies only to linear kernels",
+   "It ensures that the kernel function is symmetric",
+   "If a kernel satisfies it, it can be used for training SVMs"
+  ],
+  "answer": [
+   2,
+   3
+  ],
+  "explanation": "The Gram matrix must be symmetric, so the kernel is too. Satisfying it means the kernel is an inner product in some space. Many kernels, linear included, meet it.",
+  "tags": [
+   "mercer"
+  ],
+  "sources": [
+   {
+    "file": "week_4/worksheets/4c-SVM_dual-answers.pdf",
+    "page": 4
+   }
+  ]
+ },
+ {
+  "id": "w4-kva-006",
+  "week": 4,
+  "topic": "kernel-validity",
+  "type": "multi",
+  "difficulty": 2,
+  "prompt": "Given valid kernels $k_1$ and $k_2$, which of these are guaranteed to be valid kernels? Select all that apply.",
+  "choices": [
+   "$c\\,k_1(\\mathbf{x},\\mathbf{z})$ with $c \\ge 0$",
+   "$k_1(\\mathbf{x},\\mathbf{z}) + k_2(\\mathbf{x},\\mathbf{z})$",
+   "$k_1(\\mathbf{x},\\mathbf{z})\\,k_2(\\mathbf{x},\\mathbf{z})$",
+   "$e^{k_1(\\mathbf{x},\\mathbf{z})}$",
+   "$f(\\mathbf{x})k_1(\\mathbf{x},\\mathbf{z})f(\\mathbf{z})$ for any function $f$",
+   "$k_1(\\mathbf{x},\\mathbf{z}) - k_2(\\mathbf{x},\\mathbf{z})$"
+  ],
+  "answer": [
+   0,
+   1,
+   2,
+   3,
+   4
+  ],
+  "explanation": "These are the lecture's composition rules (plus $q(k_1)$ for a polynomial $q$ with non-negative coefficients and $k_1 + c$ with $c \\ge 0$). A difference is not one of the rules.",
+  "tags": [
+   "composition-rules"
+  ],
+  "sources": [
+   {
+    "file": "week_4/slides/4c-svm-dual.pdf",
+    "page": 39
+   }
+  ]
+ },
+ {
+  "id": "w4-kva-007",
+  "week": 4,
+  "topic": "kernel-validity",
+  "type": "short",
+  "difficulty": 2,
+  "prompt": "Show that $k(\\mathbf{x},\\mathbf{z}) = 10(\\mathbf{x}^T\\mathbf{z})^2 + 2(\\mathbf{x}^T\\mathbf{z})$ is a valid kernel, given that $\\mathbf{x}^T\\mathbf{z}$ is a kernel.",
+  "answer": "$k = q(k'(\\mathbf{x},\\mathbf{z}))$ with $k' = \\mathbf{x}^T\\mathbf{z}$ the linear kernel and $q(t) = 10t^2 + 2t$. A polynomial with non-negative coefficients of a valid kernel is a valid kernel.",
+  "steps": [
+   "Let $k'(\\mathbf{x},\\mathbf{z}) = \\mathbf{x}^T\\mathbf{z}$ (valid)",
+   "Write $k = 10k'^2 + 2k'$",
+   "$q(t) = 10t^2 + 2t$ has non-negative coefficients",
+   "By the rule $k = q(k_1)$, $k$ is valid"
+  ],
+  "explanation": "You could also use the product rule ($k'k'$), the scaling rule ($c \\ge 0$) and the sum rule.",
+  "tags": [
+   "composition-rules",
+   "proof"
+  ],
+  "sources": [
+   {
+    "file": "week_4/worksheets/4c-SVM_dual-answers.pdf",
+    "page": 3
+   }
+  ]
+ },
+ {
+  "id": "w4-kva-008",
+  "week": 4,
+  "topic": "kernel-validity",
+  "type": "mcq",
+  "difficulty": 2,
+  "prompt": "What is the most likely outcome of making the kernel more complex (for example linear to polynomial)?",
+  "choices": [
+   "Less computation, but possible underfitting",
+   "More support vectors and lower training error, but possible overfitting",
+   "More computation and better generalisation",
+   "Fewer support vectors and faster training"
+  ],
+  "answer": 1,
+  "explanation": "A more expressive model fits the training data more closely, and a more detailed boundary may need more support vectors to define it.",
+  "tags": [
+   "generalisation"
+  ],
+  "sources": [
+   {
+    "file": "week_4/worksheets/4c-SVM_dual-answers.pdf",
+    "page": 3
+   }
+  ]
+ },
+ {
+  "id": "w4-kva-009",
+  "week": 4,
+  "topic": "kernel-validity",
+  "type": "order",
+  "difficulty": 3,
+  "prompt": "Put the steps proving that the Gaussian kernel ($\\sigma = 1$) is valid in order, assuming $\\mathbf{x}^T\\mathbf{z}$ is valid.",
+  "steps": [
+   "$(\\mathbf{x}^T\\mathbf{z})^j$ is valid (product rule)",
+   "$\\frac{(\\mathbf{x}^T\\mathbf{z})^j}{j!}$ is valid (scaling by $c \\ge 0$)",
+   "$e^{-\\frac12\\|\\mathbf{x}\\|^2}\\frac{(\\mathbf{x}^T\\mathbf{z})^j}{j!}e^{-\\frac12\\|\\mathbf{z}\\|^2}$ is valid ($f(\\mathbf{x})k_1f(\\mathbf{z})$ rule)",
+   "The sum over $j = 0,\\dots,\\infty$ is valid (sum rule) and equals $e^{-\\|\\mathbf{x}-\\mathbf{z}\\|^2/2}$"
+  ],
+  "explanation": "The Taylor series of the Gaussian splits it into terms that the composition rules cover.",
+  "tags": [
+   "gaussian-kernel",
+   "proof"
+  ],
+  "sources": [
+   {
+    "file": "week_4/slides/4c-svm-dual.pdf",
+    "page": 41
+   }
+  ]
+ },
+ {
+  "id": "w4-kva-010",
+  "week": 4,
+  "topic": "kernel-validity",
+  "type": "truefalse",
+  "difficulty": 2,
+  "prompt": "Even if we design a kernel directly as a similarity function and never compute $\\phi$, it must still correspond to an inner product in some embedding.",
+  "answer": true,
+  "explanation": "We can check that with Mercer's condition.",
+  "tags": [
+   "mercer",
+   "similarity"
+  ],
+  "sources": [
+   {
+    "file": "week_4/slides/4c-svm-dual.pdf",
+    "page": 37
+   }
+  ]
+ },
+ {
+  "id": "w4-kkt-001",
+  "week": 4,
+  "topic": "karush-kuhn-tucker",
+  "type": "flashcard",
+  "difficulty": 1,
+  "prompt": "List the KKT conditions for $\\min_x F(x)$ s.t. $f_i(x) \\le 0$.",
+  "answer": "Stationarity: $\\nabla_xL = \\nabla F(x) + \\sum_i a_i\\nabla f_i(x) = 0$. Complementary slackness: $a_if_i(x) = 0$. Primal feasibility: $f_i(x) \\le 0$. Dual feasibility: $a_i \\ge 0$.",
+  "explanation": "For a convex problem with convex inequality constraints these are necessary and sufficient for optimality.",
+  "tags": [
+   "kkt",
+   "definition"
+  ],
+  "sources": [
+   {
+    "file": "week_4/slides/4a-lagrange-duality.pdf",
+    "page": 28
+   }
+  ]
+ },
+ {
+  "id": "w4-kkt-002",
+  "week": 4,
+  "topic": "karush-kuhn-tucker",
+  "type": "mcq",
+  "difficulty": 1,
+  "prompt": "Which statement about the KKT conditions is true?",
+  "choices": [
+   "They are only necessary for optimality in convex problems with inequality constraints",
+   "They are necessary and sufficient for optimality in convex problems with convex inequality constraints",
+   "They are necessary and sufficient for all optimisation problems",
+   "They can replace gradient-based methods for unconstrained problems"
+  ],
+  "answer": 1,
+  "explanation": "The lecture states them for a convex problem $\\min_x F(x)$ with convex constraints $f_i(x) \\le 0$.",
+  "tags": [
+   "kkt"
+  ],
+  "sources": [
+   {
+    "file": "week_4/worksheets/4a-Lagrange_dual-answers.pdf",
+    "page": 3
+   },
+   {
+    "file": "week_4/slides/4a-lagrange-duality.pdf",
+    "page": 25
+   }
+  ]
+ },
+ {
+  "id": "w4-kkt-003",
+  "week": 4,
+  "topic": "karush-kuhn-tucker",
+  "type": "mcq",
+  "difficulty": 2,
+  "prompt": "Why does the stationarity condition $\\nabla_xL(x,a) = 0$ hold in $\\max_a\\min_x L(x,a)$?",
+  "choices": [
+   "For each fixed $a$, the inner min over $x$ is an unconstrained problem",
+   "Because $a = 0$ at the optimum",
+   "Because the constraints are linear",
+   "Because $L$ is concave in $x$"
+  ],
+  "answer": 0,
+  "explanation": "In unconstrained convex optimisation the optimum has zero gradient, so $\\nabla_xF(x) + \\sum_i a_i\\nabla_xf_i(x) = 0$.",
+  "tags": [
+   "kkt",
+   "stationarity"
+  ],
+  "sources": [
+   {
+    "file": "week_4/slides/4a-lagrange-duality.pdf",
+    "page": 25
+   }
+  ]
+ },
+ {
+  "id": "w4-kkt-004",
+  "week": 4,
+  "topic": "karush-kuhn-tucker",
+  "type": "truefalse",
+  "difficulty": 2,
+  "prompt": "Complementary slackness says $a_if_i(x) = 0$, so if $a_i > 0$ then the constraint holds with equality, $f_i(x) = 0$.",
+  "answer": true,
+  "explanation": "The product can only be zero if one factor is zero. For the SVM this picks out the support vectors.",
+  "tags": [
+   "kkt",
+   "complementary-slackness"
+  ],
+  "sources": [
+   {
+    "file": "week_4/slides/4a-lagrange-duality.pdf",
+    "page": 25
+   }
+  ]
+ },
+ {
+  "id": "w4-kkt-005",
+  "week": 4,
+  "topic": "karush-kuhn-tucker",
+  "type": "mcq",
+  "difficulty": 1,
+  "prompt": "In unconstrained convex optimisation, what is a necessary and sufficient condition for optimality?",
+  "choices": [
+   "$\\nabla F(x) = 0$",
+   "$F(x) = 0$",
+   "$\\nabla F(x) > 0$",
+   "The Hessian is zero"
+  ],
+  "answer": 0,
+  "explanation": "KKT extends this to convex problems with inequality constraints.",
+  "tags": [
+   "kkt"
+  ],
+  "sources": [
+   {
+    "file": "week_4/slides/4a-lagrange-duality.pdf",
+    "page": 25
+   }
+  ]
+ },
+ {
+  "id": "w4-kkt-006",
+  "week": 4,
+  "topic": "karush-kuhn-tucker",
+  "type": "numeric",
+  "difficulty": 2,
+  "prompt": "Dual: $\\max_\\beta\\min_w L = w_1^2 + \\frac12w_2^2 + 10\\beta_1w_1 - \\beta_2w_2 - 4$, with $\\nabla_wL = (2w_1 + 10\\beta_1,\\ w_2 - \\beta_2)^T$. Using stationarity, what is $w_1$ when $\\beta_1 = 0.2$?",
+  "answer": -1,
+  "tolerance": 0.0001,
+  "explanation": "$2w_1 + 10\\beta_1 = 0$ gives $w_1 = -5\\beta_1 = -1$.",
+  "tags": [
+   "kkt",
+   "stationarity",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_4/worksheets/4a-Lagrange_dual-answers.pdf",
+    "page": 4
+   }
+  ]
+ },
+ {
+  "id": "w4-kkt-007",
+  "week": 4,
+  "topic": "karush-kuhn-tucker",
+  "type": "numeric",
+  "difficulty": 2,
+  "prompt": "Same problem. After substituting $w_1 = -5\\beta_1$ and $w_2 = \\beta_2$, the dual objective is $G(\\beta) = c_1\\beta_1^2 + c_2\\beta_2^2 - 4$. What is $c_1$?",
+  "answer": -25,
+  "tolerance": 0.0001,
+  "explanation": "$(-5\\beta_1)^2 + 10\\beta_1(-5\\beta_1) = 25\\beta_1^2 - 50\\beta_1^2 = -25\\beta_1^2$.",
+  "tags": [
+   "kkt",
+   "dual",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_4/worksheets/4a-Lagrange_dual-answers.pdf",
+    "page": 4
+   }
+  ]
+ },
+ {
+  "id": "w4-kkt-008",
+  "week": 4,
+  "topic": "karush-kuhn-tucker",
+  "type": "numeric",
+  "difficulty": 2,
+  "prompt": "Same problem. What is $c_2$, the coefficient of $\\beta_2^2$ in $G(\\beta)$?",
+  "answer": -0.5,
+  "tolerance": 0.0001,
+  "explanation": "$\\frac12\\beta_2^2 - \\beta_2\\beta_2 = -\\frac12\\beta_2^2$.",
+  "tags": [
+   "kkt",
+   "dual",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_4/worksheets/4a-Lagrange_dual-answers.pdf",
+    "page": 4
+   }
+  ]
+ },
+ {
+  "id": "w4-kkt-009",
+  "week": 4,
+  "topic": "karush-kuhn-tucker",
+  "type": "order",
+  "difficulty": 2,
+  "prompt": "Put the steps for simplifying a dual with the KKT stationarity condition in order.",
+  "steps": [
+   "Start from $\\max_a\\min_x L(x,a)$",
+   "Set $\\nabla_xL(x,a) = 0$",
+   "Solve for $x = g(a)$",
+   "Substitute $x$ back into $L$",
+   "Solve $\\max_a G(a)$ subject to $a_i \\ge 0$"
+  ],
+  "explanation": "The min disappears, and only the Lagrange multipliers remain to be optimised.",
+  "tags": [
+   "kkt",
+   "dual"
+  ],
+  "sources": [
+   {
+    "file": "week_4/slides/4a-lagrange-duality.pdf",
+    "page": 29
+   }
+  ]
+ },
+ {
+  "id": "w4-kkt-010",
+  "week": 4,
+  "topic": "karush-kuhn-tucker",
+  "type": "numeric",
+  "difficulty": 3,
+  "prompt": "Dual: $\\max_{a_1 \\ge 0}\\min_x L = x_1^2 + x_2^2 + 6a_1x_1 - 2$. Use stationarity to write the dual as $G(a_1) = c\\,a_1^2 - 2$. What is $c$?",
+  "answer": -9,
+  "tolerance": 0.0001,
+  "explanation": "$\\nabla_xL = (2x_1 + 6a_1,\\ 2x_2) = 0$ gives $x_1 = -3a_1$, $x_2 = 0$. Then $G = 9a_1^2 - 18a_1^2 - 2 = -9a_1^2 - 2$.",
+  "tags": [
+   "kkt",
+   "dual",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_4/slides/4a-lagrange-duality.pdf",
+    "page": 29
+   }
+  ]
+ },
+ {
+  "id": "w4-kkt-011",
+  "week": 4,
+  "topic": "karush-kuhn-tucker",
+  "type": "numeric",
+  "difficulty": 3,
+  "prompt": "Lecture example: the dual simplifies to $\\max_{a_1} G(a_1) = -25a_1^2 - 4$ subject to $a_1 \\ge 0$. What value of $a_1$ maximises $G$?",
+  "answer": 0,
+  "tolerance": 0.0001,
+  "explanation": "$-25a_1^2$ is never positive, so $G$ is largest at $a_1 = 0$, where $G = -4$.",
+  "tags": [
+   "dual",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_4/slides/4a-lagrange-duality.pdf",
+    "page": 30
+   }
+  ]
+ },
+ {
+  "id": "w4-lag-001",
+  "week": 4,
+  "topic": "lagrange-relaxation",
+  "type": "flashcard",
+  "difficulty": 1,
+  "prompt": "What does **Lagrange relaxation** do to a constrained optimisation problem?",
+  "answer": "It moves the constraints into the objective: $\\min_x F(x)$ s.t. $f_i(x) \\le 0$ becomes $\\min_x \\{F(x) + \\sum_{i=1}^N a_if_i(x)\\}$ with $a_i \\ge 0$.",
+  "explanation": "The $a_i$ are Lagrange multipliers and $L(x,a) = F(x) + \\sum_i a_if_i(x)$ is the Lagrangian.",
+  "tags": [
+   "lagrangian",
+   "definition"
+  ],
+  "sources": [
+   {
+    "file": "week_4/slides/4a-lagrange-duality.pdf",
+    "page": 7
+   }
+  ]
+ },
+ {
+  "id": "w4-lag-002",
+  "week": 4,
+  "topic": "lagrange-relaxation",
+  "type": "mcq",
+  "difficulty": 1,
+  "prompt": "With constraints $f_i(x) \\le 0$ and multipliers $a_i \\ge 0$, what does the term $a_if_i(x)$ do when constraint $i$ is violated?",
+  "choices": [
+   "It adds a penalty to the objective (unless $a_i = 0$)",
+   "It rewards the objective",
+   "It has no effect",
+   "It removes the constraint"
+  ],
+  "answer": 0,
+  "explanation": "A violated constraint has $f_i(x) > 0$, so $a_if_i(x) \\ge 0$ makes the minimisation objective worse.",
+  "tags": [
+   "lagrangian",
+   "penalty"
+  ],
+  "sources": [
+   {
+    "file": "week_4/slides/4a-lagrange-duality.pdf",
+    "page": 9
+   }
+  ]
+ },
+ {
+  "id": "w4-lag-003",
+  "week": 4,
+  "topic": "lagrange-relaxation",
+  "type": "short",
+  "difficulty": 2,
+  "prompt": "What would happen if we used $\\min_x\\{F(x) + \\sum_i a_if_i(x)\\}$ with $a_i \\ge 0$, but the constraints were $f_i(x) \\ge 0$ instead of $f_i(x) \\le 0$?",
+  "answer": "The relaxation would reward violations: a violated constraint now has $f_i(x) < 0$, so $a_if_i(x)$ is negative and lowers the objective, which is better in a minimisation problem.",
+  "explanation": "This is why every constraint is first written in the form $f_i(x) \\le 0$.",
+  "tags": [
+   "lagrangian",
+   "sign"
+  ],
+  "sources": [
+   {
+    "file": "week_4/worksheets/4a-Lagrange_dual-answers.pdf",
+    "page": 1
+   }
+  ]
+ },
+ {
+  "id": "w4-lag-004",
+  "week": 4,
+  "topic": "lagrange-relaxation",
+  "type": "numeric",
+  "difficulty": 1,
+  "prompt": "$F(x) = 1$, a single constraint with $f(x) = 10$ and $a = 1$. What is the Lagrangian $L(x,a) = F(x) + af(x)$?",
+  "answer": 11,
+  "tolerance": 0.0001,
+  "explanation": "$1 + 1 \\times 10 = 11$. The constraint is violated, so the objective is penalised.",
+  "tags": [
+   "lagrangian",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_4/slides/4a-lagrange-duality.pdf",
+    "page": 10
+   }
+  ]
+ },
+ {
+  "id": "w4-lag-005",
+  "week": 4,
+  "topic": "lagrange-relaxation",
+  "type": "numeric",
+  "difficulty": 1,
+  "prompt": "$F(x) = 20$, a single constraint with $f(x) = -30$ and $a = 1$. What is $L(x,a) = F(x) + af(x)$?",
+  "answer": -10,
+  "tolerance": 0.0001,
+  "explanation": "$20 + 1 \\times (-30) = -10$. The constraint is satisfied, and the objective is rewarded (it goes below $F(x)$).",
+  "tags": [
+   "lagrangian",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_4/slides/4a-lagrange-duality.pdf",
+    "page": 11
+   }
+  ]
+ },
+ {
+  "id": "w4-lag-006",
+  "week": 4,
+  "topic": "lagrange-relaxation",
+  "type": "truefalse",
+  "difficulty": 1,
+  "prompt": "For a feasible solution $x$ (all $f_i(x) \\le 0$) and any $a_i \\ge 0$, $L(x,a) \\le F(x)$.",
+  "answer": true,
+  "explanation": "Every term $a_if_i(x)$ is $\\le 0$, so adding them can only lower $F(x)$.",
+  "tags": [
+   "lagrangian"
+  ],
+  "sources": [
+   {
+    "file": "week_4/slides/4a-lagrange-duality.pdf",
+    "page": 12
+   }
+  ]
+ },
+ {
+  "id": "w4-lag-007",
+  "week": 4,
+  "topic": "lagrange-relaxation",
+  "type": "mcq",
+  "difficulty": 2,
+  "prompt": "What is the difficulty with plain Lagrange relaxation $\\min_x\\{F(x) + \\sum_i a_if_i(x)\\}$ for fixed multipliers?",
+  "choices": [
+   "We need to choose each $a_i$ so that the penalty is large enough",
+   "It can only handle one constraint",
+   "It always makes the problem non-convex",
+   "It requires $F(x)$ to be linear"
+  ],
+  "answer": 0,
+  "explanation": "A small $a_i$ may make a violated solution look better than a feasible one. The minimax formulation fixes this by maximising over $a$.",
+  "tags": [
+   "lagrangian"
+  ],
+  "sources": [
+   {
+    "file": "week_4/slides/4a-lagrange-duality.pdf",
+    "page": 10
+   }
+  ]
+ },
+ {
+  "id": "w4-lag-008",
+  "week": 4,
+  "topic": "lagrange-relaxation",
+  "type": "mcq",
+  "difficulty": 2,
+  "prompt": "In the minimax primal $\\min_x\\{F(x) + \\max_{a \\ge 0}\\sum_i a_if_i(x)\\}$, what is the penalty when a constraint is violated?",
+  "choices": [
+   "Infinitely large",
+   "Zero",
+   "Equal to $f_i(x)$",
+   "Negative"
+  ],
+  "answer": 0,
+  "explanation": "If $f_i(x) > 0$, the max over $a_i \\ge 0$ sends $a_if_i(x)$ to $+\\infty$, so the optimiser avoids violations.",
+  "tags": [
+   "minimax"
+  ],
+  "sources": [
+   {
+    "file": "week_4/slides/4a-lagrange-duality.pdf",
+    "page": 14
+   }
+  ]
+ },
+ {
+  "id": "w4-lag-009",
+  "week": 4,
+  "topic": "lagrange-relaxation",
+  "type": "mcq",
+  "difficulty": 2,
+  "prompt": "In the minimax primal, what is $\\max_{a \\ge 0}\\sum_i a_if_i(x)$ when no constraint is violated?",
+  "choices": [
+   "0, so $L(x,a) = F(x)$",
+   "$+\\infty$",
+   "$-\\infty$",
+   "$\\sum_i f_i(x)$"
+  ],
+  "answer": 0,
+  "explanation": "Each $f_i(x) \\le 0$, so the best choice is $a_if_i(x) = 0$ (either $a_i = 0$ or $f_i(x) = 0$).",
+  "tags": [
+   "minimax"
+  ],
+  "sources": [
+   {
+    "file": "week_4/slides/4a-lagrange-duality.pdf",
+    "page": 17
+   }
+  ]
+ },
+ {
+  "id": "w4-lag-010",
+  "week": 4,
+  "topic": "lagrange-relaxation",
+  "type": "truefalse",
+  "difficulty": 2,
+  "prompt": "The minimax primal $\\min_x\\max_a L(x,a)$ is easy to solve directly, because both levels are unconstrained.",
+  "answer": false,
+  "explanation": "It still needs a constrained problem (the max over $a \\ge 0$) solved inside an unconstrained one (the min over $x$). That is why we move to the dual.",
+  "tags": [
+   "minimax"
+  ],
+  "sources": [
+   {
+    "file": "week_4/slides/4a-lagrange-duality.pdf",
+    "page": 18
+   }
+  ]
+ },
+ {
+  "id": "w4-lag-011",
+  "week": 4,
+  "topic": "lagrange-relaxation",
+  "type": "mcq",
+  "difficulty": 1,
+  "prompt": "Why is the SVM primal with a basis expansion $\\phi(\\mathbf{x})$ worth rewriting?",
+  "choices": [
+   "Computing $\\phi(\\mathbf{x})$ can be very expensive, as it may take us to a very high-dimensional problem",
+   "The primal has no solution",
+   "The primal is not convex",
+   "The primal cannot use labels $\\pm1$"
+  ],
+  "answer": 0,
+  "explanation": "The dual formulation gets rid of $\\mathbf{w}$, $b$, $\\mathbf{w}^T\\phi(\\mathbf{x}^{(n)})$ and $\\|\\mathbf{w}\\|^2$.",
+  "tags": [
+   "motivation"
+  ],
+  "sources": [
+   {
+    "file": "week_4/slides/4a-lagrange-duality.pdf",
+    "page": 5
+   }
+  ]
+ },
+ {
+  "id": "w4-lag-012",
+  "week": 4,
+  "topic": "lagrange-relaxation",
+  "type": "mcq",
+  "difficulty": 2,
+  "prompt": "How is the SVM constraint $y^{(n)}(\\mathbf{w}^T\\phi(\\mathbf{x}^{(n)}) + b) \\ge 1$ written in the $f_i \\le 0$ form used for Lagrange relaxation?",
+  "choices": [
+   "$1 - y^{(n)}(\\mathbf{w}^T\\phi(\\mathbf{x}^{(n)}) + b) \\le 0$",
+   "$y^{(n)}(\\mathbf{w}^T\\phi(\\mathbf{x}^{(n)}) + b) - 1 \\le 0$",
+   "$y^{(n)}(\\mathbf{w}^T\\phi(\\mathbf{x}^{(n)}) + b) \\le 0$",
+   "$-y^{(n)}\\|\\mathbf{w}\\|^2 \\le 0$"
+  ],
+  "answer": 0,
+  "explanation": "Move everything to one side so that a violation makes $f_n$ positive. The SVM Lagrangian is then $\\frac12\\|\\mathbf{w}\\|^2 + \\sum_n a^{(n)}[1 - y^{(n)}(\\mathbf{w}^T\\phi(\\mathbf{x}^{(n)}) + b)]$.",
+  "tags": [
+   "svm",
+   "lagrangian"
+  ],
+  "sources": [
+   {
+    "file": "week_4/coding/4a_svm_dual.ipynb",
+    "page": 8
+   }
+  ]
+ },
+ {
+  "id": "w4-svd-001",
+  "week": 4,
+  "topic": "dual-formulation",
+  "type": "flashcard",
+  "difficulty": 1,
+  "prompt": "Write the Lagrangian of the hard-margin SVM.",
+  "answer": "$L(\\mathbf{w},b,\\mathbf{a}) = \\frac12\\|\\mathbf{w}\\|^2 + \\sum_{n=1}^N a^{(n)}\\left(1 - y^{(n)}(\\mathbf{w}^T\\phi(\\mathbf{x}^{(n)}) + b)\\right)$ with $a^{(n)} \\ge 0$.",
+  "explanation": "Each constraint is first written as $1 - y^{(n)}(\\mathbf{w}^T\\phi(\\mathbf{x}^{(n)}) + b) \\le 0$. There is one multiplier per training example.",
+  "tags": [
+   "lagrangian"
+  ],
+  "sources": [
+   {
+    "file": "week_4/slides/4c-svm-dual.pdf",
+    "page": 8
+   }
+  ]
+ },
+ {
+  "id": "w4-svd-002",
+  "week": 4,
+  "topic": "dual-formulation",
+  "type": "multi",
+  "difficulty": 2,
+  "prompt": "Setting the derivatives of the SVM Lagrangian with respect to $\\mathbf{w}$ and $b$ to zero (KKT stationarity) gives which results?",
+  "choices": [
+   "$\\mathbf{w} = \\sum_n a^{(n)}y^{(n)}\\phi(\\mathbf{x}^{(n)})$",
+   "$\\sum_n a^{(n)}y^{(n)} = 0$",
+   "$b = \\sum_n a^{(n)}y^{(n)}$",
+   "$\\sum_n a^{(n)} = 0$"
+  ],
+  "answer": [
+   0,
+   1
+  ],
+  "explanation": "Once $\\mathbf{a}$ is fixed there are no constraints, so the gradient is zero at the optimum. $\\partial L/\\partial b = -\\sum_n a^{(n)}y^{(n)} = 0$ becomes a constraint of the dual, which removes $b$.",
+  "tags": [
+   "stationarity"
+  ],
+  "sources": [
+   {
+    "file": "week_4/slides/4c-svm-dual.pdf",
+    "page": 21
+   }
+  ]
+ },
+ {
+  "id": "w4-svd-003",
+  "week": 4,
+  "topic": "dual-formulation",
+  "type": "flashcard",
+  "difficulty": 1,
+  "prompt": "Write the SVM dual problem.",
+  "answer": "$\\arg\\max_{\\mathbf{a}} \\tilde L(\\mathbf{a}) = \\sum_n a^{(n)} - \\frac12\\sum_n\\sum_m a^{(n)}a^{(m)}y^{(n)}y^{(m)}k(\\mathbf{x}^{(n)},\\mathbf{x}^{(m)})$ s.t. $\\sum_n a^{(n)}y^{(n)} = 0$ and $a^{(n)} \\ge 0$.",
+  "explanation": "$k(\\mathbf{x}^{(n)},\\mathbf{x}^{(m)}) = \\phi(\\mathbf{x}^{(n)})^T\\phi(\\mathbf{x}^{(m)})$ is the kernel function. $\\mathbf{w}$ and $b$ have gone.",
+  "tags": [
+   "dual",
+   "formula"
+  ],
+  "sources": [
+   {
+    "file": "week_4/slides/4c-svm-dual.pdf",
+    "page": 25
+   }
+  ]
+ },
+ {
+  "id": "w4-svd-004",
+  "week": 4,
+  "topic": "dual-formulation",
+  "type": "order",
+  "difficulty": 2,
+  "prompt": "Put the steps that take the SVM primal to its dual in order.",
+  "steps": [
+   "Write each constraint as $1 - y^{(n)}(\\mathbf{w}^T\\phi(\\mathbf{x}^{(n)}) + b) \\le 0$",
+   "Build the Lagrangian with $a^{(n)} \\ge 0$",
+   "Minimax primal: $\\min_{\\mathbf{w},b}\\max_{\\mathbf{a}} L$",
+   "Swap to $\\max_{\\mathbf{a}}\\min_{\\mathbf{w},b} L$ (strong duality)",
+   "Stationarity: $\\mathbf{w} = \\sum_n a^{(n)}y^{(n)}\\phi(\\mathbf{x}^{(n)})$ and $\\sum_n a^{(n)}y^{(n)} = 0$",
+   "Substitute $\\mathbf{w}$; the $b$ term vanishes because $\\sum_n a^{(n)}y^{(n)} = 0$"
+  ],
+  "explanation": "The result only depends on $\\mathbf{a}$ and on inner products $\\phi(\\mathbf{x}^{(n)})^T\\phi(\\mathbf{x}^{(m)})$.",
+  "tags": [
+   "dual",
+   "derivation"
+  ],
+  "sources": [
+   {
+    "file": "week_4/slides/4c-svm-dual.pdf",
+    "page": 22
+   }
+  ]
+ },
+ {
+  "id": "w4-svd-005",
+  "week": 4,
+  "topic": "dual-formulation",
+  "type": "mcq",
+  "difficulty": 2,
+  "prompt": "Why is swapping the SVM minimax primal for the maxmin dual allowed?",
+  "choices": [
+   "The Lagrangian is convex in $\\mathbf{w}, b$ and concave in $\\mathbf{a}$, and Slater's condition holds when the data is linearly separable",
+   "Because $N > d$",
+   "Because the kernel is symmetric",
+   "It is never allowed; the dual is only an approximation"
+  ],
+  "answer": 0,
+  "explanation": "These are the strong duality conditions from 4a, so minimax = maxmin.",
+  "tags": [
+   "strong-duality"
+  ],
+  "sources": [
+   {
+    "file": "week_4/slides/4c-svm-dual.pdf",
+    "page": 17
+   }
+  ]
+ },
+ {
+  "id": "w4-svd-006",
+  "week": 4,
+  "topic": "dual-formulation",
+  "type": "multi",
+  "difficulty": 2,
+  "prompt": "Which statements about the SVM dual formulation are correct? Select all that apply.",
+  "choices": [
+   "It allows non-linear kernel functions, enabling complex decision boundaries",
+   "It may reduce computational cost compared to the primal when there are fewer training examples than features in the embedding",
+   "Maximising the dual objective guarantees the primal also reaches its global minimum"
+  ],
+  "answer": [
+   0,
+   1,
+   2
+  ],
+  "explanation": "Kernels enter through the inner product. The dual has $N$ variables instead of $d$. Strong duality holds for SVMs.",
+  "tags": [
+   "dual"
+  ],
+  "sources": [
+   {
+    "file": "week_4/worksheets/4c-SVM_dual-answers.pdf",
+    "page": 2
+   }
+  ]
+ },
+ {
+  "id": "w4-svd-007",
+  "week": 4,
+  "topic": "dual-formulation",
+  "type": "truefalse",
+  "difficulty": 2,
+  "prompt": "It is never worth using the primal representation when using basis expansions.",
+  "answer": false,
+  "explanation": "If the expansion has very low dimensionality, possibly lower than the number of training examples, the primal could be more efficient.",
+  "tags": [
+   "primal-vs-dual"
+  ],
+  "sources": [
+   {
+    "file": "week_4/worksheets/4c-SVM_dual-answers.pdf",
+    "page": 11
+   }
+  ]
+ },
+ {
+  "id": "w4-svd-008",
+  "week": 4,
+  "topic": "dual-formulation",
+  "type": "mcq",
+  "difficulty": 2,
+  "prompt": "How many variables does each formulation optimise, for $N$ examples and an embedding of dimension $d$?",
+  "choices": [
+   "Primal: $d + 1$ ($\\mathbf{w}$ and $b$). Dual: $N$ (the $a^{(n)}$)",
+   "Primal: $N$. Dual: $d + 1$",
+   "Both: $N + d$",
+   "Primal: $d$. Dual: $d$"
+  ],
+  "answer": 0,
+  "explanation": "The dual's cost depends on $N$, while its kernel evaluations only depend on the dimensionality of the original input space.",
+  "tags": [
+   "primal-vs-dual"
+  ],
+  "sources": [
+   {
+    "file": "week_4/slides/4c-svm-dual.pdf",
+    "page": 29
+   }
+  ]
+ },
+ {
+  "id": "w4-svd-009",
+  "week": 4,
+  "topic": "dual-formulation",
+  "type": "truefalse",
+  "difficulty": 1,
+  "prompt": "The dual formulation provides a direct way to identify the support vectors.",
+  "answer": true,
+  "explanation": "Support vectors are the examples with $a^{(n)} \\ne 0$. Only they appear in $h(\\mathbf{x}) = \\sum_{n\\in S}a^{(n)}y^{(n)}k(\\mathbf{x},\\mathbf{x}^{(n)}) + b$.",
+  "tags": [
+   "support-vectors"
+  ],
+  "sources": [
+   {
+    "file": "week_4/worksheets/4c-SVM_dual-answers.pdf",
+    "page": 4
+   }
+  ]
+ },
+ {
+  "id": "w4-svd-010",
+  "week": 4,
+  "topic": "dual-formulation",
+  "type": "short",
+  "difficulty": 3,
+  "prompt": "A trained SVM has $a^{(i)*} = 0$ for example $i$. Show that removing that example keeps the rest of $\\mathbf{a}^*$ feasible for the new dual problem.",
+  "answer": "The other $a^{(n)}$ are unchanged, so $a^{(n)} \\ge 0$ still holds. The removed term $a^{(i)}y^{(i)} = 0$, so $\\sum_n a^{(n)}y^{(n)} = 0$ still holds. Both dual constraints remain satisfied.",
+  "steps": [
+   "Dual constraints: $a^{(n)} \\ge 0$ and $\\sum_n a^{(n)}y^{(n)} = 0$",
+   "Keeping the other multipliers keeps $a^{(n)} \\ge 0$",
+   "Dropping a term equal to $0$ does not change the sum",
+   "(Also: $\\mathbf{w}$ and $b$ do not change, so the KKT conditions still hold and the solution stays optimal)"
+  ],
+  "explanation": "An example with $a = 0$ does not contribute to the decision boundary.",
+  "tags": [
+   "support-vectors",
+   "proof"
+  ],
+  "sources": [
+   {
+    "file": "week_4/worksheets/4c-SVM_dual-answers.pdf",
+    "page": 10
+   }
+  ]
+ },
+ {
+  "id": "w5-kde-001",
+  "week": 5,
+  "topic": "kernel-design",
+  "type": "flashcard",
+  "difficulty": 1,
+  "prompt": "List the three inner product properties the lecture uses.",
+  "answer": "Symmetry: $\\langle\\mathbf{x},\\mathbf{z}\\rangle = \\langle\\mathbf{z},\\mathbf{x}\\rangle$. Positive definiteness: $\\langle\\mathbf{x},\\mathbf{x}\\rangle \\ge 0$, with equality only when $\\mathbf{x} = \\mathbf{0}$. Linearity in the first argument: $\\langle a\\mathbf{x} + b\\mathbf{y},\\mathbf{z}\\rangle = a\\langle\\mathbf{x},\\mathbf{z}\\rangle + b\\langle\\mathbf{y},\\mathbf{z}\\rangle$.",
+  "explanation": "A kernel must be an inner product in some embedding, so it must respect these properties. Mercer's condition checks this.",
+  "tags": [
+   "inner-product"
+  ],
+  "sources": [
+   {
+    "file": "week_5/slides/5a-kernels-soft-svm.pdf",
+    "page": 10
+   }
+  ]
+ },
+ {
+  "id": "w5-kde-002",
+  "week": 5,
+  "topic": "kernel-design",
+  "type": "short",
+  "difficulty": 2,
+  "prompt": "Show that the dot product satisfies linearity in the first argument: $(a\\mathbf{x} + b\\mathbf{y})\\cdot\\mathbf{z} = a(\\mathbf{x}\\cdot\\mathbf{z}) + b(\\mathbf{y}\\cdot\\mathbf{z})$.",
+  "answer": "$(a\\mathbf{x} + b\\mathbf{y})\\cdot\\mathbf{z} = \\sum_i(ax_i + by_i)z_i = \\sum_i(ax_iz_i + by_iz_i) = \\sum_i ax_iz_i + \\sum_i by_iz_i = a(\\mathbf{x}\\cdot\\mathbf{z}) + b(\\mathbf{y}\\cdot\\mathbf{z})$.",
+  "steps": [
+   "Write the dot product as a sum over components",
+   "Expand $(ax_i + by_i)z_i$",
+   "Split into two sums",
+   "Take the constants $a$ and $b$ outside the sums"
+  ],
+  "explanation": "This combines additivity and homogeneity (scaling).",
+  "tags": [
+   "inner-product",
+   "proof"
+  ],
+  "sources": [
+   {
+    "file": "week_5/worksheets/5a-Soft_Margin_SVM-answers.pdf",
+    "page": 9
+   }
+  ]
+ },
+ {
+  "id": "w5-kde-003",
+  "week": 5,
+  "topic": "kernel-design",
+  "type": "mcq",
+  "difficulty": 1,
+  "prompt": "Which inner product property is $\\langle\\mathbf{x},\\mathbf{x}\\rangle \\ge 0$, with equality only when $\\mathbf{x} = \\mathbf{0}$?",
+  "choices": [
+   "Positive definiteness",
+   "Symmetry",
+   "Additivity",
+   "Homogeneity"
+  ],
+  "answer": 0,
+  "explanation": "For the dot product, $\\mathbf{x}\\cdot\\mathbf{x} = \\sum_i x_i^2 \\ge 0$.",
+  "tags": [
+   "inner-product"
+  ],
+  "sources": [
+   {
+    "file": "week_5/slides/5a-kernels-soft-svm.pdf",
+    "page": 10
+   }
+  ]
+ },
+ {
+  "id": "w5-kde-004",
+  "week": 5,
+  "topic": "kernel-design",
+  "type": "truefalse",
+  "difficulty": 2,
+  "prompt": "Mercer's condition only needs to be checked on the Gram matrix of the training set.",
+  "answer": false,
+  "explanation": "It must hold for the Gram matrix of any finite set of points, not necessarily the training set.",
+  "tags": [
+   "mercer"
+  ],
+  "sources": [
+   {
+    "file": "week_5/slides/5a-kernels-soft-svm.pdf",
+    "page": 11
+   }
+  ]
+ },
+ {
+  "id": "w5-kde-005",
+  "week": 5,
+  "topic": "kernel-design",
+  "type": "numeric",
+  "difficulty": 2,
+  "prompt": "Linear kernel, points $(1,0)$, $(0,1)$, $(1,1)$. Their Gram matrix is $K = \\begin{pmatrix}1&0&1\\\\0&1&1\\\\1&1&2\\end{pmatrix}$. Compute $\\mathbf{z}^TK\\mathbf{z}$ for $\\mathbf{z} = (1, 1, -1)^T$.",
+  "answer": 0,
+  "tolerance": 0.0001,
+  "explanation": "$K\\mathbf{z} = (1 + 0 - 1,\\ 0 + 1 - 1,\\ 1 + 1 - 2)^T = \\mathbf{0}$, so $\\mathbf{z}^TK\\mathbf{z} = 0 \\ge 0$. Positive semidefinite allows 0.",
+  "tags": [
+   "mercer",
+   "gram-matrix",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_5/slides/5a-kernels-soft-svm.pdf",
+    "page": 11
+   }
+  ]
+ },
+ {
+  "id": "w5-kde-006",
+  "week": 5,
+  "topic": "kernel-design",
+  "type": "numeric",
+  "difficulty": 2,
+  "prompt": "A proposed kernel gives the Gram matrix $K = \\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ for two points. Compute $\\mathbf{z}^TK\\mathbf{z}$ for $\\mathbf{z} = (1,-1)^T$.",
+  "answer": -2,
+  "tolerance": 0.0001,
+  "explanation": "$1 - 2 - 2 + 1 = -2 < 0$. $K$ is symmetric but not positive semidefinite, so this is not a valid kernel.",
+  "tags": [
+   "mercer",
+   "gram-matrix",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_5/slides/5a-kernels-soft-svm.pdf",
+    "page": 11
+   }
+  ]
+ },
+ {
+  "id": "w5-kde-007",
+  "week": 5,
+  "topic": "kernel-design",
+  "type": "mcq",
+  "difficulty": 2,
+  "prompt": "A function gives the Gram matrix $\\begin{pmatrix}1&2\\\\3&1\\end{pmatrix}$ for two points. Can it be a valid kernel?",
+  "choices": [
+   "No: $K$ is not symmetric, so $k(\\mathbf{x}^{(i)},\\mathbf{x}^{(j)}) \\ne k(\\mathbf{x}^{(j)},\\mathbf{x}^{(i)})$",
+   "Yes: all entries are positive",
+   "Yes: the diagonal is positive",
+   "Only if $C$ is large"
+  ],
+  "answer": 0,
+  "explanation": "Mercer's condition needs $K$ to be both symmetric and positive semidefinite.",
+  "tags": [
+   "mercer"
+  ],
+  "sources": [
+   {
+    "file": "week_5/slides/5a-kernels-soft-svm.pdf",
+    "page": 11
+   }
+  ]
+ },
+ {
+  "id": "w5-kde-008",
+  "week": 5,
+  "topic": "kernel-design",
+  "type": "mcq",
+  "difficulty": 1,
+  "prompt": "Why might we design a kernel (similarity function) directly instead of a basis expansion $\\phi$?",
+  "choices": [
+   "Choosing an embedding is challenging, and the dual never needs $\\phi$ itself",
+   "Kernels do not need to correspond to any embedding",
+   "It avoids the need for support vectors",
+   "It removes the hyperparameter $C$"
+  ],
+  "answer": 0,
+  "explanation": "The kernel must still be an inner product in some embedding, which Mercer's condition checks.",
+  "tags": [
+   "kernel-design"
+  ],
+  "sources": [
+   {
+    "file": "week_5/slides/5a-kernels-soft-svm.pdf",
+    "page": 9
+   }
+  ]
+ },
+ {
+  "id": "w5-kde-009",
+  "week": 5,
+  "topic": "kernel-design",
+  "type": "numeric",
+  "difficulty": 2,
+  "prompt": "Gaussian kernel with $\\sigma = 1$: $k(\\mathbf{x},\\mathbf{z}) = e^{-\\|\\mathbf{x}-\\mathbf{z}\\|^2/2}$. Compute $k$ for $\\mathbf{x} = (0,0)$ and $\\mathbf{z} = (2,0)$. (4 d.p.)",
+  "answer": 0.1353,
+  "tolerance": 0.0001,
+  "explanation": "$\\|\\mathbf{x}-\\mathbf{z}\\|^2 = 4$, so $k = e^{-2} \\approx 0.1353$. Identical points give $k = 1$, and $k$ falls towards 0 as points move apart: it is a similarity measure.",
+  "tags": [
+   "gaussian-kernel",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_5/slides/5a-kernels-soft-svm.pdf",
+    "page": 13
+   }
+  ]
+ },
+ {
+  "id": "w5-kde-010",
+  "week": 5,
+  "topic": "kernel-design",
+  "type": "multi",
+  "difficulty": 1,
+  "prompt": "Besides a valid (Mercer) kernel, what else can the word **kernel** mean? Select all that apply.",
+  "choices": [
+   "Any real-valued function of two arguments, $k(\\mathbf{x},\\mathbf{z}) \\in \\mathbb{R}$",
+   "A matrix slid across an image in convolutional neural networks",
+   "The set of support vectors",
+   "The slack penalty $C$"
+  ],
+  "answer": [
+   0,
+   1
+  ],
+  "explanation": "In this module, kernel means a function that is an inner product in some embedding.",
+  "tags": [
+   "terminology"
+  ],
+  "sources": [
+   {
+    "file": "week_5/slides/5a-kernels-soft-svm.pdf",
+    "page": 38
+   }
+  ]
+ },
+ {
+  "id": "w5-slk-001",
+  "week": 5,
+  "topic": "slack-variables",
+  "type": "flashcard",
+  "difficulty": 1,
+  "prompt": "What is a **slack variable** $\\xi^{(n)}$?",
+  "answer": "A value $\\xi^{(n)} \\ge 0$ for each training example that says by how much it can be within the margin or on the wrong side of the decision boundary. The constraint becomes $y^{(n)}h(\\mathbf{x}^{(n)}) \\ge 1 - \\xi^{(n)}$.",
+  "explanation": "$\\xi = 0$: on or outside the margin, correctly classified. $0 < \\xi < 1$: inside the margin, correctly classified. $\\xi = 1$: on the decision boundary. $\\xi > 1$: misclassified.",
+  "tags": [
+   "slack",
+   "definition"
+  ],
+  "sources": [
+   {
+    "file": "week_5/slides/5a-kernels-soft-svm.pdf",
+    "page": 25
+   }
+  ]
+ },
+ {
+  "id": "w5-slk-002",
+  "week": 5,
+  "topic": "slack-variables",
+  "type": "numeric",
+  "difficulty": 1,
+  "prompt": "$y^{(1)}h(\\mathbf{x}^{(1)}) = 1.2$. Compute $\\xi^{(1)} = \\max\\{0, 1 - y^{(1)}h(\\mathbf{x}^{(1)})\\}$.",
+  "answer": 0,
+  "tolerance": 0.0001,
+  "explanation": "$\\max(0, -0.2) = 0$: correctly classified and outside the margin.",
+  "tags": [
+   "slack",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_5/worksheets/5a-Soft_Margin_SVM-answers.pdf",
+    "page": 9
+   }
+  ]
+ },
+ {
+  "id": "w5-slk-003",
+  "week": 5,
+  "topic": "slack-variables",
+  "type": "numeric",
+  "difficulty": 1,
+  "prompt": "$y^{(2)}h(\\mathbf{x}^{(2)}) = 0.8$. Compute $\\xi^{(2)}$.",
+  "answer": 0.2,
+  "tolerance": 0.0001,
+  "explanation": "$1 - 0.8 = 0.2$: inside the margin but correctly classified.",
+  "tags": [
+   "slack",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_5/worksheets/5a-Soft_Margin_SVM-answers.pdf",
+    "page": 9
+   }
+  ]
+ },
+ {
+  "id": "w5-slk-004",
+  "week": 5,
+  "topic": "slack-variables",
+  "type": "numeric",
+  "difficulty": 1,
+  "prompt": "$y^{(3)}h(\\mathbf{x}^{(3)}) = -0.5$. Compute $\\xi^{(3)}$.",
+  "answer": 1.5,
+  "tolerance": 0.0001,
+  "explanation": "$1 - (-0.5) = 1.5 > 1$: misclassified.",
+  "tags": [
+   "slack",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_5/worksheets/5a-Soft_Margin_SVM-answers.pdf",
+    "page": 9
+   }
+  ]
+ },
+ {
+  "id": "w5-slk-005",
+  "week": 5,
+  "topic": "slack-variables",
+  "type": "mcq",
+  "difficulty": 1,
+  "prompt": "At the optimum a training example has $\\xi = 0.4$. Where is it?",
+  "choices": [
+   "Inside the margin, on the correct side of the decision boundary",
+   "On the margin",
+   "On the decision boundary",
+   "On the wrong side of the decision boundary"
+  ],
+  "answer": 0,
+  "explanation": "$\\xi = 0$: on or outside the margin, correctly classified. $0 < \\xi < 1$: inside the margin, correctly classified. $\\xi = 1$: on the decision boundary. $\\xi > 1$: misclassified.",
+  "tags": [
+   "slack",
+   "geometry"
+  ],
+  "sources": [
+   {
+    "file": "week_5/worksheets/5a-Soft_Margin_SVM-answers.pdf",
+    "page": 7
+   }
+  ]
+ },
+ {
+  "id": "w5-slk-006",
+  "week": 5,
+  "topic": "slack-variables",
+  "type": "mcq",
+  "difficulty": 1,
+  "prompt": "At the optimum a training example has $\\xi = 1$. Where is it?",
+  "choices": [
+   "Exactly on the decision boundary",
+   "Exactly on the margin",
+   "Inside the margin, correctly classified",
+   "Misclassified"
+  ],
+  "answer": 0,
+  "explanation": "$y\\,h(\\mathbf{x}) = 1 - 1 = 0$, so $h(\\mathbf{x}) = 0$.",
+  "tags": [
+   "slack",
+   "geometry"
+  ],
+  "sources": [
+   {
+    "file": "week_5/worksheets/5a-Soft_Margin_SVM-answers.pdf",
+    "page": 7
+   }
+  ]
+ },
+ {
+  "id": "w5-slk-007",
+  "week": 5,
+  "topic": "slack-variables",
+  "type": "mcq",
+  "difficulty": 2,
+  "prompt": "Points A to E around a soft-margin SVM have slacks $\\{0, 0, 0.4, 1.0, 1.1\\}$. Point B is within the margin and slightly on the wrong side of the decision boundary. Which slack does B have?",
+  "choices": [
+   "$1.1$",
+   "$0.4$",
+   "$1.0$",
+   "$0$"
+  ],
+  "answer": 0,
+  "explanation": "Being on the wrong side of the boundary means $\\xi > 1$. The two zeros belong to a point on the margin and a point well outside it.",
+  "tags": [
+   "slack",
+   "geometry"
+  ],
+  "sources": [
+   {
+    "file": "week_5/worksheets/5a-Soft_Margin_SVM-answers.pdf",
+    "page": 7
+   }
+  ]
+ },
+ {
+  "id": "w5-slk-008",
+  "week": 5,
+  "topic": "slack-variables",
+  "type": "multi",
+  "difficulty": 2,
+  "prompt": "Which statements about slack variables are true? Select all that apply.",
+  "choices": [
+   "Only misclassified or within-margin examples have slack variables",
+   "Slacks act as a penalty in the objective for examples that are misclassified or within the margin",
+   "A misclassified example always has a larger slack than any within-margin example",
+   "A misclassified example has a larger slack than a correctly classified example within the margin",
+   "The SVM minimises the values of the slack variables",
+   "The SVM minimises the number of slack variables"
+  ],
+  "answer": [
+   1,
+   3,
+   4
+  ],
+  "explanation": "Every example has a slack (many are 0). Statement C compares any example, which is too strong. We minimise the values of the slacks, not how many there are.",
+  "tags": [
+   "slack"
+  ],
+  "sources": [
+   {
+    "file": "week_5/worksheets/5a-Soft_Margin_SVM-answers.pdf",
+    "page": 4
+   },
+   {
+    "file": "week_5/worksheets/5a-Soft_Margin_SVM-answers.pdf",
+    "page": 5
+   }
+  ]
+ },
+ {
+  "id": "w5-slk-009",
+  "week": 5,
+  "topic": "slack-variables",
+  "type": "mcq",
+  "difficulty": 2,
+  "prompt": "A soft-margin SVM has $y^{(n)}h(\\mathbf{x}^{(n)}) \\ge 1 - \\xi^{(n)}$ with $\\xi^{(n)} > 1$. What does that allow?",
+  "choices": [
+   "$y^{(n)}h(\\mathbf{x}^{(n)})$ can be negative, so the example can be misclassified",
+   "The example must be on the margin",
+   "The example must be outside the margin",
+   "$h(\\mathbf{x}^{(n)})$ must be exactly 0"
+  ],
+  "answer": 0,
+  "explanation": "$1 - \\xi^{(n)} < 0$, so the constraint allows a negative $y\\,h$.",
+  "tags": [
+   "slack",
+   "constraints"
+  ],
+  "sources": [
+   {
+    "file": "week_5/slides/5a-kernels-soft-svm.pdf",
+    "page": 26
+   }
+  ]
+ },
+ {
+  "id": "w5-smo-001",
+  "week": 5,
+  "topic": "sequential-minimal-optimisation",
+  "type": "mcq",
+  "difficulty": 1,
+  "prompt": "Why does SMO update a pair of Lagrange multipliers at a time, rather than one?",
+  "choices": [
+   "To make sure positive and negative support vectors are correctly classified",
+   "To simplify the kernel computation",
+   "Because changing only one would violate the constraint $\\sum_n a^{(n)}y^{(n)} = 0$"
+  ],
+  "answer": 2,
+  "explanation": "If all others are fixed, $a^{(m)} = -y^{(m)}\\sum_{n \\ne m}a^{(n)}y^{(n)}$ is fully determined, so one multiplier alone cannot move. Two is the smallest number that can.",
+  "tags": [
+   "smo",
+   "pairs"
+  ],
+  "sources": [
+   {
+    "file": "week_5/worksheets/5c-Sequential_Minimal_Optimisation-answers.pdf",
+    "page": 1
+   },
+   {
+    "file": "week_5/slides/5c-SMO.pdf",
+    "page": 11
+   }
+  ]
+ },
+ {
+  "id": "w5-smo-002",
+  "week": 5,
+  "topic": "sequential-minimal-optimisation",
+  "type": "mcq",
+  "difficulty": 1,
+  "prompt": "Why not just give the soft-margin dual to a generic quadratic programming solver?",
+  "choices": [
+   "Some algorithms would be too costly, needing to store an $N \\times N$ matrix",
+   "The dual is not a quadratic programme",
+   "Generic solvers cannot handle equality constraints",
+   "The dual has no solution"
+  ],
+  "answer": 0,
+  "explanation": "SMO splits the problem into small QP problems over two multipliers that can each be solved analytically.",
+  "tags": [
+   "smo",
+   "motivation"
+  ],
+  "sources": [
+   {
+    "file": "week_5/slides/5c-SMO.pdf",
+    "page": 8
+   }
+  ]
+ },
+ {
+  "id": "w5-smo-003",
+  "week": 5,
+  "topic": "sequential-minimal-optimisation",
+  "type": "order",
+  "difficulty": 1,
+  "prompt": "Put the steps of SMO in order.",
+  "steps": [
+   "Initialise $\\mathbf{a}$ (e.g. all zeros)",
+   "Select a pair $a^{(i)}$ and $a^{(j)}$ to update",
+   "Optimise $\\tilde L(\\mathbf{a})$ with respect to $a^{(i)}$ and $a^{(j)}$, holding the rest fixed",
+   "Repeat the selection and optimisation until convergence"
+  ],
+  "explanation": "Each step solves a tiny QP problem analytically.",
+  "tags": [
+   "smo"
+  ],
+  "sources": [
+   {
+    "file": "week_5/slides/5c-SMO.pdf",
+    "page": 12
+   }
+  ]
+ },
+ {
+  "id": "w5-smo-004",
+  "week": 5,
+  "topic": "sequential-minimal-optimisation",
+  "type": "multi",
+  "difficulty": 2,
+  "prompt": "Which steps are part of SMO? Select all that apply.",
+  "choices": [
+   "Initialise all Lagrange multipliers to zero and freeze them until convergence",
+   "Update the Lagrange multipliers while keeping the constraints satisfied",
+   "Select two Lagrange multipliers to update",
+   "Use a heuristic to choose $a^{(j)}$, hoping for the maximum step size"
+  ],
+  "answer": [
+   1,
+   2,
+   3
+  ],
+  "explanation": "Multipliers start at zero but are updated two at a time, not frozen.",
+  "tags": [
+   "smo"
+  ],
+  "sources": [
+   {
+    "file": "week_5/worksheets/5c-Sequential_Minimal_Optimisation-answers.pdf",
+    "page": 2
+   }
+  ]
+ },
+ {
+  "id": "w5-smo-005",
+  "week": 5,
+  "topic": "sequential-minimal-optimisation",
+  "type": "truefalse",
+  "difficulty": 1,
+  "prompt": "Initialising every $a^{(n)} = 0$ is a feasible starting point for SMO.",
+  "answer": true,
+  "explanation": "It satisfies the box constraints $0 \\le a^{(n)} \\le C$ and $\\sum_n a^{(n)}y^{(n)} = 0$.",
+  "tags": [
+   "smo",
+   "initialisation"
+  ],
+  "sources": [
+   {
+    "file": "week_5/worksheets/5c-Sequential_Minimal_Optimisation-answers.pdf",
+    "page": 2
+   }
+  ]
+ },
+ {
+  "id": "w5-smo-006",
+  "week": 5,
+  "topic": "sequential-minimal-optimisation",
+  "type": "flashcard",
+  "difficulty": 2,
+  "prompt": "Give the SMO bounds $[L, H]$ for the new $a^{(j)}$.",
+  "answer": "If $y^{(i)} = y^{(j)}$: $L = \\max(0, a^{(j)} + a^{(i)} - C)$, $H = \\min(C, a^{(j)} + a^{(i)})$. If $y^{(i)} \\ne y^{(j)}$: $L = \\max(0, a^{(j)} - a^{(i)})$, $H = \\min(C, C + a^{(j)} - a^{(i)})$.",
+  "explanation": "They come from the box $0 \\le a \\le C$ and the line $a^{(i)}y^{(i)} + a^{(j)}y^{(j)} = \\zeta$.",
+  "tags": [
+   "smo",
+   "bounds"
+  ],
+  "sources": [
+   {
+    "file": "week_5/slides/5c-SMO.pdf",
+    "page": 17
+   }
+  ]
+ },
+ {
+  "id": "w5-smo-007",
+  "week": 5,
+  "topic": "sequential-minimal-optimisation",
+  "type": "flashcard",
+  "difficulty": 2,
+  "prompt": "Give the SMO update for $a^{(j)}$ before clipping.",
+  "answer": "$a^{(j,new)} = a^{(j)} + \\dfrac{y^{(j)}(E^{(i)} - E^{(j)})}{k(\\mathbf{x}^{(i)},\\mathbf{x}^{(i)}) + k(\\mathbf{x}^{(j)},\\mathbf{x}^{(j)}) - 2k(\\mathbf{x}^{(i)},\\mathbf{x}^{(j)})}$, where $E^{(n)} = h(\\mathbf{x}^{(n)}) - y^{(n)}$.",
+  "explanation": "It comes from writing $a^{(i)}$ as a function of $a^{(j)}$ and setting $d\\tilde L/da^{(j)} = 0$.",
+  "tags": [
+   "smo",
+   "update"
+  ],
+  "sources": [
+   {
+    "file": "week_5/slides/5c-SMO.pdf",
+    "page": 19
+   }
+  ]
+ },
+ {
+  "id": "w5-smo-008",
+  "week": 5,
+  "topic": "sequential-minimal-optimisation",
+  "type": "mcq",
+  "difficulty": 2,
+  "prompt": "After clipping $a^{(j)}$, how is $a^{(i)}$ obtained?",
+  "choices": [
+   "$a^{(i,new)} = \\dfrac{\\zeta - a^{(j,new,clipped)}y^{(j)}}{y^{(i)}}$",
+   "$a^{(i,new)} = a^{(j,new,clipped)}$",
+   "By its own unconstrained update and clipping",
+   "It stays unchanged"
+  ],
+  "answer": 0,
+  "explanation": "This keeps $a^{(i)}y^{(i)} + a^{(j)}y^{(j)} = \\zeta$, so $\\sum_n a^{(n)}y^{(n)} = 0$ still holds, and the clipping of $a^{(j)}$ also keeps $a^{(i)}$ in its box.",
+  "tags": [
+   "smo",
+   "update"
+  ],
+  "sources": [
+   {
+    "file": "week_5/slides/5c-SMO.pdf",
+    "page": 21
+   }
+  ]
+ },
+ {
+  "id": "w5-smo-009",
+  "week": 5,
+  "topic": "sequential-minimal-optimisation",
+  "type": "multi",
+  "difficulty": 2,
+  "prompt": "Which statements about clipping $a^{(j)}$ are correct? Select all that apply.",
+  "choices": [
+   "Clipping constrains $a^{(j)}$ to $[L, H]$ to satisfy the box constraints",
+   "After clipping, computing $a^{(i)}$ from $\\zeta$ means $a^{(i)}$ also satisfies the box constraints",
+   "The goal of clipping is to make $E^{(i)}$ and $E^{(j)}$ zero",
+   "Clipping is only needed when $y^{(i)} \\ne y^{(j)}$"
+  ],
+  "answer": [
+   0,
+   1
+  ],
+  "explanation": "Clipping is about the box constraints, not the errors, and it can be needed for either label combination.",
+  "tags": [
+   "smo",
+   "clipping"
+  ],
+  "sources": [
+   {
+    "file": "week_5/worksheets/5c-Sequential_Minimal_Optimisation-answers.pdf",
+    "page": 6
+   }
+  ]
+ },
+ {
+  "id": "w5-smo-010",
+  "week": 5,
+  "topic": "sequential-minimal-optimisation",
+  "type": "mcq",
+  "difficulty": 2,
+  "prompt": "How does SMO choose $a^{(j)}$ once $a^{(i)}$ is chosen (first strategy)?",
+  "choices": [
+   "The one with the largest $|E^{(i)} - E^{(j)}|$, approximating the largest step size",
+   "At random from all examples",
+   "The one with the smallest kernel value",
+   "Always the next index after $i$"
+  ],
+  "answer": 0,
+  "explanation": "If that gives no improvement, it tries each margin support vector ($0 < a^{(j)} < C$), then the whole training set, then replaces $a^{(i)}$.",
+  "tags": [
+   "smo",
+   "heuristics"
+  ],
+  "sources": [
+   {
+    "file": "week_5/slides/5c-SMO.pdf",
+    "page": 25
+   }
+  ]
+ },
+ {
+  "id": "w5-smo-011",
+  "week": 5,
+  "topic": "sequential-minimal-optimisation",
+  "type": "mcq",
+  "difficulty": 2,
+  "prompt": "How is $a^{(i)}$ chosen?",
+  "choices": [
+   "Randomly among examples that violate the KKT conditions within a tolerance $e$, alternating with only those that have $0 < a^{(i)} < C$",
+   "Always the example with the largest $a$",
+   "The example closest to the decision boundary",
+   "In index order"
+  ],
+  "answer": 0,
+  "explanation": "Updating a KKT violator is what makes each step improve the objective.",
+  "tags": [
+   "smo",
+   "heuristics"
+  ],
+  "sources": [
+   {
+    "file": "week_5/slides/5c-SMO.pdf",
+    "page": 24
+   }
+  ]
+ },
+ {
+  "id": "w5-smo-012",
+  "week": 5,
+  "topic": "sequential-minimal-optimisation",
+  "type": "short",
+  "difficulty": 2,
+  "prompt": "How can SMO tell that the optimum has been reached, and why does it converge?",
+  "answer": "It stops when no training example violates the KKT conditions within a given tolerance. As long as each step changes two multipliers and at least one of them violates the KKT conditions, each step improves the objective, so SMO is guaranteed to converge if a feasible solution satisfying the KKT conditions exists.",
+  "explanation": "The tolerance matters because exact equalities are rarely reached numerically.",
+  "tags": [
+   "smo",
+   "convergence"
+  ],
+  "sources": [
+   {
+    "file": "week_5/worksheets/5c-Sequential_Minimal_Optimisation-answers.pdf",
+    "page": 6
+   },
+   {
+    "file": "week_5/slides/5c-SMO.pdf",
+    "page": 26
+   }
+  ]
+ },
+ {
+  "id": "w5-smq-001",
+  "week": 5,
+  "topic": "pair-update-calculations",
+  "type": "numeric",
+  "difficulty": 1,
+  "prompt": "First SMO step, $C = 1$, all multipliers 0. $y^{(i)} = +1$, $y^{(j)} = -1$. What is $H$ for the new $a^{(j)}$? ($L = 0$.)",
+  "answer": 1,
+  "tolerance": 0.0001,
+  "explanation": "$y^{(i)} \\ne y^{(j)}$: $H = \\min(C, C + a^{(j)} - a^{(i)}) = \\min(1, 1) = 1$, and $L = \\max(0, 0 - 0) = 0$.",
+  "tags": [
+   "bounds",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_5/worksheets/5c-Sequential_Minimal_Optimisation-answers.pdf",
+    "page": 3
+   }
+  ]
+ },
+ {
+  "id": "w5-smq-002",
+  "week": 5,
+  "topic": "pair-update-calculations",
+  "type": "numeric",
+  "difficulty": 1,
+  "prompt": "Continuing: the clipped new $a^{(j)}$ is 0.5 ($y^{(i)} = +1$, $y^{(j)} = -1$, $\\zeta = 0$). What is the new $a^{(i)}$?",
+  "answer": 0.5,
+  "tolerance": 0.0001,
+  "explanation": "$a^{(i)} = \\frac{\\zeta - a^{(j)}y^{(j)}}{y^{(i)}} = \\frac{0 - 0.5(-1)}{1} = 0.5$. Opposite labels move up together.",
+  "tags": [
+   "update",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_5/worksheets/5c-Sequential_Minimal_Optimisation-answers.pdf",
+    "page": 3
+   }
+  ]
+ },
+ {
+  "id": "w5-smq-003",
+  "week": 5,
+  "topic": "pair-update-calculations",
+  "type": "numeric",
+  "difficulty": 2,
+  "prompt": "Second iteration, $C = 1$: $y^{(i)} = -1$, $y^{(j)} = -1$, $a^{(i)} = 0.5$, $a^{(j)} = 0$. What is $H$ for the new $a^{(j)}$? ($L = 0$.)",
+  "answer": 0.5,
+  "tolerance": 0.0001,
+  "explanation": "$y^{(i)} = y^{(j)}$: $L = \\max(0, 0 + 0.5 - 1) = 0$ and $H = \\min(C, a^{(j)} + a^{(i)}) = \\min(1, 0.5) = 0.5$ (the slide 17 formula; the answer sheet's working gives the same value).",
+  "tags": [
+   "bounds",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_5/worksheets/5c-Sequential_Minimal_Optimisation-answers.pdf",
+    "page": 4
+   },
+   {
+    "file": "week_5/slides/5c-SMO.pdf",
+    "page": 17
+   }
+  ]
+ },
+ {
+  "id": "w5-smq-004",
+  "week": 5,
+  "topic": "pair-update-calculations",
+  "type": "numeric",
+  "difficulty": 2,
+  "prompt": "Continuing: the clipped new $a^{(j)}$ is 0.2, with $y^{(i)} = y^{(j)} = -1$ and $\\zeta = -0.5$. What is the new $a^{(i)}$?",
+  "answer": 0.3,
+  "tolerance": 0.0001,
+  "explanation": "$a^{(i)} = \\frac{-0.5 - 0.2(-1)}{-1} = 0.3$. Same labels: if $a^{(j)}$ rises by 0.2, $a^{(i)}$ falls by 0.2.",
+  "tags": [
+   "update",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_5/worksheets/5c-Sequential_Minimal_Optimisation-answers.pdf",
+    "page": 4
+   }
+  ]
+ },
+ {
+  "id": "w5-smq-005",
+  "week": 5,
+  "topic": "pair-update-calculations",
+  "type": "numeric",
+  "difficulty": 3,
+  "prompt": "Training set: $\\mathbf{x}^{(1)} = (0.1,0.1)^T, y = +1$; $\\mathbf{x}^{(2)} = (0.1,0.2)^T, y = +1$; $\\mathbf{x}^{(3)} = (0.2,0.2)^T, y = -1$; $\\phi(\\mathbf{x}) = \\mathbf{x}$, $C = 1$. Current $a^{(1)} = 0.4$, $a^{(2)} = 0$, $a^{(3)} = 0.4$. SMO picks $j = 1$, $i = 2$, with (fictitious) $h(\\mathbf{x}^{(1)}) = 0.3$ and $h(\\mathbf{x}^{(2)}) = -0.3$. What is the unclipped new $a^{(1)}$?",
+  "answer": -59.6,
+  "tolerance": 0.0001,
+  "explanation": "$E^{(2)} = -0.3 - 1 = -1.3$, $E^{(1)} = 0.3 - 1 = -0.7$. Denominator $= 0.05 + 0.02 - 2(0.03) = 0.01$. So $a^{(1)} = 0.4 + \\frac{1 \\times (-0.6)}{0.01} = -59.6$.",
+  "tags": [
+   "update",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_5/worksheets/5c-Sequential_Minimal_Optimisation-answers.pdf",
+    "page": 5
+   }
+  ]
+ },
+ {
+  "id": "w5-smq-006",
+  "week": 5,
+  "topic": "pair-update-calculations",
+  "type": "numeric",
+  "difficulty": 3,
+  "prompt": "Training set: $\\mathbf{x}^{(1)} = (0.1,0.1)^T, y = +1$; $\\mathbf{x}^{(2)} = (0.1,0.2)^T, y = +1$; $\\mathbf{x}^{(3)} = (0.2,0.2)^T, y = -1$; $\\phi(\\mathbf{x}) = \\mathbf{x}$, $C = 1$. Current $a^{(1)} = 0.4$, $a^{(2)} = 0$, $a^{(3)} = 0.4$. SMO picks $j = 1$, $i = 2$, with (fictitious) $h(\\mathbf{x}^{(1)}) = 0.3$ and $h(\\mathbf{x}^{(2)}) = -0.3$. The unclipped new $a^{(1)}$ is $-59.6$. What is $a^{(1)}$ after clipping?",
+  "answer": 0,
+  "tolerance": 0.0001,
+  "explanation": "$y^{(2)} = y^{(1)}$, so $L = \\max(0, 0.4 + 0 - 1) = 0$. $-59.6 \\le L$, so it is clipped to 0.",
+  "tags": [
+   "clipping",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_5/worksheets/5c-Sequential_Minimal_Optimisation-answers.pdf",
+    "page": 5
+   }
+  ]
+ },
+ {
+  "id": "w5-smq-007",
+  "week": 5,
+  "topic": "pair-update-calculations",
+  "type": "numeric",
+  "difficulty": 3,
+  "prompt": "Training set: $\\mathbf{x}^{(1)} = (0.1,0.1)^T, y = +1$; $\\mathbf{x}^{(2)} = (0.1,0.2)^T, y = +1$; $\\mathbf{x}^{(3)} = (0.2,0.2)^T, y = -1$; $\\phi(\\mathbf{x}) = \\mathbf{x}$, $C = 1$. Current $a^{(1)} = 0.4$, $a^{(2)} = 0$, $a^{(3)} = 0.4$. SMO picks $j = 1$, $i = 2$, with (fictitious) $h(\\mathbf{x}^{(1)}) = 0.3$ and $h(\\mathbf{x}^{(2)}) = -0.3$. After clipping, $a^{(1)} = 0$. What is the new $a^{(2)}$?",
+  "answer": 0.4,
+  "tolerance": 0.0001,
+  "explanation": "$\\zeta = -a^{(3)}y^{(3)} = -0.4(-1) = 0.4$, so $a^{(2)} = \\frac{0.4 - 0 \\times 1}{1} = 0.4$.",
+  "tags": [
+   "update",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_5/worksheets/5c-Sequential_Minimal_Optimisation-answers.pdf",
+    "page": 5
+   }
+  ]
+ },
+ {
+  "id": "w5-smq-008",
+  "week": 5,
+  "topic": "pair-update-calculations",
+  "type": "numeric",
+  "difficulty": 2,
+  "prompt": "$C = 1$, $y^{(i)} = +1$, $y^{(j)} = +1$, $a^{(i)} = 0.3$, $a^{(j)} = 0.6$. What is $H$ for the new $a^{(j)}$?",
+  "answer": 0.9,
+  "tolerance": 0.0001,
+  "explanation": "Same labels: $H = \\min(C, a^{(j)} + a^{(i)}) = \\min(1, 0.9) = 0.9$ and $L = \\max(0, 0.9 - 1) = 0$.",
+  "tags": [
+   "bounds",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_5/coding/5c_smo_answers.ipynb",
+    "page": 14
+   }
+  ]
+ },
+ {
+  "id": "w5-smq-009",
+  "week": 5,
+  "topic": "pair-update-calculations",
+  "type": "numeric",
+  "difficulty": 2,
+  "prompt": "$C = 1$, $y^{(i)} = +1$, $y^{(j)} = -1$, $a^{(i)} = 0.7$, $a^{(j)} = 0.2$. What is $H$ for the new $a^{(j)}$?",
+  "answer": 0.5,
+  "tolerance": 0.0001,
+  "explanation": "Different labels: $H = \\min(C, C + a^{(j)} - a^{(i)}) = \\min(1, 0.5) = 0.5$ and $L = \\max(0, 0.2 - 0.7) = 0$.",
+  "tags": [
+   "bounds",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_5/coding/5c_smo_answers.ipynb",
+    "page": 14
+   }
+  ]
+ },
+ {
+  "id": "w5-smq-010",
+  "week": 5,
+  "topic": "pair-update-calculations",
+  "type": "numeric",
+  "difficulty": 2,
+  "prompt": "Same pair ($y^{(i)} = +1$, $y^{(j)} = -1$, old $a^{(i)} = 0.7$, $a^{(j)} = 0.2$). The clipped new $a^{(j)}$ is 0.4. What is the new $a^{(i)}$?",
+  "answer": 0.9,
+  "tolerance": 0.0001,
+  "explanation": "$\\zeta = a^{(i)}y^{(i)} + a^{(j)}y^{(j)} = 0.7 - 0.2 = 0.5$, so $a^{(i)} = \\frac{0.5 - 0.4(-1)}{1} = 0.9$, which is inside $[0, C]$.",
+  "tags": [
+   "update",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_5/slides/5c-SMO.pdf",
+    "page": 21
+   }
+  ]
+ },
+ {
+  "id": "w5-smq-011",
+  "week": 5,
+  "topic": "pair-update-calculations",
+  "type": "numeric",
+  "difficulty": 3,
+  "prompt": "$a^{(j)} = 0.2$, $y^{(j)} = +1$, $E^{(i)} = 0.5$, $E^{(j)} = -0.3$, $k(\\mathbf{x}^{(i)},\\mathbf{x}^{(i)}) = 1$, $k(\\mathbf{x}^{(j)},\\mathbf{x}^{(j)}) = 2$, $k(\\mathbf{x}^{(i)},\\mathbf{x}^{(j)}) = 0.5$. What is the unclipped new $a^{(j)}$?",
+  "answer": 0.6,
+  "tolerance": 0.0001,
+  "explanation": "Denominator $= 1 + 2 - 2(0.5) = 2$. $a^{(j)} = 0.2 + \\frac{1 \\times 0.8}{2} = 0.6$.",
+  "tags": [
+   "update",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_5/coding/5c_smo_answers.ipynb",
+    "page": 16
+   }
+  ]
+ },
+ {
+  "id": "w5-smx-001",
+  "week": 5,
+  "topic": "pair-update-coding",
+  "type": "code",
+  "difficulty": 1,
+  "prompt": "What is printed?",
+  "code": "print(pair_bounds(alpha_i=0.5, alpha_j=0.0, y_i=-1, y_j=-1, C=1.0))",
+  "choices": [
+   "(0.0, 0.5)",
+   "(0.0, 1.0)",
+   "(0.5, 1.0)",
+   "(-0.5, 0.5)"
+  ],
+  "answer": 0,
+  "explanation": "Same labels: $L = \\max(0, 0.5 - 1) = 0$, $H = \\min(1, 0.5) = 0.5$.",
+  "tags": [
+   "bounds"
+  ],
+  "sources": [
+   {
+    "file": "week_5/coding/5c_smo_answers.ipynb",
+    "page": 14
+   }
+  ]
+ },
+ {
+  "id": "w5-smx-002",
+  "week": 5,
+  "topic": "pair-update-coding",
+  "type": "code",
+  "difficulty": 1,
+  "prompt": "What is printed?",
+  "code": "print(clip_alpha_j(1.3, L=0.0, H=0.8))",
+  "choices": [
+   "0.8",
+   "1.3",
+   "0.0",
+   "1.0"
+  ],
+  "answer": 0,
+  "explanation": "$1.3 \\ge H$, so it is clipped to $H = 0.8$.",
+  "tags": [
+   "clipping"
+  ],
+  "sources": [
+   {
+    "file": "week_5/coding/5c_smo_answers.ipynb",
+    "page": 16
+   }
+  ]
+ },
+ {
+  "id": "w5-smx-003",
+  "week": 5,
+  "topic": "pair-update-coding",
+  "type": "code",
+  "difficulty": 2,
+  "prompt": "What is printed?",
+  "code": "alpha = np.array([0.4, 0.0, 0.4])\ny = np.array([1.0, 1.0, -1.0])\nprint(zeta_for_pair(alpha, y, i=1, j=0))",
+  "choices": [
+   "0.4",
+   "-0.4",
+   "0.0",
+   "0.8"
+  ],
+  "answer": 0,
+  "explanation": "$\\zeta = -\\sum_{n \\ne i,j}a^{(n)}y^{(n)} = -(0.4 \\times -1) = 0.4$.",
+  "tags": [
+   "zeta"
+  ],
+  "sources": [
+   {
+    "file": "week_5/coding/5c_smo_answers.ipynb",
+    "page": 12
+   }
+  ]
+ },
+ {
+  "id": "w5-smx-004",
+  "week": 5,
+  "topic": "pair-update-coding",
+  "type": "code",
+  "difficulty": 2,
+  "prompt": "What is printed?",
+  "code": "print(recover_alpha_i(zeta=-0.5, alpha_j=0.2, y_i=-1, y_j=-1))",
+  "choices": [
+   "0.3",
+   "-0.3",
+   "0.7",
+   "0.2"
+  ],
+  "answer": 0,
+  "explanation": "$a^{(i)} = \\frac{-0.5 - 0.2(-1)}{-1} = 0.3$.",
+  "tags": [
+   "update"
+  ],
+  "sources": [
+   {
+    "file": "week_5/coding/5c_smo_answers.ipynb",
+    "page": 12
+   }
+  ]
+ },
+ {
+  "id": "w5-smx-005",
+  "week": 5,
+  "topic": "pair-update-coding",
+  "type": "code",
+  "difficulty": 2,
+  "prompt": "With C = 1, what is printed?",
+  "code": "print(violates_kkt(alpha_n=0.0, y_n=1, score_n=0.5, C=1.0),\n      violates_kkt(alpha_n=1.0, y_n=1, score_n=0.5, C=1.0),\n      violates_kkt(alpha_n=0.5, y_n=-1, score_n=-1.0, C=1.0))",
+  "choices": [
+   "True False False",
+   "False True False",
+   "True True True",
+   "False False True"
+  ],
+  "answer": 0,
+  "explanation": "$a = 0$ needs $y\\,h \\ge 1$ but has 0.5: violation. $a = C$ allows $y\\,h \\le 1$: fine. $0 < a < C$ needs $y\\,h = 1$, and $(-1)(-1) = 1$: fine.",
+  "tags": [
+   "kkt"
+  ],
+  "sources": [
+   {
+    "file": "week_5/coding/5c_smo_answers.ipynb",
+    "page": 18
+   }
+  ]
+ },
+ {
+  "id": "w5-sfm-001",
+  "week": 5,
+  "topic": "soft-margin",
+  "type": "flashcard",
+  "difficulty": 1,
+  "prompt": "Write the soft-margin SVM primal.",
+  "answer": "$\\arg\\min_{\\mathbf{w},b,\\boldsymbol\\xi}\\left\\{\\frac12\\|\\mathbf{w}\\|^2 + C\\sum_{n=1}^N\\xi^{(n)}\\right\\}$ subject to $y^{(n)}h(\\mathbf{x}^{(n)}) \\ge 1 - \\xi^{(n)}$ and $\\xi^{(n)} \\ge 0$.",
+  "explanation": "$C > 0$ is a hyperparameter that controls the trade-off between the amount of slack and the margin.",
+  "tags": [
+   "soft-margin",
+   "formula"
+  ],
+  "sources": [
+   {
+    "file": "week_5/slides/5a-kernels-soft-svm.pdf",
+    "page": 29
+   }
+  ]
+ },
+ {
+  "id": "w5-sfm-002",
+  "week": 5,
+  "topic": "soft-margin",
+  "type": "multi",
+  "difficulty": 2,
+  "prompt": "Which statements about the hyperparameter $C$ are true? Select all that apply.",
+  "choices": [
+   "A very large $C$ could lead to overfitting",
+   "A very small $C$ could lead to overfitting",
+   "A very large $C$ could lead to more training examples being misclassified",
+   "A very small $C$ could lead to more training examples within the margin",
+   "A very small $C$ could lead to more training examples being misclassified"
+  ],
+  "answer": [
+   0,
+   3,
+   4
+  ],
+  "explanation": "A large $C$ makes slack expensive, so the SVM tries to classify everything correctly and may overfit. A small $C$ makes slack cheap, so more examples are inside the margin or misclassified.",
+  "tags": [
+   "hyperparameter-c"
+  ],
+  "sources": [
+   {
+    "file": "week_5/worksheets/5a-Soft_Margin_SVM-answers.pdf",
+    "page": 3
+   }
+  ]
+ },
+ {
+  "id": "w5-sfm-003",
+  "week": 5,
+  "topic": "soft-margin",
+  "type": "mcq",
+  "difficulty": 2,
+  "prompt": "Using an RBF SVM, what do you expect to see with $C = 0.1$ compared with $C = 1$?",
+  "choices": [
+   "With $C = 0.1$ the margin is wider and many examples are within it",
+   "With $C = 0.1$ the margin is narrower and fewer examples are within it",
+   "No difference: $C$ only affects training time",
+   "With $C = 0.1$ every example is a support vector outside the margin"
+  ],
+  "answer": 0,
+  "explanation": "A small $C$ makes larger slacks cheap, so the optimiser focuses on widening the margin. A larger $C$ penalises slack more, so the margin narrows.",
+  "tags": [
+   "hyperparameter-c"
+  ],
+  "sources": [
+   {
+    "file": "week_5/worksheets/5a-Soft_Margin_SVM-answers.pdf",
+    "page": 6
+   }
+  ]
+ },
+ {
+  "id": "w5-sfm-004",
+  "week": 5,
+  "topic": "soft-margin",
+  "type": "short",
+  "difficulty": 2,
+  "prompt": "The data is not linearly separable and no nonlinear transformation is used. (A) Why does the hard-margin SVM fail? (B) How do slack variables fix this?",
+  "answer": "(A) Every example must satisfy $y^{(n)}(\\mathbf{w}^T\\mathbf{x}^{(n)} + b) \\ge 1$, but some points will always violate it, so the feasible set is empty and there is no solution. (B) With $y^{(n)}(\\mathbf{w}^T\\mathbf{x}^{(n)} + b) \\ge 1 - \\xi^{(n)}$, any violation can be absorbed into $\\xi^{(n)}$, so the problem is always feasible, and $C\\sum_n\\xi^{(n)}$ makes violations costly.",
+  "explanation": "Large $C$ behaves more like the hard margin; small $C$ tolerates more violations and gives a wider margin.",
+  "tags": [
+   "soft-margin",
+   "feasibility"
+  ],
+  "sources": [
+   {
+    "file": "week_5/worksheets/5a-Soft_Margin_SVM-answers.pdf",
+    "page": 8
+   }
+  ]
+ },
+ {
+  "id": "w5-sfm-005",
+  "week": 5,
+  "topic": "soft-margin",
+  "type": "mcq",
+  "difficulty": 1,
+  "prompt": "How is the margin defined for the soft-margin SVM?",
+  "choices": [
+   "As $1/\\|\\mathbf{w}\\|$",
+   "As the distance to the closest training example",
+   "As $\\sum_n\\xi^{(n)}$",
+   "As $C/\\|\\mathbf{w}\\|$"
+  ],
+  "answer": 0,
+  "explanation": "Examples may now be inside the margin, so it is no longer the distance to the closest example. How large it is depends on $\\|\\mathbf{w}\\|$.",
+  "tags": [
+   "margin"
+  ],
+  "sources": [
+   {
+    "file": "week_5/slides/5a-kernels-soft-svm.pdf",
+    "page": 27
+   }
+  ]
+ },
+ {
+  "id": "w5-sfm-006",
+  "week": 5,
+  "topic": "soft-margin",
+  "type": "mcq",
+  "difficulty": 1,
+  "prompt": "Why might we still overfit with a hard-margin SVM, even though maximising the margin helps?",
+  "choices": [
+   "With a very high-dimensional embedding (e.g. Gaussian kernel), the SVM tries to classify every training example correctly, noise included",
+   "Because the margin is always too wide",
+   "Because the dual has too few variables",
+   "Because kernels are not symmetric"
+  ],
+  "answer": 0,
+  "explanation": "It may be better to misclassify some training examples, which is the idea of the soft margin.",
+  "tags": [
+   "overfitting"
+  ],
+  "sources": [
+   {
+    "file": "week_5/slides/5a-kernels-soft-svm.pdf",
+    "page": 23
+   }
+  ]
+ },
+ {
+  "id": "w5-sfm-007",
+  "week": 5,
+  "topic": "soft-margin",
+  "type": "flashcard",
+  "difficulty": 2,
+  "prompt": "How does the soft-margin dual differ from the hard-margin dual?",
+  "answer": "The objective $\\sum_n a^{(n)} - \\frac12\\sum_n\\sum_m a^{(n)}a^{(m)}y^{(n)}y^{(m)}k(\\mathbf{x}^{(n)},\\mathbf{x}^{(m)})$ and $\\sum_n a^{(n)}y^{(n)} = 0$ are the same. Only $a^{(n)} \\ge 0$ becomes the box constraint $0 \\le a^{(n)} \\le C$.",
+  "explanation": "$C$ appears only through the box constraints.",
+  "tags": [
+   "soft-margin-dual"
+  ],
+  "sources": [
+   {
+    "file": "week_5/slides/5a-kernels-soft-svm.pdf",
+    "page": 34
+   }
+  ]
+ },
+ {
+  "id": "w5-sfm-008",
+  "week": 5,
+  "topic": "soft-margin",
+  "type": "mcq",
+  "difficulty": 2,
+  "prompt": "In a soft-margin SVM, which support vectors are used to compute $b$?",
+  "choices": [
+   "Only the support vectors that are on the margin (the set $M$)",
+   "All support vectors",
+   "All training examples",
+   "Only the misclassified examples"
+  ],
+  "answer": 0,
+  "explanation": "$b^{(n)} = y^{(n)} - \\sum_{m\\in S}a^{(m)}y^{(m)}k(\\mathbf{x}^{(n)},\\mathbf{x}^{(m)})$ relies on $y^{(n)}h(\\mathbf{x}^{(n)}) = 1$, which only holds for support vectors on the margin. Support vectors with slack have $y\\,h = 1 - \\xi$.",
+  "tags": [
+   "bias",
+   "soft-margin-dual"
+  ],
+  "sources": [
+   {
+    "file": "week_5/slides/5a-kernels-soft-svm.pdf",
+    "page": 37
+   }
+  ]
+ },
+ {
+  "id": "w5-sfm-009",
+  "week": 5,
+  "topic": "soft-margin",
+  "type": "mcq",
+  "difficulty": 2,
+  "prompt": "By complementary slackness, what holds for a support vector ($a^{(n)} \\ne 0$) of a soft-margin SVM?",
+  "choices": [
+   "$y^{(n)}h(\\mathbf{x}^{(n)}) = 1 - \\xi^{(n)}$",
+   "$y^{(n)}h(\\mathbf{x}^{(n)}) = 1$ always",
+   "$y^{(n)}h(\\mathbf{x}^{(n)}) > 1$",
+   "$\\xi^{(n)} = 0$ always"
+  ],
+  "answer": 0,
+  "explanation": "So a soft-margin support vector can be on the margin ($\\xi = 0$), inside it, or misclassified.",
+  "tags": [
+   "support-vectors"
+  ],
+  "sources": [
+   {
+    "file": "week_5/slides/5a-kernels-soft-svm.pdf",
+    "page": 36
+   }
+  ]
+ },
+ {
+  "id": "w5-sfm-010",
+  "week": 5,
+  "topic": "soft-margin",
+  "type": "truefalse",
+  "difficulty": 1,
+  "prompt": "A soft-margin SVM may deliberately misclassify some training examples to improve generalisation.",
+  "answer": true,
+  "explanation": "Allowing slack lets it ignore noise instead of contorting the boundary to fit every training point.",
+  "tags": [
+   "soft-margin"
+  ],
+  "sources": [
+   {
+    "file": "week_5/slides/5a-kernels-soft-svm.pdf",
+    "page": 24
+   }
+  ]
+ },
+ {
+  "id": "w5-smc-001",
+  "week": 5,
+  "topic": "soft-margin-coding",
+  "type": "code",
+  "difficulty": 2,
+  "prompt": "What is printed?",
+  "code": "X = np.array([[2.0, 0.0], [0.5, 0.0], [-0.5, 0.0]])\ny = np.array([1.0, 1.0, 1.0])\nprint(slack_variables(X, y, np.array([1.0, 0.0]), 0.0))",
+  "choices": [
+   "[0.  0.5 1.5]",
+   "[ 2.   0.5 -0.5]",
+   "[0.  0.5 0. ]",
+   "[1.  0.5 1.5]"
+  ],
+  "answer": 0,
+  "explanation": "$y\\,h = (2, 0.5, -0.5)$, so $\\xi = \\max(0, 1 - y\\,h) = (0, 0.5, 1.5)$.",
+  "tags": [
+   "slack"
+  ],
+  "sources": [
+   {
+    "file": "week_5/coding/5a_soft_margin_svm_answers.ipynb",
+    "page": 7
+   }
+  ]
+ },
+ {
+  "id": "w5-smc-002",
+  "week": 5,
+  "topic": "soft-margin-coding",
+  "type": "code",
+  "difficulty": 2,
+  "prompt": "Same X, y and w. What is printed?",
+  "code": "print(soft_margin_objective(X, y, np.array([1.0, 0.0]), 0.0, C=2.0))",
+  "choices": [
+   "4.5",
+   "2.5",
+   "0.5",
+   "4.0"
+  ],
+  "answer": 0,
+  "explanation": "$\\frac12\\|\\mathbf{w}\\|^2 + C\\sum\\xi = 0.5 + 2(0 + 0.5 + 1.5) = 4.5$.",
+  "tags": [
+   "objective"
+  ],
+  "sources": [
+   {
+    "file": "week_5/coding/5a_soft_margin_svm_answers.ipynb",
+    "page": 11
+   }
+  ]
+ },
+ {
+  "id": "w5-smc-003",
+  "week": 5,
+  "topic": "soft-margin-coding",
+  "type": "code",
+  "difficulty": 3,
+  "prompt": "The two calls use the same feasible a, once with C = 1 and once with C = 100. What is printed?",
+  "code": "X = np.array([[1.0, 0.0], [-1.0, 0.0]])\ny = np.array([1.0, -1.0])\na = np.array([0.5, 0.5])\nprint(soft_margin_dual_objective(X, y, a, C=1),\n      soft_margin_dual_objective(X, y, a, C=100))",
+  "choices": [
+   "0.5 0.5",
+   "0.5 50.0",
+   "1.0 100.0",
+   "0.5 -49.5"
+  ],
+  "answer": 0,
+  "explanation": "$C$ does not appear in $\\tilde L(\\mathbf{a})$. It only enters the dual through the box constraints $0 \\le a^{(n)} \\le C$.",
+  "tags": [
+   "soft-margin-dual"
+  ],
+  "sources": [
+   {
+    "file": "week_5/coding/5a_soft_margin_svm_answers.ipynb",
+    "page": 16
+   }
+  ]
+ },
+ {
+  "id": "w5-smc-004",
+  "week": 5,
+  "topic": "soft-margin-coding",
+  "type": "code",
+  "difficulty": 2,
+  "prompt": "signed_alpha holds $a^{(n)}y^{(n)}$ for the support vectors. What is printed?",
+  "code": "X_new = np.array([[1.0, 1.0]])\nX_support = np.array([[1.0, 0.0], [0.0, 1.0]])\nsigned_alpha = np.array([0.5, -0.5])\nprint(dual_predict(X_new, X_support, signed_alpha, 0.2))",
+  "choices": [
+   "[0.2]",
+   "[1.2]",
+   "[-0.8]",
+   "[0.7]"
+  ],
+  "answer": 0,
+  "explanation": "Both kernel values are 1, so the sum is $0.5 - 0.5 = 0$, and $h = 0 + 0.2 = 0.2$.",
+  "tags": [
+   "prediction"
+  ],
+  "sources": [
+   {
+    "file": "week_5/coding/5a_soft_margin_svm_answers.ipynb",
+    "page": 20
+   }
+  ]
+ },
+ {
+  "id": "w5-skk-001",
+  "week": 5,
+  "topic": "soft-margin-optimality",
+  "type": "flashcard",
+  "difficulty": 1,
+  "prompt": "State the three soft-margin KKT cases used by SMO.",
+  "answer": "$0 < a^{(n)} < C \\iff y^{(n)}h(\\mathbf{x}^{(n)}) = 1$ (support vector on the margin). $a^{(n)} = C \\iff y^{(n)}h(\\mathbf{x}^{(n)}) \\le 1$ (support vector on or violating the margin). $a^{(n)} = 0 \\iff y^{(n)}h(\\mathbf{x}^{(n)}) \\ge 1$ (not a support vector).",
+  "explanation": "SMO checks these within a tolerance to pick multipliers and to decide when to stop.",
+  "tags": [
+   "kkt"
+  ],
+  "sources": [
+   {
+    "file": "week_5/slides/5c-SMO.pdf",
+    "page": 23
+   }
+  ]
+ },
+ {
+  "id": "w5-skk-002",
+  "week": 5,
+  "topic": "soft-margin-optimality",
+  "type": "mcq",
+  "difficulty": 1,
+  "prompt": "Which conditions does SMO check at each iteration to see if the solution is approaching optimality?",
+  "choices": [
+   "Whether the KKT conditions are met within a specified tolerance",
+   "Whether the KKT conditions are fully met",
+   "Whether all support vectors lie exactly on the margin"
+  ],
+  "answer": 0,
+  "explanation": "If no example violates the KKT conditions within the tolerance, it has converged.",
+  "tags": [
+   "kkt",
+   "convergence"
+  ],
+  "sources": [
+   {
+    "file": "week_5/worksheets/5c-Sequential_Minimal_Optimisation-answers.pdf",
+    "page": 2
+   }
+  ]
+ },
+ {
+  "id": "w5-skk-003",
+  "week": 5,
+  "topic": "soft-margin-optimality",
+  "type": "mcq",
+  "difficulty": 2,
+  "prompt": "Soft-margin SVM, $C = 1$, $a^{(2)} = 0.6$. Where is example 2?",
+  "choices": [
+   "A support vector exactly on the margin",
+   "Not a support vector",
+   "A support vector inside the margin",
+   "A misclassified support vector"
+  ],
+  "answer": 0,
+  "explanation": "$0 < a < C$ forces $\\xi = 0$ and $y\\,h(\\mathbf{x}) = 1$.",
+  "tags": [
+   "kkt",
+   "support-vectors"
+  ],
+  "sources": [
+   {
+    "file": "week_5/worksheets/5c-Sequential_Minimal_Optimisation-answers.pdf",
+    "page": 11
+   }
+  ]
+ },
+ {
+  "id": "w5-skk-004",
+  "week": 5,
+  "topic": "soft-margin-optimality",
+  "type": "multi",
+  "difficulty": 2,
+  "prompt": "Soft-margin SVM, $C = 1$, $a^{(3)} = 1$. Which could example 3 be? Select all that apply.",
+  "choices": [
+   "A support vector on the margin",
+   "A correctly classified support vector inside the margin",
+   "A misclassified support vector",
+   "Not a support vector"
+  ],
+  "answer": [
+   0,
+   1,
+   2
+  ],
+  "explanation": "$a = C$ makes $(C - a)\\xi = 0$ hold for any $\\xi \\ge 0$, so the position depends on $\\xi$. It is always a support vector because $a \\ne 0$.",
+  "tags": [
+   "kkt",
+   "support-vectors"
+  ],
+  "sources": [
+   {
+    "file": "week_5/worksheets/5c-Sequential_Minimal_Optimisation-answers.pdf",
+    "page": 11
+   }
+  ]
+ },
+ {
+  "id": "w5-skk-005",
+  "week": 5,
+  "topic": "soft-margin-optimality",
+  "type": "mcq",
+  "difficulty": 1,
+  "prompt": "Soft-margin SVM, $a^{(1)} = 0$. What is example 1?",
+  "choices": [
+   "Not a support vector",
+   "A support vector on the margin",
+   "A misclassified support vector",
+   "A support vector inside the margin"
+  ],
+  "answer": 0,
+  "explanation": "With $a = 0$ it does not appear in $h(\\mathbf{x}) = \\sum_n a^{(n)}y^{(n)}k(\\mathbf{x},\\mathbf{x}^{(n)}) + b$.",
+  "tags": [
+   "kkt",
+   "support-vectors"
+  ],
+  "sources": [
+   {
+    "file": "week_5/worksheets/5c-Sequential_Minimal_Optimisation-answers.pdf",
+    "page": 11
+   }
+  ]
+ },
+ {
+  "id": "w5-skk-006",
+  "week": 5,
+  "topic": "soft-margin-optimality",
+  "type": "flashcard",
+  "difficulty": 3,
+  "prompt": "Beyond the lecture (the worksheet extends the slides here). List the KKT conditions for the soft-margin SVM.",
+  "answer": "Stationarity: $\\nabla_{\\mathbf{w}}L = 0$, $\\nabla_{\\boldsymbol\\xi}L = 0$, $\\partial L/\\partial b = 0$. Complementary slackness: $a^{(n)}(1 - \\xi^{(n)} - y^{(n)}(\\mathbf{w}^T\\phi(\\mathbf{x}^{(n)}) + b)) = 0$ and $\\beta^{(n)}\\xi^{(n)} = 0$. Feasibility: $a^{(n)} \\ge 0$, $\\beta^{(n)} \\ge 0$, $y^{(n)}h(\\mathbf{x}^{(n)}) \\ge 1 - \\xi^{(n)}$, $\\xi^{(n)} \\ge 0$.",
+  "explanation": "$\\beta^{(n)}$ are the multipliers for $\\xi^{(n)} \\ge 0$. Stationarity in $\\xi$ gives $\\beta^{(n)} = C - a^{(n)}$, which is where the box constraint $a^{(n)} \\le C$ comes from.",
+  "tags": [
+   "kkt",
+   "beyond-lecture"
+  ],
+  "sources": [
+   {
+    "file": "week_5/worksheets/5c-Sequential_Minimal_Optimisation-answers.pdf",
+    "page": 7
+   }
+  ]
+ },
+ {
+  "id": "w5-skk-007",
+  "week": 5,
+  "topic": "soft-margin-optimality",
+  "type": "short",
+  "difficulty": 3,
+  "prompt": "Beyond the lecture (the worksheet extends the slides here). Using $a^{(n)}(1 - \\xi^{(n)} - y^{(n)}h(\\mathbf{x}^{(n)})) = 0$ and $(C - a^{(n)})\\xi^{(n)} = 0$, show that support vectors with $0 < a^{(n)} < C$ lie exactly on the margin.",
+  "answer": "$a^{(n)} \\ne 0$, so $y^{(n)}h(\\mathbf{x}^{(n)}) = 1 - \\xi^{(n)}$. $C - a^{(n)} \\ne 0$, so $\\xi^{(n)} = 0$. Together, $y^{(n)}h(\\mathbf{x}^{(n)}) = 1$, so the distance is $1/\\|\\mathbf{w}\\|$: exactly the margin.",
+  "steps": [
+   "From the first condition with $a^{(n)} > 0$: $y\\,h = 1 - \\xi$",
+   "From the second with $a^{(n)} < C$: $\\xi = 0$",
+   "So $y\\,h = 1$ and the distance is $\\frac{1}{\\|\\mathbf{w}\\|}$",
+   "With $a^{(n)} = C$, $\\xi$ can be any value $\\ge 0$: on the margin, inside it, on the boundary or misclassified"
+  ],
+  "explanation": "$\\beta^{(n)} = C - a^{(n)}$ comes from KKT stationarity.",
+  "tags": [
+   "kkt",
+   "proof",
+   "beyond-lecture"
+  ],
+  "sources": [
+   {
+    "file": "week_5/worksheets/5c-Sequential_Minimal_Optimisation-answers.pdf",
+    "page": 8
+   }
+  ]
+ },
+ {
+  "id": "w5-skk-008",
+  "week": 5,
+  "topic": "soft-margin-optimality",
+  "type": "short",
+  "difficulty": 3,
+  "prompt": "Beyond the lecture (the worksheet extends the slides here). Prove that at the optimum, whenever $\\xi^{(n)} > 0$, the constraint $y^{(n)}h(\\mathbf{x}^{(n)}) \\ge 1 - \\xi^{(n)}$ holds with equality (for $C > 0$).",
+  "answer": "If $0 < a^{(n)} < C$ then $\\xi^{(n)} = 0$, so that case doesn't apply. If $a^{(n)} = 0$ then $(C - 0)\\xi^{(n)} = 0$, and $C > 0$ gives $\\xi^{(n)} = 0$, so that case doesn't apply either. The only case with $\\xi^{(n)} > 0$ is $a^{(n)} = C \\ne 0$, where complementary slackness forces $y^{(n)}h(\\mathbf{x}^{(n)}) = 1 - \\xi^{(n)}$.",
+  "steps": [
+   "Split into $0 < a < C$, $a = 0$ and $a = C$",
+   "$0 < a < C$ gives $\\xi = 0$",
+   "$a = 0$ gives $C\\xi = 0$, so $\\xi = 0$ when $C > 0$",
+   "$a = C > 0$: the first condition gives $y\\,h = 1 - \\xi$ exactly"
+  ],
+  "explanation": "So $\\xi^{(n)}$ captures exactly how much the example violates the margin.",
+  "tags": [
+   "kkt",
+   "proof",
+   "beyond-lecture"
+  ],
+  "sources": [
+   {
+    "file": "week_5/worksheets/5c-Sequential_Minimal_Optimisation-answers.pdf",
+    "page": 10
+   }
+  ]
  }
 ]

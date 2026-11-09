@@ -1,0 +1,90 @@
+[
+  {
+    "id": "w5-kde-001", "week": 5, "topic": "kernel-design", "type": "flashcard", "difficulty": 1,
+    "prompt": "List the three inner product properties the lecture uses.",
+    "answer": "Symmetry: $\\langle\\mathbf{x},\\mathbf{z}\\rangle = \\langle\\mathbf{z},\\mathbf{x}\\rangle$. Positive definiteness: $\\langle\\mathbf{x},\\mathbf{x}\\rangle \\ge 0$, with equality only when $\\mathbf{x} = \\mathbf{0}$. Linearity in the first argument: $\\langle a\\mathbf{x} + b\\mathbf{y},\\mathbf{z}\\rangle = a\\langle\\mathbf{x},\\mathbf{z}\\rangle + b\\langle\\mathbf{y},\\mathbf{z}\\rangle$.",
+    "explanation": "A kernel must be an inner product in some embedding, so it must respect these properties. Mercer's condition checks this.",
+    "tags": ["inner-product"],
+    "sources": [{"file": "week_5/slides/5a-kernels-soft-svm.pdf", "page": 10, "quote": "Inner product is a way to multiply two vectors together, with the result being a scalar."}]
+  },
+  {
+    "id": "w5-kde-002", "week": 5, "topic": "kernel-design", "type": "short", "difficulty": 2,
+    "prompt": "Show that the dot product satisfies linearity in the first argument: $(a\\mathbf{x} + b\\mathbf{y})\\cdot\\mathbf{z} = a(\\mathbf{x}\\cdot\\mathbf{z}) + b(\\mathbf{y}\\cdot\\mathbf{z})$.",
+    "answer": "$(a\\mathbf{x} + b\\mathbf{y})\\cdot\\mathbf{z} = \\sum_i(ax_i + by_i)z_i = \\sum_i(ax_iz_i + by_iz_i) = \\sum_i ax_iz_i + \\sum_i by_iz_i = a(\\mathbf{x}\\cdot\\mathbf{z}) + b(\\mathbf{y}\\cdot\\mathbf{z})$.",
+    "steps": ["Write the dot product as a sum over components", "Expand $(ax_i + by_i)z_i$", "Split into two sums", "Take the constants $a$ and $b$ outside the sums"],
+    "explanation": "This combines additivity and homogeneity (scaling).",
+    "tags": ["inner-product", "proof"],
+    "sources": [{"file": "week_5/worksheets/5a-Soft_Margin_SVM-answers.pdf", "page": 9, "quote": "Show that the dot product satisfies the linearity in the first argument property of inner"}]
+  },
+  {
+    "id": "w5-kde-003", "week": 5, "topic": "kernel-design", "type": "mcq", "difficulty": 1,
+    "prompt": "Which inner product property is $\\langle\\mathbf{x},\\mathbf{x}\\rangle \\ge 0$, with equality only when $\\mathbf{x} = \\mathbf{0}$?",
+    "choices": ["Positive definiteness", "Symmetry", "Additivity", "Homogeneity"],
+    "answer": 0,
+    "explanation": "For the dot product, $\\mathbf{x}\\cdot\\mathbf{x} = \\sum_i x_i^2 \\ge 0$.",
+    "tags": ["inner-product"],
+    "sources": [{"file": "week_5/slides/5a-kernels-soft-svm.pdf", "page": 10, "quote": "Positive deﬁniteness: , with equality only when ."}]
+  },
+  {
+    "id": "w5-kde-004", "week": 5, "topic": "kernel-design", "type": "truefalse", "difficulty": 2,
+    "prompt": "Mercer's condition only needs to be checked on the Gram matrix of the training set.",
+    "answer": false,
+    "explanation": "It must hold for the Gram matrix of any finite set of points, not necessarily the training set.",
+    "tags": ["mercer"],
+    "sources": [{"file": "week_5/slides/5a-kernels-soft-svm.pdf", "page": 11, "quote": "Consider any ﬁnite set of points  (not necessarily the training set)."}]
+  },
+  {
+    "id": "w5-kde-005", "week": 5, "topic": "kernel-design", "type": "numeric", "difficulty": 2,
+    "prompt": "Linear kernel, points $(1,0)$, $(0,1)$, $(1,1)$. Their Gram matrix is $K = \\begin{pmatrix}1&0&1\\\\0&1&1\\\\1&1&2\\end{pmatrix}$. Compute $\\mathbf{z}^TK\\mathbf{z}$ for $\\mathbf{z} = (1, 1, -1)^T$.",
+    "answer": 0,
+    "tolerance": 0.0001,
+    "explanation": "$K\\mathbf{z} = (1 + 0 - 1,\\ 0 + 1 - 1,\\ 1 + 1 - 2)^T = \\mathbf{0}$, so $\\mathbf{z}^TK\\mathbf{z} = 0 \\ge 0$. Positive semidefinite allows 0.",
+    "tags": ["mercer", "gram-matrix", "calculation"],
+    "sources": [{"file": "week_5/slides/5a-kernels-soft-svm.pdf", "page": 11, "quote": "Positive semideﬁnite: ."}]
+  },
+  {
+    "id": "w5-kde-006", "week": 5, "topic": "kernel-design", "type": "numeric", "difficulty": 2,
+    "prompt": "A proposed kernel gives the Gram matrix $K = \\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ for two points. Compute $\\mathbf{z}^TK\\mathbf{z}$ for $\\mathbf{z} = (1,-1)^T$.",
+    "answer": -2,
+    "tolerance": 0.0001,
+    "explanation": "$1 - 2 - 2 + 1 = -2 < 0$. $K$ is symmetric but not positive semidefinite, so this is not a valid kernel.",
+    "tags": ["mercer", "gram-matrix", "calculation"],
+    "sources": [{"file": "week_5/slides/5a-kernels-soft-svm.pdf", "page": 11, "quote": "Mercer’s condition states that  must be symmetric and"}]
+  },
+  {
+    "id": "w5-kde-007", "week": 5, "topic": "kernel-design", "type": "mcq", "difficulty": 2,
+    "prompt": "A function gives the Gram matrix $\\begin{pmatrix}1&2\\\\3&1\\end{pmatrix}$ for two points. Can it be a valid kernel?",
+    "choices": ["No: $K$ is not symmetric, so $k(\\mathbf{x}^{(i)},\\mathbf{x}^{(j)}) \\ne k(\\mathbf{x}^{(j)},\\mathbf{x}^{(i)})$", "Yes: all entries are positive", "Yes: the diagonal is positive", "Only if $C$ is large"],
+    "answer": 0,
+    "explanation": "Mercer's condition needs $K$ to be both symmetric and positive semidefinite.",
+    "tags": ["mercer"],
+    "sources": [{"file": "week_5/slides/5a-kernels-soft-svm.pdf", "page": 11, "quote": "Mercer’s condition states that  must be symmetric and"}]
+  },
+  {
+    "id": "w5-kde-008", "week": 5, "topic": "kernel-design", "type": "mcq", "difficulty": 1,
+    "prompt": "Why might we design a kernel (similarity function) directly instead of a basis expansion $\\phi$?",
+    "choices": ["Choosing an embedding is challenging, and the dual never needs $\\phi$ itself", "Kernels do not need to correspond to any embedding", "It avoids the need for support vectors", "It removes the hyperparameter $C$"],
+    "answer": 0,
+    "explanation": "The kernel must still be an inner product in some embedding, which Mercer's condition checks.",
+    "tags": ["kernel-design"],
+    "sources": [{"file": "week_5/slides/5a-kernels-soft-svm.pdf", "page": 9, "quote": "Choosing an embedding is challenging."}]
+  },
+  {
+    "id": "w5-kde-009", "week": 5, "topic": "kernel-design", "type": "numeric", "difficulty": 2,
+    "prompt": "Gaussian kernel with $\\sigma = 1$: $k(\\mathbf{x},\\mathbf{z}) = e^{-\\|\\mathbf{x}-\\mathbf{z}\\|^2/2}$. Compute $k$ for $\\mathbf{x} = (0,0)$ and $\\mathbf{z} = (2,0)$. (4 d.p.)",
+    "answer": 0.1353,
+    "tolerance": 0.0001,
+    "explanation": "$\\|\\mathbf{x}-\\mathbf{z}\\|^2 = 4$, so $k = e^{-2} \\approx 0.1353$. Identical points give $k = 1$, and $k$ falls towards 0 as points move apart: it is a similarity measure.",
+    "tags": ["gaussian-kernel", "calculation"],
+    "sources": [{"file": "week_5/slides/5a-kernels-soft-svm.pdf", "page": 13, "quote": "Gaussian is a kind of similarity measure."}]
+  },
+  {
+    "id": "w5-kde-010", "week": 5, "topic": "kernel-design", "type": "multi", "difficulty": 1,
+    "prompt": "Besides a valid (Mercer) kernel, what else can the word **kernel** mean? Select all that apply.",
+    "choices": ["Any real-valued function of two arguments, $k(\\mathbf{x},\\mathbf{z}) \\in \\mathbb{R}$", "A matrix slid across an image in convolutional neural networks", "The set of support vectors", "The slack penalty $C$"],
+    "answer": [0, 1],
+    "explanation": "In this module, kernel means a function that is an inner product in some embedding.",
+    "tags": ["terminology"],
+    "sources": [{"file": "week_5/slides/5a-kernels-soft-svm.pdf", "page": 38, "quote": "The term kernel is also used to refer to a matrix which is slid"}]
+  }
+]

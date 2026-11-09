@@ -1,0 +1,52 @@
+[
+  {
+    "id": "w5-smx-001", "week": 5, "topic": "pair-update-coding", "type": "code", "difficulty": 1,
+    "prompt": "What is printed?",
+    "code": "print(pair_bounds(alpha_i=0.5, alpha_j=0.0, y_i=-1, y_j=-1, C=1.0))",
+    "choices": ["(0.0, 0.5)", "(0.0, 1.0)", "(0.5, 1.0)", "(-0.5, 0.5)"],
+    "answer": 0,
+    "explanation": "Same labels: $L = \\max(0, 0.5 - 1) = 0$, $H = \\min(1, 0.5) = 0.5$.",
+    "tags": ["bounds"],
+    "sources": [{"file": "week_5/coding/5c_smo_answers.ipynb", "page": 14, "quote": "L = max(0.0, alpha_j + alpha_i - C)"}]
+  },
+  {
+    "id": "w5-smx-002", "week": 5, "topic": "pair-update-coding", "type": "code", "difficulty": 1,
+    "prompt": "What is printed?",
+    "code": "print(clip_alpha_j(1.3, L=0.0, H=0.8))",
+    "choices": ["0.8", "1.3", "0.0", "1.0"],
+    "answer": 0,
+    "explanation": "$1.3 \\ge H$, so it is clipped to $H = 0.8$.",
+    "tags": ["clipping"],
+    "sources": [{"file": "week_5/coding/5c_smo_answers.ipynb", "page": 16, "quote": "return min(H, max(L, alpha_j_new))"}]
+  },
+  {
+    "id": "w5-smx-003", "week": 5, "topic": "pair-update-coding", "type": "code", "difficulty": 2,
+    "prompt": "What is printed?",
+    "code": "alpha = np.array([0.4, 0.0, 0.4])\ny = np.array([1.0, 1.0, -1.0])\nprint(zeta_for_pair(alpha, y, i=1, j=0))",
+    "choices": ["0.4", "-0.4", "0.0", "0.8"],
+    "answer": 0,
+    "explanation": "$\\zeta = -\\sum_{n \\ne i,j}a^{(n)}y^{(n)} = -(0.4 \\times -1) = 0.4$.",
+    "tags": ["zeta"],
+    "sources": [{"file": "week_5/coding/5c_smo_answers.ipynb", "page": 12, "quote": "return -np.dot(alpha[mask], y[mask])"}]
+  },
+  {
+    "id": "w5-smx-004", "week": 5, "topic": "pair-update-coding", "type": "code", "difficulty": 2,
+    "prompt": "What is printed?",
+    "code": "print(recover_alpha_i(zeta=-0.5, alpha_j=0.2, y_i=-1, y_j=-1))",
+    "choices": ["0.3", "-0.3", "0.7", "0.2"],
+    "answer": 0,
+    "explanation": "$a^{(i)} = \\frac{-0.5 - 0.2(-1)}{-1} = 0.3$.",
+    "tags": ["update"],
+    "sources": [{"file": "week_5/coding/5c_smo_answers.ipynb", "page": 12, "quote": "return (zeta - alpha_j * y_j) / y_i"}]
+  },
+  {
+    "id": "w5-smx-005", "week": 5, "topic": "pair-update-coding", "type": "code", "difficulty": 2,
+    "prompt": "With C = 1, what is printed?",
+    "code": "print(violates_kkt(alpha_n=0.0, y_n=1, score_n=0.5, C=1.0),\n      violates_kkt(alpha_n=1.0, y_n=1, score_n=0.5, C=1.0),\n      violates_kkt(alpha_n=0.5, y_n=-1, score_n=-1.0, C=1.0))",
+    "choices": ["True False False", "False True False", "True True True", "False False True"],
+    "answer": 0,
+    "explanation": "$a = 0$ needs $y\\,h \\ge 1$ but has 0.5: violation. $a = C$ allows $y\\,h \\le 1$: fine. $0 < a < C$ needs $y\\,h = 1$, and $(-1)(-1) = 1$: fine.",
+    "tags": ["kkt"],
+    "sources": [{"file": "week_5/coding/5c_smo_answers.ipynb", "page": 18, "quote": "return abs(signed_score - 1) > tolerance"}]
+  }
+]

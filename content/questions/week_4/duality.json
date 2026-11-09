@@ -1,0 +1,89 @@
+[
+  {
+    "id": "w4-dua-001", "week": 4, "topic": "duality", "type": "flashcard", "difficulty": 1,
+    "prompt": "What is the **dual formulation** (maxmin) of $\\min_x\\max_{a \\ge 0} L(x,a)$?",
+    "answer": "$\\max_a\\min_x\\{F(x) + \\sum_{i=1}^N a_if_i(x)\\}$ subject to $a_i \\ge 0$.",
+    "explanation": "The min and max are swapped. The dual may let us get rid of the min using what we know about the optimum of the unconstrained min problem.",
+    "tags": ["dual", "definition"],
+    "sources": [{"file": "week_4/slides/4a-lagrange-duality.pdf", "page": 20, "quote": "The dual may enable us to get rid of the min based on our"}]
+  },
+  {
+    "id": "w4-dua-002", "week": 4, "topic": "duality", "type": "truefalse", "difficulty": 1,
+    "prompt": "The maxmin dual is always equivalent to the minimax primal.",
+    "answer": false,
+    "explanation": "When they are not equivalent this is weak duality. When they are equal we have strong duality.",
+    "tags": ["dual", "weak-duality"],
+    "sources": [{"file": "week_4/slides/4a-lagrange-duality.pdf", "page": 20, "quote": "However, it is not always equivalent to the primal, which is known as weak duality."}]
+  },
+  {
+    "id": "w4-dua-003", "week": 4, "topic": "duality", "type": "multi", "difficulty": 2,
+    "prompt": "Which conditions does the lecture give for strong duality (minimax = maxmin)? Select all that apply.",
+    "choices": ["$L(x,a)$ is convex in $x$ (true when $F$ and all $f_i$ are convex)", "$L(x,a)$ is concave in $a$", "Slater's condition: at least one feasible $x$ with $f_i(x) < 0$ for all $i$", "$F(x)$ is linear", "There are fewer constraints than variables"],
+    "answer": [0, 1, 2],
+    "explanation": "Slater's condition holds for most ML problems, including the SVM.",
+    "tags": ["strong-duality", "slater"],
+    "sources": [{"file": "week_4/slides/4a-lagrange-duality.pdf", "page": 21, "quote": "Slater’s condition, this holds for most ML problems"}]
+  },
+  {
+    "id": "w4-dua-004", "week": 4, "topic": "duality", "type": "mcq", "difficulty": 2,
+    "prompt": "What does **Slater's condition** require?",
+    "choices": ["At least one feasible $x$ with $f_i(x) < 0$ for every $i$", "Every $x$ satisfies $f_i(x) \\le 0$", "All Lagrange multipliers are positive", "$F(x)$ has a unique minimum"],
+    "answer": 0,
+    "explanation": "Together with convexity in $x$ (and concavity in $a$), it gives strong duality.",
+    "tags": ["slater"],
+    "sources": [{"file": "week_4/slides/4a-lagrange-duality.pdf", "page": 21, "quote": "and if there is at least one feasible"}]
+  },
+  {
+    "id": "w4-dua-005", "week": 4, "topic": "duality", "type": "mcq", "difficulty": 2,
+    "prompt": "When the Lagrangian is convex in the primal variables and Slater's condition holds, there is a saddle point. Which statement about it is right?",
+    "choices": ["The primal and dual solutions become equal and no further improvement can be made", "It minimises the Lagrangian in the primal space without maximising it in the dual space", "It maximises the Lagrangian in the dual space without minimising it in the primal space"],
+    "answer": 0,
+    "explanation": "At the saddle point the function is a minimum in the primal variable and a maximum in the dual variable at the same time. This is strong duality.",
+    "tags": ["saddle-point"],
+    "sources": [{"file": "week_4/worksheets/4a-Lagrange_dual-answers.pdf", "page": 2, "quote": "True.The primal objective is the original objective function to be minimised"}]
+  },
+  {
+    "id": "w4-dua-006", "week": 4, "topic": "duality", "type": "numeric", "difficulty": 1,
+    "prompt": "$H(x,y) = x^2 - y^2$. Minimise over $x$ first (keeping $y$ fixed), then maximise over $y$. What is the value of $H$ at the point you reach?",
+    "answer": 0,
+    "tolerance": 0.0001,
+    "explanation": "For fixed $y$ the minimum is at $x = 0$, giving $-y^2$, which is largest at $y = 0$. The point is $(0,0)$ and $H(0,0) = 0$. Maximising over $y$ first also reaches $(0,0)$.",
+    "tags": ["saddle-point", "calculation"],
+    "sources": [{"file": "week_4/worksheets/4a-Lagrange_dual-answers.pdf", "page": 5, "quote": "So the point reached is (0,0)."}]
+  },
+  {
+    "id": "w4-dua-007", "week": 4, "topic": "duality", "type": "short", "difficulty": 2,
+    "prompt": "Show that $(0,0)$ is a saddle point of $H(x,y) = x^2 - y^2$.",
+    "answer": "Min over $x$ then max over $y$: $H(0,y) = -y^2$, maximised at $y = 0$. Max over $y$ then min over $x$: $H(x,0) = x^2$, minimised at $x = 0$. Both orders reach $(0,0)$, and $H$ is a minimum in the $x$-direction and a maximum in the $y$-direction there.",
+    "steps": ["For fixed $y$, $\\min_x H = -y^2$ at $x = 0$; then $\\max_y(-y^2) = 0$ at $y = 0$", "For fixed $x$, $\\max_y H = x^2$ at $y = 0$; then $\\min_x x^2 = 0$ at $x = 0$", "Both orders give $(0,0)$: min in $x$, max in $y$, so it is a saddle point"],
+    "explanation": "This is the picture behind minimax = maxmin.",
+    "tags": ["saddle-point", "derivation"],
+    "sources": [{"file": "week_4/worksheets/4a-Lagrange_dual-answers.pdf", "page": 5, "quote": "behaves like a minimum in thex-direction and a maximum in they-direction"}]
+  },
+  {
+    "id": "w4-dua-008", "week": 4, "topic": "duality", "type": "numeric", "difficulty": 2,
+    "prompt": "$G(x,y) = (x-2)^2 - (y+1)^2$. Minimise over $x$ first, then maximise over $y$. What is the $y$-coordinate of the point you reach?",
+    "answer": -1,
+    "tolerance": 0.0001,
+    "explanation": "For any fixed $y$ the minimum is at $x = 2$, giving $-(y+1)^2$, which is maximised at $y = -1$. The saddle point is $(2, -1)$.",
+    "tags": ["saddle-point", "calculation"],
+    "sources": [{"file": "week_4/worksheets/4a-Lagrange_dual-answers.pdf", "page": 5, "quote": "For any fixedy, the minimum occurs atx= 0, giving"}]
+  },
+  {
+    "id": "w4-dua-009", "week": 4, "topic": "duality", "type": "mcq", "difficulty": 2,
+    "prompt": "The primal $\\min_x F(x)$ is over $x \\in \\mathbb{R}^d$ with $N$ constraints. What is the dual $\\max_a G(a)$ solved over?",
+    "choices": ["$a$, which is $N$-dimensional", "$a$, which is $d$-dimensional", "$x$ and $a$ together", "$x$ only"],
+    "answer": 0,
+    "explanation": "There is one multiplier per constraint. For the SVM that is one $a^{(n)}$ per training example.",
+    "tags": ["dual", "dimension"],
+    "sources": [{"file": "week_4/slides/4a-lagrange-duality.pdf", "page": 31, "quote": "Dual problem has to be solved for , which is dimensional."}]
+  },
+  {
+    "id": "w4-dua-010", "week": 4, "topic": "duality", "type": "order", "difficulty": 1,
+    "prompt": "Put the four steps of the lecture's route from a constrained problem to a simplified dual in order.",
+    "steps": ["Lagrange relaxation: move the constraints into the objective", "Minimax primal: $\\min_x\\max_{a \\ge 0} L(x,a)$", "Maxmin dual: $\\max_{a \\ge 0}\\min_x L(x,a)$", "Simplify the dual with the KKT stationarity condition"],
+    "explanation": "Step 4 rewrites $x$ in terms of $a$, so the problem only optimises over the Lagrange multipliers.",
+    "tags": ["dual", "overview"],
+    "sources": [{"file": "week_4/slides/4a-lagrange-duality.pdf", "page": 24, "quote": "Simplifying the Dual Formulation Based on KKT Stationarity"}]
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "id": "w5-smc-001", "week": 5, "topic": "soft-margin-coding", "type": "code", "difficulty": 2,
+    "prompt": "What is printed?",
+    "code": "X = np.array([[2.0, 0.0], [0.5, 0.0], [-0.5, 0.0]])\ny = np.array([1.0, 1.0, 1.0])\nprint(slack_variables(X, y, np.array([1.0, 0.0]), 0.0))",
+    "choices": ["[0.  0.5 1.5]", "[ 2.   0.5 -0.5]", "[0.  0.5 0. ]", "[1.  0.5 1.5]"],
+    "answer": 0,
+    "explanation": "$y\\,h = (2, 0.5, -0.5)$, so $\\xi = \\max(0, 1 - y\\,h) = (0, 0.5, 1.5)$.",
+    "tags": ["slack"],
+    "sources": [{"file": "week_5/coding/5a_soft_margin_svm_answers.ipynb", "page": 7, "quote": "return np.maximum(0.0, 1.0 - y * scores)"}]
+  },
+  {
+    "id": "w5-smc-002", "week": 5, "topic": "soft-margin-coding", "type": "code", "difficulty": 2,
+    "prompt": "Same X, y and w. What is printed?",
+    "code": "print(soft_margin_objective(X, y, np.array([1.0, 0.0]), 0.0, C=2.0))",
+    "choices": ["4.5", "2.5", "0.5", "4.0"],
+    "answer": 0,
+    "explanation": "$\\frac12\\|\\mathbf{w}\\|^2 + C\\sum\\xi = 0.5 + 2(0 + 0.5 + 1.5) = 4.5$.",
+    "tags": ["objective"],
+    "sources": [{"file": "week_5/coding/5a_soft_margin_svm_answers.ipynb", "page": 11, "quote": "return 0.5 * np.dot(w, w) + C * np.sum(slack_variables(X, y, w, b))"}]
+  },
+  {
+    "id": "w5-smc-003", "week": 5, "topic": "soft-margin-coding", "type": "code", "difficulty": 3,
+    "prompt": "The two calls use the same feasible a, once with C = 1 and once with C = 100. What is printed?",
+    "code": "X = np.array([[1.0, 0.0], [-1.0, 0.0]])\ny = np.array([1.0, -1.0])\na = np.array([0.5, 0.5])\nprint(soft_margin_dual_objective(X, y, a, C=1),\n      soft_margin_dual_objective(X, y, a, C=100))",
+    "choices": ["0.5 0.5", "0.5 50.0", "1.0 100.0", "0.5 -49.5"],
+    "answer": 0,
+    "explanation": "$C$ does not appear in $\\tilde L(\\mathbf{a})$. It only enters the dual through the box constraints $0 \\le a^{(n)} \\le C$.",
+    "tags": ["soft-margin-dual"],
+    "sources": [{"file": "week_5/coding/5a_soft_margin_svm_answers.ipynb", "page": 16, "quote": "# The dual objective uses C through its box constraints on a."}]
+  },
+  {
+    "id": "w5-smc-004", "week": 5, "topic": "soft-margin-coding", "type": "code", "difficulty": 2,
+    "prompt": "signed_alpha holds $a^{(n)}y^{(n)}$ for the support vectors. What is printed?",
+    "code": "X_new = np.array([[1.0, 1.0]])\nX_support = np.array([[1.0, 0.0], [0.0, 1.0]])\nsigned_alpha = np.array([0.5, -0.5])\nprint(dual_predict(X_new, X_support, signed_alpha, 0.2))",
+    "choices": ["[0.2]", "[1.2]", "[-0.8]", "[0.7]"],
+    "answer": 0,
+    "explanation": "Both kernel values are 1, so the sum is $0.5 - 0.5 = 0$, and $h = 0 + 0.2 = 0.2$.",
+    "tags": ["prediction"],
+    "sources": [{"file": "week_5/coding/5a_soft_margin_svm_answers.ipynb", "page": 20, "quote": "return K_new @ signed_alpha + b"}]
+  }
+]
