@@ -1,0 +1,106 @@
+[
+  {
+    "id": "w4-lag-001", "week": 4, "topic": "lagrange-relaxation", "type": "flashcard", "difficulty": 1,
+    "prompt": "What does **Lagrange relaxation** do to a constrained optimisation problem?",
+    "answer": "It moves the constraints into the objective: $\\min_x F(x)$ s.t. $f_i(x) \\le 0$ becomes $\\min_x \\{F(x) + \\sum_{i=1}^N a_if_i(x)\\}$ with $a_i \\ge 0$.",
+    "explanation": "The $a_i$ are Lagrange multipliers and $L(x,a) = F(x) + \\sum_i a_if_i(x)$ is the Lagrangian.",
+    "tags": ["lagrangian", "definition"],
+    "sources": [{"file": "week_4/slides/4a-lagrange-duality.pdf", "page": 7, "quote": "Simplify a constrained optimisation problem by moving constraints into the objective function."}]
+  },
+  {
+    "id": "w4-lag-002", "week": 4, "topic": "lagrange-relaxation", "type": "mcq", "difficulty": 1,
+    "prompt": "With constraints $f_i(x) \\le 0$ and multipliers $a_i \\ge 0$, what does the term $a_if_i(x)$ do when constraint $i$ is violated?",
+    "choices": ["It adds a penalty to the objective (unless $a_i = 0$)", "It rewards the objective", "It has no effect", "It removes the constraint"],
+    "answer": 0,
+    "explanation": "A violated constraint has $f_i(x) > 0$, so $a_if_i(x) \\ge 0$ makes the minimisation objective worse.",
+    "tags": ["lagrangian", "penalty"],
+    "sources": [{"file": "week_4/slides/4a-lagrange-duality.pdf", "page": 9, "quote": "We will be penalising the objective when a constraint is violated (unless its ).ai=0"}]
+  },
+  {
+    "id": "w4-lag-003", "week": 4, "topic": "lagrange-relaxation", "type": "short", "difficulty": 2,
+    "prompt": "What would happen if we used $\\min_x\\{F(x) + \\sum_i a_if_i(x)\\}$ with $a_i \\ge 0$, but the constraints were $f_i(x) \\ge 0$ instead of $f_i(x) \\le 0$?",
+    "answer": "The relaxation would reward violations: a violated constraint now has $f_i(x) < 0$, so $a_if_i(x)$ is negative and lowers the objective, which is better in a minimisation problem.",
+    "explanation": "This is why every constraint is first written in the form $f_i(x) \\le 0$.",
+    "tags": ["lagrangian", "sign"],
+    "sources": [{"file": "week_4/worksheets/4a-Lagrange_dual-answers.pdf", "page": 1, "quote": "In this case, the Lagrange relaxation would actually be rewarding violations to the con-"}]
+  },
+  {
+    "id": "w4-lag-004", "week": 4, "topic": "lagrange-relaxation", "type": "numeric", "difficulty": 1,
+    "prompt": "$F(x) = 1$, a single constraint with $f(x) = 10$ and $a = 1$. What is the Lagrangian $L(x,a) = F(x) + af(x)$?",
+    "answer": 11,
+    "tolerance": 0.0001,
+    "explanation": "$1 + 1 \\times 10 = 11$. The constraint is violated, so the objective is penalised.",
+    "tags": ["lagrangian", "calculation"],
+    "sources": [{"file": "week_4/slides/4a-lagrange-duality.pdf", "page": 10, "quote": "F(x)=1 fi(x)=10 F(x)=20 fi(x)=0"}]
+  },
+  {
+    "id": "w4-lag-005", "week": 4, "topic": "lagrange-relaxation", "type": "numeric", "difficulty": 1,
+    "prompt": "$F(x) = 20$, a single constraint with $f(x) = -30$ and $a = 1$. What is $L(x,a) = F(x) + af(x)$?",
+    "answer": -10,
+    "tolerance": 0.0001,
+    "explanation": "$20 + 1 \\times (-30) = -10$. The constraint is satisfied, and the objective is rewarded (it goes below $F(x)$).",
+    "tags": ["lagrangian", "calculation"],
+    "sources": [{"file": "week_4/slides/4a-lagrange-duality.pdf", "page": 11, "quote": "F(x)=20 fi(x)=−30"}]
+  },
+  {
+    "id": "w4-lag-006", "week": 4, "topic": "lagrange-relaxation", "type": "truefalse", "difficulty": 1,
+    "prompt": "For a feasible solution $x$ (all $f_i(x) \\le 0$) and any $a_i \\ge 0$, $L(x,a) \\le F(x)$.",
+    "answer": true,
+    "explanation": "Every term $a_if_i(x)$ is $\\le 0$, so adding them can only lower $F(x)$.",
+    "tags": ["lagrangian"],
+    "sources": [{"file": "week_4/slides/4a-lagrange-duality.pdf", "page": 12, "quote": "When a feasible solution is found, .L(x,a)≤F(x)"}]
+  },
+  {
+    "id": "w4-lag-007", "week": 4, "topic": "lagrange-relaxation", "type": "mcq", "difficulty": 2,
+    "prompt": "What is the difficulty with plain Lagrange relaxation $\\min_x\\{F(x) + \\sum_i a_if_i(x)\\}$ for fixed multipliers?",
+    "choices": ["We need to choose each $a_i$ so that the penalty is large enough", "It can only handle one constraint", "It always makes the problem non-convex", "It requires $F(x)$ to be linear"],
+    "answer": 0,
+    "explanation": "A small $a_i$ may make a violated solution look better than a feasible one. The minimax formulation fixes this by maximising over $a$.",
+    "tags": ["lagrangian"],
+    "sources": [{"file": "week_4/slides/4a-lagrange-duality.pdf", "page": 10, "quote": "However, we need to choose appropriate values for each"}]
+  },
+  {
+    "id": "w4-lag-008", "week": 4, "topic": "lagrange-relaxation", "type": "mcq", "difficulty": 2,
+    "prompt": "In the minimax primal $\\min_x\\{F(x) + \\max_{a \\ge 0}\\sum_i a_if_i(x)\\}$, what is the penalty when a constraint is violated?",
+    "choices": ["Infinitely large", "Zero", "Equal to $f_i(x)$", "Negative"],
+    "answer": 0,
+    "explanation": "If $f_i(x) > 0$, the max over $a_i \\ge 0$ sends $a_if_i(x)$ to $+\\infty$, so the optimiser avoids violations.",
+    "tags": ["minimax"],
+    "sources": [{"file": "week_4/slides/4a-lagrange-duality.pdf", "page": 14, "quote": "When a constraint is violated, the penalty will become inﬁnitely large."}]
+  },
+  {
+    "id": "w4-lag-009", "week": 4, "topic": "lagrange-relaxation", "type": "mcq", "difficulty": 2,
+    "prompt": "In the minimax primal, what is $\\max_{a \\ge 0}\\sum_i a_if_i(x)$ when no constraint is violated?",
+    "choices": ["0, so $L(x,a) = F(x)$", "$+\\infty$", "$-\\infty$", "$\\sum_i f_i(x)$"],
+    "answer": 0,
+    "explanation": "Each $f_i(x) \\le 0$, so the best choice is $a_if_i(x) = 0$ (either $a_i = 0$ or $f_i(x) = 0$).",
+    "tags": ["minimax"],
+    "sources": [{"file": "week_4/slides/4a-lagrange-duality.pdf", "page": 17, "quote": "When no constraint is violated, the penalty is zero."}]
+  },
+  {
+    "id": "w4-lag-010", "week": 4, "topic": "lagrange-relaxation", "type": "truefalse", "difficulty": 2,
+    "prompt": "The minimax primal $\\min_x\\max_a L(x,a)$ is easy to solve directly, because both levels are unconstrained.",
+    "answer": false,
+    "explanation": "It still needs a constrained problem (the max over $a \\ge 0$) solved inside an unconstrained one (the min over $x$). That is why we move to the dual.",
+    "tags": ["minimax"],
+    "sources": [{"file": "week_4/slides/4a-lagrange-duality.pdf", "page": 18, "quote": "Problem: needs to solve a constrained optimisation problem (max) inside an unconstrained (min) one."}]
+  },
+  {
+    "id": "w4-lag-011", "week": 4, "topic": "lagrange-relaxation", "type": "mcq", "difficulty": 1,
+    "prompt": "Why is the SVM primal with a basis expansion $\\phi(\\mathbf{x})$ worth rewriting?",
+    "choices": ["Computing $\\phi(\\mathbf{x})$ can be very expensive, as it may take us to a very high-dimensional problem", "The primal has no solution", "The primal is not convex", "The primal cannot use labels $\\pm1$"],
+    "answer": 0,
+    "explanation": "The dual formulation gets rid of $\\mathbf{w}$, $b$, $\\mathbf{w}^T\\phi(\\mathbf{x}^{(n)})$ and $\\|\\mathbf{w}\\|^2$.",
+    "tags": ["motivation"],
+    "sources": [{"file": "week_4/slides/4a-lagrange-duality.pdf", "page": 5, "quote": "its computation can be very expensive, as it may be taking us to a very high dimensional problem."}]
+  },
+  {
+    "id": "w4-lag-012", "week": 4, "topic": "lagrange-relaxation", "type": "mcq", "difficulty": 2,
+    "prompt": "How is the SVM constraint $y^{(n)}(\\mathbf{w}^T\\phi(\\mathbf{x}^{(n)}) + b) \\ge 1$ written in the $f_i \\le 0$ form used for Lagrange relaxation?",
+    "choices": ["$1 - y^{(n)}(\\mathbf{w}^T\\phi(\\mathbf{x}^{(n)}) + b) \\le 0$", "$y^{(n)}(\\mathbf{w}^T\\phi(\\mathbf{x}^{(n)}) + b) - 1 \\le 0$", "$y^{(n)}(\\mathbf{w}^T\\phi(\\mathbf{x}^{(n)}) + b) \\le 0$", "$-y^{(n)}\\|\\mathbf{w}\\|^2 \\le 0$"],
+    "answer": 0,
+    "explanation": "Move everything to one side so that a violation makes $f_n$ positive. The SVM Lagrangian is then $\\frac12\\|\\mathbf{w}\\|^2 + \\sum_n a^{(n)}[1 - y^{(n)}(\\mathbf{w}^T\\phi(\\mathbf{x}^{(n)}) + b)]$.",
+    "tags": ["svm", "lagrangian"],
+    "sources": [{"file": "week_4/coding/4a_svm_dual.ipynb", "page": 8, "quote": "1-y^{(n)}\\bigl(w^T\\phi(x^{(n)})+b\\bigr)\\leq 0."}]
+  }
+]
