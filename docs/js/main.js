@@ -42,8 +42,17 @@ async function start() {
     show(root, h("p", { class: "verdict bad" }, `Could not start: ${error.message}`));
   }
   if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("sw.js").catch((error) => console.warn("Service worker failed", error));
+    navigator.serviceWorker.register("sw.js")
+      .then(checkForUpdatesOnReturn)
+      .catch((error) => console.warn("Service worker failed", error));
   }
+}
+
+/** A home-screen app is often resumed rather than reloaded, so look for a new version each time it is shown. */
+function checkForUpdatesOnReturn(registration) {
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") registration.update().catch(() => undefined);
+  });
 }
 
 start();
