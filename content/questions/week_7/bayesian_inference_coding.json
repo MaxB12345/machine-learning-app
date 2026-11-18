@@ -1,0 +1,32 @@
+[
+  {
+    "id": "w7-bic-001", "week": 7, "topic": "bayesian-inference-coding", "type": "code", "difficulty": 1,
+    "prompt": "What is printed (rounded)?",
+    "code": "print(round(float(normal_logpdf(0.0, 0.0, 1.0)), 4))",
+    "choices": ["0.0", "-0.9189", "0.3989", "-1.8379"],
+    "answer": 1,
+    "explanation": "$-\\tfrac12(\\log(2\\pi \\cdot 1) + 0) = -\\tfrac12\\log(2\\pi) \\approx -0.9189$. Its exponential, $0.3989$, is the density.",
+    "tags": ["gaussian"],
+    "sources": [{"file": "week_7/code/W07-02-BayesianInference.ipynb", "page": 4, "quote": "return -0.5 * (np.log(2 * np.pi * variance) + (x - mean)**2 / variance)"}]
+  },
+  {
+    "id": "w7-bic-002", "week": 7, "topic": "bayesian-inference-coding", "type": "code", "difficulty": 2,
+    "prompt": "What does `normal_logpdf` do when called like this?",
+    "code": "normal_logpdf(1.0, 0.0, 0.0)",
+    "choices": ["Returns `-inf`", "Returns 0", "Raises `ValueError`: the Gaussian variance must be positive", "Returns `nan`"],
+    "answer": 2,
+    "explanation": "The helper checks `np.any(np.asarray(variance) <= 0)` before computing anything.",
+    "tags": ["gaussian"],
+    "sources": [{"file": "week_7/code/W07-02-BayesianInference.ipynb", "page": 4, "quote": "raise ValueError(\"Gaussian variance must be positive.\")"}]
+  },
+  {
+    "id": "w7-bic-003", "week": 7, "topic": "bayesian-inference-coding", "type": "code", "difficulty": 2,
+    "prompt": "Which candidate weight vectors does this return the highest value for?",
+    "code": "def regression_loglike(weights, beta):\n    weights = np.atleast_2d(np.asarray(weights, dtype=float))\n    residuals = poly_y[None, :] - weights @ reg_Phi.T\n    rss = np.sum(residuals**2, axis=1)\n    n = poly_y.size\n    return n/2 * np.log(beta) - n/2 * np.log(2*np.pi) - beta/2 * rss",
+    "choices": ["The one with the largest residual sum of squares", "It depends on $\\beta$, which can reverse the ranking", "The one with the largest weight norm", "The one with the smallest residual sum of squares, for any fixed $\\beta > 0$"],
+    "answer": 3,
+    "explanation": "For a shared $\\beta$, only $-\\frac\\beta2\\,\\mathrm{rss}$ varies across weight vectors, so the OLS weights score highest.",
+    "tags": ["log-likelihood"],
+    "sources": [{"file": "week_7/code/W07-02-BayesianInference.ipynb", "page": 20, "quote": "return n/2 * np.log(beta) - n/2 * np.log(2*np.pi) - beta/2 * rss"}]
+  }
+]

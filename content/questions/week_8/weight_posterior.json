@@ -1,0 +1,77 @@
+[
+  {
+    "id": "w8-pst-001", "week": 8, "topic": "weight-posterior", "type": "mcq", "difficulty": 1,
+    "prompt": "One observation $(x_1, y_1)$ for $\\hat y = w_0 + w_1x$. What does least squares give?",
+    "choices": ["A unique line through the origin", "A family of lines: every pair with $w_0 + w_1x_1 = y_1$ has zero training error", "No line at all", "The horizontal line $\\hat y = y_1$ only"],
+    "answer": 1,
+    "explanation": "One equation cannot identify two unknowns. A prior supplies assumptions about the remaining uncertainty.",
+    "tags": ["identifiability"],
+    "sources": [{"file": "week_8/slides/W08-01-BayesianRegression (1).pdf", "page": 6, "quote": "One observation cannot identify"}]
+  },
+  {
+    "id": "w8-pst-002", "week": 8, "topic": "weight-posterior", "type": "flashcard", "difficulty": 1,
+    "prompt": "What prior over the weights does the lecture use, and what does $\\alpha$ control?",
+    "answer": "$p(\\mathbf{w} \\mid \\alpha) = \\mathcal{N}(\\mathbf{w} \\mid \\mathbf{0}, \\alpha^{-1}I)$, a zero-mean isotropic Gaussian on all $M + 1$ weights, including $w_0$. Larger $\\alpha$ means smaller prior variance and stronger concentration near zero.",
+    "explanation": "$\\beta$ plays the matching role for the noise: larger $\\beta$, smaller observation-noise variance.",
+    "tags": ["prior", "formula"],
+    "sources": [{"file": "week_8/slides/W08-01-BayesianRegression (1).pdf", "page": 8, "quote": "Larger α: smaller prior variance and"}]
+  },
+  {
+    "id": "w8-pst-003", "week": 8, "topic": "weight-posterior", "type": "flashcard", "difficulty": 2,
+    "prompt": "Write Bayes' law for the regression weights and say which part does not depend on $\\mathbf{w}$.",
+    "answer": "$p(\\mathbf{w} \\mid \\mathcal{D}, \\alpha, \\beta) = \\frac{p(\\mathbf{y} \\mid \\Phi, \\mathbf{w}, \\beta)\\,p(\\mathbf{w} \\mid \\alpha)}{p(\\mathbf{y} \\mid \\Phi, \\alpha, \\beta)}$. The evidence $p(\\mathbf{y} \\mid \\Phi, \\alpha, \\beta) = \\int p(\\mathbf{y} \\mid \\Phi, \\mathbf{w}, \\beta)p(\\mathbf{w} \\mid \\alpha)\\,d\\mathbf{w}$ is constant in $\\mathbf{w}$.",
+    "explanation": "The prior expresses beliefs before the observations; the posterior expresses updated beliefs about the weights.",
+    "tags": ["bayes-law"],
+    "sources": [{"file": "week_8/slides/W08-01-BayesianRegression (1).pdf", "page": 9, "quote": "It is constant with respect to w, so"}]
+  },
+  {
+    "id": "w8-pst-004", "week": 8, "topic": "weight-posterior", "type": "flashcard", "difficulty": 2,
+    "prompt": "State the Gaussian posterior over the weights: its mean and covariance.",
+    "answer": "$p(\\mathbf{w} \\mid \\mathcal{D}, \\alpha, \\beta) = \\mathcal{N}(\\mathbf{w} \\mid \\mathbf{m}_N, S_N)$ with $S_N = (\\alpha I + \\beta\\Phi^T\\Phi)^{-1}$ and $\\mathbf{m}_N = \\beta S_N\\Phi^T\\mathbf{y}$.",
+    "explanation": "$\\mathbf{m}_N$ is the centre of the weight distribution; $S_N$ describes the spread and dependence of the weights.",
+    "tags": ["posterior", "formula"],
+    "sources": [{"file": "week_8/slides/W08-01-BayesianRegression (1).pdf", "page": 12, "quote": "A Gaussian prior and a Gaussian likelihood give a Gaussian posterior:"}]
+  },
+  {
+    "id": "w8-pst-005", "week": 8, "topic": "weight-posterior", "type": "flashcard", "difficulty": 2,
+    "prompt": "Write the log-posterior over the weights and name its two terms.",
+    "answer": "$\\log p(\\mathbf{w} \\mid \\mathcal{D}, \\alpha, \\beta) = -\\frac\\beta2\\|\\mathbf{y} - \\Phi\\mathbf{w}\\|^2 - \\frac\\alpha2\\mathbf{w}^T\\mathbf{w} + C$. The first term comes from the likelihood (explain the targets); the second from the prior (favour weights near zero).",
+    "explanation": "Taking logs turns the likelihood-prior product into a sum; $C$ is independent of $\\mathbf{w}$.",
+    "tags": ["log-posterior", "formula"],
+    "sources": [{"file": "week_8/slides/W08-01-BayesianRegression (1).pdf", "page": 11, "quote": "Taking logs turns the likelihood-prior product into a sum:"}]
+  },
+  {
+    "id": "w8-pst-006", "week": 8, "topic": "weight-posterior", "type": "multi", "difficulty": 1,
+    "prompt": "Select all true statements about Bayesian linear regression.",
+    "choices": ["Prior information can be useful when observations are limited", "The posterior can quantify uncertainty about weights and their mean functions", "Full Bayesian inference represents uncertainty about weights with a distribution", "Full Bayesian inference can return only one numerical weight vector and cannot describe uncertainty about it"],
+    "answer": [0, 1, 2],
+    "explanation": "A full posterior is a distribution, not a single vector. MAP picks one point from it.",
+    "tags": ["posterior"],
+    "sources": [{"file": "week_8/worksheets/W08-01-Bayesian Regression Exercise.pdf", "page": 2, "quote": "Full Bayesian inference represents uncertainty about weights with a distribution."}]
+  },
+  {
+    "id": "w8-pst-007", "week": 8, "topic": "weight-posterior", "type": "mcq", "difficulty": 2,
+    "prompt": "Which procedure isolates **model** uncertainty at fixed inputs?",
+    "choices": ["Sample noisy future responses and call all their spread model uncertainty", "Plot one fitted mean function repeatedly and call its zero spread the full model uncertainty", "Sample weights from the posterior and plot their mean functions $\\mathbf{w}^T\\boldsymbol\\phi(x)$ at the same inputs, without adding observation noise", "Refit OLS several times on the same data"],
+    "answer": 2,
+    "explanation": "Variation between sampled mean functions shows weight uncertainty. Observation noise is separate: the blue observations retain their noise.",
+    "tags": ["uncertainty", "sampling"],
+    "sources": [{"file": "week_8/worksheets/W08-01-Bayesian Regression Exercise.pdf", "page": 2, "quote": "A. Sample weights from the posterior and plot their mean functions wT ϕ(x) at the same"}, {"file": "week_8/slides/W08-01-BayesianRegression (1).pdf", "page": 15, "quote": "Line variation represents weight uncertainty. Blue observations retain their noise."}]
+  },
+  {
+    "id": "w8-pst-008", "week": 8, "topic": "weight-posterior", "type": "truefalse", "difficulty": 2,
+    "prompt": "With the prior and $\\beta$ fixed, adding more independent observations can increase the posterior covariance in some direction.",
+    "answer": false,
+    "explanation": "More independent observations add precision: posterior covariance cannot increase in any direction. The contours tighten and tilt.",
+    "tags": ["posterior", "uncertainty"],
+    "sources": [{"file": "week_8/slides/W08-01-BayesianRegression (1).pdf", "page": 14, "quote": "More independent observations add precision: posterior covariance cannot increase in any direction."}]
+  },
+  {
+    "id": "w8-pst-009", "week": 8, "topic": "weight-posterior", "type": "truefalse", "difficulty": 1,
+    "prompt": "The likelihood $p(\\mathbf{y} \\mid \\Phi, \\mathbf{w}, \\beta)$ is itself a probability distribution over the weights.",
+    "answer": false,
+    "explanation": "It is a density of the targets. Bayesian inference combines it with a prior to obtain a posterior over $\\mathbf{w}$.",
+    "tags": ["likelihood"],
+    "sources": [{"file": "week_8/slides/W08-01-BayesianRegression (1).pdf", "page": 7, "quote": "The likelihood alone is not a probability distribution over the weights."}]
+  }
+]

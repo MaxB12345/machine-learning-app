@@ -1,0 +1,96 @@
+[
+  {
+    "id": "w7-lik-001", "week": 7, "topic": "likelihood-and-least-squares", "type": "flashcard", "difficulty": 1,
+    "prompt": "State the Gaussian regression noise model and the density of one target.",
+    "answer": "$y_i = \\mathbf{w}^T\\boldsymbol\\phi(\\mathbf{x}_i) + \\epsilon_i$ with $\\epsilon_i \\overset{iid}{\\sim} \\mathcal{N}(0, \\sigma^2)$ and precision $\\beta = 1/\\sigma^2$. So $p(y_i \\mid \\mathbf{x}_i, \\mathbf{w}, \\beta) = \\mathcal{N}(y_i \\mid \\mathbf{w}^T\\boldsymbol\\phi(\\mathbf{x}_i), \\beta^{-1})$.",
+    "explanation": "The errors are independent, have mean zero and share the same variance.",
+    "tags": ["noise-model", "formula"],
+    "sources": [{"file": "week_7/slide/W07-02-BayesianInference (1).pdf", "page": 16, "quote": "The errors are independent, have mean zero and share the same variance."}]
+  },
+  {
+    "id": "w7-lik-002", "week": 7, "topic": "likelihood-and-least-squares", "type": "flashcard", "difficulty": 2,
+    "prompt": "Write the Gaussian regression log-likelihood $\\ell(\\mathbf{w}, \\beta)$.",
+    "answer": "$\\ell(\\mathbf{w}, \\beta) = \\frac N2\\log\\beta - \\frac N2\\log(2\\pi) - \\frac\\beta2 R(\\mathbf{w})$, where $R(\\mathbf{w}) = \\|\\mathbf{y} - \\Phi\\mathbf{w}\\|^2$.",
+    "explanation": "It is the log of $\\left(\\frac{\\beta}{2\\pi}\\right)^{N/2}\\exp\\left[-\\frac\\beta2\\|\\mathbf{y} - \\Phi\\mathbf{w}\\|^2\\right]$. The $\\log\\beta$ term is positive; the residual term is negative.",
+    "tags": ["log-likelihood", "formula"],
+    "sources": [{"file": "week_7/slide/W07-02-BayesianInference (1).pdf", "page": 18, "quote": "The log β term has a positive sign; the residual term has a negative sign."}]
+  },
+  {
+    "id": "w7-lik-003", "week": 7, "topic": "likelihood-and-least-squares", "type": "mcq", "difficulty": 2,
+    "prompt": "Why does maximising the Gaussian likelihood over $\\mathbf{w}$ (for fixed $\\beta > 0$) give the OLS weights?",
+    "choices": ["Because $\\beta$ is estimated first", "Because the noise is assumed to be zero", "Only the term $-\\frac\\beta2 R(\\mathbf{w})$ depends on $\\mathbf{w}$, so maximising $\\ell$ is minimising $R$", "Because the likelihood is a posterior"],
+    "answer": 2,
+    "explanation": "$\\frac N2\\log\\beta - \\frac N2\\log(2\\pi)$ is constant in $\\mathbf{w}$, so $\\arg\\max_\\mathbf{w}\\ell = \\arg\\min_\\mathbf{w}R$.",
+    "tags": ["mle-ols"],
+    "sources": [{"file": "week_7/slide/W07-02-BayesianInference (1).pdf", "page": 19, "quote": "Maximising a common-variance Gaussian likelihood gives a probabilistic interpretation of"}]
+  },
+  {
+    "id": "w7-lik-004", "week": 7, "topic": "likelihood-and-least-squares", "type": "multi", "difficulty": 2,
+    "prompt": "Select all true statements about OLS and MLE.",
+    "choices": ["With independent, zero-mean Gaussian errors of common variance in a linear regression model, the MLE weights coincide with the OLS weights", "MLE always requires a Gaussian noise distribution", "The OLS objective can be minimised without specifying a probability distribution for the noise", "Computing OLS weights requires Gaussian noise"],
+    "answer": [0, 2],
+    "explanation": "OLS is just a criterion on squared residuals. MLE works with any likelihood; the Gaussian one happens to give OLS.",
+    "tags": ["mle-ols"],
+    "sources": [{"file": "week_7/worksheets/W07-02-Bayesian inference Exercise.pdf", "page": 2, "quote": "The OLS objective can be minimised without specifying a probability distribution"}]
+  },
+  {
+    "id": "w7-lik-005", "week": 7, "topic": "likelihood-and-least-squares", "type": "flashcard", "difficulty": 2,
+    "prompt": "Differentiate $\\ell(\\mathbf{w}, \\beta)$ with respect to $\\mathbf{w}$ and state the result.",
+    "answer": "$\\nabla_\\mathbf{w}\\ell = \\beta\\Phi^T(\\mathbf{y} - \\Phi\\mathbf{w}) = \\mathbf{0}$. Since $\\beta > 0$, this is the OLS normal equation $\\Phi^T\\Phi\\hat{\\mathbf{w}} = \\Phi^T\\mathbf{y}$, so $\\hat{\\mathbf{w}}_{ML} = \\hat{\\mathbf{w}}_{OLS}$.",
+    "explanation": "With full column rank, $\\hat{\\mathbf{w}}_{ML} = (\\Phi^T\\Phi)^{-1}\\Phi^T\\mathbf{y}$.",
+    "tags": ["mle-ols", "derivation"],
+    "sources": [{"file": "week_7/slide/W07-02-BayesianInference (1).pdf", "page": 20, "quote": "Since β > 0, this gives the same normal equation as OLS:"}]
+  },
+  {
+    "id": "w7-lik-006", "week": 7, "topic": "likelihood-and-least-squares", "type": "truefalse", "difficulty": 2,
+    "prompt": "When conditioning on the observed inputs, the input density $p(\\mathbf{x})$ changes the maximum-likelihood weights.",
+    "answer": false,
+    "explanation": "An input-density factor that does not depend on $(\\mathbf{w}, \\beta)$ does not change their likelihood maximiser.",
+    "tags": ["likelihood"],
+    "sources": [{"file": "week_7/slide/W07-02-BayesianInference (1).pdf", "page": 17, "quote": "An input-density factor that does not depend on"}]
+  },
+  {
+    "id": "w7-lik-007", "week": 7, "topic": "likelihood-and-least-squares", "type": "numeric", "difficulty": 2,
+    "prompt": "Two weight vectors on the same $N = 4$ observations have $R_A = 3$ and $R_B = 5$, with common precision $\\beta = 2$. What is $\\ell_A - \\ell_B$?",
+    "answer": 2,
+    "tolerance": 0.0001,
+    "explanation": "Only $-\\frac\\beta2R$ differs: $-\\frac22(3 - 5) = 2$. So $L_A/L_B = e^2 \\approx 7.39$; MLE prefers $A$, and no positive common $\\beta$ reverses that.",
+    "tags": ["log-likelihood", "calculation"],
+    "sources": [{"file": "week_7/worksheets/W07-02-Bayesian inference Exercise.pdf", "page": 4, "quote": "and RB = 5. Independent Gaussian noise has common fixed precision β = 2."}]
+  },
+  {
+    "id": "w7-lik-008", "week": 7, "topic": "likelihood-and-least-squares", "type": "flashcard", "difficulty": 3,
+    "prompt": "Keeping the fitted weights fixed, what are the MLEs of the noise precision and variance?",
+    "answer": "$\\frac{\\partial\\ell}{\\partial\\beta} = \\frac{N}{2\\beta} - \\frac R2 = 0$ gives $\\hat\\beta_{ML} = N/R$ and $\\hat\\sigma^2_{ML} = R/N$, the training MSE.",
+    "explanation": "This needs $R > 0$. The notebook computes `reg_sigma2_ml = reg_rss / poly_y.size`.",
+    "tags": ["noise-precision", "derivation"],
+    "sources": [{"file": "week_7/worksheets/W07-02-Bayesian inference Exercise.pdf", "page": 4, "quote": "Find the MLE of the noise precision and the corresponding noise variance."}, {"file": "week_7/code/W07-02-BayesianInference.ipynb", "page": 20, "quote": "reg_sigma2_ml = reg_rss / poly_y.size"}]
+  },
+  {
+    "id": "w7-lik-009", "week": 7, "topic": "likelihood-and-least-squares", "type": "numeric", "difficulty": 2,
+    "prompt": "$N = 3$, fitted weights fixed, $\\ell(\\beta) = \\frac32\\log\\beta - \\frac32\\log(2\\pi) - \\frac\\beta2R$ with $R = 2$. What precision maximises $\\ell$?",
+    "answer": 1.5,
+    "tolerance": 0.0001,
+    "explanation": "$\\ell'(\\beta) = \\frac{3}{2\\beta} - 1 = 0$ gives $\\beta = 3/2$, variance $2/3$. $\\ell''(\\beta) = -\\frac{3}{2\\beta^2} < 0$, so it is a maximum.",
+    "tags": ["noise-precision", "calculation"],
+    "sources": [{"file": "week_7/worksheets/W07-02-Bayesian inference Exercise.pdf", "page": 4, "quote": "If R = 2, find the maximising precision and the corresponding variance."}]
+  },
+  {
+    "id": "w7-lik-010", "week": 7, "topic": "likelihood-and-least-squares", "type": "mcq", "difficulty": 3,
+    "prompt": "A flexible model fits all training targets exactly, so $R = 0$. What happens to $\\ell(\\beta) = \\frac N2\\log\\beta - \\frac N2\\log(2\\pi)$ as $\\beta \\to \\infty$?",
+    "choices": ["It tends to $+\\infty$: there is no finite maximising precision, and the exact fit does not show future observations are noise-free", "It has a finite maximum at $\\beta = N$", "It tends to $-\\infty$", "It is constant, so every $\\beta$ is optimal"],
+    "answer": 0,
+    "explanation": "With $R = 0$ the only $\\beta$ term is $\\frac N2\\log\\beta$, which grows without bound. An exact training fit by itself says nothing about noise in new data.",
+    "tags": ["noise-precision", "overfitting"],
+    "sources": [{"file": "week_7/worksheets/W07-02-Bayesian inference Exercise.pdf", "page": 4, "quote": "If instead a flexible model fits the observations exactly, so R = 0, determine what"}]
+  },
+  {
+    "id": "w7-lik-011", "week": 7, "topic": "likelihood-and-least-squares", "type": "mcq", "difficulty": 3,
+    "prompt": "$N = 4$. Candidate A: $R_A = 1$, $\\beta_A = \\tfrac14$. Candidate B: $R_B = 2$, $\\beta_B = 2$. Which has the higher log-likelihood with these precisions?",
+    "choices": ["A, because it has the smaller cost", "B: $\\ell_B \\approx -4.29$ against $\\ell_A \\approx -6.57$, because the $\\frac N2\\log\\beta$ term differs", "They are equal", "It cannot be compared"],
+    "answer": 1,
+    "explanation": "$\\ell_A = 2\\log\\tfrac14 - 2\\log 2\\pi - \\tfrac18 \\approx -6.57$; $\\ell_B = 2\\log 2 - 2\\log 2\\pi - 2 \\approx -4.29$. If each precision is re-maximised ($\\beta = N/R$: 4 and 2), A wins ($-2.90$ vs $-4.29$).",
+    "tags": ["log-likelihood", "calculation"],
+    "sources": [{"file": "week_7/worksheets/W07-02-Bayesian inference Exercise.pdf", "page": 5, "quote": "Candidate A has RA = 1, βA = 1/4; candidate B has RB = 2, βB = 2."}]
+  }
+]

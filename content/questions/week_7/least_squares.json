@@ -1,0 +1,96 @@
+[
+  {
+    "id": "w7-lsq-001", "week": 7, "topic": "least-squares", "type": "flashcard", "difficulty": 1,
+    "prompt": "What is a residual, and what does OLS minimise?",
+    "answer": "The residual is observed minus predicted, $r_i = y_i - \\hat y_i$. OLS minimises the quadratic cost $R(\\mathbf{w}) = \\sum_{i=1}^N r_i^2$, which gives the minimum-MSE fit.",
+    "explanation": "Residuals are vertical prediction errors, not perpendicular distances to the line.",
+    "tags": ["residuals", "ols"],
+    "sources": [{"file": "week_7/slide/W07-01-LinearRegression.pdf", "page": 4, "quote": "The residual is observed minus predicted:"}, {"file": "week_7/slide/W07-01-LinearRegression.pdf", "page": 15, "quote": "Vertical segments measure observed targets minus predictions from a line or plane."}]
+  },
+  {
+    "id": "w7-lsq-002", "week": 7, "topic": "least-squares", "type": "flashcard", "difficulty": 2,
+    "prompt": "Differentiate $R(w_0, w_1) = \\sum_i (y_i - w_0 - w_1x_i)^2$ and write the two normal equations.",
+    "answer": "$\\frac{\\partial R}{\\partial w_0} = -2\\sum_i (y_i - w_0 - w_1x_i)$, $\\frac{\\partial R}{\\partial w_1} = -2\\sum_i x_i(y_i - w_0 - w_1x_i)$. Setting both to zero: $Nw_0 + w_1\\sum_i x_i = \\sum_i y_i$ and $w_0\\sum_i x_i + w_1\\sum_i x_i^2 = \\sum_i x_iy_i$.",
+    "explanation": "In matrix form this is $\\Phi^T\\Phi\\mathbf{w} = \\Phi^T\\mathbf{y}$ with row $i$ of $\\Phi$ equal to $(1, x_i)$.",
+    "tags": ["normal-equation", "derivation"],
+    "sources": [{"file": "week_7/slide/W07-01-LinearRegression.pdf", "page": 5, "quote": "Set both derivatives to zero and rearrange:"}]
+  },
+  {
+    "id": "w7-lsq-003", "week": 7, "topic": "least-squares", "type": "flashcard", "difficulty": 1,
+    "prompt": "State the normal equation and the OLS solution when $\\Phi$ has full column rank.",
+    "answer": "$\\Phi^T\\Phi\\hat{\\mathbf{w}} = \\Phi^T\\mathbf{y}$, so $\\hat{\\mathbf{w}}_{OLS} = (\\Phi^T\\Phi)^{-1}\\Phi^T\\mathbf{y}$.",
+    "explanation": "It comes from setting $\\nabla_\\mathbf{w}R = 2\\Phi^T(\\Phi\\mathbf{w} - \\mathbf{y})$ to zero. $R$ is a convex quadratic, so a stationary point is a global minimiser.",
+    "tags": ["normal-equation", "formula"],
+    "sources": [{"file": "week_7/slide/W07-01-LinearRegression.pdf", "page": 9, "quote": "R is a convex quadratic, so a stationary point is a global minimiser."}, {"file": "week_7/slide/W07-01-LinearRegression.pdf", "page": 10, "quote": "If Φ has full column rank, the minimiser is unique:"}]
+  },
+  {
+    "id": "w7-lsq-004", "week": 7, "topic": "least-squares", "type": "mcq", "difficulty": 1,
+    "prompt": "$N = 14$ observations, three input features, plus an all-ones intercept column; $\\Phi$ has full column rank. Which dimensions are correct for $\\hat{\\mathbf{w}} = (\\Phi^T\\Phi)^{-1}\\Phi^T\\mathbf{y}$?",
+    "choices": ["$\\Phi: 14 \\times 4$, $\\mathbf{y}: 14 \\times 4$, $\\hat{\\mathbf{w}}: 4 \\times 4$", "$\\Phi: 14 \\times 4$, $\\mathbf{y}: 14 \\times 1$, $\\hat{\\mathbf{w}}: 4 \\times 1$", "$\\Phi: 14 \\times 3$, $\\mathbf{y}: 14 \\times 1$, $\\hat{\\mathbf{w}}: 3 \\times 3$", "$\\Phi: 14 \\times 3$, $\\mathbf{y}: 14 \\times 1$, $\\hat{\\mathbf{w}}: 3 \\times 1$"],
+    "answer": 1,
+    "explanation": "Three features plus the intercept give 4 columns, so $\\Phi$ is $14 \\times 4$. One target per row gives $\\mathbf{y}$ as $14 \\times 1$, and one weight per column gives $\\hat{\\mathbf{w}}$ as $4 \\times 1$.",
+    "tags": ["design-matrix", "dimensions"],
+    "sources": [{"file": "week_7/worksheets/7a-Linear Regression.pdf", "page": 2, "quote": "There are N = 14 observations and three input features. Add the all-ones intercept"}]
+  },
+  {
+    "id": "w7-lsq-005", "week": 7, "topic": "least-squares", "type": "mcq", "difficulty": 2,
+    "prompt": "Fit $\\hat y = w_0 + w_1x$ to $(1, 0.5)$, $(0, 0)$, $(6, 3)$, $(4, 2)$ by least squares. Which weights does it obtain?",
+    "choices": ["$w_0 = 1$, $w_1 = 0.5$", "$w_0 = 0.5$, $w_1 = 0$", "$w_0 = 0.5$, $w_1 = 1.5$", "$w_0 = 0$, $w_1 = 0.5$"],
+    "answer": 3,
+    "explanation": "Every point satisfies $y = 0.5x$ exactly, so $w_0 = 0$, $w_1 = 0.5$ gives zero cost, which no other line can beat.",
+    "tags": ["ols", "calculation"],
+    "sources": [{"file": "week_7/worksheets/7a-Linear Regression.pdf", "page": 2, "quote": "Fit ˆy(x; w) = w0 +w1x by minimising the quadratic cost"}]
+  },
+  {
+    "id": "w7-lsq-006", "week": 7, "topic": "least-squares", "type": "numeric", "difficulty": 2,
+    "prompt": "Fit $\\hat y = w_0 + w_1x$ to $(-1, 1)$, $(0, 1)$, $(1, 3)$ with the normal equations. What is $\\hat w_0$?",
+    "answer": 1.6667,
+    "tolerance": 0.001,
+    "explanation": "$\\Phi^T\\Phi = \\begin{pmatrix}3 & 0\\\\ 0 & 2\\end{pmatrix}$ and $\\Phi^T\\mathbf{y} = (5, 2)^T$, so $\\hat w_0 = 5/3$ and $\\hat w_1 = 1$.",
+    "tags": ["normal-equation", "calculation"],
+    "sources": [{"file": "week_7/worksheets/7a-Linear Regression.pdf", "page": 3, "quote": "Fit ˆy =w0 +w1x to (−1, 1), (0, 1), (1, 3)."}]
+  },
+  {
+    "id": "w7-lsq-007", "week": 7, "topic": "least-squares", "type": "numeric", "difficulty": 2,
+    "prompt": "Continuing: with $\\hat{\\mathbf{w}} = (5/3, 1)^T$ for $(-1, 1)$, $(0, 1)$, $(1, 3)$, what is the quadratic cost $R = \\sum_n r_n^2$?",
+    "answer": 0.6667,
+    "tolerance": 0.001,
+    "explanation": "Predictions $2/3, 5/3, 8/3$ give residuals $1/3, -2/3, 1/3$. $R = 1/9 + 4/9 + 1/9 = 2/3$. The residuals sum to zero, as they must with an intercept.",
+    "tags": ["residuals", "calculation"],
+    "sources": [{"file": "week_7/worksheets/7a-Linear Regression.pdf", "page": 3, "quote": "Find the three residuals rn =yn − ˆyn and the quadratic cost R = ∑ n r2 n."}]
+  },
+  {
+    "id": "w7-lsq-008", "week": 7, "topic": "least-squares", "type": "mcq", "difficulty": 3,
+    "prompt": "For $(0, 1)$, $(1, 2)$, $(2, 2)$ compare $g_A(x) = 1 + \\tfrac12x$ and $g_B(x) = \\tfrac76 + \\tfrac12x$. Which is the OLS solution?",
+    "choices": ["$g_A$, because two of its three residuals are exactly zero", "$g_B$: its residuals $(-\\tfrac16, \\tfrac13, -\\tfrac16)$ satisfy $\\Phi^T\\mathbf{r} = \\mathbf{0}$ and its cost $\\tfrac16$ is below $g_A$'s $\\tfrac14$", "Both, because they have the same slope", "Neither; OLS needs more points"],
+    "answer": 1,
+    "explanation": "$g_A$ has residuals $(0, \\tfrac12, 0)$, which do not sum to zero, so $\\Phi^T\\mathbf{r} \\ne \\mathbf{0}$. Small individual residuals are not the normal-equation condition.",
+    "tags": ["normal-equation", "residuals"],
+    "sources": [{"file": "week_7/worksheets/7a-Linear Regression.pdf", "page": 5, "quote": "Check which residual vector satisfies ΦT r = 0."}]
+  },
+  {
+    "id": "w7-lsq-009", "week": 7, "topic": "least-squares", "type": "mcq", "difficulty": 3,
+    "prompt": "Use $\\boldsymbol\\phi(x) = (1, x, x)^T$ for $(-1, 0)$, $(0, 1)$, $(1, 2)$. Exact fits need $w_0 = 1$, $w_1 + w_2 = 1$. Which is true of $(1, 1, 0)^T$ and $(1, \\tfrac12, \\tfrac12)^T$?",
+    "choices": ["The cost $R$ prefers $(1, 1, 0)^T$", "Only $(1, \\tfrac12, \\tfrac12)^T$ fits exactly", "Both have $R = 0$; $(1, \\tfrac12, \\tfrac12)^T$ has the smaller squared norm, $1.5$ against $2$", "The normal matrix is invertible, so the solution is unique"],
+    "answer": 2,
+    "explanation": "Two identical columns make $\\Phi^T\\Phi$ singular: the coefficients are not unique, though the training predictions are. The pseudoinverse picks the minimum-norm fit.",
+    "tags": ["rank-deficiency", "pseudoinverse"],
+    "sources": [{"file": "week_7/worksheets/7a-Linear Regression.pdf", "page": 5, "quote": "Use ϕ(x) = (1,x,x)T for observations (−1, 0), (0, 1), (1, 2)."}, {"file": "week_7/slide/W07-01-LinearRegression.pdf", "page": 26, "quote": "A pseudoinverse selects a minimum-norm fit when coefficients are not unique."}]
+  },
+  {
+    "id": "w7-lsq-010", "week": 7, "topic": "least-squares", "type": "truefalse", "difficulty": 2,
+    "prompt": "Numerically, the best way to compute OLS weights is to form $(\\Phi^T\\Phi)^{-1}$ explicitly.",
+    "answer": false,
+    "explanation": "Use a least-squares solver rather than forming an inverse. Inverting $\\Phi^T\\Phi$ squares the condition number; `np.linalg.lstsq` works on $\\Phi$ directly and handles deficient rank.",
+    "tags": ["numerics"],
+    "sources": [{"file": "week_7/slide/W07-01-LinearRegression.pdf", "page": 10, "quote": "Numerically, use a least-squares solver rather than explicitly forming an inverse."}]
+  },
+  {
+    "id": "w7-lsq-011", "week": 7, "topic": "least-squares", "type": "truefalse", "difficulty": 1,
+    "prompt": "A small training MSE on its own shows that the model will perform well on new observations.",
+    "answer": false,
+    "explanation": "Training error only compares predictions with observed training targets. The degree-6 polynomial has the smallest training MSE but is not obviously the best predictor.",
+    "tags": ["generalisation"],
+    "sources": [{"file": "week_7/slide/W07-01-LinearRegression.pdf", "page": 14, "quote": "A small training error alone does not establish performance on new observations."}]
+  }
+]

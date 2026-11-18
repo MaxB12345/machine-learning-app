@@ -7932,5 +7932,2175 @@
     "page": 10
    }
   ]
+ },
+ {
+  "id": "w7-bay-001",
+  "week": 7,
+  "topic": "bayes-rule",
+  "type": "flashcard",
+  "difficulty": 1,
+  "prompt": "Write Bayes' law for continuous parameters $\\theta$ given data $\\mathcal{D}$, and the evidence.",
+  "answer": "$p(\\theta \\mid \\mathcal{D}) = \\frac{p(\\mathcal{D} \\mid \\theta)\\,p(\\theta)}{p(\\mathcal{D})}$ with $p(\\mathcal{D}) = \\int p(\\mathcal{D} \\mid \\theta)p(\\theta)\\,d\\theta$. So posterior $\\propto$ likelihood $\\times$ prior.",
+  "explanation": "For discrete parameters the integral becomes a sum. The evidence normalises the posterior and is constant in $\\theta$.",
+  "tags": [
+   "bayes-law",
+   "formula"
+  ],
+  "sources": [
+   {
+    "file": "week_7/slide/W07-02-BayesianInference (1).pdf",
+    "page": 6
+   }
+  ]
+ },
+ {
+  "id": "w7-bay-002",
+  "week": 7,
+  "topic": "bayes-rule",
+  "type": "mcq",
+  "difficulty": 1,
+  "prompt": "How do the frequentist and Bayesian views treat the parameter $\\theta$?",
+  "choices": [
+   "Frequentist: a distribution over $\\theta$; Bayesian: $\\theta$ fixed",
+   "Both treat $\\theta$ as a random variable with a prior",
+   "Frequentist: $\\theta$ fixed but unknown, with an estimator that varies across data sets; Bayesian: a distribution represents uncertainty about $\\theta$ and is updated with data",
+   "They use different sampling models $p(\\mathcal{D} \\mid \\theta)$"
+  ],
+  "answer": 2,
+  "explanation": "Both views can use the same sampling model; they differ in how they treat uncertainty about $\\theta$.",
+  "tags": [
+   "frequentist-vs-bayesian"
+  ],
+  "sources": [
+   {
+    "file": "week_7/slide/W07-02-BayesianInference (1).pdf",
+    "page": 5
+   }
+  ]
+ },
+ {
+  "id": "w7-bay-003",
+  "week": 7,
+  "topic": "bayes-rule",
+  "type": "numeric",
+  "difficulty": 1,
+  "prompt": "Joint probabilities for a rose: red with thorns .15, red without .43, white with .23, white without .19. Find $P(T = \\text{yes} \\mid C = \\text{red})$ to two decimals.",
+  "answer": 0.26,
+  "tolerance": 0.005,
+  "explanation": "$P(T = \\text{yes} \\mid \\text{red}) = \\frac{.15}{.15 + .43} = \\frac{.15}{.58} \\approx .26$.",
+  "tags": [
+   "conditional-probability",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_7/worksheets/W07-02-Bayesian inference Exercise.pdf",
+    "page": 2
+   }
+  ]
+ },
+ {
+  "id": "w7-bay-004",
+  "week": 7,
+  "topic": "bayes-rule",
+  "type": "numeric",
+  "difficulty": 2,
+  "prompt": "A disease affects 1% of a population. A test has sensitivity $P(+ \\mid D) = .99$ and specificity $P(- \\mid D^c) = .99$. Find $P(D \\mid +)$ as a percentage.",
+  "answer": 50,
+  "tolerance": 0.5,
+  "explanation": "$P(+) = .99(.01) + .01(.99) = .0198$, so $P(D \\mid +) = .0099/.0198 = 50\\%$. The low prior prevalence pulls the posterior down.",
+  "tags": [
+   "bayes-law",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_7/worksheets/W07-02-Bayesian inference Exercise.pdf",
+    "page": 3
+   }
+  ]
+ },
+ {
+  "id": "w7-bay-005",
+  "week": 7,
+  "topic": "bayes-rule",
+  "type": "numeric",
+  "difficulty": 2,
+  "prompt": "Sensitivity 0.90, specificity 0.95, prevalence 0.10. What is $P(D \\mid +)$? (3 d.p.)",
+  "answer": 0.667,
+  "tolerance": 0.002,
+  "explanation": "$P(+) = 0.9(0.1) + 0.05(0.9) = 0.135$; $P(D \\mid +) = 0.09/0.135 \\approx 0.667$. At prevalence 0.01 it is only $0.009/0.0585 \\approx 0.154$: same test, different prior.",
+  "tags": [
+   "bayes-law",
+   "prior",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_7/worksheets/W07-02-Bayesian inference Exercise.pdf",
+    "page": 4
+   }
+  ]
+ },
+ {
+  "id": "w7-bay-006",
+  "week": 7,
+  "topic": "bayes-rule",
+  "type": "short",
+  "difficulty": 2,
+  "prompt": "In the diagnostic-test calculation, identify the prior, likelihood and evidence, and explain why equal sensitivity and specificity give different posteriors in two populations.",
+  "answer": "Prior: the prevalence $P(D)$. Likelihood: $P(+ \\mid D)$ (with $P(+ \\mid D^c)$ for the healthy group). Evidence: $P(+) = P(+ \\mid D)P(D) + P(+ \\mid D^c)P(D^c)$. The likelihoods are the same, but the prior differs, so the posterior $P(D \\mid +)$ differs.",
+  "explanation": "Posterior $\\propto$ likelihood $\\times$ prior; the evidence normalises it.",
+  "tags": [
+   "bayes-law",
+   "prior"
+  ],
+  "sources": [
+   {
+    "file": "week_7/worksheets/W07-02-Bayesian inference Exercise.pdf",
+    "page": 4
+   }
+  ]
+ },
+ {
+  "id": "w7-bay-007",
+  "week": 7,
+  "topic": "bayes-rule",
+  "type": "multi",
+  "difficulty": 2,
+  "prompt": "Joint table: $P(A, B) = .12$, $P(A, B^c) = .18$, $P(A^c, B) = .28$, $P(A^c, B^c) = .42$. Select all true statements.",
+  "choices": [
+   "$P(A) = .30$",
+   "$P(B \\mid A) = .40$",
+   "$A$ and $B$ are independent",
+   "$P(A \\mid B) = P(B \\mid A)$"
+  ],
+  "answer": [
+   0,
+   1,
+   2
+  ],
+  "explanation": "$P(A) = .30$, $P(B) = .40$, $P(A \\mid B) = .12/.40 = .30$, $P(B \\mid A) = .12/.30 = .40$. $P(A)P(B) = .12 = P(A, B)$, so independent; the two conditionals differ because they divide by different marginals.",
+  "tags": [
+   "conditional-probability",
+   "independence"
+  ],
+  "sources": [
+   {
+    "file": "week_7/worksheets/W07-02-Bayesian inference Exercise.pdf",
+    "page": 3
+   }
+  ]
+ },
+ {
+  "id": "w7-bay-008",
+  "week": 7,
+  "topic": "bayes-rule",
+  "type": "truefalse",
+  "difficulty": 1,
+  "prompt": "A maximum-likelihood estimate is a posterior distribution over the parameters.",
+  "answer": false,
+  "explanation": "An MLE is a point estimate. A likelihood alone is not a posterior distribution over parameters; that needs a prior.",
+  "tags": [
+   "likelihood"
+  ],
+  "sources": [
+   {
+    "file": "week_7/slide/W07-02-BayesianInference (1).pdf",
+    "page": 7
+   }
+  ]
+ },
+ {
+  "id": "w7-bic-001",
+  "week": 7,
+  "topic": "bayesian-inference-coding",
+  "type": "code",
+  "difficulty": 1,
+  "prompt": "What is printed (rounded)?",
+  "code": "print(round(float(normal_logpdf(0.0, 0.0, 1.0)), 4))",
+  "choices": [
+   "0.0",
+   "-0.9189",
+   "0.3989",
+   "-1.8379"
+  ],
+  "answer": 1,
+  "explanation": "$-\\tfrac12(\\log(2\\pi \\cdot 1) + 0) = -\\tfrac12\\log(2\\pi) \\approx -0.9189$. Its exponential, $0.3989$, is the density.",
+  "tags": [
+   "gaussian"
+  ],
+  "sources": [
+   {
+    "file": "week_7/code/W07-02-BayesianInference.ipynb",
+    "page": 4
+   }
+  ]
+ },
+ {
+  "id": "w7-bic-002",
+  "week": 7,
+  "topic": "bayesian-inference-coding",
+  "type": "code",
+  "difficulty": 2,
+  "prompt": "What does `normal_logpdf` do when called like this?",
+  "code": "normal_logpdf(1.0, 0.0, 0.0)",
+  "choices": [
+   "Returns `-inf`",
+   "Returns 0",
+   "Raises `ValueError`: the Gaussian variance must be positive",
+   "Returns `nan`"
+  ],
+  "answer": 2,
+  "explanation": "The helper checks `np.any(np.asarray(variance) <= 0)` before computing anything.",
+  "tags": [
+   "gaussian"
+  ],
+  "sources": [
+   {
+    "file": "week_7/code/W07-02-BayesianInference.ipynb",
+    "page": 4
+   }
+  ]
+ },
+ {
+  "id": "w7-bic-003",
+  "week": 7,
+  "topic": "bayesian-inference-coding",
+  "type": "code",
+  "difficulty": 2,
+  "prompt": "Which candidate weight vectors does this return the highest value for?",
+  "code": "def regression_loglike(weights, beta):\n    weights = np.atleast_2d(np.asarray(weights, dtype=float))\n    residuals = poly_y[None, :] - weights @ reg_Phi.T\n    rss = np.sum(residuals**2, axis=1)\n    n = poly_y.size\n    return n/2 * np.log(beta) - n/2 * np.log(2*np.pi) - beta/2 * rss",
+  "choices": [
+   "The one with the largest residual sum of squares",
+   "It depends on $\\beta$, which can reverse the ranking",
+   "The one with the largest weight norm",
+   "The one with the smallest residual sum of squares, for any fixed $\\beta > 0$"
+  ],
+  "answer": 3,
+  "explanation": "For a shared $\\beta$, only $-\\frac\\beta2\\,\\mathrm{rss}$ varies across weight vectors, so the OLS weights score highest.",
+  "tags": [
+   "log-likelihood"
+  ],
+  "sources": [
+   {
+    "file": "week_7/code/W07-02-BayesianInference.ipynb",
+    "page": 20
+   }
+  ]
+ },
+ {
+  "id": "w7-gml-001",
+  "week": 7,
+  "topic": "gaussian-mle",
+  "type": "flashcard",
+  "difficulty": 1,
+  "prompt": "Write the univariate Gaussian density and its mean and variance.",
+  "answer": "$\\mathcal{N}(x \\mid \\mu, \\sigma^2) = \\frac{1}{\\sqrt{2\\pi\\sigma^2}}\\exp\\left[-\\frac{(x - \\mu)^2}{2\\sigma^2}\\right]$, with $E[x] = \\mu$ and $\\mathrm{Var}(x) = \\sigma^2$.",
+  "explanation": "$\\sigma$ is the standard deviation and $\\sigma^2$ the variance.",
+  "tags": [
+   "gaussian",
+   "formula"
+  ],
+  "sources": [
+   {
+    "file": "week_7/slide/W07-02-BayesianInference (1).pdf",
+    "page": 8
+   }
+  ]
+ },
+ {
+  "id": "w7-gml-002",
+  "week": 7,
+  "topic": "gaussian-mle",
+  "type": "mcq",
+  "difficulty": 1,
+  "prompt": "For a $D$-dimensional Gaussian $\\mathcal{N}(\\mathbf{x} \\mid \\boldsymbol\\mu, \\Sigma)$, which statement is **not** true?",
+  "choices": [
+   "$\\boldsymbol\\mu \\in \\mathbb{R}^D$ is the mean vector",
+   "$\\Sigma$ is $D \\times D$; its off-diagonal entries are covariances between different coordinates",
+   "$\\Sigma$ is positive definite for this density",
+   "The diagonal entries of $\\Sigma$ are covariances between different coordinates, rather than variances"
+  ],
+  "answer": 3,
+  "explanation": "The diagonal of $\\Sigma$ holds the variances; the off-diagonal entries hold covariances.",
+  "tags": [
+   "gaussian",
+   "covariance"
+  ],
+  "sources": [
+   {
+    "file": "week_7/worksheets/W07-02-Bayesian inference Exercise.pdf",
+    "page": 2
+   }
+  ]
+ },
+ {
+  "id": "w7-gml-003",
+  "week": 7,
+  "topic": "gaussian-mle",
+  "type": "truefalse",
+  "difficulty": 1,
+  "prompt": "Maximising $\\log p(X \\mid \\boldsymbol\\mu, \\Sigma)$ gives the same parameters as maximising $p(X \\mid \\boldsymbol\\mu, \\Sigma)$.",
+  "answer": true,
+  "explanation": "The logarithm is strictly increasing, so it preserves the maximiser, and it turns the product over observations into a sum.",
+  "tags": [
+   "log-likelihood"
+  ],
+  "sources": [
+   {
+    "file": "week_7/slide/W07-02-BayesianInference (1).pdf",
+    "page": 12
+   }
+  ]
+ },
+ {
+  "id": "w7-gml-004",
+  "week": 7,
+  "topic": "gaussian-mle",
+  "type": "flashcard",
+  "difficulty": 2,
+  "prompt": "What are the Gaussian MLEs of the mean and covariance from $N$ i.i.d. vectors $\\mathbf{x}_i$?",
+  "answer": "$\\hat{\\boldsymbol\\mu} = \\frac1N\\sum_{i=1}^N \\mathbf{x}_i$ (the sample mean) and $\\hat\\Sigma_{ML} = \\frac1N\\sum_{i=1}^N(\\mathbf{x}_i - \\hat{\\boldsymbol\\mu})(\\mathbf{x}_i - \\hat{\\boldsymbol\\mu})^T$.",
+  "explanation": "The MLE uses $1/N$; the unbiased covariance estimator uses $1/(N - 1)$.",
+  "tags": [
+   "gaussian-mle",
+   "formula"
+  ],
+  "sources": [
+   {
+    "file": "week_7/slide/W07-02-BayesianInference (1).pdf",
+    "page": 13
+   },
+   {
+    "file": "week_7/slide/W07-02-BayesianInference (1).pdf",
+    "page": 14
+   }
+  ]
+ },
+ {
+  "id": "w7-gml-005",
+  "week": 7,
+  "topic": "gaussian-mle",
+  "type": "mcq",
+  "difficulty": 2,
+  "prompt": "Why is $\\hat{\\boldsymbol\\mu} = \\frac1N\\sum_i \\mathbf{x}_i$ a maximum, not a minimum, of the log-likelihood in $\\boldsymbol\\mu$?",
+  "choices": [
+   "Because the sample mean is always positive",
+   "The Hessian is $-N\\Sigma^{-1}$, which is negative definite",
+   "Because the first term of $\\ell$ is constant",
+   "Because $\\Sigma$ is held fixed"
+  ],
+  "answer": 1,
+  "explanation": "$\\nabla_{\\boldsymbol\\mu}\\ell = \\Sigma^{-1}\\sum_i(\\mathbf{x}_i - \\boldsymbol\\mu)$; differentiating again gives $-N\\Sigma^{-1}$, negative definite since $\\Sigma$ is positive definite.",
+  "tags": [
+   "gaussian-mle"
+  ],
+  "sources": [
+   {
+    "file": "week_7/slide/W07-02-BayesianInference (1).pdf",
+    "page": 13
+   }
+  ]
+ },
+ {
+  "id": "w7-gml-006",
+  "week": 7,
+  "topic": "gaussian-mle",
+  "type": "numeric",
+  "difficulty": 1,
+  "prompt": "$y = w_0 + w_1x + \\epsilon$ with $\\epsilon \\sim \\mathcal{N}(0, \\beta^{-1})$, $\\mathbf{w} = (1, \\tfrac12)^T$ and $\\beta = 4$. What is the conditional mean of $y$ at $x = 2$?",
+  "answer": 2,
+  "tolerance": 0.0001,
+  "explanation": "$E[y \\mid x = 2] = 1 + \\tfrac12 \\cdot 2 = 2$.",
+  "tags": [
+   "noise-precision",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_7/worksheets/W07-02-Bayesian inference Exercise.pdf",
+    "page": 3
+   }
+  ]
+ },
+ {
+  "id": "w7-gml-007",
+  "week": 7,
+  "topic": "gaussian-mle",
+  "type": "numeric",
+  "difficulty": 1,
+  "prompt": "Same model with noise precision $\\beta = 4$. What is the observation-noise standard deviation?",
+  "answer": 0.5,
+  "tolerance": 0.0001,
+  "explanation": "Variance $= \\beta^{-1} = 1/4$, so the standard deviation is $1/2$. Raising $\\beta$ with the weights fixed makes the conditional density narrower.",
+  "tags": [
+   "noise-precision",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_7/worksheets/W07-02-Bayesian inference Exercise.pdf",
+    "page": 3
+   }
+  ]
+ },
+ {
+  "id": "w7-lsq-001",
+  "week": 7,
+  "topic": "least-squares",
+  "type": "flashcard",
+  "difficulty": 1,
+  "prompt": "What is a residual, and what does OLS minimise?",
+  "answer": "The residual is observed minus predicted, $r_i = y_i - \\hat y_i$. OLS minimises the quadratic cost $R(\\mathbf{w}) = \\sum_{i=1}^N r_i^2$, which gives the minimum-MSE fit.",
+  "explanation": "Residuals are vertical prediction errors, not perpendicular distances to the line.",
+  "tags": [
+   "residuals",
+   "ols"
+  ],
+  "sources": [
+   {
+    "file": "week_7/slide/W07-01-LinearRegression.pdf",
+    "page": 4
+   },
+   {
+    "file": "week_7/slide/W07-01-LinearRegression.pdf",
+    "page": 15
+   }
+  ]
+ },
+ {
+  "id": "w7-lsq-002",
+  "week": 7,
+  "topic": "least-squares",
+  "type": "flashcard",
+  "difficulty": 2,
+  "prompt": "Differentiate $R(w_0, w_1) = \\sum_i (y_i - w_0 - w_1x_i)^2$ and write the two normal equations.",
+  "answer": "$\\frac{\\partial R}{\\partial w_0} = -2\\sum_i (y_i - w_0 - w_1x_i)$, $\\frac{\\partial R}{\\partial w_1} = -2\\sum_i x_i(y_i - w_0 - w_1x_i)$. Setting both to zero: $Nw_0 + w_1\\sum_i x_i = \\sum_i y_i$ and $w_0\\sum_i x_i + w_1\\sum_i x_i^2 = \\sum_i x_iy_i$.",
+  "explanation": "In matrix form this is $\\Phi^T\\Phi\\mathbf{w} = \\Phi^T\\mathbf{y}$ with row $i$ of $\\Phi$ equal to $(1, x_i)$.",
+  "tags": [
+   "normal-equation",
+   "derivation"
+  ],
+  "sources": [
+   {
+    "file": "week_7/slide/W07-01-LinearRegression.pdf",
+    "page": 5
+   }
+  ]
+ },
+ {
+  "id": "w7-lsq-003",
+  "week": 7,
+  "topic": "least-squares",
+  "type": "flashcard",
+  "difficulty": 1,
+  "prompt": "State the normal equation and the OLS solution when $\\Phi$ has full column rank.",
+  "answer": "$\\Phi^T\\Phi\\hat{\\mathbf{w}} = \\Phi^T\\mathbf{y}$, so $\\hat{\\mathbf{w}}_{OLS} = (\\Phi^T\\Phi)^{-1}\\Phi^T\\mathbf{y}$.",
+  "explanation": "It comes from setting $\\nabla_\\mathbf{w}R = 2\\Phi^T(\\Phi\\mathbf{w} - \\mathbf{y})$ to zero. $R$ is a convex quadratic, so a stationary point is a global minimiser.",
+  "tags": [
+   "normal-equation",
+   "formula"
+  ],
+  "sources": [
+   {
+    "file": "week_7/slide/W07-01-LinearRegression.pdf",
+    "page": 9
+   },
+   {
+    "file": "week_7/slide/W07-01-LinearRegression.pdf",
+    "page": 10
+   }
+  ]
+ },
+ {
+  "id": "w7-lsq-004",
+  "week": 7,
+  "topic": "least-squares",
+  "type": "mcq",
+  "difficulty": 1,
+  "prompt": "$N = 14$ observations, three input features, plus an all-ones intercept column; $\\Phi$ has full column rank. Which dimensions are correct for $\\hat{\\mathbf{w}} = (\\Phi^T\\Phi)^{-1}\\Phi^T\\mathbf{y}$?",
+  "choices": [
+   "$\\Phi: 14 \\times 4$, $\\mathbf{y}: 14 \\times 4$, $\\hat{\\mathbf{w}}: 4 \\times 4$",
+   "$\\Phi: 14 \\times 4$, $\\mathbf{y}: 14 \\times 1$, $\\hat{\\mathbf{w}}: 4 \\times 1$",
+   "$\\Phi: 14 \\times 3$, $\\mathbf{y}: 14 \\times 1$, $\\hat{\\mathbf{w}}: 3 \\times 3$",
+   "$\\Phi: 14 \\times 3$, $\\mathbf{y}: 14 \\times 1$, $\\hat{\\mathbf{w}}: 3 \\times 1$"
+  ],
+  "answer": 1,
+  "explanation": "Three features plus the intercept give 4 columns, so $\\Phi$ is $14 \\times 4$. One target per row gives $\\mathbf{y}$ as $14 \\times 1$, and one weight per column gives $\\hat{\\mathbf{w}}$ as $4 \\times 1$.",
+  "tags": [
+   "design-matrix",
+   "dimensions"
+  ],
+  "sources": [
+   {
+    "file": "week_7/worksheets/7a-Linear Regression.pdf",
+    "page": 2
+   }
+  ]
+ },
+ {
+  "id": "w7-lsq-005",
+  "week": 7,
+  "topic": "least-squares",
+  "type": "mcq",
+  "difficulty": 2,
+  "prompt": "Fit $\\hat y = w_0 + w_1x$ to $(1, 0.5)$, $(0, 0)$, $(6, 3)$, $(4, 2)$ by least squares. Which weights does it obtain?",
+  "choices": [
+   "$w_0 = 1$, $w_1 = 0.5$",
+   "$w_0 = 0.5$, $w_1 = 0$",
+   "$w_0 = 0.5$, $w_1 = 1.5$",
+   "$w_0 = 0$, $w_1 = 0.5$"
+  ],
+  "answer": 3,
+  "explanation": "Every point satisfies $y = 0.5x$ exactly, so $w_0 = 0$, $w_1 = 0.5$ gives zero cost, which no other line can beat.",
+  "tags": [
+   "ols",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_7/worksheets/7a-Linear Regression.pdf",
+    "page": 2
+   }
+  ]
+ },
+ {
+  "id": "w7-lsq-006",
+  "week": 7,
+  "topic": "least-squares",
+  "type": "numeric",
+  "difficulty": 2,
+  "prompt": "Fit $\\hat y = w_0 + w_1x$ to $(-1, 1)$, $(0, 1)$, $(1, 3)$ with the normal equations. What is $\\hat w_0$?",
+  "answer": 1.6667,
+  "tolerance": 0.001,
+  "explanation": "$\\Phi^T\\Phi = \\begin{pmatrix}3 & 0\\\\ 0 & 2\\end{pmatrix}$ and $\\Phi^T\\mathbf{y} = (5, 2)^T$, so $\\hat w_0 = 5/3$ and $\\hat w_1 = 1$.",
+  "tags": [
+   "normal-equation",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_7/worksheets/7a-Linear Regression.pdf",
+    "page": 3
+   }
+  ]
+ },
+ {
+  "id": "w7-lsq-007",
+  "week": 7,
+  "topic": "least-squares",
+  "type": "numeric",
+  "difficulty": 2,
+  "prompt": "Continuing: with $\\hat{\\mathbf{w}} = (5/3, 1)^T$ for $(-1, 1)$, $(0, 1)$, $(1, 3)$, what is the quadratic cost $R = \\sum_n r_n^2$?",
+  "answer": 0.6667,
+  "tolerance": 0.001,
+  "explanation": "Predictions $2/3, 5/3, 8/3$ give residuals $1/3, -2/3, 1/3$. $R = 1/9 + 4/9 + 1/9 = 2/3$. The residuals sum to zero, as they must with an intercept.",
+  "tags": [
+   "residuals",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_7/worksheets/7a-Linear Regression.pdf",
+    "page": 3
+   }
+  ]
+ },
+ {
+  "id": "w7-lsq-008",
+  "week": 7,
+  "topic": "least-squares",
+  "type": "mcq",
+  "difficulty": 3,
+  "prompt": "For $(0, 1)$, $(1, 2)$, $(2, 2)$ compare $g_A(x) = 1 + \\tfrac12x$ and $g_B(x) = \\tfrac76 + \\tfrac12x$. Which is the OLS solution?",
+  "choices": [
+   "$g_A$, because two of its three residuals are exactly zero",
+   "$g_B$: its residuals $(-\\tfrac16, \\tfrac13, -\\tfrac16)$ satisfy $\\Phi^T\\mathbf{r} = \\mathbf{0}$ and its cost $\\tfrac16$ is below $g_A$'s $\\tfrac14$",
+   "Both, because they have the same slope",
+   "Neither; OLS needs more points"
+  ],
+  "answer": 1,
+  "explanation": "$g_A$ has residuals $(0, \\tfrac12, 0)$, which do not sum to zero, so $\\Phi^T\\mathbf{r} \\ne \\mathbf{0}$. Small individual residuals are not the normal-equation condition.",
+  "tags": [
+   "normal-equation",
+   "residuals"
+  ],
+  "sources": [
+   {
+    "file": "week_7/worksheets/7a-Linear Regression.pdf",
+    "page": 5
+   }
+  ]
+ },
+ {
+  "id": "w7-lsq-009",
+  "week": 7,
+  "topic": "least-squares",
+  "type": "mcq",
+  "difficulty": 3,
+  "prompt": "Use $\\boldsymbol\\phi(x) = (1, x, x)^T$ for $(-1, 0)$, $(0, 1)$, $(1, 2)$. Exact fits need $w_0 = 1$, $w_1 + w_2 = 1$. Which is true of $(1, 1, 0)^T$ and $(1, \\tfrac12, \\tfrac12)^T$?",
+  "choices": [
+   "The cost $R$ prefers $(1, 1, 0)^T$",
+   "Only $(1, \\tfrac12, \\tfrac12)^T$ fits exactly",
+   "Both have $R = 0$; $(1, \\tfrac12, \\tfrac12)^T$ has the smaller squared norm, $1.5$ against $2$",
+   "The normal matrix is invertible, so the solution is unique"
+  ],
+  "answer": 2,
+  "explanation": "Two identical columns make $\\Phi^T\\Phi$ singular: the coefficients are not unique, though the training predictions are. The pseudoinverse picks the minimum-norm fit.",
+  "tags": [
+   "rank-deficiency",
+   "pseudoinverse"
+  ],
+  "sources": [
+   {
+    "file": "week_7/worksheets/7a-Linear Regression.pdf",
+    "page": 5
+   },
+   {
+    "file": "week_7/slide/W07-01-LinearRegression.pdf",
+    "page": 26
+   }
+  ]
+ },
+ {
+  "id": "w7-lsq-010",
+  "week": 7,
+  "topic": "least-squares",
+  "type": "truefalse",
+  "difficulty": 2,
+  "prompt": "Numerically, the best way to compute OLS weights is to form $(\\Phi^T\\Phi)^{-1}$ explicitly.",
+  "answer": false,
+  "explanation": "Use a least-squares solver rather than forming an inverse. Inverting $\\Phi^T\\Phi$ squares the condition number; `np.linalg.lstsq` works on $\\Phi$ directly and handles deficient rank.",
+  "tags": [
+   "numerics"
+  ],
+  "sources": [
+   {
+    "file": "week_7/slide/W07-01-LinearRegression.pdf",
+    "page": 10
+   }
+  ]
+ },
+ {
+  "id": "w7-lsq-011",
+  "week": 7,
+  "topic": "least-squares",
+  "type": "truefalse",
+  "difficulty": 1,
+  "prompt": "A small training MSE on its own shows that the model will perform well on new observations.",
+  "answer": false,
+  "explanation": "Training error only compares predictions with observed training targets. The degree-6 polynomial has the smallest training MSE but is not obviously the best predictor.",
+  "tags": [
+   "generalisation"
+  ],
+  "sources": [
+   {
+    "file": "week_7/slide/W07-01-LinearRegression.pdf",
+    "page": 14
+   }
+  ]
+ },
+ {
+  "id": "w7-lik-001",
+  "week": 7,
+  "topic": "likelihood-and-least-squares",
+  "type": "flashcard",
+  "difficulty": 1,
+  "prompt": "State the Gaussian regression noise model and the density of one target.",
+  "answer": "$y_i = \\mathbf{w}^T\\boldsymbol\\phi(\\mathbf{x}_i) + \\epsilon_i$ with $\\epsilon_i \\overset{iid}{\\sim} \\mathcal{N}(0, \\sigma^2)$ and precision $\\beta = 1/\\sigma^2$. So $p(y_i \\mid \\mathbf{x}_i, \\mathbf{w}, \\beta) = \\mathcal{N}(y_i \\mid \\mathbf{w}^T\\boldsymbol\\phi(\\mathbf{x}_i), \\beta^{-1})$.",
+  "explanation": "The errors are independent, have mean zero and share the same variance.",
+  "tags": [
+   "noise-model",
+   "formula"
+  ],
+  "sources": [
+   {
+    "file": "week_7/slide/W07-02-BayesianInference (1).pdf",
+    "page": 16
+   }
+  ]
+ },
+ {
+  "id": "w7-lik-002",
+  "week": 7,
+  "topic": "likelihood-and-least-squares",
+  "type": "flashcard",
+  "difficulty": 2,
+  "prompt": "Write the Gaussian regression log-likelihood $\\ell(\\mathbf{w}, \\beta)$.",
+  "answer": "$\\ell(\\mathbf{w}, \\beta) = \\frac N2\\log\\beta - \\frac N2\\log(2\\pi) - \\frac\\beta2 R(\\mathbf{w})$, where $R(\\mathbf{w}) = \\|\\mathbf{y} - \\Phi\\mathbf{w}\\|^2$.",
+  "explanation": "It is the log of $\\left(\\frac{\\beta}{2\\pi}\\right)^{N/2}\\exp\\left[-\\frac\\beta2\\|\\mathbf{y} - \\Phi\\mathbf{w}\\|^2\\right]$. The $\\log\\beta$ term is positive; the residual term is negative.",
+  "tags": [
+   "log-likelihood",
+   "formula"
+  ],
+  "sources": [
+   {
+    "file": "week_7/slide/W07-02-BayesianInference (1).pdf",
+    "page": 18
+   }
+  ]
+ },
+ {
+  "id": "w7-lik-003",
+  "week": 7,
+  "topic": "likelihood-and-least-squares",
+  "type": "mcq",
+  "difficulty": 2,
+  "prompt": "Why does maximising the Gaussian likelihood over $\\mathbf{w}$ (for fixed $\\beta > 0$) give the OLS weights?",
+  "choices": [
+   "Because $\\beta$ is estimated first",
+   "Because the noise is assumed to be zero",
+   "Only the term $-\\frac\\beta2 R(\\mathbf{w})$ depends on $\\mathbf{w}$, so maximising $\\ell$ is minimising $R$",
+   "Because the likelihood is a posterior"
+  ],
+  "answer": 2,
+  "explanation": "$\\frac N2\\log\\beta - \\frac N2\\log(2\\pi)$ is constant in $\\mathbf{w}$, so $\\arg\\max_\\mathbf{w}\\ell = \\arg\\min_\\mathbf{w}R$.",
+  "tags": [
+   "mle-ols"
+  ],
+  "sources": [
+   {
+    "file": "week_7/slide/W07-02-BayesianInference (1).pdf",
+    "page": 19
+   }
+  ]
+ },
+ {
+  "id": "w7-lik-004",
+  "week": 7,
+  "topic": "likelihood-and-least-squares",
+  "type": "multi",
+  "difficulty": 2,
+  "prompt": "Select all true statements about OLS and MLE.",
+  "choices": [
+   "With independent, zero-mean Gaussian errors of common variance in a linear regression model, the MLE weights coincide with the OLS weights",
+   "MLE always requires a Gaussian noise distribution",
+   "The OLS objective can be minimised without specifying a probability distribution for the noise",
+   "Computing OLS weights requires Gaussian noise"
+  ],
+  "answer": [
+   0,
+   2
+  ],
+  "explanation": "OLS is just a criterion on squared residuals. MLE works with any likelihood; the Gaussian one happens to give OLS.",
+  "tags": [
+   "mle-ols"
+  ],
+  "sources": [
+   {
+    "file": "week_7/worksheets/W07-02-Bayesian inference Exercise.pdf",
+    "page": 2
+   }
+  ]
+ },
+ {
+  "id": "w7-lik-005",
+  "week": 7,
+  "topic": "likelihood-and-least-squares",
+  "type": "flashcard",
+  "difficulty": 2,
+  "prompt": "Differentiate $\\ell(\\mathbf{w}, \\beta)$ with respect to $\\mathbf{w}$ and state the result.",
+  "answer": "$\\nabla_\\mathbf{w}\\ell = \\beta\\Phi^T(\\mathbf{y} - \\Phi\\mathbf{w}) = \\mathbf{0}$. Since $\\beta > 0$, this is the OLS normal equation $\\Phi^T\\Phi\\hat{\\mathbf{w}} = \\Phi^T\\mathbf{y}$, so $\\hat{\\mathbf{w}}_{ML} = \\hat{\\mathbf{w}}_{OLS}$.",
+  "explanation": "With full column rank, $\\hat{\\mathbf{w}}_{ML} = (\\Phi^T\\Phi)^{-1}\\Phi^T\\mathbf{y}$.",
+  "tags": [
+   "mle-ols",
+   "derivation"
+  ],
+  "sources": [
+   {
+    "file": "week_7/slide/W07-02-BayesianInference (1).pdf",
+    "page": 20
+   }
+  ]
+ },
+ {
+  "id": "w7-lik-006",
+  "week": 7,
+  "topic": "likelihood-and-least-squares",
+  "type": "truefalse",
+  "difficulty": 2,
+  "prompt": "When conditioning on the observed inputs, the input density $p(\\mathbf{x})$ changes the maximum-likelihood weights.",
+  "answer": false,
+  "explanation": "An input-density factor that does not depend on $(\\mathbf{w}, \\beta)$ does not change their likelihood maximiser.",
+  "tags": [
+   "likelihood"
+  ],
+  "sources": [
+   {
+    "file": "week_7/slide/W07-02-BayesianInference (1).pdf",
+    "page": 17
+   }
+  ]
+ },
+ {
+  "id": "w7-lik-007",
+  "week": 7,
+  "topic": "likelihood-and-least-squares",
+  "type": "numeric",
+  "difficulty": 2,
+  "prompt": "Two weight vectors on the same $N = 4$ observations have $R_A = 3$ and $R_B = 5$, with common precision $\\beta = 2$. What is $\\ell_A - \\ell_B$?",
+  "answer": 2,
+  "tolerance": 0.0001,
+  "explanation": "Only $-\\frac\\beta2R$ differs: $-\\frac22(3 - 5) = 2$. So $L_A/L_B = e^2 \\approx 7.39$; MLE prefers $A$, and no positive common $\\beta$ reverses that.",
+  "tags": [
+   "log-likelihood",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_7/worksheets/W07-02-Bayesian inference Exercise.pdf",
+    "page": 4
+   }
+  ]
+ },
+ {
+  "id": "w7-lik-008",
+  "week": 7,
+  "topic": "likelihood-and-least-squares",
+  "type": "flashcard",
+  "difficulty": 3,
+  "prompt": "Keeping the fitted weights fixed, what are the MLEs of the noise precision and variance?",
+  "answer": "$\\frac{\\partial\\ell}{\\partial\\beta} = \\frac{N}{2\\beta} - \\frac R2 = 0$ gives $\\hat\\beta_{ML} = N/R$ and $\\hat\\sigma^2_{ML} = R/N$, the training MSE.",
+  "explanation": "This needs $R > 0$. The notebook computes `reg_sigma2_ml = reg_rss / poly_y.size`.",
+  "tags": [
+   "noise-precision",
+   "derivation"
+  ],
+  "sources": [
+   {
+    "file": "week_7/worksheets/W07-02-Bayesian inference Exercise.pdf",
+    "page": 4
+   },
+   {
+    "file": "week_7/code/W07-02-BayesianInference.ipynb",
+    "page": 20
+   }
+  ]
+ },
+ {
+  "id": "w7-lik-009",
+  "week": 7,
+  "topic": "likelihood-and-least-squares",
+  "type": "numeric",
+  "difficulty": 2,
+  "prompt": "$N = 3$, fitted weights fixed, $\\ell(\\beta) = \\frac32\\log\\beta - \\frac32\\log(2\\pi) - \\frac\\beta2R$ with $R = 2$. What precision maximises $\\ell$?",
+  "answer": 1.5,
+  "tolerance": 0.0001,
+  "explanation": "$\\ell'(\\beta) = \\frac{3}{2\\beta} - 1 = 0$ gives $\\beta = 3/2$, variance $2/3$. $\\ell''(\\beta) = -\\frac{3}{2\\beta^2} < 0$, so it is a maximum.",
+  "tags": [
+   "noise-precision",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_7/worksheets/W07-02-Bayesian inference Exercise.pdf",
+    "page": 4
+   }
+  ]
+ },
+ {
+  "id": "w7-lik-010",
+  "week": 7,
+  "topic": "likelihood-and-least-squares",
+  "type": "mcq",
+  "difficulty": 3,
+  "prompt": "A flexible model fits all training targets exactly, so $R = 0$. What happens to $\\ell(\\beta) = \\frac N2\\log\\beta - \\frac N2\\log(2\\pi)$ as $\\beta \\to \\infty$?",
+  "choices": [
+   "It tends to $+\\infty$: there is no finite maximising precision, and the exact fit does not show future observations are noise-free",
+   "It has a finite maximum at $\\beta = N$",
+   "It tends to $-\\infty$",
+   "It is constant, so every $\\beta$ is optimal"
+  ],
+  "answer": 0,
+  "explanation": "With $R = 0$ the only $\\beta$ term is $\\frac N2\\log\\beta$, which grows without bound. An exact training fit by itself says nothing about noise in new data.",
+  "tags": [
+   "noise-precision",
+   "overfitting"
+  ],
+  "sources": [
+   {
+    "file": "week_7/worksheets/W07-02-Bayesian inference Exercise.pdf",
+    "page": 4
+   }
+  ]
+ },
+ {
+  "id": "w7-lik-011",
+  "week": 7,
+  "topic": "likelihood-and-least-squares",
+  "type": "mcq",
+  "difficulty": 3,
+  "prompt": "$N = 4$. Candidate A: $R_A = 1$, $\\beta_A = \\tfrac14$. Candidate B: $R_B = 2$, $\\beta_B = 2$. Which has the higher log-likelihood with these precisions?",
+  "choices": [
+   "A, because it has the smaller cost",
+   "B: $\\ell_B \\approx -4.29$ against $\\ell_A \\approx -6.57$, because the $\\frac N2\\log\\beta$ term differs",
+   "They are equal",
+   "It cannot be compared"
+  ],
+  "answer": 1,
+  "explanation": "$\\ell_A = 2\\log\\tfrac14 - 2\\log 2\\pi - \\tfrac18 \\approx -6.57$; $\\ell_B = 2\\log 2 - 2\\log 2\\pi - 2 \\approx -4.29$. If each precision is re-maximised ($\\beta = N/R$: 4 and 2), A wins ($-2.90$ vs $-4.29$).",
+  "tags": [
+   "log-likelihood",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_7/worksheets/W07-02-Bayesian inference Exercise.pdf",
+    "page": 5
+   }
+  ]
+ },
+ {
+  "id": "w7-lin-001",
+  "week": 7,
+  "topic": "linear-models-and-bases",
+  "type": "mcq",
+  "difficulty": 1,
+  "prompt": "Which statement about linear regression is **not** true?",
+  "choices": [
+   "It can predict a numerical response using one or more input features",
+   "It can use fixed basis functions that are nonlinear in the original input",
+   "Its predictions are linear in the unknown weights",
+   "Its predictions must be a straight-line function of the original input, even when nonlinear basis functions are used"
+  ],
+  "answer": 3,
+  "explanation": "\"Linear\" means linear in the weights. With nonlinear basis functions such as $x^2$ the prediction is a curve in $x$, but the coefficients still enter linearly.",
+  "tags": [
+   "linearity"
+  ],
+  "sources": [
+   {
+    "file": "week_7/worksheets/7a-Linear Regression.pdf",
+    "page": 2
+   }
+  ]
+ },
+ {
+  "id": "w7-lin-002",
+  "week": 7,
+  "topic": "linear-models-and-bases",
+  "type": "truefalse",
+  "difficulty": 1,
+  "prompt": "$\\hat y(x) = w_0 + w_1x + w_2x^2 + w_3x^3$ is a linear regression model.",
+  "answer": true,
+  "explanation": "Nonlinear functions of $x$ are allowed; the coefficients enter linearly. A straight line is just the degree-1 case.",
+  "tags": [
+   "linearity"
+  ],
+  "sources": [
+   {
+    "file": "week_7/slide/W07-01-LinearRegression.pdf",
+    "page": 3
+   }
+  ]
+ },
+ {
+  "id": "w7-lin-003",
+  "week": 7,
+  "topic": "linear-models-and-bases",
+  "type": "mcq",
+  "difficulty": 1,
+  "prompt": "What is the difference between classification and regression?",
+  "choices": [
+   "Classification predicts a discrete class; regression predicts a continuous value",
+   "Classification predicts a continuous value; regression predicts a discrete class",
+   "Classification uses features; regression does not",
+   "Regression always uses a straight line; classification never does"
+  ],
+  "answer": 0,
+  "explanation": "Credit approval yes/no is classification; a numerical credit limit is regression.",
+  "tags": [
+   "regression"
+  ],
+  "sources": [
+   {
+    "file": "week_7/slide/W07-01-LinearRegression.pdf",
+    "page": 2
+   },
+   {
+    "file": "week_7/slide/W07-01-LinearRegression.pdf",
+    "page": 13
+   }
+  ]
+ },
+ {
+  "id": "w7-lin-004",
+  "week": 7,
+  "topic": "linear-models-and-bases",
+  "type": "flashcard",
+  "difficulty": 1,
+  "prompt": "Write the general basis-function regression model and say what $\\phi_0$ does.",
+  "answer": "$\\hat y(\\mathbf{x}_i, \\mathbf{w}) = \\sum_{j=0}^{M} w_j\\phi_j(\\mathbf{x}_i) = \\mathbf{w}^T\\boldsymbol\\phi(\\mathbf{x}_i)$, with $\\phi_0(\\mathbf{x}_i) = 1$ supplying the intercept.",
+  "explanation": "$\\mathbf{w}$ is the weight vector and $\\boldsymbol\\phi$ the basis-function vector; there are $M + 1$ weights.",
+  "tags": [
+   "basis-functions",
+   "formula"
+  ],
+  "sources": [
+   {
+    "file": "week_7/slide/W07-01-LinearRegression.pdf",
+    "page": 8
+   }
+  ]
+ },
+ {
+  "id": "w7-lin-005",
+  "week": 7,
+  "topic": "linear-models-and-bases",
+  "type": "numeric",
+  "difficulty": 1,
+  "prompt": "Use $\\boldsymbol\\phi(x) = (1, x, x^2)^T$ and $\\mathbf{w} = (1, -1, \\tfrac12)^T$. What is $\\hat y(2) = \\mathbf{w}^T\\boldsymbol\\phi(2)$?",
+  "answer": 1,
+  "tolerance": 0.0001,
+  "explanation": "$\\boldsymbol\\phi(2) = (1, 2, 4)^T$, so $\\hat y = 1 - 2 + \\tfrac12 \\cdot 4 = 1$. Three coefficients are fitted; the intercept is $w_0 = 1$.",
+  "tags": [
+   "basis-functions",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_7/worksheets/7a-Linear Regression.pdf",
+    "page": 3
+   }
+  ]
+ },
+ {
+  "id": "w7-lin-006",
+  "week": 7,
+  "topic": "linear-models-and-bases",
+  "type": "multi",
+  "difficulty": 2,
+  "prompt": "Which are basis functions listed in the lecture? Select all that apply.",
+  "choices": [
+   "Polynomial $\\phi_j(x) = x^j$",
+   "Gaussian $\\phi_j(x) = \\exp\\left(-\\frac{(x - \\mu_j)^2}{2\\sigma^2}\\right)$",
+   "Sigmoidal $\\phi_j(x) = \\frac{1}{1 + \\exp[-(x - \\mu_j)/\\sigma]}$",
+   "Hyperbolic tangent $\\phi_j(x) = \\tanh\\left(\\frac{x - \\mu_j}{\\sigma}\\right)$"
+  ],
+  "answer": [
+   0,
+   1,
+   2,
+   3
+  ],
+  "explanation": "All four appear on the slide. Nonlinear bases use $j = 1, \\dots, M$ with $\\phi_0 = 1$; the centres $\\mu_j$ and width $\\sigma$ are fixed.",
+  "tags": [
+   "basis-functions"
+  ],
+  "sources": [
+   {
+    "file": "week_7/slide/W07-01-LinearRegression.pdf",
+    "page": 25
+   }
+  ]
+ },
+ {
+  "id": "w7-lin-007",
+  "week": 7,
+  "topic": "linear-models-and-bases",
+  "type": "mcq",
+  "difficulty": 2,
+  "prompt": "In a Gaussian RBF regression model, what does fitting change?",
+  "choices": [
+   "The centres $\\mu_j$ and the weights",
+   "The width $\\sigma$ only",
+   "Only the weights $\\mathbf{w}$; the centres $\\mu_j$ and width $\\sigma$ are fixed beforehand",
+   "The basis functions themselves, chosen by gradient descent"
+  ],
+  "answer": 2,
+  "explanation": "The basis functions are fixed; fitting changes $\\mathbf{w}$. That is why the model stays linear in its weights even though it is nonlinear in $x$.",
+  "tags": [
+   "basis-functions"
+  ],
+  "sources": [
+   {
+    "file": "week_7/slide/W07-01-LinearRegression.pdf",
+    "page": 24
+   },
+   {
+    "file": "week_7/worksheets/7a-Linear Regression.pdf",
+    "page": 4
+   }
+  ]
+ },
+ {
+  "id": "w7-lin-008",
+  "week": 7,
+  "topic": "linear-models-and-bases",
+  "type": "numeric",
+  "difficulty": 2,
+  "prompt": "$\\phi_j(x) = \\exp[-(x - \\mu_j)^2/(2\\sigma^2)]$ with $\\mu_1 = -1$, $\\mu_2 = 1$, $\\sigma = 1$, $\\boldsymbol\\phi = (1, \\phi_1, \\phi_2)^T$ and $\\mathbf{w} = (1, 2, -1)^T$. Predict at $x = 0$ (use $e^{-1/2} \\approx 0.6065$).",
+  "answer": 1.6065,
+  "tolerance": 0.001,
+  "explanation": "At $x = 0$: $\\phi_1 = \\phi_2 = e^{-1/2} = 0.6065$, so $\\hat y = 1 + 2(0.6065) - 0.6065 = 1.6065$.",
+  "tags": [
+   "basis-functions",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_7/worksheets/7a-Linear Regression.pdf",
+    "page": 4
+   }
+  ]
+ },
+ {
+  "id": "w7-lin-009",
+  "week": 7,
+  "topic": "linear-models-and-bases",
+  "type": "numeric",
+  "difficulty": 2,
+  "prompt": "Same Gaussian model ($\\mu_1 = -1$, $\\mu_2 = 1$, $\\sigma = 1$, $\\mathbf{w} = (1, 2, -1)^T$). Predict at $x = 1$ (use $e^{-2} \\approx 0.1353$).",
+  "answer": 0.2706,
+  "tolerance": 0.001,
+  "explanation": "At $x = 1$: $\\phi_1 = e^{-4/2} = 0.1353$ and $\\phi_2 = e^0 = 1$, so $\\hat y = 1 + 2(0.1353) - 1 = 0.2706$.",
+  "tags": [
+   "basis-functions",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_7/worksheets/7a-Linear Regression.pdf",
+    "page": 4
+   }
+  ]
+ },
+ {
+  "id": "w7-lin-010",
+  "week": 7,
+  "topic": "linear-models-and-bases",
+  "type": "mcq",
+  "difficulty": 1,
+  "prompt": "In the learning-from-data picture, what does OLS play the role of?",
+  "choices": [
+   "The hypothesis set $\\mathcal{H}$",
+   "The learning algorithm $\\mathcal{A}$, which uses the data to select weights for fixed features",
+   "The unknown target function $f$",
+   "The noise $\\epsilon_i$"
+  ],
+  "answer": 1,
+  "explanation": "$\\mathcal{H}$ holds rules $h_\\mathbf{w}(x) = \\mathbf{w}^T\\boldsymbol\\phi(x)$; the algorithm picks one, giving the learned hypothesis $g = h_{\\hat{\\mathbf{w}}}$.",
+  "tags": [
+   "learning-from-data"
+  ],
+  "sources": [
+   {
+    "file": "week_7/slide/W07-01-LinearRegression.pdf",
+    "page": 12
+   }
+  ]
+ },
+ {
+  "id": "w7-lrc-001",
+  "week": 7,
+  "topic": "linear-regression-coding",
+  "type": "code",
+  "difficulty": 1,
+  "prompt": "What is printed?",
+  "code": "trace, costs = quadratic_path([8, 3], 0.1, start=(1, 1), steps=1)\nprint(trace[1])",
+  "choices": [
+   "[0.2 0.7]",
+   "[-0.6  0.4]",
+   "[-1.24  0.16]",
+   "[0.6 0.4]"
+  ],
+  "answer": 1,
+  "explanation": "Each step is `w - eta * (2 * curvatures * w)`: $1 - 0.1 \\cdot 16 = -0.6$ and $1 - 0.1 \\cdot 6 = 0.4$.",
+  "tags": [
+   "gradient-descent"
+  ],
+  "sources": [
+   {
+    "file": "week_7/code/W07-01-LinearRegression.ipynb",
+    "page": 23
+   }
+  ]
+ },
+ {
+  "id": "w7-lrc-002",
+  "week": 7,
+  "topic": "linear-regression-coding",
+  "type": "code",
+  "difficulty": 2,
+  "prompt": "What is printed?",
+  "code": "Phi = basis_matrix(np.array([0.0, 1.0]), \"Gaussian\")\nprint(Phi.shape)",
+  "choices": [
+   "(2, 6)",
+   "(7, 2)",
+   "(2, 7)",
+   "(2, 1)"
+  ],
+  "answer": 2,
+  "explanation": "Six fixed centres give six Gaussian columns, and `basis_matrix` prepends a column of ones for the intercept: 7 columns, one row per input.",
+  "tags": [
+   "basis-functions",
+   "design-matrix"
+  ],
+  "sources": [
+   {
+    "file": "week_7/code/W07-01-LinearRegression.ipynb",
+    "page": 30
+   }
+  ]
+ },
+ {
+  "id": "w7-lrc-003",
+  "week": 7,
+  "topic": "linear-regression-coding",
+  "type": "code",
+  "difficulty": 2,
+  "prompt": "Why does the notebook use this call rather than `np.linalg.inv(Phi.T @ Phi) @ Phi.T @ y`?",
+  "code": "w, _, rank, _ = np.linalg.lstsq(Phi, y, rcond=None)",
+  "choices": [
+   "`lstsq` is the only function that returns the rank",
+   "Inverting $\\Phi^T\\Phi$ can be inaccurate and fails for deficient rank; `lstsq` decomposes $\\Phi$ itself and handles deficient rank",
+   "`lstsq` uses gradient descent, which is always more accurate",
+   "The inverse formula gives a different minimiser"
+  ],
+  "answer": 1,
+  "explanation": "For full column rank, $\\kappa_2(\\Phi^T\\Phi) = \\kappa_2(\\Phi)^2$. `lstsq` returns the minimum-norm solution $\\Phi^\\dagger\\mathbf{y}$.",
+  "tags": [
+   "numerics"
+  ],
+  "sources": [
+   {
+    "file": "week_7/code/W07-01-LinearRegression.ipynb",
+    "page": 11
+   }
+  ]
+ },
+ {
+  "id": "w7-lrc-004",
+  "week": 7,
+  "topic": "linear-regression-coding",
+  "type": "code",
+  "difficulty": 2,
+  "prompt": "After an OLS fit with an intercept column, what does this check confirm?",
+  "code": "np.testing.assert_allclose(Phi.T @ (y - Phi @ w), 0, atol=1e-10)",
+  "choices": [
+   "The residual vector is orthogonal to every column of $\\Phi$, so the residuals sum to zero",
+   "Every residual is zero",
+   "$\\Phi$ has full column rank",
+   "The cost $R$ is zero"
+  ],
+  "answer": 0,
+  "explanation": "At the optimum $\\Phi^T\\mathbf{r} = \\mathbf{0}$; orthogonality to the intercept column gives $\\sum_i r_i = 0$. The points need not lie on the fit.",
+  "tags": [
+   "normal-equation"
+  ],
+  "sources": [
+   {
+    "file": "week_7/code/W07-01-LinearRegression.ipynb",
+    "page": 12
+   }
+  ]
+ },
+ {
+  "id": "w7-gdr-001",
+  "week": 7,
+  "topic": "regression-gradient-descent",
+  "type": "flashcard",
+  "difficulty": 1,
+  "prompt": "Write the gradient-descent update for $R(\\mathbf{w}) = \\|\\Phi\\mathbf{w} - \\mathbf{y}\\|^2$.",
+  "answer": "$\\mathbf{w}^{(t+1)} = \\mathbf{w}^{(t)} - 2\\eta\\Phi^T(\\Phi\\mathbf{w}^{(t)} - \\mathbf{y})$, using $\\nabla R = 2\\Phi^T(\\Phi\\mathbf{w} - \\mathbf{y})$.",
+  "explanation": "Setting the gradient to zero gives the same normal equation as OLS, so with a suitable step gradient descent reaches the OLS fit.",
+  "tags": [
+   "update-rule",
+   "formula"
+  ],
+  "sources": [
+   {
+    "file": "week_7/slide/W07-01-LinearRegression.pdf",
+    "page": 21
+   }
+  ]
+ },
+ {
+  "id": "w7-gdr-002",
+  "week": 7,
+  "topic": "regression-gradient-descent",
+  "type": "multi",
+  "difficulty": 2,
+  "prompt": "Exact gradient descent $\\mathbf{w}_{t+1} = \\mathbf{w}_t - \\eta\\nabla F(\\mathbf{w}_t)$ on a smooth $F$. Select all true statements.",
+  "choices": [
+   "Making $\\eta$ very small can only speed convergence",
+   "A very small $\\eta$ can make convergence slow",
+   "An increase in $F$ can indicate that $\\eta$ is too large for the current region",
+   "Every iteration decreases $F$, however large $\\eta$ is"
+  ],
+  "answer": [
+   1,
+   2
+  ],
+  "explanation": "Tiny steps make little progress. A step that is too large can overshoot, so $F$ can increase.",
+  "tags": [
+   "step-size"
+  ],
+  "sources": [
+   {
+    "file": "week_7/worksheets/7a-Linear Regression.pdf",
+    "page": 3
+   }
+  ]
+ },
+ {
+  "id": "w7-gdr-003",
+  "week": 7,
+  "topic": "regression-gradient-descent",
+  "type": "numeric",
+  "difficulty": 1,
+  "prompt": "Constant predictor $\\hat y = w$ for responses 1 and 3: $R(w) = (1 - w)^2 + (3 - w)^2$. What weight minimises $R$?",
+  "answer": 2,
+  "tolerance": 0.0001,
+  "explanation": "$R'(w) = -2(1 - w) - 2(3 - w) = 4w - 8 = 0$, so $w = 2$, the mean of the responses.",
+  "tags": [
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_7/worksheets/7a-Linear Regression.pdf",
+    "page": 3
+   }
+  ]
+ },
+ {
+  "id": "w7-gdr-004",
+  "week": 7,
+  "topic": "regression-gradient-descent",
+  "type": "numeric",
+  "difficulty": 2,
+  "prompt": "Same $R(w) = (1 - w)^2 + (3 - w)^2$. Start at $w_0 = 0$ with $\\eta = 0.1$. What is $w_2$?",
+  "answer": 1.28,
+  "tolerance": 0.001,
+  "explanation": "$R'(w) = 4w - 8$. $w_1 = 0 - 0.1(-8) = 0.8$; $w_2 = 0.8 - 0.1(3.2 - 8) = 1.28$. The cost falls $10 \\to 4.88 \\to 3.0368$, heading for $w = 2$.",
+  "tags": [
+   "update-rule",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_7/worksheets/7a-Linear Regression.pdf",
+    "page": 3
+   }
+  ]
+ },
+ {
+  "id": "w7-gdr-005",
+  "week": 7,
+  "topic": "regression-gradient-descent",
+  "type": "mcq",
+  "difficulty": 2,
+  "prompt": "Gradient descent on $\\widetilde F(u, v) = 8u^2 + 3v^2$ with $\\eta = 0.1$. What does each update do to $u$ and $v$?",
+  "choices": [
+   "$u_{t+1} = -0.6u_t$, $v_{t+1} = 0.4v_t$: both shrink to zero",
+   "$u_{t+1} = 0.6u_t$, $v_{t+1} = 0.4v_t$",
+   "$u_{t+1} = -1.24u_t$, $v_{t+1} = 0.16v_t$: $u$ diverges",
+   "$u_{t+1} = 0.2u_t$, $v_{t+1} = 0.7v_t$"
+  ],
+  "answer": 0,
+  "explanation": "The gradient is $(16u, 6v)$, so $u \\leftarrow (1 - 16\\eta)u = -0.6u$ and $v \\leftarrow (1 - 6\\eta)v = 0.4v$.",
+  "tags": [
+   "step-size",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_7/slide/W07-01-LinearRegression.pdf",
+    "page": 19
+   }
+  ]
+ },
+ {
+  "id": "w7-gdr-006",
+  "week": 7,
+  "topic": "regression-gradient-descent",
+  "type": "numeric",
+  "difficulty": 2,
+  "prompt": "For $\\widetilde F(u, v) = 8u^2 + 3v^2$ the Hessian eigenvalues are 16 and 6. What is the largest step size for which gradient descent is stable?",
+  "answer": 0.125,
+  "tolerance": 0.0001,
+  "explanation": "Stability requires $0 < \\eta < 2/\\lambda_{\\max} = 2/16 = 0.125$. At $\\eta = 0.14$ the $u$ factor is $1 - 16(0.14) = -1.24$, so the cost diverges.",
+  "tags": [
+   "step-size",
+   "stability"
+  ],
+  "sources": [
+   {
+    "file": "week_7/slide/W07-01-LinearRegression.pdf",
+    "page": 19
+   },
+   {
+    "file": "week_7/slide/W07-01-LinearRegression.pdf",
+    "page": 20
+   }
+  ]
+ },
+ {
+  "id": "w7-gdr-007",
+  "week": 7,
+  "topic": "regression-gradient-descent",
+  "type": "mcq",
+  "difficulty": 3,
+  "prompt": "Gradient descent on $F(\\mathbf{w}) = w_0^2 + 3w_1^2$ from $(1, 1)^T$. For which step sizes do both coordinates converge?",
+  "choices": [
+   "$0 < \\eta < 1$",
+   "$0 < \\eta < \\tfrac13$",
+   "$0 < \\eta < \\tfrac23$",
+   "$0 < \\eta < \\tfrac16$"
+  ],
+  "answer": 1,
+  "explanation": "$w_0 \\leftarrow (1 - 2\\eta)w_0$ needs $0 < \\eta < 1$; $w_1 \\leftarrow (1 - 6\\eta)w_1$ needs $0 < \\eta < \\tfrac13$. At $\\eta = \\tfrac13$ the second factor is $-1$, so $w_1$ flips between $\\pm1$ and never converges.",
+  "tags": [
+   "step-size",
+   "stability"
+  ],
+  "sources": [
+   {
+    "file": "week_7/worksheets/7a-Linear Regression.pdf",
+    "page": 6
+   }
+  ]
+ },
+ {
+  "id": "w7-gdr-008",
+  "week": 7,
+  "topic": "regression-gradient-descent",
+  "type": "truefalse",
+  "difficulty": 1,
+  "prompt": "With a suitable step size and a convergence check, gradient descent reaches the same fit as OLS.",
+  "answer": true,
+  "explanation": "Both optimise the same objective; the notebook's six-point example shows the two fitted lines coincide.",
+  "tags": [
+   "ols"
+  ],
+  "sources": [
+   {
+    "file": "week_7/slide/W07-01-LinearRegression.pdf",
+    "page": 22
+   }
+  ]
+ },
+ {
+  "id": "w7-gdr-009",
+  "week": 7,
+  "topic": "regression-gradient-descent",
+  "type": "numeric",
+  "difficulty": 3,
+  "prompt": "$J(x) = 2x^2 + x - \\log x$ for $x > 0$. Where is its minimum? (3 d.p.)",
+  "answer": 0.3904,
+  "tolerance": 0.001,
+  "explanation": "$J'(x) = 4x + 1 - \\frac1x = 0$ gives $4x^2 + x - 1 = 0$, whose positive root is $x^\\star = \\frac{\\sqrt{17} - 1}{8} \\approx 0.3904$.",
+  "tags": [
+   "calculus"
+  ],
+  "sources": [
+   {
+    "file": "week_7/slide/W07-01-LinearRegression.pdf",
+    "page": 17
+   }
+  ]
+ },
+ {
+  "id": "w8-brc-001",
+  "week": 8,
+  "topic": "bayesian-regression-coding",
+  "type": "code",
+  "difficulty": 2,
+  "prompt": "With `alpha = 10.0` and `beta = 1.0`, what does this assertion check?",
+  "code": "ridge_lambda = alpha / beta\nw_map = np.linalg.solve(Phi_10.T @ Phi_10 + ridge_lambda * np.eye(2), Phi_10.T @ poly_y)\nnp.testing.assert_allclose(w_map, m_10, atol=1e-12)",
+  "choices": [
+   "That ridge regression with $\\lambda = 10$ gives the posterior mean $\\mathbf{m}_N$, so MAP equals the posterior mean here",
+   "That MAP equals OLS",
+   "That the posterior covariance is $10I$",
+   "That $\\lambda$ must equal $\\beta/\\alpha$"
+  ],
+  "answer": 0,
+  "explanation": "$(\\Phi^T\\Phi + \\lambda I)^{-1}\\Phi^T\\mathbf{y}$ with $\\lambda = \\alpha/\\beta$ equals $\\beta S_N\\Phi^T\\mathbf{y}$. For a Gaussian posterior the mode is the mean.",
+  "tags": [
+   "ridge",
+   "map"
+  ],
+  "sources": [
+   {
+    "file": "week_8/code/W08-01-BayesianRegression.ipynb",
+    "page": 18
+   }
+  ]
+ },
+ {
+  "id": "w8-brc-002",
+  "week": 8,
+  "topic": "bayesian-regression-coding",
+  "type": "code",
+  "difficulty": 2,
+  "prompt": "What is `posterior_precision` for the zero-mean prior $\\alpha^{-1}I$?",
+  "code": "identity = np.eye(design.shape[1])\nprior_precision = np.linalg.solve(prior_covariance, identity)\nposterior_precision = prior_precision + beta * (design.T @ design)\nposterior_covariance = np.linalg.solve(posterior_precision, identity)",
+  "choices": [
+   "$\\alpha^{-1}I + \\beta\\Phi^T\\Phi$",
+   "$\\beta\\Phi^T\\Phi$",
+   "$\\alpha I + \\beta\\Phi^T\\Phi$, the inverse of $S_N$",
+   "$(\\alpha I + \\beta\\Phi^T\\Phi)^{-1}$"
+  ],
+  "answer": 2,
+  "explanation": "The prior precision is the inverse of $\\alpha^{-1}I$, i.e. $\\alpha I$. The code then solves for $S_N$ rather than forming an explicit inverse.",
+  "tags": [
+   "posterior-covariance"
+  ],
+  "sources": [
+   {
+    "file": "week_8/code/W08-01-BayesianRegression.ipynb",
+    "page": 10
+   }
+  ]
+ },
+ {
+  "id": "w8-brc-003",
+  "week": 8,
+  "topic": "bayesian-regression-coding",
+  "type": "code",
+  "difficulty": 1,
+  "prompt": "What does `gaussian_weight_posterior` do when called with `beta=0`?",
+  "code": "m, S = gaussian_weight_posterior(Phi, y, np.zeros(2), np.eye(2) / 10, beta=0)",
+  "choices": [
+   "Returns the prior unchanged",
+   "Raises `ValueError`: precision beta must be positive",
+   "Returns the OLS solution",
+   "Divides by zero and returns `inf`"
+  ],
+  "answer": 1,
+  "explanation": "The helper checks `if beta <= 0` first: the noise precision must be positive.",
+  "tags": [
+   "posterior"
+  ],
+  "sources": [
+   {
+    "file": "week_8/code/W08-01-BayesianRegression.ipynb",
+    "page": 10
+   }
+  ]
+ },
+ {
+  "id": "w8-map-001",
+  "week": 8,
+  "topic": "map-and-ridge",
+  "type": "flashcard",
+  "difficulty": 1,
+  "prompt": "What does MAP maximise, and why can we use the log-posterior?",
+  "answer": "$\\hat{\\mathbf{w}}_{MAP} = \\arg\\max_\\mathbf{w} p(\\mathbf{w} \\mid \\mathcal{D}, \\alpha, \\beta)$. The logarithm is strictly increasing, so $\\arg\\max_\\mathbf{w}\\log p(\\mathbf{w} \\mid \\mathcal{D}, \\alpha, \\beta)$ gives the same weights.",
+  "explanation": "MLE maximises the likelihood; MAP maximises the posterior, incorporating a prior.",
+  "tags": [
+   "map",
+   "formula"
+  ],
+  "sources": [
+   {
+    "file": "week_8/slides/W08-01-BayesianRegression (1).pdf",
+    "page": 16
+   }
+  ]
+ },
+ {
+  "id": "w8-map-002",
+  "week": 8,
+  "topic": "map-and-ridge",
+  "type": "flashcard",
+  "difficulty": 2,
+  "prompt": "Write MAP as a minimisation and show it is ridge regression.",
+  "answer": "$\\hat{\\mathbf{w}}_{MAP} = \\arg\\min_\\mathbf{w}\\left\\{\\frac\\beta2\\|\\mathbf{y} - \\Phi\\mathbf{w}\\|^2 + \\frac\\alpha2\\|\\mathbf{w}\\|^2\\right\\}$. Dividing by $\\beta$: $L(\\mathbf{w}) = \\frac12R(\\mathbf{w}) + \\frac\\lambda2\\|\\mathbf{w}\\|^2$ with $\\lambda = \\alpha/\\beta$.",
+  "explanation": "The first term favours agreement with the training targets; the second discourages large weights.",
+  "tags": [
+   "ridge",
+   "formula"
+  ],
+  "sources": [
+   {
+    "file": "week_8/slides/W08-01-BayesianRegression (1).pdf",
+    "page": 18
+   }
+  ]
+ },
+ {
+  "id": "w8-map-003",
+  "week": 8,
+  "topic": "map-and-ridge",
+  "type": "numeric",
+  "difficulty": 1,
+  "prompt": "Prior $\\mathcal{N}(\\mathbf{0}, \\alpha^{-1}I)$ with $\\alpha = 4$ and noise precision $\\beta = 2$. What is the ridge strength $\\lambda$?",
+  "answer": 2,
+  "tolerance": 0.0001,
+  "explanation": "$\\lambda = \\alpha/\\beta = 4/2 = 2$. Prior variance per coefficient is $1/4$; noise variance is $1/2$.",
+  "tags": [
+   "ridge",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_8/worksheets/W08-01-Bayesian Regression Exercise.pdf",
+    "page": 2
+   }
+  ]
+ },
+ {
+  "id": "w8-map-004",
+  "week": 8,
+  "topic": "map-and-ridge",
+  "type": "numeric",
+  "difficulty": 2,
+  "prompt": "Same $\\alpha = 4$, $\\beta = 2$. The observation-noise variance doubles with $\\alpha$ fixed. What is the new $\\lambda$?",
+  "answer": 4,
+  "tolerance": 0.0001,
+  "explanation": "Noise variance goes from $\\tfrac12$ to $1$, so $\\beta = 1$ and $\\lambda = 4/1 = 4$: noisier data means more shrinkage relative to the fit.",
+  "tags": [
+   "ridge",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_8/worksheets/W08-01-Bayesian Regression Exercise.pdf",
+    "page": 2
+   }
+  ]
+ },
+ {
+  "id": "w8-map-005",
+  "week": 8,
+  "topic": "map-and-ridge",
+  "type": "multi",
+  "difficulty": 2,
+  "prompt": "$L(\\mathbf{w}) = \\frac12R(\\mathbf{w}) + \\frac\\lambda2\\|\\mathbf{w}\\|^2$, $\\lambda = \\alpha/\\beta$. Select all true statements.",
+  "choices": [
+   "At fixed $\\beta$, larger $\\alpha$ gives stronger shrinkage toward zero weights",
+   "At fixed $\\alpha$, larger noise variance gives a larger penalty relative to the data fit",
+   "The prior penalises all coefficients, including the intercept",
+   "Larger $\\lambda$ weakens the preference for small weights"
+  ],
+  "answer": [
+   0,
+   1,
+   2
+  ],
+  "explanation": "Larger $\\lambda$ strengthens the preference for small weights. Larger noise variance means smaller $\\beta$, hence larger $\\lambda$.",
+  "tags": [
+   "ridge",
+   "shrinkage"
+  ],
+  "sources": [
+   {
+    "file": "week_8/slides/W08-01-BayesianRegression (1).pdf",
+    "page": 19
+   }
+  ]
+ },
+ {
+  "id": "w8-map-006",
+  "week": 8,
+  "topic": "map-and-ridge",
+  "type": "mcq",
+  "difficulty": 3,
+  "prompt": "$\\beta = 2$. Candidate A: $R_A = 2$, $\\|\\mathbf{w}_A\\|^2 = 4$. Candidate B: $R_B = 4$, $\\|\\mathbf{w}_B\\|^2 = 1$. Which does MAP prefer for $\\alpha = 1$ and for $\\alpha = 4$?",
+  "choices": [
+   "A for both",
+   "B for both",
+   "B for $\\alpha = 1$, A for $\\alpha = 4$",
+   "A for $\\alpha = 1$ ($4$ vs $4.5$), B for $\\alpha = 4$ ($6$ vs $10$)"
+  ],
+  "answer": 3,
+  "explanation": "Objective $\\frac\\beta2R + \\frac\\alpha2\\|\\mathbf{w}\\|^2$. $\\alpha = 1$: A $= 2 + 2 = 4$, B $= 4 + 0.5 = 4.5$. $\\alpha = 4$: A $= 2 + 8 = 10$, B $= 4 + 2 = 6$. Likelihood alone prefers A. Neither ranking establishes out-of-sample error.",
+  "tags": [
+   "map",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_8/worksheets/W08-01-Bayesian Regression Exercise.pdf",
+    "page": 3
+   }
+  ]
+ },
+ {
+  "id": "w8-map-007",
+  "week": 8,
+  "topic": "map-and-ridge",
+  "type": "truefalse",
+  "difficulty": 2,
+  "prompt": "Adding a Gaussian prior guarantees that MAP predicts better than OLS.",
+  "answer": false,
+  "explanation": "OLS's smaller training cost does not establish better prediction, and the prior does not guarantee it either. In the degree-8 example MAP trades some training fit for smaller coefficients and avoids wild excursions.",
+  "tags": [
+   "map",
+   "generalisation"
+  ],
+  "sources": [
+   {
+    "file": "week_8/worksheets/W08-01-Bayesian Regression Exercise.pdf",
+    "page": 4
+   }
+  ]
+ },
+ {
+  "id": "w8-map-008",
+  "week": 8,
+  "topic": "map-and-ridge",
+  "type": "mcq",
+  "difficulty": 2,
+  "prompt": "Degree-8 polynomial, $N = 10$. How do the MLE and MAP ($\\lambda = 1$) fits compare?",
+  "choices": [
+   "MLE makes large excursions between observations and in extrapolation; MAP trades some training fit for smaller coefficients",
+   "They are identical, because both use the same basis",
+   "MAP fits the training points better than MLE",
+   "MLE has smaller coefficients than MAP"
+  ],
+  "answer": 0,
+  "explanation": "Compare the vertical scales: the MLE curve reaches thousands, while MAP stays near the data.",
+  "tags": [
+   "map",
+   "overfitting"
+  ],
+  "sources": [
+   {
+    "file": "week_8/slides/W08-01-BayesianRegression (1).pdf",
+    "page": 21
+   },
+   {
+    "file": "week_8/slides/W08-01-BayesianRegression (1).pdf",
+    "page": 22
+   }
+  ]
+ },
+ {
+  "id": "w8-map-009",
+  "week": 8,
+  "topic": "map-and-ridge",
+  "type": "order",
+  "difficulty": 2,
+  "prompt": "Order these from the criterion that uses the least to the most modelling assumptions.",
+  "steps": [
+   "OLS: minimise squared prediction errors $\\arg\\min_\\mathbf{w} R(\\mathbf{w})$",
+   "MLE: maximise the likelihood $\\arg\\max_\\mathbf{w} p(\\mathbf{y} \\mid \\Phi, \\mathbf{w}, \\beta)$",
+   "MAP: maximise the posterior $\\arg\\max_\\mathbf{w} p(\\mathbf{w} \\mid \\mathcal{D}, \\alpha, \\beta)$, incorporating a prior"
+  ],
+  "explanation": "OLS needs no noise model; MLE adds a noise distribution; MAP adds a prior over the weights as well.",
+  "tags": [
+   "map",
+   "mle-ols"
+  ],
+  "sources": [
+   {
+    "file": "week_8/slides/W08-01-BayesianRegression (1).pdf",
+    "page": 23
+   }
+  ]
+ },
+ {
+  "id": "w8-pcl-001",
+  "week": 8,
+  "topic": "posterior-calculations",
+  "type": "numeric",
+  "difficulty": 1,
+  "prompt": "Constant mean $\\hat y = w$, responses 1 and 3, $\\Phi = (1, 1)^T$, $\\alpha = 2$, $\\beta = 1$. What is the posterior variance $S_N$?",
+  "answer": 0.25,
+  "tolerance": 0.0001,
+  "explanation": "$S_N = (\\alpha + \\beta\\Phi^T\\Phi)^{-1} = (2 + 2)^{-1} = 0.25$, down from the prior variance $1/\\alpha = 0.5$.",
+  "tags": [
+   "posterior-covariance",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_8/worksheets/W08-01-Bayesian Regression Exercise.pdf",
+    "page": 3
+   }
+  ]
+ },
+ {
+  "id": "w8-pcl-002",
+  "week": 8,
+  "topic": "posterior-calculations",
+  "type": "numeric",
+  "difficulty": 1,
+  "prompt": "Same setup (responses 1 and 3, $\\alpha = 2$, $\\beta = 1$, $S_N = 0.25$). What is the posterior mean $m_N$?",
+  "answer": 1,
+  "tolerance": 0.0001,
+  "explanation": "$m_N = \\beta S_N\\Phi^T\\mathbf{y} = 1 \\cdot 0.25 \\cdot 4 = 1$: between the prior mean 0 and the OLS constant 2.",
+  "tags": [
+   "posterior-mean",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_8/worksheets/W08-01-Bayesian Regression Exercise.pdf",
+    "page": 3
+   }
+  ]
+ },
+ {
+  "id": "w8-pcl-003",
+  "week": 8,
+  "topic": "posterior-calculations",
+  "type": "numeric",
+  "difficulty": 2,
+  "prompt": "$\\hat y = w_0 + w_1x$, $\\alpha = 1$, $\\beta = 4$. Observe only $(0, 2)$. What is the posterior mean of $w_0$?",
+  "answer": 1.6,
+  "tolerance": 0.001,
+  "explanation": "$\\Phi = (1, 0)$, so $S_1^{-1} = I + 4\\,\\mathrm{diag}(1, 0) = \\mathrm{diag}(5, 1)$ and $S_1 = \\mathrm{diag}(0.2, 1)$. $\\mathbf{m}_1 = 4S_1(2, 0)^T = (1.6, 0)^T$.",
+  "tags": [
+   "posterior-mean",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_8/worksheets/W08-01-Bayesian Regression Exercise.pdf",
+    "page": 4
+   }
+  ]
+ },
+ {
+  "id": "w8-pcl-004",
+  "week": 8,
+  "topic": "posterior-calculations",
+  "type": "mcq",
+  "difficulty": 2,
+  "prompt": "Continuing: after observing only $(0, 2)$, $S_1 = \\mathrm{diag}(0.2, 1)$. Why is the slope's variance still 1?",
+  "choices": [
+   "Because $\\beta$ is too small",
+   "Because the prior variance was already minimal",
+   "At $x = 0$ the prediction is $w_0$, so the observation carries no information about $w_1$; with an independent prior it stays at its prior variance",
+   "Because the posterior is not Gaussian"
+  ],
+  "answer": 2,
+  "explanation": "The design row $(1, 0)$ has a zero in the slope column, so $\\beta\\Phi^T\\Phi$ only adds precision to $w_0$.",
+  "tags": [
+   "posterior-covariance",
+   "identifiability"
+  ],
+  "sources": [
+   {
+    "file": "week_8/worksheets/W08-01-Bayesian Regression Exercise.pdf",
+    "page": 4
+   }
+  ]
+ },
+ {
+  "id": "w8-pcl-005",
+  "week": 8,
+  "topic": "posterior-calculations",
+  "type": "numeric",
+  "difficulty": 3,
+  "prompt": "Now add $(1, 3)$ to $(0, 2)$, with $\\alpha = 1$, $\\beta = 4$. What is the posterior mean of the slope $w_1$? (3 d.p.)",
+  "answer": 0.9655,
+  "tolerance": 0.001,
+  "explanation": "$\\Phi^T\\Phi = \\begin{pmatrix}2 & 1\\\\ 1 & 1\\end{pmatrix}$, so $S_2^{-1} = I + 4\\Phi^T\\Phi = \\begin{pmatrix}9 & 4\\\\ 4 & 5\\end{pmatrix}$ and $S_2 = \\frac{1}{29}\\begin{pmatrix}5 & -4\\\\ -4 & 9\\end{pmatrix}$. $\\Phi^T\\mathbf{y} = (5, 3)^T$, so $\\mathbf{m}_2 = \\frac{4}{29}(13, 7)^T \\approx (1.793, 0.966)^T$. The second input differs from the first, so the slope is now identified.",
+  "tags": [
+   "posterior-mean",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_8/worksheets/W08-01-Bayesian Regression Exercise.pdf",
+    "page": 4
+   }
+  ]
+ },
+ {
+  "id": "w8-pcl-006",
+  "week": 8,
+  "topic": "posterior-calculations",
+  "type": "numeric",
+  "difficulty": 2,
+  "prompt": "One observation $(1, 2)$ for $\\hat y = w_0 + w_1x$, $\\alpha = \\beta = 1$. What is the posterior mean (and MAP) value of $w_0$? (3 d.p.)",
+  "answer": 0.6667,
+  "tolerance": 0.001,
+  "explanation": "$S_1^{-1} = I + \\begin{pmatrix}1 & 1\\\\ 1 & 1\\end{pmatrix} = \\begin{pmatrix}2 & 1\\\\ 1 & 2\\end{pmatrix}$, $S_1 = \\frac13\\begin{pmatrix}2 & -1\\\\ -1 & 2\\end{pmatrix}$, $\\mathbf{m}_1 = S_1(2, 2)^T = (\\tfrac23, \\tfrac23)^T$.",
+  "tags": [
+   "posterior-mean",
+   "map",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_8/worksheets/W08-01-Bayesian Regression Exercise.pdf",
+    "page": 5
+   }
+  ]
+ },
+ {
+  "id": "w8-pcl-007",
+  "week": 8,
+  "topic": "posterior-calculations",
+  "type": "mcq",
+  "difficulty": 3,
+  "prompt": "Continuing ($\\alpha = \\beta = 1$, observation $(1, 2)$): compare $R + \\|\\mathbf{w}\\|^2$ at the MAP weights $(\\tfrac23, \\tfrac23)^T$ and at the exact fit $(1, 1)^T$.",
+  "choices": [
+   "MAP: $\\tfrac43$; exact fit: $2$. MAP leaves a residual of $\\tfrac23$ but has a lower objective",
+   "Both equal $2$",
+   "MAP: $2$; exact fit: $\\tfrac43$",
+   "The exact fit has zero objective"
+  ],
+  "answer": 0,
+  "explanation": "MAP: residual $2 - \\tfrac43 = \\tfrac23$, so $R = \\tfrac49$ and $\\|\\mathbf{w}\\|^2 = \\tfrac89$, total $\\tfrac43$. Exact fit: $R = 0$, $\\|\\mathbf{w}\\|^2 = 2$. Leaving a residual is consistent with maximising the posterior.",
+  "tags": [
+   "map",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_8/worksheets/W08-01-Bayesian Regression Exercise.pdf",
+    "page": 5
+   }
+  ]
+ },
+ {
+  "id": "w8-pcl-008",
+  "week": 8,
+  "topic": "posterior-calculations",
+  "type": "multi",
+  "difficulty": 3,
+  "prompt": "Constant mean, responses $2, 2$, $\\beta = 1$; compare zero-mean priors $\\alpha = 1$ and $\\alpha = 4$. The true mean target is $2$. Select all true statements.",
+  "choices": [
+   "$\\alpha = 1$ gives $m_N = \\tfrac43$, $S_N = \\tfrac13$",
+   "$\\alpha = 4$ gives $m_N = \\tfrac23$, $S_N = \\tfrac16$",
+   "The narrower posterior ($\\alpha = 4$) has the more accurate mean",
+   "A narrower weight posterior does not by itself guarantee a more accurate mean prediction"
+  ],
+  "answer": [
+   0,
+   1,
+   3
+  ],
+  "explanation": "$S_N = (\\alpha + 2)^{-1}$, $m_N = 4S_N$. The $\\alpha = 4$ posterior is narrower but its mean $\\tfrac23$ is further from $2$ than $\\tfrac43$: confidence is not accuracy.",
+  "tags": [
+   "posterior",
+   "prior-strength"
+  ],
+  "sources": [
+   {
+    "file": "week_8/worksheets/W08-01-Bayesian Regression Exercise.pdf",
+    "page": 5
+   }
+  ]
+ },
+ {
+  "id": "w8-pcl-009",
+  "week": 8,
+  "topic": "posterior-calculations",
+  "type": "numeric",
+  "difficulty": 2,
+  "prompt": "Three posterior weight draws for $\\hat y = w_0 + w_1x$: $(0, 1)^T$, $(1, 0)^T$, $(0, -1)^T$. What is the average of their mean functions at $x = 1$? (3 d.p.)",
+  "answer": 0.3333,
+  "tolerance": 0.001,
+  "explanation": "At $x = 1$ the functions give $1, 1, -1$; the average is $\\tfrac13$ (it is also $\\tfrac13$ at $x = -1$ and $x = 0$). A finite-sample average need not equal the exact posterior mean function.",
+  "tags": [
+   "sampling",
+   "calculation"
+  ],
+  "sources": [
+   {
+    "file": "week_8/worksheets/W08-01-Bayesian Regression Exercise.pdf",
+    "page": 3
+   }
+  ]
+ },
+ {
+  "id": "w8-pst-001",
+  "week": 8,
+  "topic": "weight-posterior",
+  "type": "mcq",
+  "difficulty": 1,
+  "prompt": "One observation $(x_1, y_1)$ for $\\hat y = w_0 + w_1x$. What does least squares give?",
+  "choices": [
+   "A unique line through the origin",
+   "A family of lines: every pair with $w_0 + w_1x_1 = y_1$ has zero training error",
+   "No line at all",
+   "The horizontal line $\\hat y = y_1$ only"
+  ],
+  "answer": 1,
+  "explanation": "One equation cannot identify two unknowns. A prior supplies assumptions about the remaining uncertainty.",
+  "tags": [
+   "identifiability"
+  ],
+  "sources": [
+   {
+    "file": "week_8/slides/W08-01-BayesianRegression (1).pdf",
+    "page": 6
+   }
+  ]
+ },
+ {
+  "id": "w8-pst-002",
+  "week": 8,
+  "topic": "weight-posterior",
+  "type": "flashcard",
+  "difficulty": 1,
+  "prompt": "What prior over the weights does the lecture use, and what does $\\alpha$ control?",
+  "answer": "$p(\\mathbf{w} \\mid \\alpha) = \\mathcal{N}(\\mathbf{w} \\mid \\mathbf{0}, \\alpha^{-1}I)$, a zero-mean isotropic Gaussian on all $M + 1$ weights, including $w_0$. Larger $\\alpha$ means smaller prior variance and stronger concentration near zero.",
+  "explanation": "$\\beta$ plays the matching role for the noise: larger $\\beta$, smaller observation-noise variance.",
+  "tags": [
+   "prior",
+   "formula"
+  ],
+  "sources": [
+   {
+    "file": "week_8/slides/W08-01-BayesianRegression (1).pdf",
+    "page": 8
+   }
+  ]
+ },
+ {
+  "id": "w8-pst-003",
+  "week": 8,
+  "topic": "weight-posterior",
+  "type": "flashcard",
+  "difficulty": 2,
+  "prompt": "Write Bayes' law for the regression weights and say which part does not depend on $\\mathbf{w}$.",
+  "answer": "$p(\\mathbf{w} \\mid \\mathcal{D}, \\alpha, \\beta) = \\frac{p(\\mathbf{y} \\mid \\Phi, \\mathbf{w}, \\beta)\\,p(\\mathbf{w} \\mid \\alpha)}{p(\\mathbf{y} \\mid \\Phi, \\alpha, \\beta)}$. The evidence $p(\\mathbf{y} \\mid \\Phi, \\alpha, \\beta) = \\int p(\\mathbf{y} \\mid \\Phi, \\mathbf{w}, \\beta)p(\\mathbf{w} \\mid \\alpha)\\,d\\mathbf{w}$ is constant in $\\mathbf{w}$.",
+  "explanation": "The prior expresses beliefs before the observations; the posterior expresses updated beliefs about the weights.",
+  "tags": [
+   "bayes-law"
+  ],
+  "sources": [
+   {
+    "file": "week_8/slides/W08-01-BayesianRegression (1).pdf",
+    "page": 9
+   }
+  ]
+ },
+ {
+  "id": "w8-pst-004",
+  "week": 8,
+  "topic": "weight-posterior",
+  "type": "flashcard",
+  "difficulty": 2,
+  "prompt": "State the Gaussian posterior over the weights: its mean and covariance.",
+  "answer": "$p(\\mathbf{w} \\mid \\mathcal{D}, \\alpha, \\beta) = \\mathcal{N}(\\mathbf{w} \\mid \\mathbf{m}_N, S_N)$ with $S_N = (\\alpha I + \\beta\\Phi^T\\Phi)^{-1}$ and $\\mathbf{m}_N = \\beta S_N\\Phi^T\\mathbf{y}$.",
+  "explanation": "$\\mathbf{m}_N$ is the centre of the weight distribution; $S_N$ describes the spread and dependence of the weights.",
+  "tags": [
+   "posterior",
+   "formula"
+  ],
+  "sources": [
+   {
+    "file": "week_8/slides/W08-01-BayesianRegression (1).pdf",
+    "page": 12
+   }
+  ]
+ },
+ {
+  "id": "w8-pst-005",
+  "week": 8,
+  "topic": "weight-posterior",
+  "type": "flashcard",
+  "difficulty": 2,
+  "prompt": "Write the log-posterior over the weights and name its two terms.",
+  "answer": "$\\log p(\\mathbf{w} \\mid \\mathcal{D}, \\alpha, \\beta) = -\\frac\\beta2\\|\\mathbf{y} - \\Phi\\mathbf{w}\\|^2 - \\frac\\alpha2\\mathbf{w}^T\\mathbf{w} + C$. The first term comes from the likelihood (explain the targets); the second from the prior (favour weights near zero).",
+  "explanation": "Taking logs turns the likelihood-prior product into a sum; $C$ is independent of $\\mathbf{w}$.",
+  "tags": [
+   "log-posterior",
+   "formula"
+  ],
+  "sources": [
+   {
+    "file": "week_8/slides/W08-01-BayesianRegression (1).pdf",
+    "page": 11
+   }
+  ]
+ },
+ {
+  "id": "w8-pst-006",
+  "week": 8,
+  "topic": "weight-posterior",
+  "type": "multi",
+  "difficulty": 1,
+  "prompt": "Select all true statements about Bayesian linear regression.",
+  "choices": [
+   "Prior information can be useful when observations are limited",
+   "The posterior can quantify uncertainty about weights and their mean functions",
+   "Full Bayesian inference represents uncertainty about weights with a distribution",
+   "Full Bayesian inference can return only one numerical weight vector and cannot describe uncertainty about it"
+  ],
+  "answer": [
+   0,
+   1,
+   2
+  ],
+  "explanation": "A full posterior is a distribution, not a single vector. MAP picks one point from it.",
+  "tags": [
+   "posterior"
+  ],
+  "sources": [
+   {
+    "file": "week_8/worksheets/W08-01-Bayesian Regression Exercise.pdf",
+    "page": 2
+   }
+  ]
+ },
+ {
+  "id": "w8-pst-007",
+  "week": 8,
+  "topic": "weight-posterior",
+  "type": "mcq",
+  "difficulty": 2,
+  "prompt": "Which procedure isolates **model** uncertainty at fixed inputs?",
+  "choices": [
+   "Sample noisy future responses and call all their spread model uncertainty",
+   "Plot one fitted mean function repeatedly and call its zero spread the full model uncertainty",
+   "Sample weights from the posterior and plot their mean functions $\\mathbf{w}^T\\boldsymbol\\phi(x)$ at the same inputs, without adding observation noise",
+   "Refit OLS several times on the same data"
+  ],
+  "answer": 2,
+  "explanation": "Variation between sampled mean functions shows weight uncertainty. Observation noise is separate: the blue observations retain their noise.",
+  "tags": [
+   "uncertainty",
+   "sampling"
+  ],
+  "sources": [
+   {
+    "file": "week_8/worksheets/W08-01-Bayesian Regression Exercise.pdf",
+    "page": 2
+   },
+   {
+    "file": "week_8/slides/W08-01-BayesianRegression (1).pdf",
+    "page": 15
+   }
+  ]
+ },
+ {
+  "id": "w8-pst-008",
+  "week": 8,
+  "topic": "weight-posterior",
+  "type": "truefalse",
+  "difficulty": 2,
+  "prompt": "With the prior and $\\beta$ fixed, adding more independent observations can increase the posterior covariance in some direction.",
+  "answer": false,
+  "explanation": "More independent observations add precision: posterior covariance cannot increase in any direction. The contours tighten and tilt.",
+  "tags": [
+   "posterior",
+   "uncertainty"
+  ],
+  "sources": [
+   {
+    "file": "week_8/slides/W08-01-BayesianRegression (1).pdf",
+    "page": 14
+   }
+  ]
+ },
+ {
+  "id": "w8-pst-009",
+  "week": 8,
+  "topic": "weight-posterior",
+  "type": "truefalse",
+  "difficulty": 1,
+  "prompt": "The likelihood $p(\\mathbf{y} \\mid \\Phi, \\mathbf{w}, \\beta)$ is itself a probability distribution over the weights.",
+  "answer": false,
+  "explanation": "It is a density of the targets. Bayesian inference combines it with a prior to obtain a posterior over $\\mathbf{w}$.",
+  "tags": [
+   "likelihood"
+  ],
+  "sources": [
+   {
+    "file": "week_8/slides/W08-01-BayesianRegression (1).pdf",
+    "page": 7
+   }
+  ]
  }
 ]

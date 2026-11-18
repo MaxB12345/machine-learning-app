@@ -1,0 +1,90 @@
+[
+  {
+    "id": "w7-lin-001", "week": 7, "topic": "linear-models-and-bases", "type": "mcq", "difficulty": 1,
+    "prompt": "Which statement about linear regression is **not** true?",
+    "choices": ["It can predict a numerical response using one or more input features", "It can use fixed basis functions that are nonlinear in the original input", "Its predictions are linear in the unknown weights", "Its predictions must be a straight-line function of the original input, even when nonlinear basis functions are used"],
+    "answer": 3,
+    "explanation": "\"Linear\" means linear in the weights. With nonlinear basis functions such as $x^2$ the prediction is a curve in $x$, but the coefficients still enter linearly.",
+    "tags": ["linearity"],
+    "sources": [{"file": "week_7/worksheets/7a-Linear Regression.pdf", "page": 2, "quote": "Its predictions must be a straight-line function of the original input, even when nonlinear basis functions are used."}]
+  },
+  {
+    "id": "w7-lin-002", "week": 7, "topic": "linear-models-and-bases", "type": "truefalse", "difficulty": 1,
+    "prompt": "$\\hat y(x) = w_0 + w_1x + w_2x^2 + w_3x^3$ is a linear regression model.",
+    "answer": true,
+    "explanation": "Nonlinear functions of $x$ are allowed; the coefficients enter linearly. A straight line is just the degree-1 case.",
+    "tags": ["linearity"],
+    "sources": [{"file": "week_7/slide/W07-01-LinearRegression.pdf", "page": 3, "quote": "Nonlinear functions of x are allowed; the coefficients enter linearly."}]
+  },
+  {
+    "id": "w7-lin-003", "week": 7, "topic": "linear-models-and-bases", "type": "mcq", "difficulty": 1,
+    "prompt": "What is the difference between classification and regression?",
+    "choices": ["Classification predicts a discrete class; regression predicts a continuous value", "Classification predicts a continuous value; regression predicts a discrete class", "Classification uses features; regression does not", "Regression always uses a straight line; classification never does"],
+    "answer": 0,
+    "explanation": "Credit approval yes/no is classification; a numerical credit limit is regression.",
+    "tags": ["regression"],
+    "sources": [{"file": "week_7/slide/W07-01-LinearRegression.pdf", "page": 2, "quote": "Predict a discrete class."}, {"file": "week_7/slide/W07-01-LinearRegression.pdf", "page": 13, "quote": "a numerical credit limit is regression"}]
+  },
+  {
+    "id": "w7-lin-004", "week": 7, "topic": "linear-models-and-bases", "type": "flashcard", "difficulty": 1,
+    "prompt": "Write the general basis-function regression model and say what $\\phi_0$ does.",
+    "answer": "$\\hat y(\\mathbf{x}_i, \\mathbf{w}) = \\sum_{j=0}^{M} w_j\\phi_j(\\mathbf{x}_i) = \\mathbf{w}^T\\boldsymbol\\phi(\\mathbf{x}_i)$, with $\\phi_0(\\mathbf{x}_i) = 1$ supplying the intercept.",
+    "explanation": "$\\mathbf{w}$ is the weight vector and $\\boldsymbol\\phi$ the basis-function vector; there are $M + 1$ weights.",
+    "tags": ["basis-functions", "formula"],
+    "sources": [{"file": "week_7/slide/W07-01-LinearRegression.pdf", "page": 8, "quote": "Each ϕj (xi ) is a basis function; ϕ0(xi ) = 1 supplies the intercept."}]
+  },
+  {
+    "id": "w7-lin-005", "week": 7, "topic": "linear-models-and-bases", "type": "numeric", "difficulty": 1,
+    "prompt": "Use $\\boldsymbol\\phi(x) = (1, x, x^2)^T$ and $\\mathbf{w} = (1, -1, \\tfrac12)^T$. What is $\\hat y(2) = \\mathbf{w}^T\\boldsymbol\\phi(2)$?",
+    "answer": 1,
+    "tolerance": 0.0001,
+    "explanation": "$\\boldsymbol\\phi(2) = (1, 2, 4)^T$, so $\\hat y = 1 - 2 + \\tfrac12 \\cdot 4 = 1$. Three coefficients are fitted; the intercept is $w_0 = 1$.",
+    "tags": ["basis-functions", "calculation"],
+    "sources": [{"file": "week_7/worksheets/7a-Linear Regression.pdf", "page": 3, "quote": "Use ϕ(x) = (1,x,x2)T and w = (1,−1, 1/2)T ."}]
+  },
+  {
+    "id": "w7-lin-006", "week": 7, "topic": "linear-models-and-bases", "type": "multi", "difficulty": 2,
+    "prompt": "Which are basis functions listed in the lecture? Select all that apply.",
+    "choices": ["Polynomial $\\phi_j(x) = x^j$", "Gaussian $\\phi_j(x) = \\exp\\left(-\\frac{(x - \\mu_j)^2}{2\\sigma^2}\\right)$", "Sigmoidal $\\phi_j(x) = \\frac{1}{1 + \\exp[-(x - \\mu_j)/\\sigma]}$", "Hyperbolic tangent $\\phi_j(x) = \\tanh\\left(\\frac{x - \\mu_j}{\\sigma}\\right)$"],
+    "answer": [0, 1, 2, 3],
+    "explanation": "All four appear on the slide. Nonlinear bases use $j = 1, \\dots, M$ with $\\phi_0 = 1$; the centres $\\mu_j$ and width $\\sigma$ are fixed.",
+    "tags": ["basis-functions"],
+    "sources": [{"file": "week_7/slide/W07-01-LinearRegression.pdf", "page": 25, "quote": "Centres µj and width σ > 0 are fixed."}]
+  },
+  {
+    "id": "w7-lin-007", "week": 7, "topic": "linear-models-and-bases", "type": "mcq", "difficulty": 2,
+    "prompt": "In a Gaussian RBF regression model, what does fitting change?",
+    "choices": ["The centres $\\mu_j$ and the weights", "The width $\\sigma$ only", "Only the weights $\\mathbf{w}$; the centres $\\mu_j$ and width $\\sigma$ are fixed beforehand", "The basis functions themselves, chosen by gradient descent"],
+    "answer": 2,
+    "explanation": "The basis functions are fixed; fitting changes $\\mathbf{w}$. That is why the model stays linear in its weights even though it is nonlinear in $x$.",
+    "tags": ["basis-functions"],
+    "sources": [{"file": "week_7/slide/W07-01-LinearRegression.pdf", "page": 24, "quote": "The basis functions are fixed; fitting changes w."}, {"file": "week_7/worksheets/7a-Linear Regression.pdf", "page": 4, "quote": "The centres µj and width σ > 0 are fixed before fitting the weights."}]
+  },
+  {
+    "id": "w7-lin-008", "week": 7, "topic": "linear-models-and-bases", "type": "numeric", "difficulty": 2,
+    "prompt": "$\\phi_j(x) = \\exp[-(x - \\mu_j)^2/(2\\sigma^2)]$ with $\\mu_1 = -1$, $\\mu_2 = 1$, $\\sigma = 1$, $\\boldsymbol\\phi = (1, \\phi_1, \\phi_2)^T$ and $\\mathbf{w} = (1, 2, -1)^T$. Predict at $x = 0$ (use $e^{-1/2} \\approx 0.6065$).",
+    "answer": 1.6065,
+    "tolerance": 0.001,
+    "explanation": "At $x = 0$: $\\phi_1 = \\phi_2 = e^{-1/2} = 0.6065$, so $\\hat y = 1 + 2(0.6065) - 0.6065 = 1.6065$.",
+    "tags": ["basis-functions", "calculation"],
+    "sources": [{"file": "week_7/worksheets/7a-Linear Regression.pdf", "page": 4, "quote": "with µ1 =−1, µ2 = 1, σ = 1 and ϕ = (1,ϕ1,ϕ2)T"}]
+  },
+  {
+    "id": "w7-lin-009", "week": 7, "topic": "linear-models-and-bases", "type": "numeric", "difficulty": 2,
+    "prompt": "Same Gaussian model ($\\mu_1 = -1$, $\\mu_2 = 1$, $\\sigma = 1$, $\\mathbf{w} = (1, 2, -1)^T$). Predict at $x = 1$ (use $e^{-2} \\approx 0.1353$).",
+    "answer": 0.2706,
+    "tolerance": 0.001,
+    "explanation": "At $x = 1$: $\\phi_1 = e^{-4/2} = 0.1353$ and $\\phi_2 = e^0 = 1$, so $\\hat y = 1 + 2(0.1353) - 1 = 0.2706$.",
+    "tags": ["basis-functions", "calculation"],
+    "sources": [{"file": "week_7/worksheets/7a-Linear Regression.pdf", "page": 4, "quote": "You may use e−1/2 ≃ 0.6065 and e−2 ≃ 0.1353."}]
+  },
+  {
+    "id": "w7-lin-010", "week": 7, "topic": "linear-models-and-bases", "type": "mcq", "difficulty": 1,
+    "prompt": "In the learning-from-data picture, what does OLS play the role of?",
+    "choices": ["The hypothesis set $\\mathcal{H}$", "The learning algorithm $\\mathcal{A}$, which uses the data to select weights for fixed features", "The unknown target function $f$", "The noise $\\epsilon_i$"],
+    "answer": 1,
+    "explanation": "$\\mathcal{H}$ holds rules $h_\\mathbf{w}(x) = \\mathbf{w}^T\\boldsymbol\\phi(x)$; the algorithm picks one, giving the learned hypothesis $g = h_{\\hat{\\mathbf{w}}}$.",
+    "tags": ["learning-from-data"],
+    "sources": [{"file": "week_7/slide/W07-01-LinearRegression.pdf", "page": 12, "quote": "Use the data to select a rule. OLS chooses"}]
+  }
+]

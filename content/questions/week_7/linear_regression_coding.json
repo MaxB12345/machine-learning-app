@@ -1,0 +1,42 @@
+[
+  {
+    "id": "w7-lrc-001", "week": 7, "topic": "linear-regression-coding", "type": "code", "difficulty": 1,
+    "prompt": "What is printed?",
+    "code": "trace, costs = quadratic_path([8, 3], 0.1, start=(1, 1), steps=1)\nprint(trace[1])",
+    "choices": ["[0.2 0.7]", "[-0.6  0.4]", "[-1.24  0.16]", "[0.6 0.4]"],
+    "answer": 1,
+    "explanation": "Each step is `w - eta * (2 * curvatures * w)`: $1 - 0.1 \\cdot 16 = -0.6$ and $1 - 0.1 \\cdot 6 = 0.4$.",
+    "tags": ["gradient-descent"],
+    "sources": [{"file": "week_7/code/W07-01-LinearRegression.ipynb", "page": 23, "quote": "trace[t + 1] = trace[t] - eta * (2 * curvatures * trace[t])"}]
+  },
+  {
+    "id": "w7-lrc-002", "week": 7, "topic": "linear-regression-coding", "type": "code", "difficulty": 2,
+    "prompt": "What is printed?",
+    "code": "Phi = basis_matrix(np.array([0.0, 1.0]), \"Gaussian\")\nprint(Phi.shape)",
+    "choices": ["(2, 6)", "(7, 2)", "(2, 7)", "(2, 1)"],
+    "answer": 2,
+    "explanation": "Six fixed centres give six Gaussian columns, and `basis_matrix` prepends a column of ones for the intercept: 7 columns, one row per input.",
+    "tags": ["basis-functions", "design-matrix"],
+    "sources": [{"file": "week_7/code/W07-01-LinearRegression.ipynb", "page": 30, "quote": "return np.column_stack((np.ones(x.size), features))"}]
+  },
+  {
+    "id": "w7-lrc-003", "week": 7, "topic": "linear-regression-coding", "type": "code", "difficulty": 2,
+    "prompt": "Why does the notebook use this call rather than `np.linalg.inv(Phi.T @ Phi) @ Phi.T @ y`?",
+    "code": "w, _, rank, _ = np.linalg.lstsq(Phi, y, rcond=None)",
+    "choices": ["`lstsq` is the only function that returns the rank", "Inverting $\\Phi^T\\Phi$ can be inaccurate and fails for deficient rank; `lstsq` decomposes $\\Phi$ itself and handles deficient rank", "`lstsq` uses gradient descent, which is always more accurate", "The inverse formula gives a different minimiser"],
+    "answer": 1,
+    "explanation": "For full column rank, $\\kappa_2(\\Phi^T\\Phi) = \\kappa_2(\\Phi)^2$. `lstsq` returns the minimum-norm solution $\\Phi^\\dagger\\mathbf{y}$.",
+    "tags": ["numerics"],
+    "sources": [{"file": "week_7/code/W07-01-LinearRegression.ipynb", "page": 11, "quote": "solves least squares using a decomposition of the original matrix and also handles deficient rank."}]
+  },
+  {
+    "id": "w7-lrc-004", "week": 7, "topic": "linear-regression-coding", "type": "code", "difficulty": 2,
+    "prompt": "After an OLS fit with an intercept column, what does this check confirm?",
+    "code": "np.testing.assert_allclose(Phi.T @ (y - Phi @ w), 0, atol=1e-10)",
+    "choices": ["The residual vector is orthogonal to every column of $\\Phi$, so the residuals sum to zero", "Every residual is zero", "$\\Phi$ has full column rank", "The cost $R$ is zero"],
+    "answer": 0,
+    "explanation": "At the optimum $\\Phi^T\\mathbf{r} = \\mathbf{0}$; orthogonality to the intercept column gives $\\sum_i r_i = 0$. The points need not lie on the fit.",
+    "tags": ["normal-equation"],
+    "sources": [{"file": "week_7/code/W07-01-LinearRegression.ipynb", "page": 12, "quote": "The residual vector is orthogonal to every column of"}]
+  }
+]

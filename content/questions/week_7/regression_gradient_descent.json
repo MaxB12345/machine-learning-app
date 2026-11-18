@@ -1,0 +1,81 @@
+[
+  {
+    "id": "w7-gdr-001", "week": 7, "topic": "regression-gradient-descent", "type": "flashcard", "difficulty": 1,
+    "prompt": "Write the gradient-descent update for $R(\\mathbf{w}) = \\|\\Phi\\mathbf{w} - \\mathbf{y}\\|^2$.",
+    "answer": "$\\mathbf{w}^{(t+1)} = \\mathbf{w}^{(t)} - 2\\eta\\Phi^T(\\Phi\\mathbf{w}^{(t)} - \\mathbf{y})$, using $\\nabla R = 2\\Phi^T(\\Phi\\mathbf{w} - \\mathbf{y})$.",
+    "explanation": "Setting the gradient to zero gives the same normal equation as OLS, so with a suitable step gradient descent reaches the OLS fit.",
+    "tags": ["update-rule", "formula"],
+    "sources": [{"file": "week_7/slide/W07-01-LinearRegression.pdf", "page": 21, "quote": "Setting the gradient to zero gives the same normal equation as OLS."}]
+  },
+  {
+    "id": "w7-gdr-002", "week": 7, "topic": "regression-gradient-descent", "type": "multi", "difficulty": 2,
+    "prompt": "Exact gradient descent $\\mathbf{w}_{t+1} = \\mathbf{w}_t - \\eta\\nabla F(\\mathbf{w}_t)$ on a smooth $F$. Select all true statements.",
+    "choices": ["Making $\\eta$ very small can only speed convergence", "A very small $\\eta$ can make convergence slow", "An increase in $F$ can indicate that $\\eta$ is too large for the current region", "Every iteration decreases $F$, however large $\\eta$ is"],
+    "answer": [1, 2],
+    "explanation": "Tiny steps make little progress. A step that is too large can overshoot, so $F$ can increase.",
+    "tags": ["step-size"],
+    "sources": [{"file": "week_7/worksheets/7a-Linear Regression.pdf", "page": 3, "quote": "C. An increase in F can indicate that η is too large for the current region."}]
+  },
+  {
+    "id": "w7-gdr-003", "week": 7, "topic": "regression-gradient-descent", "type": "numeric", "difficulty": 1,
+    "prompt": "Constant predictor $\\hat y = w$ for responses 1 and 3: $R(w) = (1 - w)^2 + (3 - w)^2$. What weight minimises $R$?",
+    "answer": 2,
+    "tolerance": 0.0001,
+    "explanation": "$R'(w) = -2(1 - w) - 2(3 - w) = 4w - 8 = 0$, so $w = 2$, the mean of the responses.",
+    "tags": ["calculation"],
+    "sources": [{"file": "week_7/worksheets/7a-Linear Regression.pdf", "page": 3, "quote": "A constant predictor ˆy =w is fitted to responses 1 and 3, using"}]
+  },
+  {
+    "id": "w7-gdr-004", "week": 7, "topic": "regression-gradient-descent", "type": "numeric", "difficulty": 2,
+    "prompt": "Same $R(w) = (1 - w)^2 + (3 - w)^2$. Start at $w_0 = 0$ with $\\eta = 0.1$. What is $w_2$?",
+    "answer": 1.28,
+    "tolerance": 0.001,
+    "explanation": "$R'(w) = 4w - 8$. $w_1 = 0 - 0.1(-8) = 0.8$; $w_2 = 0.8 - 0.1(3.2 - 8) = 1.28$. The cost falls $10 \\to 4.88 \\to 3.0368$, heading for $w = 2$.",
+    "tags": ["update-rule", "calculation"],
+    "sources": [{"file": "week_7/worksheets/7a-Linear Regression.pdf", "page": 3, "quote": "Starting at w0 = 0, compute w1,w2 with η = 0.1."}]
+  },
+  {
+    "id": "w7-gdr-005", "week": 7, "topic": "regression-gradient-descent", "type": "mcq", "difficulty": 2,
+    "prompt": "Gradient descent on $\\widetilde F(u, v) = 8u^2 + 3v^2$ with $\\eta = 0.1$. What does each update do to $u$ and $v$?",
+    "choices": ["$u_{t+1} = -0.6u_t$, $v_{t+1} = 0.4v_t$: both shrink to zero", "$u_{t+1} = 0.6u_t$, $v_{t+1} = 0.4v_t$", "$u_{t+1} = -1.24u_t$, $v_{t+1} = 0.16v_t$: $u$ diverges", "$u_{t+1} = 0.2u_t$, $v_{t+1} = 0.7v_t$"],
+    "answer": 0,
+    "explanation": "The gradient is $(16u, 6v)$, so $u \\leftarrow (1 - 16\\eta)u = -0.6u$ and $v \\leftarrow (1 - 6\\eta)v = 0.4v$.",
+    "tags": ["step-size", "calculation"],
+    "sources": [{"file": "week_7/slide/W07-01-LinearRegression.pdf", "page": 19, "quote": "ut+1 = −0.6ut , vt+1 = 0.4vt ."}]
+  },
+  {
+    "id": "w7-gdr-006", "week": 7, "topic": "regression-gradient-descent", "type": "numeric", "difficulty": 2,
+    "prompt": "For $\\widetilde F(u, v) = 8u^2 + 3v^2$ the Hessian eigenvalues are 16 and 6. What is the largest step size for which gradient descent is stable?",
+    "answer": 0.125,
+    "tolerance": 0.0001,
+    "explanation": "Stability requires $0 < \\eta < 2/\\lambda_{\\max} = 2/16 = 0.125$. At $\\eta = 0.14$ the $u$ factor is $1 - 16(0.14) = -1.24$, so the cost diverges.",
+    "tags": ["step-size", "stability"],
+    "sources": [{"file": "week_7/slide/W07-01-LinearRegression.pdf", "page": 19, "quote": "16 and 6, so stability requires"}, {"file": "week_7/slide/W07-01-LinearRegression.pdf", "page": 20, "quote": "This step exceeds the stability"}]
+  },
+  {
+    "id": "w7-gdr-007", "week": 7, "topic": "regression-gradient-descent", "type": "mcq", "difficulty": 3,
+    "prompt": "Gradient descent on $F(\\mathbf{w}) = w_0^2 + 3w_1^2$ from $(1, 1)^T$. For which step sizes do both coordinates converge?",
+    "choices": ["$0 < \\eta < 1$", "$0 < \\eta < \\tfrac13$", "$0 < \\eta < \\tfrac23$", "$0 < \\eta < \\tfrac16$"],
+    "answer": 1,
+    "explanation": "$w_0 \\leftarrow (1 - 2\\eta)w_0$ needs $0 < \\eta < 1$; $w_1 \\leftarrow (1 - 6\\eta)w_1$ needs $0 < \\eta < \\tfrac13$. At $\\eta = \\tfrac13$ the second factor is $-1$, so $w_1$ flips between $\\pm1$ and never converges.",
+    "tags": ["step-size", "stability"],
+    "sources": [{"file": "week_7/worksheets/7a-Linear Regression.pdf", "page": 6, "quote": "Use this fact to find the step-size interval for convergence of both coordinates."}]
+  },
+  {
+    "id": "w7-gdr-008", "week": 7, "topic": "regression-gradient-descent", "type": "truefalse", "difficulty": 1,
+    "prompt": "With a suitable step size and a convergence check, gradient descent reaches the same fit as OLS.",
+    "answer": true,
+    "explanation": "Both optimise the same objective; the notebook's six-point example shows the two fitted lines coincide.",
+    "tags": ["ols"],
+    "sources": [{"file": "week_7/slide/W07-01-LinearRegression.pdf", "page": 22, "quote": "With a suitable step and a convergence check, gradient descent reaches the OLS fit."}]
+  },
+  {
+    "id": "w7-gdr-009", "week": 7, "topic": "regression-gradient-descent", "type": "numeric", "difficulty": 3,
+    "prompt": "$J(x) = 2x^2 + x - \\log x$ for $x > 0$. Where is its minimum? (3 d.p.)",
+    "answer": 0.3904,
+    "tolerance": 0.001,
+    "explanation": "$J'(x) = 4x + 1 - \\frac1x = 0$ gives $4x^2 + x - 1 = 0$, whose positive root is $x^\\star = \\frac{\\sqrt{17} - 1}{8} \\approx 0.3904$.",
+    "tags": ["calculus"],
+    "sources": [{"file": "week_7/slide/W07-01-LinearRegression.pdf", "page": 17, "quote": "Consider J(x ) = 2x 2 + x − log x , with x > 0."}]
+  }
+]

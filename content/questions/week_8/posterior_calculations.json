@@ -1,0 +1,83 @@
+[
+  {
+    "id": "w8-pcl-001", "week": 8, "topic": "posterior-calculations", "type": "numeric", "difficulty": 1,
+    "prompt": "Constant mean $\\hat y = w$, responses 1 and 3, $\\Phi = (1, 1)^T$, $\\alpha = 2$, $\\beta = 1$. What is the posterior variance $S_N$?",
+    "answer": 0.25,
+    "tolerance": 0.0001,
+    "explanation": "$S_N = (\\alpha + \\beta\\Phi^T\\Phi)^{-1} = (2 + 2)^{-1} = 0.25$, down from the prior variance $1/\\alpha = 0.5$.",
+    "tags": ["posterior-covariance", "calculation"],
+    "sources": [{"file": "week_8/worksheets/W08-01-Bayesian Regression Exercise.pdf", "page": 3, "quote": "Fit a constant mean ˆy =w to responses 1, 3, with Φ = (1, 1)T , α = 2 and β = 1."}]
+  },
+  {
+    "id": "w8-pcl-002", "week": 8, "topic": "posterior-calculations", "type": "numeric", "difficulty": 1,
+    "prompt": "Same setup (responses 1 and 3, $\\alpha = 2$, $\\beta = 1$, $S_N = 0.25$). What is the posterior mean $m_N$?",
+    "answer": 1,
+    "tolerance": 0.0001,
+    "explanation": "$m_N = \\beta S_N\\Phi^T\\mathbf{y} = 1 \\cdot 0.25 \\cdot 4 = 1$: between the prior mean 0 and the OLS constant 2.",
+    "tags": ["posterior-mean", "calculation"],
+    "sources": [{"file": "week_8/worksheets/W08-01-Bayesian Regression Exercise.pdf", "page": 3, "quote": "Calculate the posterior mean and variance. Compare its mean with the OLS constant and"}]
+  },
+  {
+    "id": "w8-pcl-003", "week": 8, "topic": "posterior-calculations", "type": "numeric", "difficulty": 2,
+    "prompt": "$\\hat y = w_0 + w_1x$, $\\alpha = 1$, $\\beta = 4$. Observe only $(0, 2)$. What is the posterior mean of $w_0$?",
+    "answer": 1.6,
+    "tolerance": 0.001,
+    "explanation": "$\\Phi = (1, 0)$, so $S_1^{-1} = I + 4\\,\\mathrm{diag}(1, 0) = \\mathrm{diag}(5, 1)$ and $S_1 = \\mathrm{diag}(0.2, 1)$. $\\mathbf{m}_1 = 4S_1(2, 0)^T = (1.6, 0)^T$.",
+    "tags": ["posterior-mean", "calculation"],
+    "sources": [{"file": "week_8/worksheets/W08-01-Bayesian Regression Exercise.pdf", "page": 4, "quote": "Use ˆy = w0 +w1x, α = 1 and β = 4. First observe only (x1,y1) = (0, 2)."}]
+  },
+  {
+    "id": "w8-pcl-004", "week": 8, "topic": "posterior-calculations", "type": "mcq", "difficulty": 2,
+    "prompt": "Continuing: after observing only $(0, 2)$, $S_1 = \\mathrm{diag}(0.2, 1)$. Why is the slope's variance still 1?",
+    "choices": ["Because $\\beta$ is too small", "Because the prior variance was already minimal", "At $x = 0$ the prediction is $w_0$, so the observation carries no information about $w_1$; with an independent prior it stays at its prior variance", "Because the posterior is not Gaussian"],
+    "answer": 2,
+    "explanation": "The design row $(1, 0)$ has a zero in the slope column, so $\\beta\\Phi^T\\Phi$ only adds precision to $w_0$.",
+    "tags": ["posterior-covariance", "identifiability"],
+    "sources": [{"file": "week_8/worksheets/W08-01-Bayesian Regression Exercise.pdf", "page": 4, "quote": "Explain why this observation does not reduce the uncertainty of the slope w1 under"}]
+  },
+  {
+    "id": "w8-pcl-005", "week": 8, "topic": "posterior-calculations", "type": "numeric", "difficulty": 3,
+    "prompt": "Now add $(1, 3)$ to $(0, 2)$, with $\\alpha = 1$, $\\beta = 4$. What is the posterior mean of the slope $w_1$? (3 d.p.)",
+    "answer": 0.9655,
+    "tolerance": 0.001,
+    "explanation": "$\\Phi^T\\Phi = \\begin{pmatrix}2 & 1\\\\ 1 & 1\\end{pmatrix}$, so $S_2^{-1} = I + 4\\Phi^T\\Phi = \\begin{pmatrix}9 & 4\\\\ 4 & 5\\end{pmatrix}$ and $S_2 = \\frac{1}{29}\\begin{pmatrix}5 & -4\\\\ -4 & 9\\end{pmatrix}$. $\\Phi^T\\mathbf{y} = (5, 3)^T$, so $\\mathbf{m}_2 = \\frac{4}{29}(13, 7)^T \\approx (1.793, 0.966)^T$. The second input differs from the first, so the slope is now identified.",
+    "tags": ["posterior-mean", "calculation"],
+    "sources": [{"file": "week_8/worksheets/W08-01-Bayesian Regression Exercise.pdf", "page": 4, "quote": "Now add (x2,y2) = (1, 3). Using both rows of the design, calculate m2 and S2."}]
+  },
+  {
+    "id": "w8-pcl-006", "week": 8, "topic": "posterior-calculations", "type": "numeric", "difficulty": 2,
+    "prompt": "One observation $(1, 2)$ for $\\hat y = w_0 + w_1x$, $\\alpha = \\beta = 1$. What is the posterior mean (and MAP) value of $w_0$? (3 d.p.)",
+    "answer": 0.6667,
+    "tolerance": 0.001,
+    "explanation": "$S_1^{-1} = I + \\begin{pmatrix}1 & 1\\\\ 1 & 1\\end{pmatrix} = \\begin{pmatrix}2 & 1\\\\ 1 & 2\\end{pmatrix}$, $S_1 = \\frac13\\begin{pmatrix}2 & -1\\\\ -1 & 2\\end{pmatrix}$, $\\mathbf{m}_1 = S_1(2, 2)^T = (\\tfrac23, \\tfrac23)^T$.",
+    "tags": ["posterior-mean", "map", "calculation"],
+    "sources": [{"file": "week_8/worksheets/W08-01-Bayesian Regression Exercise.pdf", "page": 5, "quote": "One observation is (x,y) = (1, 2) for ˆy =w0 +w1x. Set α =β = 1."}]
+  },
+  {
+    "id": "w8-pcl-007", "week": 8, "topic": "posterior-calculations", "type": "mcq", "difficulty": 3,
+    "prompt": "Continuing ($\\alpha = \\beta = 1$, observation $(1, 2)$): compare $R + \\|\\mathbf{w}\\|^2$ at the MAP weights $(\\tfrac23, \\tfrac23)^T$ and at the exact fit $(1, 1)^T$.",
+    "choices": ["MAP: $\\tfrac43$; exact fit: $2$. MAP leaves a residual of $\\tfrac23$ but has a lower objective", "Both equal $2$", "MAP: $2$; exact fit: $\\tfrac43$", "The exact fit has zero objective"],
+    "answer": 0,
+    "explanation": "MAP: residual $2 - \\tfrac43 = \\tfrac23$, so $R = \\tfrac49$ and $\\|\\mathbf{w}\\|^2 = \\tfrac89$, total $\\tfrac43$. Exact fit: $R = 0$, $\\|\\mathbf{w}\\|^2 = 2$. Leaving a residual is consistent with maximising the posterior.",
+    "tags": ["map", "calculation"],
+    "sources": [{"file": "week_8/worksheets/W08-01-Bayesian Regression Exercise.pdf", "page": 5, "quote": "Explain why leaving a residual can be consistent with maximising the posterior."}]
+  },
+  {
+    "id": "w8-pcl-008", "week": 8, "topic": "posterior-calculations", "type": "multi", "difficulty": 3,
+    "prompt": "Constant mean, responses $2, 2$, $\\beta = 1$; compare zero-mean priors $\\alpha = 1$ and $\\alpha = 4$. The true mean target is $2$. Select all true statements.",
+    "choices": ["$\\alpha = 1$ gives $m_N = \\tfrac43$, $S_N = \\tfrac13$", "$\\alpha = 4$ gives $m_N = \\tfrac23$, $S_N = \\tfrac16$", "The narrower posterior ($\\alpha = 4$) has the more accurate mean", "A narrower weight posterior does not by itself guarantee a more accurate mean prediction"],
+    "answer": [0, 1, 3],
+    "explanation": "$S_N = (\\alpha + 2)^{-1}$, $m_N = 4S_N$. The $\\alpha = 4$ posterior is narrower but its mean $\\tfrac23$ is further from $2$ than $\\tfrac43$: confidence is not accuracy.",
+    "tags": ["posterior", "prior-strength"],
+    "sources": [{"file": "week_8/worksheets/W08-01-Bayesian Regression Exercise.pdf", "page": 5, "quote": "Explain why a narrower weight posterior does not by itself guarantee a more accurate"}]
+  },
+  {
+    "id": "w8-pcl-009", "week": 8, "topic": "posterior-calculations", "type": "numeric", "difficulty": 2,
+    "prompt": "Three posterior weight draws for $\\hat y = w_0 + w_1x$: $(0, 1)^T$, $(1, 0)^T$, $(0, -1)^T$. What is the average of their mean functions at $x = 1$? (3 d.p.)",
+    "answer": 0.3333,
+    "tolerance": 0.001,
+    "explanation": "At $x = 1$ the functions give $1, 1, -1$; the average is $\\tfrac13$ (it is also $\\tfrac13$ at $x = -1$ and $x = 0$). A finite-sample average need not equal the exact posterior mean function.",
+    "tags": ["sampling", "calculation"],
+    "sources": [{"file": "week_8/worksheets/W08-01-Bayesian Regression Exercise.pdf", "page": 3, "quote": "Three posterior weight draws for ˆy =w0 +w1x are (0, 1)T , (1, 0)T and (0,−1)T ."}]
+  }
+]
