@@ -1,0 +1,62 @@
+[
+  {
+    "id": "w7-gml-001", "week": 7, "topic": "gaussian-mle", "type": "flashcard", "difficulty": 1,
+    "prompt": "Write the univariate Gaussian density and its mean and variance.",
+    "answer": "$\\mathcal{N}(x \\mid \\mu, \\sigma^2) = \\frac{1}{\\sqrt{2\\pi\\sigma^2}}\\exp\\left[-\\frac{(x - \\mu)^2}{2\\sigma^2}\\right]$, with $E[x] = \\mu$ and $\\mathrm{Var}(x) = \\sigma^2$.",
+    "explanation": "$\\sigma$ is the standard deviation and $\\sigma^2$ the variance.",
+    "tags": ["gaussian", "formula"],
+    "sources": [{"file": "week_7/slide/W07-02-BayesianInference (1).pdf", "page": 8, "quote": "µ is the mean, σ the standard deviation, and σ2 the"}]
+  },
+  {
+    "id": "w7-gml-002", "week": 7, "topic": "gaussian-mle", "type": "mcq", "difficulty": 1,
+    "prompt": "For a $D$-dimensional Gaussian $\\mathcal{N}(\\mathbf{x} \\mid \\boldsymbol\\mu, \\Sigma)$, which statement is **not** true?",
+    "choices": ["$\\boldsymbol\\mu \\in \\mathbb{R}^D$ is the mean vector", "$\\Sigma$ is $D \\times D$; its off-diagonal entries are covariances between different coordinates", "$\\Sigma$ is positive definite for this density", "The diagonal entries of $\\Sigma$ are covariances between different coordinates, rather than variances"],
+    "answer": 3,
+    "explanation": "The diagonal of $\\Sigma$ holds the variances; the off-diagonal entries hold covariances.",
+    "tags": ["gaussian", "covariance"],
+    "sources": [{"file": "week_7/worksheets/W07-02-Bayesian inference Exercise.pdf", "page": 2, "quote": "The diagonal entries of Σ are covariances between different coordinates, rather than"}]
+  },
+  {
+    "id": "w7-gml-003", "week": 7, "topic": "gaussian-mle", "type": "truefalse", "difficulty": 1,
+    "prompt": "Maximising $\\log p(X \\mid \\boldsymbol\\mu, \\Sigma)$ gives the same parameters as maximising $p(X \\mid \\boldsymbol\\mu, \\Sigma)$.",
+    "answer": true,
+    "explanation": "The logarithm is strictly increasing, so it preserves the maximiser, and it turns the product over observations into a sum.",
+    "tags": ["log-likelihood"],
+    "sources": [{"file": "week_7/slide/W07-02-BayesianInference (1).pdf", "page": 12, "quote": "The logarithm is strictly increasing, so it preserves the maximiser:"}]
+  },
+  {
+    "id": "w7-gml-004", "week": 7, "topic": "gaussian-mle", "type": "flashcard", "difficulty": 2,
+    "prompt": "What are the Gaussian MLEs of the mean and covariance from $N$ i.i.d. vectors $\\mathbf{x}_i$?",
+    "answer": "$\\hat{\\boldsymbol\\mu} = \\frac1N\\sum_{i=1}^N \\mathbf{x}_i$ (the sample mean) and $\\hat\\Sigma_{ML} = \\frac1N\\sum_{i=1}^N(\\mathbf{x}_i - \\hat{\\boldsymbol\\mu})(\\mathbf{x}_i - \\hat{\\boldsymbol\\mu})^T$.",
+    "explanation": "The MLE uses $1/N$; the unbiased covariance estimator uses $1/(N - 1)$.",
+    "tags": ["gaussian-mle", "formula"],
+    "sources": [{"file": "week_7/slide/W07-02-BayesianInference (1).pdf", "page": 13, "quote": "The fitted mean is the sample mean"}, {"file": "week_7/slide/W07-02-BayesianInference (1).pdf", "page": 14, "quote": "MLE gives the factor 1/N. The unbiased covariance estimator uses 1/(N − 1) instead."}]
+  },
+  {
+    "id": "w7-gml-005", "week": 7, "topic": "gaussian-mle", "type": "mcq", "difficulty": 2,
+    "prompt": "Why is $\\hat{\\boldsymbol\\mu} = \\frac1N\\sum_i \\mathbf{x}_i$ a maximum, not a minimum, of the log-likelihood in $\\boldsymbol\\mu$?",
+    "choices": ["Because the sample mean is always positive", "The Hessian is $-N\\Sigma^{-1}$, which is negative definite", "Because the first term of $\\ell$ is constant", "Because $\\Sigma$ is held fixed"],
+    "answer": 1,
+    "explanation": "$\\nabla_{\\boldsymbol\\mu}\\ell = \\Sigma^{-1}\\sum_i(\\mathbf{x}_i - \\boldsymbol\\mu)$; differentiating again gives $-N\\Sigma^{-1}$, negative definite since $\\Sigma$ is positive definite.",
+    "tags": ["gaussian-mle"],
+    "sources": [{"file": "week_7/slide/W07-02-BayesianInference (1).pdf", "page": 13, "quote": "The Hessian is −NΣ−1, negative definite: this is a maximum in the mean."}]
+  },
+  {
+    "id": "w7-gml-006", "week": 7, "topic": "gaussian-mle", "type": "numeric", "difficulty": 1,
+    "prompt": "$y = w_0 + w_1x + \\epsilon$ with $\\epsilon \\sim \\mathcal{N}(0, \\beta^{-1})$, $\\mathbf{w} = (1, \\tfrac12)^T$ and $\\beta = 4$. What is the conditional mean of $y$ at $x = 2$?",
+    "answer": 2,
+    "tolerance": 0.0001,
+    "explanation": "$E[y \\mid x = 2] = 1 + \\tfrac12 \\cdot 2 = 2$.",
+    "tags": ["noise-precision", "calculation"],
+    "sources": [{"file": "week_7/worksheets/W07-02-Bayesian inference Exercise.pdf", "page": 3, "quote": "Suppose y =w0 +w1x +ϵ, where ϵ∼N (0,β−1), w = (1, 1/2)T and β = 4."}]
+  },
+  {
+    "id": "w7-gml-007", "week": 7, "topic": "gaussian-mle", "type": "numeric", "difficulty": 1,
+    "prompt": "Same model with noise precision $\\beta = 4$. What is the observation-noise standard deviation?",
+    "answer": 0.5,
+    "tolerance": 0.0001,
+    "explanation": "Variance $= \\beta^{-1} = 1/4$, so the standard deviation is $1/2$. Raising $\\beta$ with the weights fixed makes the conditional density narrower.",
+    "tags": ["noise-precision", "calculation"],
+    "sources": [{"file": "week_7/worksheets/W07-02-Bayesian inference Exercise.pdf", "page": 3, "quote": "Give the observation-noise variance and standard deviation."}]
+  }
+]

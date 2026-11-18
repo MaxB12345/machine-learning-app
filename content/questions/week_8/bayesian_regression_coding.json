@@ -1,0 +1,32 @@
+[
+  {
+    "id": "w8-brc-001", "week": 8, "topic": "bayesian-regression-coding", "type": "code", "difficulty": 2,
+    "prompt": "With `alpha = 10.0` and `beta = 1.0`, what does this assertion check?",
+    "code": "ridge_lambda = alpha / beta\nw_map = np.linalg.solve(Phi_10.T @ Phi_10 + ridge_lambda * np.eye(2), Phi_10.T @ poly_y)\nnp.testing.assert_allclose(w_map, m_10, atol=1e-12)",
+    "choices": ["That ridge regression with $\\lambda = 10$ gives the posterior mean $\\mathbf{m}_N$, so MAP equals the posterior mean here", "That MAP equals OLS", "That the posterior covariance is $10I$", "That $\\lambda$ must equal $\\beta/\\alpha$"],
+    "answer": 0,
+    "explanation": "$(\\Phi^T\\Phi + \\lambda I)^{-1}\\Phi^T\\mathbf{y}$ with $\\lambda = \\alpha/\\beta$ equals $\\beta S_N\\Phi^T\\mathbf{y}$. For a Gaussian posterior the mode is the mean.",
+    "tags": ["ridge", "map"],
+    "sources": [{"file": "week_8/code/W08-01-BayesianRegression.ipynb", "page": 18, "quote": "np.testing.assert_allclose(w_map,m_10,atol=1e-12)"}]
+  },
+  {
+    "id": "w8-brc-002", "week": 8, "topic": "bayesian-regression-coding", "type": "code", "difficulty": 2,
+    "prompt": "What is `posterior_precision` for the zero-mean prior $\\alpha^{-1}I$?",
+    "code": "identity = np.eye(design.shape[1])\nprior_precision = np.linalg.solve(prior_covariance, identity)\nposterior_precision = prior_precision + beta * (design.T @ design)\nposterior_covariance = np.linalg.solve(posterior_precision, identity)",
+    "choices": ["$\\alpha^{-1}I + \\beta\\Phi^T\\Phi$", "$\\beta\\Phi^T\\Phi$", "$\\alpha I + \\beta\\Phi^T\\Phi$, the inverse of $S_N$", "$(\\alpha I + \\beta\\Phi^T\\Phi)^{-1}$"],
+    "answer": 2,
+    "explanation": "The prior precision is the inverse of $\\alpha^{-1}I$, i.e. $\\alpha I$. The code then solves for $S_N$ rather than forming an explicit inverse.",
+    "tags": ["posterior-covariance"],
+    "sources": [{"file": "week_8/code/W08-01-BayesianRegression.ipynb", "page": 10, "quote": "posterior_precision = prior_precision + beta * (design.T @ design)"}]
+  },
+  {
+    "id": "w8-brc-003", "week": 8, "topic": "bayesian-regression-coding", "type": "code", "difficulty": 1,
+    "prompt": "What does `gaussian_weight_posterior` do when called with `beta=0`?",
+    "code": "m, S = gaussian_weight_posterior(Phi, y, np.zeros(2), np.eye(2) / 10, beta=0)",
+    "choices": ["Returns the prior unchanged", "Raises `ValueError`: precision beta must be positive", "Returns the OLS solution", "Divides by zero and returns `inf`"],
+    "answer": 1,
+    "explanation": "The helper checks `if beta <= 0` first: the noise precision must be positive.",
+    "tags": ["posterior"],
+    "sources": [{"file": "week_8/code/W08-01-BayesianRegression.ipynb", "page": 10, "quote": "raise ValueError(\"Precision beta must be positive.\")"}]
+  }
+]

@@ -1,0 +1,71 @@
+[
+  {
+    "id": "w7-bay-001", "week": 7, "topic": "bayes-rule", "type": "flashcard", "difficulty": 1,
+    "prompt": "Write Bayes' law for continuous parameters $\\theta$ given data $\\mathcal{D}$, and the evidence.",
+    "answer": "$p(\\theta \\mid \\mathcal{D}) = \\frac{p(\\mathcal{D} \\mid \\theta)\\,p(\\theta)}{p(\\mathcal{D})}$ with $p(\\mathcal{D}) = \\int p(\\mathcal{D} \\mid \\theta)p(\\theta)\\,d\\theta$. So posterior $\\propto$ likelihood $\\times$ prior.",
+    "explanation": "For discrete parameters the integral becomes a sum. The evidence normalises the posterior and is constant in $\\theta$.",
+    "tags": ["bayes-law", "formula"],
+    "sources": [{"file": "week_7/slide/W07-02-BayesianInference (1).pdf", "page": 6, "quote": "The evidence normalises the posterior and is constant with respect to θ."}]
+  },
+  {
+    "id": "w7-bay-002", "week": 7, "topic": "bayes-rule", "type": "mcq", "difficulty": 1,
+    "prompt": "How do the frequentist and Bayesian views treat the parameter $\\theta$?",
+    "choices": ["Frequentist: a distribution over $\\theta$; Bayesian: $\\theta$ fixed", "Both treat $\\theta$ as a random variable with a prior", "Frequentist: $\\theta$ fixed but unknown, with an estimator that varies across data sets; Bayesian: a distribution represents uncertainty about $\\theta$ and is updated with data", "They use different sampling models $p(\\mathcal{D} \\mid \\theta)$"],
+    "answer": 2,
+    "explanation": "Both views can use the same sampling model; they differ in how they treat uncertainty about $\\theta$.",
+    "tags": ["frequentist-vs-bayesian"],
+    "sources": [{"file": "week_7/slide/W07-02-BayesianInference (1).pdf", "page": 5, "quote": "Frequentist: θ is fixed but unknown. An estimator varies"}]
+  },
+  {
+    "id": "w7-bay-003", "week": 7, "topic": "bayes-rule", "type": "numeric", "difficulty": 1,
+    "prompt": "Joint probabilities for a rose: red with thorns .15, red without .43, white with .23, white without .19. Find $P(T = \\text{yes} \\mid C = \\text{red})$ to two decimals.",
+    "answer": 0.26,
+    "tolerance": 0.005,
+    "explanation": "$P(T = \\text{yes} \\mid \\text{red}) = \\frac{.15}{.15 + .43} = \\frac{.15}{.58} \\approx .26$.",
+    "tags": ["conditional-probability", "calculation"],
+    "sources": [{"file": "week_7/worksheets/W07-02-Bayesian inference Exercise.pdf", "page": 2, "quote": "Find P (T = yes|C = red), rounded to two decimals."}]
+  },
+  {
+    "id": "w7-bay-004", "week": 7, "topic": "bayes-rule", "type": "numeric", "difficulty": 2,
+    "prompt": "A disease affects 1% of a population. A test has sensitivity $P(+ \\mid D) = .99$ and specificity $P(- \\mid D^c) = .99$. Find $P(D \\mid +)$ as a percentage.",
+    "answer": 50,
+    "tolerance": 0.5,
+    "explanation": "$P(+) = .99(.01) + .01(.99) = .0198$, so $P(D \\mid +) = .0099/.0198 = 50\\%$. The low prior prevalence pulls the posterior down.",
+    "tags": ["bayes-law", "calculation"],
+    "sources": [{"file": "week_7/worksheets/W07-02-Bayesian inference Exercise.pdf", "page": 3, "quote": "A disease affects 1% of a population. A test has sensitivityP (+|D) =.99 and specificity"}]
+  },
+  {
+    "id": "w7-bay-005", "week": 7, "topic": "bayes-rule", "type": "numeric", "difficulty": 2,
+    "prompt": "Sensitivity 0.90, specificity 0.95, prevalence 0.10. What is $P(D \\mid +)$? (3 d.p.)",
+    "answer": 0.667,
+    "tolerance": 0.002,
+    "explanation": "$P(+) = 0.9(0.1) + 0.05(0.9) = 0.135$; $P(D \\mid +) = 0.09/0.135 \\approx 0.667$. At prevalence 0.01 it is only $0.009/0.0585 \\approx 0.154$: same test, different prior.",
+    "tags": ["bayes-law", "prior", "calculation"],
+    "sources": [{"file": "week_7/worksheets/W07-02-Bayesian inference Exercise.pdf", "page": 4, "quote": "the same in two populations, but disease prevalence is 0.01 in population A and 0.10 in"}]
+  },
+  {
+    "id": "w7-bay-006", "week": 7, "topic": "bayes-rule", "type": "short", "difficulty": 2,
+    "prompt": "In the diagnostic-test calculation, identify the prior, likelihood and evidence, and explain why equal sensitivity and specificity give different posteriors in two populations.",
+    "answer": "Prior: the prevalence $P(D)$. Likelihood: $P(+ \\mid D)$ (with $P(+ \\mid D^c)$ for the healthy group). Evidence: $P(+) = P(+ \\mid D)P(D) + P(+ \\mid D^c)P(D^c)$. The likelihoods are the same, but the prior differs, so the posterior $P(D \\mid +)$ differs.",
+    "explanation": "Posterior $\\propto$ likelihood $\\times$ prior; the evidence normalises it.",
+    "tags": ["bayes-law", "prior"],
+    "sources": [{"file": "week_7/worksheets/W07-02-Bayesian inference Exercise.pdf", "page": 4, "quote": "Identify the prior, likelihood and evidence in your calculation."}]
+  },
+  {
+    "id": "w7-bay-007", "week": 7, "topic": "bayes-rule", "type": "multi", "difficulty": 2,
+    "prompt": "Joint table: $P(A, B) = .12$, $P(A, B^c) = .18$, $P(A^c, B) = .28$, $P(A^c, B^c) = .42$. Select all true statements.",
+    "choices": ["$P(A) = .30$", "$P(B \\mid A) = .40$", "$A$ and $B$ are independent", "$P(A \\mid B) = P(B \\mid A)$"],
+    "answer": [0, 1, 2],
+    "explanation": "$P(A) = .30$, $P(B) = .40$, $P(A \\mid B) = .12/.40 = .30$, $P(B \\mid A) = .12/.30 = .40$. $P(A)P(B) = .12 = P(A, B)$, so independent; the two conditionals differ because they divide by different marginals.",
+    "tags": ["conditional-probability", "independence"],
+    "sources": [{"file": "week_7/worksheets/W07-02-Bayesian inference Exercise.pdf", "page": 3, "quote": "Find P (A), P (B), P (A|B) and P (B|A). Are A and B independent?"}]
+  },
+  {
+    "id": "w7-bay-008", "week": 7, "topic": "bayes-rule", "type": "truefalse", "difficulty": 1,
+    "prompt": "A maximum-likelihood estimate is a posterior distribution over the parameters.",
+    "answer": false,
+    "explanation": "An MLE is a point estimate. A likelihood alone is not a posterior distribution over parameters; that needs a prior.",
+    "tags": ["likelihood"],
+    "sources": [{"file": "week_7/slide/W07-02-BayesianInference (1).pdf", "page": 7, "quote": "An MLE is a point estimate. A likelihood alone is not a posterior distribution over"}]
+  }
+]

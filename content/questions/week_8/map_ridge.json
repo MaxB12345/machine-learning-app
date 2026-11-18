@@ -1,0 +1,79 @@
+[
+  {
+    "id": "w8-map-001", "week": 8, "topic": "map-and-ridge", "type": "flashcard", "difficulty": 1,
+    "prompt": "What does MAP maximise, and why can we use the log-posterior?",
+    "answer": "$\\hat{\\mathbf{w}}_{MAP} = \\arg\\max_\\mathbf{w} p(\\mathbf{w} \\mid \\mathcal{D}, \\alpha, \\beta)$. The logarithm is strictly increasing, so $\\arg\\max_\\mathbf{w}\\log p(\\mathbf{w} \\mid \\mathcal{D}, \\alpha, \\beta)$ gives the same weights.",
+    "explanation": "MLE maximises the likelihood; MAP maximises the posterior, incorporating a prior.",
+    "tags": ["map", "formula"],
+    "sources": [{"file": "week_8/slides/W08-01-BayesianRegression (1).pdf", "page": 16, "quote": "Because the logarithm is strictly increasing, we can also write"}]
+  },
+  {
+    "id": "w8-map-002", "week": 8, "topic": "map-and-ridge", "type": "flashcard", "difficulty": 2,
+    "prompt": "Write MAP as a minimisation and show it is ridge regression.",
+    "answer": "$\\hat{\\mathbf{w}}_{MAP} = \\arg\\min_\\mathbf{w}\\left\\{\\frac\\beta2\\|\\mathbf{y} - \\Phi\\mathbf{w}\\|^2 + \\frac\\alpha2\\|\\mathbf{w}\\|^2\\right\\}$. Dividing by $\\beta$: $L(\\mathbf{w}) = \\frac12R(\\mathbf{w}) + \\frac\\lambda2\\|\\mathbf{w}\\|^2$ with $\\lambda = \\alpha/\\beta$.",
+    "explanation": "The first term favours agreement with the training targets; the second discourages large weights.",
+    "tags": ["ridge", "formula"],
+    "sources": [{"file": "week_8/slides/W08-01-BayesianRegression (1).pdf", "page": 18, "quote": "Divide the entire objective by the fixed positive number β; the minimiser is unchanged."}]
+  },
+  {
+    "id": "w8-map-003", "week": 8, "topic": "map-and-ridge", "type": "numeric", "difficulty": 1,
+    "prompt": "Prior $\\mathcal{N}(\\mathbf{0}, \\alpha^{-1}I)$ with $\\alpha = 4$ and noise precision $\\beta = 2$. What is the ridge strength $\\lambda$?",
+    "answer": 2,
+    "tolerance": 0.0001,
+    "explanation": "$\\lambda = \\alpha/\\beta = 4/2 = 2$. Prior variance per coefficient is $1/4$; noise variance is $1/2$.",
+    "tags": ["ridge", "calculation"],
+    "sources": [{"file": "week_8/worksheets/W08-01-Bayesian Regression Exercise.pdf", "page": 2, "quote": "Use the priorN (0,α−1I) with α = 4 and Gaussian observation precision β = 2."}]
+  },
+  {
+    "id": "w8-map-004", "week": 8, "topic": "map-and-ridge", "type": "numeric", "difficulty": 2,
+    "prompt": "Same $\\alpha = 4$, $\\beta = 2$. The observation-noise variance doubles with $\\alpha$ fixed. What is the new $\\lambda$?",
+    "answer": 4,
+    "tolerance": 0.0001,
+    "explanation": "Noise variance goes from $\\tfrac12$ to $1$, so $\\beta = 1$ and $\\lambda = 4/1 = 4$: noisier data means more shrinkage relative to the fit.",
+    "tags": ["ridge", "calculation"],
+    "sources": [{"file": "week_8/worksheets/W08-01-Bayesian Regression Exercise.pdf", "page": 2, "quote": "If the observation-noise variance doubles with α fixed, find the new β and λ."}]
+  },
+  {
+    "id": "w8-map-005", "week": 8, "topic": "map-and-ridge", "type": "multi", "difficulty": 2,
+    "prompt": "$L(\\mathbf{w}) = \\frac12R(\\mathbf{w}) + \\frac\\lambda2\\|\\mathbf{w}\\|^2$, $\\lambda = \\alpha/\\beta$. Select all true statements.",
+    "choices": ["At fixed $\\beta$, larger $\\alpha$ gives stronger shrinkage toward zero weights", "At fixed $\\alpha$, larger noise variance gives a larger penalty relative to the data fit", "The prior penalises all coefficients, including the intercept", "Larger $\\lambda$ weakens the preference for small weights"],
+    "answer": [0, 1, 2],
+    "explanation": "Larger $\\lambda$ strengthens the preference for small weights. Larger noise variance means smaller $\\beta$, hence larger $\\lambda$.",
+    "tags": ["ridge", "shrinkage"],
+    "sources": [{"file": "week_8/slides/W08-01-BayesianRegression (1).pdf", "page": 19, "quote": "The prior penalises all coefficients, including the intercept."}]
+  },
+  {
+    "id": "w8-map-006", "week": 8, "topic": "map-and-ridge", "type": "mcq", "difficulty": 3,
+    "prompt": "$\\beta = 2$. Candidate A: $R_A = 2$, $\\|\\mathbf{w}_A\\|^2 = 4$. Candidate B: $R_B = 4$, $\\|\\mathbf{w}_B\\|^2 = 1$. Which does MAP prefer for $\\alpha = 1$ and for $\\alpha = 4$?",
+    "choices": ["A for both", "B for both", "B for $\\alpha = 1$, A for $\\alpha = 4$", "A for $\\alpha = 1$ ($4$ vs $4.5$), B for $\\alpha = 4$ ($6$ vs $10$)"],
+    "answer": 3,
+    "explanation": "Objective $\\frac\\beta2R + \\frac\\alpha2\\|\\mathbf{w}\\|^2$. $\\alpha = 1$: A $= 2 + 2 = 4$, B $= 4 + 0.5 = 4.5$. $\\alpha = 4$: A $= 2 + 8 = 10$, B $= 4 + 2 = 6$. Likelihood alone prefers A. Neither ranking establishes out-of-sample error.",
+    "tags": ["map", "calculation"],
+    "sources": [{"file": "week_8/worksheets/W08-01-Bayesian Regression Exercise.pdf", "page": 3, "quote": "candidate A has RA = 2 and∥wA∥2 = 4; candidate B has"}]
+  },
+  {
+    "id": "w8-map-007", "week": 8, "topic": "map-and-ridge", "type": "truefalse", "difficulty": 2,
+    "prompt": "Adding a Gaussian prior guarantees that MAP predicts better than OLS.",
+    "answer": false,
+    "explanation": "OLS's smaller training cost does not establish better prediction, and the prior does not guarantee it either. In the degree-8 example MAP trades some training fit for smaller coefficients and avoids wild excursions.",
+    "tags": ["map", "generalisation"],
+    "sources": [{"file": "week_8/worksheets/W08-01-Bayesian Regression Exercise.pdf", "page": 4, "quote": "Does adding the Gaussian prior guarantee that MAP predicts better?"}]
+  },
+  {
+    "id": "w8-map-008", "week": 8, "topic": "map-and-ridge", "type": "mcq", "difficulty": 2,
+    "prompt": "Degree-8 polynomial, $N = 10$. How do the MLE and MAP ($\\lambda = 1$) fits compare?",
+    "choices": ["MLE makes large excursions between observations and in extrapolation; MAP trades some training fit for smaller coefficients", "They are identical, because both use the same basis", "MAP fits the training points better than MLE", "MLE has smaller coefficients than MAP"],
+    "answer": 0,
+    "explanation": "Compare the vertical scales: the MLE curve reaches thousands, while MAP stays near the data.",
+    "tags": ["map", "overfitting"],
+    "sources": [{"file": "week_8/slides/W08-01-BayesianRegression (1).pdf", "page": 21, "quote": "The MLE fit makes large excursions between observations and"}, {"file": "week_8/slides/W08-01-BayesianRegression (1).pdf", "page": 22, "quote": "MAP trades some training fit for smaller coefficients."}]
+  },
+  {
+    "id": "w8-map-009", "week": 8, "topic": "map-and-ridge", "type": "order", "difficulty": 2,
+    "prompt": "Order these from the criterion that uses the least to the most modelling assumptions.",
+    "steps": ["OLS: minimise squared prediction errors $\\arg\\min_\\mathbf{w} R(\\mathbf{w})$", "MLE: maximise the likelihood $\\arg\\max_\\mathbf{w} p(\\mathbf{y} \\mid \\Phi, \\mathbf{w}, \\beta)$", "MAP: maximise the posterior $\\arg\\max_\\mathbf{w} p(\\mathbf{w} \\mid \\mathcal{D}, \\alpha, \\beta)$, incorporating a prior"],
+    "explanation": "OLS needs no noise model; MLE adds a noise distribution; MAP adds a prior over the weights as well.",
+    "tags": ["map", "mle-ols"],
+    "sources": [{"file": "week_8/slides/W08-01-BayesianRegression (1).pdf", "page": 23, "quote": "Maximise the posterior,"}]
+  }
+]
